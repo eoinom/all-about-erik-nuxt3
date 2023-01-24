@@ -152,7 +152,7 @@ export default {
       return snarkdown(text);
     },
     getImageUrl(name) {
-      return new URL(`./public/${name}`, import.meta.url).href
+      return new URL(`./dynamic-images/${name}`, import.meta.url).href
     }
   },
 

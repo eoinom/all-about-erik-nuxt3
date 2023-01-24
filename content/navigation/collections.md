@@ -3,7 +3,7 @@ text: Collections
 to: /collections
 orderNo: 6
 hasSubMenu: true
-img: menu-images/submenu-collections.jpg
+img: submenu-collections.jpg
 verb: view
 subMenuTitle: Collection Galleries
 ---

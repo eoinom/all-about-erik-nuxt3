@@ -3,7 +3,7 @@ text: Musical Journey
 to: ' '
 orderNo: 3
 hasSubMenu: true
-img: menu-images/submenu-musical-journey.jpg
+img: submenu-musical-journey.jpg
 verb: listen & watch
 subPages:
   - subPageText: The Episodes
