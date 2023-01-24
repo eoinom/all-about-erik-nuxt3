@@ -5,5 +5,5 @@ orderNo: 8
 hasSubMenu: true
 img: menu-images/submenu-archives.jpg
 verb: view
-title: Erik's Exhaustive Archives
+subMenuTitle: Erik's Exhaustive Archives
 ---

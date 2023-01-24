@@ -48,7 +48,8 @@
 
         <br>
 
-        <NuxtLink v-if="activeNav.title" :to="activeNav.to" class="title-text">{{ activeNav.title }}</NuxtLink>
+        <NuxtLink v-if="activeNav.subMenuTitle" :to="activeNav.to" class="title-text">{{ activeNav.subMenuTitle }}
+        </NuxtLink>
 
         <NuxtLink v-else-if="activeNav.titleMD" :to="activeNav.to" class="title-text">
           <span v-html="renderMarkdown(activeNav.titleMD)" />

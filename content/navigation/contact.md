@@ -5,7 +5,7 @@ orderNo: 9
 hasSubMenu: true
 img: menu-images/submenu-contact.jpg
 verb: inform
-title: ''
+subMenuTitle: ''
 titleMD: |-
   Contact Form  
   &  

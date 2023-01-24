@@ -5,5 +5,5 @@ orderNo: 7
 hasSubMenu: true
 img: menu-images/submenu-publications.jpg
 verb: read
-title: Published Books
+subMenuTitle: Published Books
 ---

@@ -5,5 +5,5 @@ orderNo: 5
 hasSubMenu: true
 img: menu-images/submenu-travels.jpg
 verb: watch
-title: Travel Videos
+subMenuTitle: Travel Videos
 ---
