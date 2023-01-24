@@ -92,11 +92,9 @@
 
 
 <script type="text/javascript">
-// import simplebar from 'simplebar-vue';
-// import 'simplebar/dist/simplebar.min.css';
 import { SimpleBar } from 'simplebar-vue3';
-// const MarkdownIt = require('markdown-it');
 import snarkdown from 'snarkdown';
+import '~/assets/styles.css'
 
 export default {
   data() {
@@ -150,8 +148,6 @@ export default {
       this.activeSubNav = this.mainNavIsOpen ? Object.assign({}, subNav) : {}
     },
     renderMarkdown(text) {
-      // const md = new MarkdownIt()
-      // return md.render(text) 
       return snarkdown(text);
     },
     getImageUrl(name) {
