@@ -94,8 +94,6 @@
 <script type="text/javascript">
 import snarkdown from 'snarkdown';
 import { SimpleBar } from 'simplebar-vue3';
-import 'simplebar/dist/simplebar.min.css';
-import '~/assets/styles.css'
 
 export default {
   data() {
