@@ -1,69 +1,130 @@
 <template>
   <div class="layout">
     <div class="openbtn">
-      <img alt="Open navigation menu" src="./assets/images/menu-open.png" @click="mainNavIsOpen = true" />
-      <img alt="Open navigation menu" src="./assets/images/menu-open-hover.png" @click="mainNavIsOpen = true"
-        class="img-hover" />
+      <img
+        alt="Open navigation menu"
+        src="./assets/images/menu-open.png"
+        @click="mainNavIsOpen = true"
+      />
+      <img
+        alt="Open navigation menu"
+        src="./assets/images/menu-open-hover.png"
+        @click="mainNavIsOpen = true"
+        class="img-hover"
+      />
     </div>
 
     <!-- Main navigation menu -->
-    <div id="sideNav-main" :class="{ sideNavOpen: mainNavIsOpen }">
-      <SimpleBar class="simple-scrollbar" data-simplebar-auto-hide="true">
+    <div
+      id="sideNav-main"
+      :class="{ sideNavOpen: mainNavIsOpen }"
+    >
+      <SimpleBar
+        class="simple-scrollbar"
+        data-simplebar-auto-hide="true"
+      >
         <div>
           <div class="closebtn">
-            <img alt="Close navigation menu" src="./assets/images/menu-close.png" @click="closeNav()" />
-            <img alt="Close navigation menu" src="./assets/images/menu-close-hover.png" @click="closeNav()"
-              class="img-hover" />
+            <img
+              alt="Close navigation menu"
+              src="./assets/images/menu-close.png"
+              @click="closeNav()"
+            />
+            <img
+              alt="Close navigation menu"
+              src="./assets/images/menu-close-hover.png"
+              @click="closeNav()"
+              class="img-hover"
+            />
           </div>
 
-          <nav v-for="menuItem in navMenuItems" :key="menuItem.text">
-            <a v-if="menuItem.to == ' '" href="" class="nav_item" @mouseover="onNavLinkHover(menuItem)">{{
-              menuItem.text.toUpperCase()
-            }}</a>
+          <nav
+            v-for="menuItem in navMenuItems"
+            :key="menuItem.text"
+          >
+            <a
+              v-if="menuItem.to == ' '"
+              href=""
+              class="nav_item"
+              @mouseover="onNavLinkHover(menuItem)"
+              >{{ menuItem.text.toUpperCase() }}</a
+            >
             <!-- <router-link v-else :to="menuItem.to" class="nav_item" @mouseover.native="onNavLinkHover(menuItem)">{{
               menuItem.text.toUpperCase()
             }}</router-link> -->
-            <NuxtLink v-else :to="menuItem.to" class="nav_item" @mouseover.native="onNavLinkHover(menuItem)">{{
-              menuItem.text.toUpperCase()
-            }}</NuxtLink>
+            <NuxtLink
+              v-else
+              :to="menuItem.to"
+              class="nav_item"
+              @mouseover.native="onNavLinkHover(menuItem)"
+              >{{ menuItem.text.toUpperCase() }}</NuxtLink
+            >
             <hr />
           </nav>
-
         </div>
       </SimpleBar>
     </div>
 
     <!-- Sub navigation menu -->
-    <div id="sideNav-sub" :style="subSideNavStyles()">
+    <div
+      id="sideNav-sub"
+      :style="subSideNavStyles()"
+    >
       <div class="submenu-img-container">
         <NuxtLink :to="activeNav.to">
-          <div v-for="menuItem in navMenuItems" :key="menuItem.text">
-            <img v-if="menuItem.img != null && menuItem.text === activeNav.text" :src="getImageUrl(menuItem.img)" />
+          <div
+            v-for="menuItem in navMenuItems"
+            :key="menuItem.text"
+          >
+            <img
+              v-if="menuItem.img != null && menuItem.text === activeNav.text"
+              :src="getImageUrl(menuItem.img)"
+            />
           </div>
         </NuxtLink>
       </div>
 
       <div class="submenu-text-container">
-        <NuxtLink :to="activeNav.to" class="verb-text">{{ activeNav.verb }}</NuxtLink>
+        <NuxtLink
+          :to="activeNav.to"
+          class="verb-text"
+          >{{ activeNav.verb }}</NuxtLink
+        >
 
-        <br>
+        <br />
 
-        <NuxtLink v-if="activeNav.subMenuTitle" :to="activeNav.to" class="title-text">{{ activeNav.subMenuTitle }}
+        <NuxtLink
+          v-if="activeNav.subMenuTitle"
+          :to="activeNav.to"
+          class="title-text"
+          >{{ activeNav.subMenuTitle }}
         </NuxtLink>
 
-        <NuxtLink v-else-if="activeNav.titleMD" :to="activeNav.to" class="title-text">
+        <NuxtLink
+          v-else-if="activeNav.titleMD"
+          :to="activeNav.to"
+          class="title-text"
+        >
           <span v-html="renderMarkdown(activeNav.titleMD)" />
         </NuxtLink>
 
-        <div v-if="showSubPageLinks" class="submenu-nav-container">
-          <nav v-for="subPage in activeNav.subPages" :key="subPage.subPageText">
-            <NuxtLink :to="subPage.subPageTo" class="nav_item" @mouseover.native="onSubNavLinkHover(subPage)">{{
-              subPage.subPageText.toUpperCase()
-            }}</NuxtLink>
+        <div
+          v-if="showSubPageLinks"
+          class="submenu-nav-container"
+        >
+          <nav
+            v-for="subPage in activeNav.subPages"
+            :key="subPage.subPageText"
+          >
+            <NuxtLink
+              :to="subPage.subPageTo"
+              class="nav_item"
+              @mouseover.native="onSubNavLinkHover(subPage)"
+              >{{ subPage.subPageText.toUpperCase() }}</NuxtLink
+            >
           </nav>
         </div>
       </div>
-
     </div>
 
     <!-- This transition is for all other page loads -->
@@ -81,19 +142,26 @@
       </main>
     </transition> -->
 
-    <transition name="home" appear>
+    <transition
+      name="home"
+      appear
+    >
       <main>
         <NuxtPage />
       </main>
     </transition>
-
   </div>
 </template>
-
 
 <script type="text/javascript">
 import snarkdown from 'snarkdown';
 import { SimpleBar } from 'simplebar-vue3';
+
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} | All About Erik` : 'All About Erik';
+  },
+});
 
 export default {
   data() {
@@ -102,60 +170,69 @@ export default {
       activeSubNav: {},
       documentLoaded: false,
       mainNavIsOpen: false,
-      navMenuItems: null
-    }
+      navMenuItems: null,
+    };
   },
 
   computed: {
     showSubSideNav() {
-      return this.activeNav.hasOwnProperty('hasSubMenu') && this.activeNav.hasSubMenu === true && this.mainNavIsOpen
+      return (
+        this.activeNav.hasOwnProperty('hasSubMenu') &&
+        this.activeNav.hasSubMenu === true &&
+        this.mainNavIsOpen
+      );
     },
     showSubPageLinks() {
-      return this.activeNav.hasOwnProperty('subPages') && this.activeNav.subPages.length > 0 && this.mainNavIsOpen
+      return (
+        this.activeNav.hasOwnProperty('subPages') &&
+        this.activeNav.subPages.length > 0 &&
+        this.mainNavIsOpen
+      );
     },
   },
 
   methods: {
     subSideNavStyles() {
       if (this.documentLoaded) {
-        let subNav = document.getElementById("sideNav-sub")
+        let subNav = document.getElementById('sideNav-sub');
         if (subNav != null)
-          this.showSubSideNav ? subNav.style.width = "240px" : subNav.style.width = "0" // needed to overwrite setting from closeNav()
+          this.showSubSideNav
+            ? (subNav.style.width = '240px')
+            : (subNav.style.width = '0'); // needed to overwrite setting from closeNav()
       }
-      return this.showSubSideNav ? 'width:240px' : 'width:0px'  // note the max-width settings in the media queries
+      return this.showSubSideNav ? 'width:240px' : 'width:0px'; // note the max-width settings in the media queries
     },
     closeNav() {
-      let mainNav = document.getElementById("sideNav-main")
-      let subNav = document.getElementById("sideNav-sub")
+      let mainNav = document.getElementById('sideNav-main');
+      let subNav = document.getElementById('sideNav-sub');
 
-      if (subNav && subNav.style.width !== "0px") {
-        subNav.style.transition = "0.3s"
-        mainNav.style.transition = "0.3s"
-        mainNav.style.transitionDelay = "0.3s"
+      if (subNav && subNav.style.width !== '0px') {
+        subNav.style.transition = '0.3s';
+        mainNav.style.transition = '0.3s';
+        mainNav.style.transitionDelay = '0.3s';
+      } else {
+        mainNav.style.transition = '0.5s';
+        mainNav.style.transitionDelay = '0s';
       }
-      else {
-        mainNav.style.transition = "0.5s"
-        mainNav.style.transitionDelay = "0s"
-      }
-      this.activeNav = {}
-      this.mainNavIsOpen = false
+      this.activeNav = {};
+      this.mainNavIsOpen = false;
     },
     onNavLinkHover(nav) {
-      this.activeNav = this.mainNavIsOpen ? Object.assign({}, nav) : {}
+      this.activeNav = this.mainNavIsOpen ? Object.assign({}, nav) : {};
     },
     onSubNavLinkHover(subNav) {
-      this.activeSubNav = this.mainNavIsOpen ? Object.assign({}, subNav) : {}
+      this.activeSubNav = this.mainNavIsOpen ? Object.assign({}, subNav) : {};
     },
     renderMarkdown(text) {
       return snarkdown(text);
     },
     getImageUrl(name) {
-      return new URL(`./dynamic-images/${name}`, import.meta.url).href
-    }
+      return new URL(`./dynamic-images/${name}`, import.meta.url).href;
+    },
   },
 
   async mounted() {
-    const navItems = await queryContent("navigation")
+    const navItems = await queryContent('navigation')
       .sort({ orderNo: 1 }) // sort ascending
       .find();
 
@@ -165,9 +242,9 @@ export default {
   },
 
   components: {
-    SimpleBar
-  }
-}
+    SimpleBar,
+  },
+};
 </script>
 
 <style>
@@ -175,7 +252,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
 body {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -224,7 +301,7 @@ body {
 #sideNav-main a:hover,
 #sideNav-main a.router-link-exact-active {
   /* https://stackoverflow.com/questions/46083220/how-to-vuejs-router-link-active-style */
-  color: #E30829;
+  color: #e30829;
 }
 
 #sideNav-main hr {
@@ -237,7 +314,7 @@ body {
   color: white;
   display: block;
   font-family: 'Lato', sans-serif;
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 3px;
@@ -254,7 +331,6 @@ body {
   /* https://stackoverflow.com/questions/46083220/how-to-vuejs-router-link-active-style */
   color: #68c4eb;
 }
-
 
 .openbtn {
   cursor: pointer;
@@ -361,7 +437,7 @@ body {
   cursor: pointer;
   display: block;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -389,7 +465,7 @@ body {
   cursor: pointer;
   display: inline;
   font-family: 'Lato', sans-serif;
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
   font-size: 25px;
   font-style: normal;
   font-weight: 100;
@@ -413,7 +489,6 @@ body {
 .simple-scrollbar {
   height: 100%;
 }
-
 
 /* Transition styles on router-view for fading the page */
 .home-enter-active {
@@ -442,7 +517,6 @@ body {
 .page-leave-active {
   opacity: 0;
 }
-
 
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
 

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       'bootstrap-vue-next/nuxt',
       {
         components: ['BContainer', 'BRow', 'BCol', 'BButton'],
-        directives: ['VBTooltip'],
+        // directives: ['VBTooltip'],
       },
     ],
   ],
