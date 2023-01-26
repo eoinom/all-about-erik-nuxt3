@@ -153,15 +153,17 @@
   </div>
 </template>
 
-<script type="text/javascript">
-import snarkdown from 'snarkdown';
-import { SimpleBar } from 'simplebar-vue3';
-
+<script setup>
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | All About Erik` : 'All About Erik';
   },
 });
+</script>
+
+<script type="text/javascript">
+import snarkdown from 'snarkdown';
+import { SimpleBar } from 'simplebar-vue3';
 
 export default {
   data() {
