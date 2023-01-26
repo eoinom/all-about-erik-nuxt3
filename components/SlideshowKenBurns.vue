@@ -131,9 +131,6 @@ export default {
           this.next();
         }
       }, precision);
-
-      // Clear the interval if the component is destroyed to prevent memory leaks
-      // this.$on('hook:destroyed', () => clearInterval(this.intervalClock));
     },
 
     interval(index) {
