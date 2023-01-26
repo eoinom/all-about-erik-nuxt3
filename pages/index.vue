@@ -88,8 +88,6 @@ export default {
 
   async mounted() {
     const homePgContent = await queryContent('home').findOne();
-    console.log({ homePgContent });
-
     this.homePgContent = homePgContent;
   },
 };
