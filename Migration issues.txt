@@ -1,0 +1,4 @@
+AllAboutErik - migration to Nuxt3 issues
+----------------------------------------
+
+- VBTooltip directive not available from BootstrapVue yet (used on BackgroundMusic.vue)
