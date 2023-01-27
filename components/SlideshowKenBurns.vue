@@ -1,10 +1,10 @@
 <template>
   <div class="SlideshowKenBurns">
-    <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
+    <!-- https://vuejs.org/guide/built-ins/transition-group.html -->
     <TransitionGroup
       tag="div"
       enter-active-class="SlideshowKenBurns__enterActive"
-      enter-class="SlideshowKenBurns__enter"
+      enter-from-class="SlideshowKenBurns__enterFrom"
       leave-active-class="SlideshowKenBurns__leaveActive"
       leave-to-class="SlideshowKenBurns__leaveTo"
       class="SlideshowKenBurns__slides"
@@ -23,8 +23,6 @@
 </template>
 
 <script>
-import { onUnmounted } from 'vue';
-
 export default {
   name: 'SlideshowKenBurns',
 
@@ -57,6 +55,10 @@ export default {
 
   mounted() {
     this.startInterval();
+  },
+
+  updated() {
+    this.createKeyFrames();
   },
 
   unmounted() {
@@ -102,7 +104,7 @@ export default {
           case 'top-right':
             return 'top right';
           default:
-            console.log(
+            console.error(
               'Did not recognise value for slides.panStart: ' +
                 this.slides[i].panStart
             );
@@ -149,7 +151,8 @@ export default {
 
     createKeyFrames() {
       for (let i = 1; i < this.slides.length; i++) {
-        // Note: keyframe for first slide (i == 0) is manually included in styles.css in order to avoid jitter on initial page load
+        // Note: keyframe for first slide (i == 0) is manually included in styles.css
+        // in order to avoid jitter on initial page load
         let startPos = [0, 0, 0]; // x, y, z
         switch (this.panStart(i)) {
           case 'bottom left':
@@ -180,7 +183,7 @@ export default {
             startPos = [1, -1, 0];
             break;
           default:
-            console.log(
+            console.error(
               'Did not recognise value for slides.panStart: ' + this.panStart(i)
             );
         }
@@ -190,7 +193,6 @@ export default {
         const Tx = this.translateFactor * startPos[0];
         const Ty = this.translateFactor * startPos[1];
         var style = document.createElement('style');
-        style.type = 'text/css';
         var keyFrame =
           '\
         @keyframes kenburns-' +
@@ -232,7 +234,6 @@ export default {
     position: relative;
     display: flex;
     justify-content: center;
-
     padding-bottom: 100vh;
   }
 
@@ -276,7 +277,7 @@ export default {
     transition: opacity 3s linear;
   }
 
-  &__enter,
+  &__enterFrom,
   &__leaveTo {
     opacity: 0;
   }

@@ -93,6 +93,12 @@ export default {
 };
 </script>
 
+<style lang="scss">
+body {
+  overflow: hidden;
+}
+</style>
+
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
 
@@ -101,10 +107,6 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-}
-
-.layout {
-  padding: 0;
 }
 
 .contentContainer {

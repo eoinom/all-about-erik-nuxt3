@@ -249,7 +249,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Lato:100,400&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
@@ -262,27 +262,20 @@ body {
 .layout {
   max-width: 100%;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0;
 }
 
 /* The side navigation menu */
 #sideNav-main {
   height: 100%;
-  /* 100% Full-height */
   position: fixed;
-  /* Stay in place */
   top: 0;
-  /* Stay at the top */
   left: 0;
   background-color: #222222;
   overflow-x: hidden;
-  /* Disable horizontal scroll */
   overflow-y: auto;
   z-index: 2000;
-  /* Stay on top */
   width: 0;
-  /* set with JavaScript */
   padding: 25px 0;
   transition: all 0.5s ease 0s;
 }
