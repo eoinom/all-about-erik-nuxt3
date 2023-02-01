@@ -2,3 +2,25 @@ AllAboutErik - migration to Nuxt3 issues
 ----------------------------------------
 
 - VBTooltip directive not available from BootstrapVue yet (used on BackgroundMusic.vue)
+- BCarousel doesn't seem to be working correctly (used on SlideshowImages which is used on Roots)
+- May need to replace ks-vue-fullpage, hasn't been updated in 5 years and may not be compatible with Vue 3. Alternative is fullpage.js (https://alvarotrigo.com/fullPage/) (Vue wrapper: https://github.com/alvarotrigo/vue-fullpage.js) - cost is $36 for one time hobby licence.
+
+
+
+Bootstrap-Vue components etc.
+------------------------------
+Flex:
+b-container
+b-row
+b-col
+
+b-button
+b-tooltip
+
+b-carousel
+b-carousel-slide
+
+
+
+Migrate from Bootstrap-Vue to Vuetify or Quasar for proper Vue 3 support
+
