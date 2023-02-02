@@ -41,10 +41,13 @@
                 data-testid="title-img"
               />
 
-              <span
-                v-html="mainText"
-                id="mainText"
-              />
+              <div>
+                <ContentRenderer
+                  :value="rootsContent"
+                  tag="div"
+                  id="mainText"
+                />
+              </div>
 
               <!-- Scroll with arrow images - hidden on xs (e.g. portrait mobile devices) -->
               <ScrollDownArrow
@@ -158,6 +161,7 @@ export default {
     return {
       rootsContent: {},
       videoIndex: null,
+      windowWidth: 0,
     };
   },
 
@@ -170,9 +174,6 @@ export default {
     },
     slides() {
       return this.rootsContent.slides;
-    },
-    mainText() {
-      return this.rootsContent.content;
     },
     videos() {
       return this.rootsContent.videos ?? [];
@@ -188,12 +189,33 @@ export default {
     images() {
       return this.slides.map((a) => a.img);
     },
+    horizPaddingPercent() {
+      return this.windowWidth < 576 ? 0 : 6;
+    },
+    horizPadding() {
+      return this.horizPaddingPercent + '%';
+    },
+    carouselHeight() {
+      const aspectRatio = 1.855;
+      return (
+        ((1 - (2 * this.horizPaddingPercent) / 100) * this.windowWidth) /
+        aspectRatio
+      );
+    },
   },
 
   async mounted() {
     const rootsContent = await queryContent('roots-and-youth').findOne();
     console.log({ rootsContent });
     this.rootsContent = rootsContent;
+
+    this.windowWidth = window.innerWidth;
+
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
+      });
+    });
   },
 
   methods: {
@@ -253,7 +275,7 @@ export default {
 }
 
 .main-col {
-  padding: 0 6%;
+  padding: 0 v-bind(horizPadding);
 }
 
 .slideshowCol {
@@ -353,8 +375,7 @@ export default {
 
 // Extra small devices (portrait phones, less than 576px)
 @media only screen and (max-width: 575.98px) {
-  .layout,
-  .main-col {
+  .layout {
     padding: 0 0;
   }
   .slideshowOverlay .mainContent {
