@@ -1,24 +1,38 @@
 // import what we need to override
-@import '../node_modules/bootstrap/scss/_functions';
-@import '../node_modules/bootstrap/scss/_variables';
+@import '../node_modules/vuetify/lib/styles/main.sass';
 
 // set the overriding variables
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1500px,
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px,
+//   xxl: 1500px,
+// );
+$grid-breakpoints: map-merge(
+  $grid-breakpoints,
+  (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1500px,
+  )
 );
-$container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1440px,
-);
-
-// override the !default vars with the values we set above
-// @import "bootstrap";
-// @import '../node_modules/bootstrap/';
+// $grid-breakpoints: (
+//   'xs': 0,
+//   'sm': 576px,
+//   'md': 768px,
+//   'lg': 992px,
+//   'xl': 1200px,
+//   'xxl': 1500px,
+// );
+// $container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1140px,
+//   xxl: 1440px,
+// );

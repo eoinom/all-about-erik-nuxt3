@@ -10,25 +10,28 @@
     :audioFadeOutDuration="rootsContent.bgAudioFadeOutDuration"
   />
 
-  <b-container
+  <v-container
     fluid
     class="main-col"
   >
     <!-- HEADER SLIDESHOW -->
-    <b-row
+    <v-row
       no-gutters
       style="max-height: 1224px; width: auto"
       class="mb-1 px-1"
     >
-      <b-col class="slideshowCol">
-        <slideshow-images :slides="slides" />
+      <v-col class="slideshowCol">
+        <slideshow-images
+          :slides="slides"
+          :carouselHeight="carouselHeight"
+        />
 
-        <b-container
+        <v-container
           fluid
           class="slideshowOverlay"
         >
-          <b-row>
-            <b-col class="mainContent">
+          <v-row>
+            <v-col class="mainContent">
               <img
                 alt="Roots and Youth title image"
                 v-if="titleImg != null"
@@ -48,19 +51,19 @@
                 scrollToElement="#videos"
                 class="d-none d-sm-inline"
               />
-            </b-col>
-          </b-row>
-        </b-container>
-      </b-col>
-    </b-row>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
+    </v-row>
 
     <!-- VIDEOS -->
-    <b-row
+    <v-row
       no-gutters
       id="videos"
       class="mb-1"
     >
-      <b-col
+      <v-col
         cols="12"
         lg="6"
         v-for="(video, index) in videos"
@@ -70,30 +73,30 @@
         data-testid="video-container"
       >
         <video-thumbnail-roots :video="video" />
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
 
     <!-- COMPLETE FILM -->
-    <b-row
+    <v-row
       v-if="fullVideo != null"
       no-gutters
       class="mb-0 px-1"
     >
-      <b-col>
-        <b-row
+      <v-col>
+        <v-row
           id="completeFilmContainer"
           class="mx-0 mb-2"
         >
-          <b-col
+          <v-col
             class="completeFilmContent"
             @click="videoIndex = allVideos.length - 1"
           >
-            <b-row
-              align-v="center"
-              align-h="center"
+            <v-row
+              align="center"
+              justify="center"
               class="mb-0 py-4"
             >
-              <b-col
+              <v-col
                 cols="auto"
                 id="completeFilmPlayIconCol"
                 style="text-align: right"
@@ -109,9 +112,9 @@
                   src="~/assets/images/playarrowcircle-hover.png"
                   id="fullVideoPlayImg-hover"
                 />
-              </b-col>
+              </v-col>
 
-              <b-col
+              <v-col
                 cols="auto"
                 id="completeFilmIconTextCol"
                 style="text-align: left"
@@ -124,22 +127,22 @@
                 >
                   {{ durationInMinsText(fullVideo.duration) }}
                 </p>
-              </b-col>
+              </v-col>
 
-              <b-col cols="auto">
+              <v-col cols="auto">
                 <p
                   id="completeFilmSubText"
                   class="mb-0 mt-1"
                 >
                   {{ fullVideo.text }}
                 </p>
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
-      </b-col>
-    </b-row>
-  </b-container>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 
   <VideoLightBox
     :videos="allVideos"

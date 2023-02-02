@@ -10,7 +10,7 @@
     :audioFadeOutDuration="audioFadeOutDuration"
   />
 
-  <b-container fluid>
+  <v-container fluid>
     <div class="contentContainer">
       <div class="content">
         <div class="mainContent">
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-  </b-container>
+  </v-container>
 
   <div
     v-show="slides"
