@@ -5,7 +5,7 @@
         fluid
         class="slideshowOverlay"
       >
-        <v-row align-v="center">
+        <v-row align="center">
           <v-col
             cols="3"
             class="headerImageCol"
@@ -143,7 +143,7 @@
         fluid
         class="slideshowOverlay"
       >
-        <v-row align-v="center">
+        <v-row align="center">
           <v-col
             v-if="windowWidth >= 2200"
             align-self="start"
@@ -264,8 +264,8 @@
 
         <v-row
           v-if="windowWidth < 2200"
-          align-v="center"
-          align-h="center"
+          align="center"
+          justify="center"
         >
           <v-col
             v-if="windowWidth > 1149"

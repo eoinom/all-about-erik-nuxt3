@@ -5,7 +5,7 @@
   >
     <v-row
       no-gutters
-      align-h="center"
+      justify="center"
       id="tilesRow"
       class="mx-3 mx-sm-0 mb-5 pb-4"
     >

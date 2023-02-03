@@ -32,7 +32,7 @@
       >
         <v-row
           no-gutters
-          align-v="center"
+          align="center"
           id="navLinksRow"
         >
           <v-col

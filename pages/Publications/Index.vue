@@ -55,7 +55,7 @@
     >
       <v-row
         no-gutters
-        align-h="center"
+        justify="center"
         class="publicationsRow mb-1"
       >
         <v-col
@@ -78,7 +78,7 @@
     >
       <v-row
         no-gutters
-        align-h="center"
+        justify="center"
         class="publicationsRow mb-1"
       >
         <v-col

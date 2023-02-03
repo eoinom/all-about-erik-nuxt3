@@ -22,8 +22,8 @@
       >
         <v-row
           v-if="index % 2 === 0"
-          align-h="end"
-          align-v="center"
+          justify="end"
+          align="center"
         >
           <v-col>
             <p class="trackTitle textAlignEnd">{{ track.title }}</p>
@@ -32,8 +32,8 @@
 
         <v-row
           v-else
-          align-h="start"
-          align-v="center"
+          justify="start"
+          align="center"
         >
           <v-col>
             <p class="trackTitle">{{ track.title }}</p>
@@ -51,7 +51,7 @@
       </div>
 
       <v-row
-        align-h="center"
+        justify="center"
         class="text-center"
       >
         <v-col>

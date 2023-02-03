@@ -28,8 +28,8 @@
       class="captionBanner p-2"
     >
       <v-row
-        align-h="center"
-        align-v="center"
+        justify="center"
+        align="center"
         style="height: 100%"
       >
         <v-col align-self="center">

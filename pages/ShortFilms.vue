@@ -31,8 +31,8 @@
       <!-- MAIN VIDEO -->
       <v-row
         no-gutters
-        align-h="center"
-        align-v="center"
+        justify="center"
+        align="center"
         id="mainVideoContainer"
         class="my-2 my-sm-3 px-2 px-sm-3"
       >
@@ -55,7 +55,7 @@
       <!-- VIDEOS -->
       <v-row
         no-gutters
-        align-h="center"
+        justify="center"
         id="videos"
       >
         <v-col

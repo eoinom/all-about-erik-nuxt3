@@ -99,8 +99,8 @@
           class="videoContentContainer px-5"
         >
           <v-row
-            align-v="center"
-            align-h="center"
+            align="center"
+            justify="center"
             class="mb-0 pt-2 pt-md-3 pt-xl-4"
           >
             <v-col
@@ -125,7 +125,7 @@
           </v-row>
 
           <v-row
-            align-h="center"
+            justify="center"
             class="playIconRow mb-0 py-2 py-md-3 py-xl-4"
           >
             <v-col

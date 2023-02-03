@@ -55,7 +55,7 @@
     >
       <v-row
         no-gutters
-        align-h="center"
+        justify="center"
         class="collectionsRow mb-1"
       >
         <v-col
