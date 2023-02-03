@@ -1,6 +1,9 @@
 <template>
   <Layout>
-    <header id="header" :style="headerStyle">
+    <header
+      id="header"
+      :style="headerStyle"
+    >
       <g-image
         :src="titleImg"
         id="titleImg"
@@ -9,16 +12,24 @@
       />
     </header>
 
-    <b-container fluid id="mainContainer" class="mb-3 pb-5 px-1">
+    <v-container
+      fluid
+      id="mainContainer"
+      class="mb-3 pb-5 px-1"
+    >
       <!-- MAIN VIDEO -->
-      <b-row
+      <v-row
         no-gutters
         align-h="center"
         align-v="center"
         id="mainVideoContainer"
         class="my-2 my-sm-3 px-2 px-sm-3"
       >
-        <b-col cols="12" align-self="center" style="max-width: 960px">
+        <v-col
+          cols="12"
+          align-self="center"
+          style="max-width: 960px"
+        >
           <iframe
             :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
             width="960"
@@ -26,13 +37,21 @@
             frameborder="0"
             id="mainVideo"
           />
-          <span v-html="mainVideoText" id="mainVideoText" class="" />
-        </b-col>
-      </b-row>
+          <span
+            v-html="mainVideoText"
+            id="mainVideoText"
+            class=""
+          />
+        </v-col>
+      </v-row>
 
       <!-- VIDEOS -->
-      <b-row no-gutters align-h="center" id="videos">
-        <b-col
+      <v-row
+        no-gutters
+        align-h="center"
+        id="videos"
+      >
+        <v-col
           cols="12"
           sm="6"
           lg="4"
@@ -47,9 +66,9 @@
           data-testid="video-container"
         >
           <VideoThumbnailTravels :video="video" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <VideoLightBox
       :videos="videos"
@@ -87,11 +106,10 @@
 }
 </page-query>
 
-
 <script scoped>
-import VideoLightBox from "../components/VideoLightBox.vue";
-import VideoThumbnailTravels from "../components/VideoThumbnailTravels.vue";
-import BackToTop from "../components/BackToTop.vue";
+import VideoLightBox from '../components/VideoLightBox.vue';
+import VideoThumbnailTravels from '../components/VideoThumbnailTravels.vue';
+import BackToTop from '../components/BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -124,17 +142,17 @@ export default {
     },
     headerStyle() {
       return {
-        "--headerBgImg": "url(" + this.headerBgImg + ")",
+        '--headerBgImg': 'url(' + this.headerBgImg + ')',
       };
     },
   },
 
   methods: {
     setStorage() {
-      sessionStorage.setItem("travelVideoViewed", "true");
+      sessionStorage.setItem('travelVideoViewed', 'true');
     },
     videoPreviouslyViewed() {
-      return sessionStorage.getItem("travelVideoViewed") === "true";
+      return sessionStorage.getItem('travelVideoViewed') === 'true';
     },
   },
 
@@ -146,19 +164,17 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -196,8 +212,8 @@ export default {
 
 #mainVideoText {
   color: white;
-  font-family: "NeueHaasGroteskText Pro65";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro65';
+  font-feature-settings: 'liga';
   font-weight: 500;
   font-size: 1.4375rem;
   letter-spacing: 1px;

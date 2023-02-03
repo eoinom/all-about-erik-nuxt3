@@ -11,7 +11,10 @@
       "
     />
 
-    <header id="header" :style="headerStyle">
+    <header
+      id="header"
+      :style="headerStyle"
+    >
       <g-image
         :src="titleImg"
         id="titleImg"
@@ -20,16 +23,23 @@
       />
     </header>
 
-    <b-container fluid id="mainContainer" class="mb-4 pb-5 pb-xl-3 px-1">
+    <v-container
+      fluid
+      id="mainContainer"
+      class="mb-4 pb-5 pb-xl-3 px-1"
+    >
       <!-- MAIN VIDEO -->
-      <b-row
+      <v-row
         no-gutters
         align-h="center"
         align-v="center"
         id="mainVideoContainer"
         class="my-2 my-sm-3 px-2 px-sm-3"
       >
-        <b-col cols="12" align-self="center">
+        <v-col
+          cols="12"
+          align-self="center"
+        >
           <div>
             <iframe
               :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
@@ -39,12 +49,16 @@
               id="mainVideo"
             />
           </div>
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
       <!-- VIDEOS -->
-      <b-row no-gutters align-h="center" id="videos">
-        <b-col
+      <v-row
+        no-gutters
+        align-h="center"
+        id="videos"
+      >
+        <v-col
           cols="6"
           sm="4"
           xl="3"
@@ -56,9 +70,9 @@
           data-testid="video-container"
         >
           <video-thumbnail-short-films :video="video" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <VideoLightBox
       :videos="videos"
@@ -100,12 +114,11 @@
 }
 </page-query>
 
-
 <script scoped>
-import BackgroundMusic from "../components/BackgroundMusic.vue";
-import VideoLightBox from "../components/VideoLightBox.vue";
-import VideoThumbnailShortFilms from "../components/VideoThumbnailShortFilms.vue";
-import BackToTop from "../components/BackToTop.vue";
+import BackgroundMusic from '../components/BackgroundMusic.vue';
+import VideoLightBox from '../components/VideoLightBox.vue';
+import VideoThumbnailShortFilms from '../components/VideoThumbnailShortFilms.vue';
+import BackToTop from '../components/BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -135,7 +148,7 @@ export default {
     },
     headerStyle() {
       return {
-        "--headerBgImg": "url(" + this.headerBgImg + ")",
+        '--headerBgImg': 'url(' + this.headerBgImg + ')',
       };
     },
   },
@@ -148,8 +161,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style scoped>
 .layout {

@@ -13,9 +13,15 @@
       :playMusic="playMusic"
     />
 
-    <b-container fluid class="main-col">
-      <b-row no-gutters class="mb-1 pt-4 px-1">
-        <b-col class="slideshowCol">
+    <v-container
+      fluid
+      class="main-col"
+    >
+      <v-row
+        no-gutters
+        class="mb-1 pt-4 px-1"
+      >
+        <v-col class="slideshowCol">
           <!-- HEADER SLIDESHOW -->
           <SlideshowKenBurnsSmall
             :slides="slides"
@@ -38,13 +44,21 @@
               />
             </div>
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <b-container v-if="windowWidth > 1200" fluid class="publicationsContainer">
-      <b-row no-gutters align-h="center" class="publicationsRow mb-1">
-        <b-col
+    <v-container
+      v-if="windowWidth > 1200"
+      fluid
+      class="publicationsContainer"
+    >
+      <v-row
+        no-gutters
+        align-h="center"
+        class="publicationsRow mb-1"
+      >
+        <v-col
           v-for="(publication, i) in publications"
           :key="'publication' + i"
           cols=""
@@ -53,13 +67,21 @@
           data-testid="publication-container"
         >
           <PublicationThumbnail :publication="publication" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <b-container v-if="windowWidth <= 1200" fluid class="publicationsContainer">
-      <b-row no-gutters align-h="center" class="publicationsRow mb-1">
-        <b-col
+    <v-container
+      v-if="windowWidth <= 1200"
+      fluid
+      class="publicationsContainer"
+    >
+      <v-row
+        no-gutters
+        align-h="center"
+        class="publicationsRow mb-1"
+      >
+        <v-col
           v-for="(newPublication, i) in publicationsAltOrder"
           :key="'newPublication' + i"
           cols=""
@@ -68,9 +90,9 @@
           data-testid="publication-container"
         >
           <PublicationThumbnail :publication="newPublication" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <BackToTop />
   </Layout>
@@ -106,12 +128,11 @@
 }
 </page-query>
 
-
 <script scoped>
-import BackgroundMusic from "../../components/BackgroundMusic.vue";
-import PublicationThumbnail from "../../components/PublicationThumbnail.vue";
-import BackToTop from "../../components/BackToTop.vue";
-import SlideshowKenBurnsSmall from "../../components/SlideshowKenBurnsSmall.vue";
+import BackgroundMusic from '../../components/BackgroundMusic.vue';
+import PublicationThumbnail from '../../components/PublicationThumbnail.vue';
+import BackToTop from '../../components/BackToTop.vue';
+import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
 
 export default {
   metaInfo() {
@@ -151,7 +172,7 @@ export default {
       return pubsAltOrder;
     },
     slideshowHeight() {
-      if (this.windowWidth > 1000) return "420px";
+      if (this.windowWidth > 1000) return '420px';
       else {
         const minImgWidth = 691;
         const maxImgHeight = 407;
@@ -159,62 +180,60 @@ export default {
         let width = Math.min(maxWidth, minImgWidth);
         let factor = width / minImgWidth;
         let height = factor * maxImgHeight;
-        return height + "px";
+        return height + 'px';
       }
     },
     slideshowMaxWidth() {
-      if (this.windowWidth > 1000) return "initial";
-      else return "90vw";
+      if (this.windowWidth > 1000) return 'initial';
+      else return '90vw';
     },
   },
 
   created() {
-    if (this.$route.query.hasOwnProperty("playMusic")) {
-      this.playMusic = this.$route.query.playMusic == "true";
+    if (this.$route.query.hasOwnProperty('playMusic')) {
+      this.playMusic = this.$route.query.playMusic == 'true';
     }
   },
 
   mounted() {
     this.windowWidth = window.innerWidth;
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
-    window.addEventListener("orientationchange", () => {
+    window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
     });
   },
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 

@@ -12,11 +12,20 @@
       :playMusic="playMusic"
     />
 
-    <b-container fluid class="main-col">
-      <b-row no-gutters class="mb-1 px-1">
-        <b-col class="slideshowCol">
+    <v-container
+      fluid
+      class="main-col"
+    >
+      <v-row
+        no-gutters
+        class="mb-1 px-1"
+      >
+        <v-col class="slideshowCol">
           <!-- HEADER SLIDESHOW -->
-          <SlideshowKenBurnsSmall :slides="slides" :height="slideshowHeight" />
+          <SlideshowKenBurnsSmall
+            :slides="slides"
+            :height="slideshowHeight"
+          />
 
           <!-- SLIDESHOW OVERLAY -->
           <div class="slideshowOverlay">
@@ -30,16 +39,26 @@
                 data-testid="title-img"
               />
 
-              <div v-html="slideshowText" id="slideshowText" />
+              <div
+                v-html="slideshowText"
+                id="slideshowText"
+              />
             </div>
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <b-container fluid class="collectionsContainer">
-      <b-row no-gutters align-h="center" class="collectionsRow mb-1">
-        <b-col
+    <v-container
+      fluid
+      class="collectionsContainer"
+    >
+      <v-row
+        no-gutters
+        align-h="center"
+        class="collectionsRow mb-1"
+      >
+        <v-col
           v-for="(collection, index) in collections"
           :key="index"
           cols=""
@@ -48,9 +67,9 @@
           data-testid="collection-container"
         >
           <CollectionThumbnail :collection="collection" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <BackToTop />
   </Layout>
@@ -88,12 +107,11 @@
 }
 </page-query>
 
-
 <script scoped>
-import BackgroundMusic from "../../components/BackgroundMusic.vue";
-import CollectionThumbnail from "../../components/CollectionThumbnail.vue";
-import BackToTop from "../../components/BackToTop.vue";
-import SlideshowKenBurnsSmall from "../../components/SlideshowKenBurnsSmall.vue";
+import BackgroundMusic from '../../components/BackgroundMusic.vue';
+import CollectionThumbnail from '../../components/CollectionThumbnail.vue';
+import BackToTop from '../../components/BackToTop.vue';
+import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
 
 export default {
   metaInfo() {
@@ -133,13 +151,13 @@ export default {
     },
     slideshowHeight() {
       let height = this.mainColHeight + 30;
-      return height + "px";
+      return height + 'px';
     },
   },
 
   created() {
-    if (this.$route.query.hasOwnProperty("playMusic")) {
-      this.playMusic = this.$route.query.playMusic == "true";
+    if (this.$route.query.hasOwnProperty('playMusic')) {
+      this.playMusic = this.$route.query.playMusic == 'true';
     }
   },
 
@@ -148,8 +166,8 @@ export default {
 
     setTimeout(clearInterval(this.interval), 8000);
 
-    window.addEventListener("resize", () => {
-      let textEl = document.getElementById("slideshowText");
+    window.addEventListener('resize', () => {
+      let textEl = document.getElementById('slideshowText');
       this.mainColHeight = this.getElementOffset(textEl).bottom;
     });
   },
@@ -158,9 +176,9 @@ export default {
     observeTextBlockHeight() {
       this.interval = setInterval(
         function () {
-          let textEl = document.getElementById("slideshowText");
+          let textEl = document.getElementById('slideshowText');
           this.mainColHeight = this.getElementOffset(textEl).bottom;
-          console.log("observing, ");
+          console.log('observing, ');
         }.bind(this),
         500
       );
@@ -192,34 +210,32 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -284,8 +300,8 @@ export default {
 
 #slideshowText {
   color: #ffffff;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro55';
+  font-feature-settings: 'liga';
   font-size: 1.375rem;
   font-weight: 400;
   line-height: 1.75rem;

@@ -1,20 +1,33 @@
 <template>
   <Layout>
     <header :style="headerStyles">
-      <b-container fluid class="slideshowOverlay">
-        <b-row align-v="center">
-          <b-col cols="3" class="headerImageCol" style="text-align: right">
+      <v-container
+        fluid
+        class="slideshowOverlay"
+      >
+        <v-row align-v="center">
+          <v-col
+            cols="3"
+            class="headerImageCol"
+            style="text-align: right"
+          >
             <g-image
               alt="Hunter"
               v-if="headerLeftImg != null"
               :src="headerLeftImg"
               id="headerLeftImg"
             />
-          </b-col>
+          </v-col>
 
-          <b-col id="headerItems">
-            <g-image :src="titleImg1Line" class="titleImg titleImg1Line" />
-            <g-image :src="titleImg2Lines" class="titleImg titleImg2Lines" />
+          <v-col id="headerItems">
+            <g-image
+              :src="titleImg1Line"
+              class="titleImg titleImg1Line"
+            />
+            <g-image
+              :src="titleImg2Lines"
+              class="titleImg titleImg2Lines"
+            />
 
             <div
               v-if="windowWidth < 1200"
@@ -24,16 +37,49 @@
               aria-controls="collapse-1"
               @click="showIntro = !showIntro"
             >
-              {{ showIntro ? "Hide intro" : "Read intro" }}
-              <svg viewBox="0 0 20 20" width="20" height="20" class="arrow">
-                <line v-if="showIntro" x1="1" y1="13" x2="9" y2="4.5" />
-                <line v-if="showIntro" x1="8" y1="4.5" x2="16" y2="13" />
-                <line v-if="!showIntro" x1="1" y1="4.5" x2="9" y2="13" />
-                <line v-if="!showIntro" x1="8" y1="13" x2="16" y2="4.5" />
+              {{ showIntro ? 'Hide intro' : 'Read intro' }}
+              <svg
+                viewBox="0 0 20 20"
+                width="20"
+                height="20"
+                class="arrow"
+              >
+                <line
+                  v-if="showIntro"
+                  x1="1"
+                  y1="13"
+                  x2="9"
+                  y2="4.5"
+                />
+                <line
+                  v-if="showIntro"
+                  x1="8"
+                  y1="4.5"
+                  x2="16"
+                  y2="13"
+                />
+                <line
+                  v-if="!showIntro"
+                  x1="1"
+                  y1="4.5"
+                  x2="9"
+                  y2="13"
+                />
+                <line
+                  v-if="!showIntro"
+                  x1="8"
+                  y1="13"
+                  x2="16"
+                  y2="4.5"
+                />
               </svg>
             </div>
 
-            <div v-else v-html="node.content" class="collection_headerText" />
+            <div
+              v-else
+              v-html="node.content"
+              class="collection_headerText"
+            />
 
             <g-link
               :to="{ path: '/collections/', query: { playMusic: 'false' } }"
@@ -53,27 +99,35 @@
                 class="showOnHover"
               />
             </g-link>
-          </b-col>
+          </v-col>
 
-          <b-col cols="3" class="headerImageCol" style="text-align: left">
+          <v-col
+            cols="3"
+            class="headerImageCol"
+            style="text-align: left"
+          >
             <g-image
               alt="ducks"
               v-if="headerRightImg != null"
               :src="headerRightImg"
               id="headerRightImg"
             />
-          </b-col>
-        </b-row>
-      </b-container>
+          </v-col>
+        </v-row>
+      </v-container>
     </header>
 
-    <b-collapse v-if="windowWidth < 1200" v-model="showIntro" id="collapse-1">
+    <v-collapse
+      v-if="windowWidth < 1200"
+      v-model="showIntro"
+      id="collapse-1"
+    >
       <div
         v-html="node.content"
         class="collection_headerText"
         id="headerTextDevice"
       />
-    </b-collapse>
+    </v-collapse>
 
     <CollectionViewer
       :images="images"
@@ -85,17 +139,20 @@
     />
 
     <section class="postcardHistory">
-      <b-container fluid class="slideshowOverlay">
-        <b-row align-v="center">
-          <b-col
+      <v-container
+        fluid
+        class="slideshowOverlay"
+      >
+        <v-row align-v="center">
+          <v-col
             v-if="windowWidth >= 2200"
             align-self="start"
             style="padding-top: 250px"
           >
             <slideshow-zoom :slides="people_images" />
-          </b-col>
+          </v-col>
 
-          <b-col>
+          <v-col>
             <div class="postcardHistory__textDiv">
               <h2 class="title">{{ postcardHistory.title }}</h2>
               <div class="pb-2 pb-sm-3">
@@ -123,27 +180,42 @@
                   />
                 </div>
                 <br v-if="windowWidth >= 768" />
-                <span v-html="postcardHistory.textPt1" class="postcardText" />
+                <span
+                  v-html="postcardHistory.textPt1"
+                  class="postcardText"
+                />
 
                 <img
                   :src="postcardHistory.images[0].img"
                   class="py-3 pr-3"
                   style="float: left; max-width: 55%"
                 />
-                <span v-html="postcardHistory.textPt2" class="postcardText" />
+                <span
+                  v-html="postcardHistory.textPt2"
+                  class="postcardText"
+                />
 
                 <img
                   :src="postcardHistory.images[1].img"
                   class="pl-3"
                   style="float: right; max-width: 55%"
                 />
-                <span v-html="postcardHistory.textPt3" class="postcardText" />
+                <span
+                  v-html="postcardHistory.textPt3"
+                  class="postcardText"
+                />
               </div>
             </div>
-          </b-col>
+          </v-col>
 
-          <b-col v-if="windowWidth >= 2200" align-self="start">
-            <div id="postcardsSidebar" class="pt-3">
+          <v-col
+            v-if="windowWidth >= 2200"
+            align-self="start"
+          >
+            <div
+              id="postcardsSidebar"
+              class="pt-3"
+            >
               <flip-postcard
                 :imgFront="postcardHistory.postcards[1].imgFront"
                 :imgBack="postcardHistory.postcards[1].imgBack"
@@ -187,20 +259,30 @@
                 class="sidePostcards"
               />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
-        <b-row v-if="windowWidth < 2200" align-v="center" align-h="center">
-          <b-col
+        <v-row
+          v-if="windowWidth < 2200"
+          align-v="center"
+          align-h="center"
+        >
+          <v-col
             v-if="windowWidth > 1149"
             align-self="start"
             style="padding-top: 250px"
           >
             <slideshow-zoom :slides="people_images" />
-          </b-col>
+          </v-col>
 
-          <b-col align-self="start" :style="postcardsSidebarStyles">
-            <div id="postcardsSidebar" class="py-3">
+          <v-col
+            align-self="start"
+            :style="postcardsSidebarStyles"
+          >
+            <div
+              id="postcardsSidebar"
+              class="py-3"
+            >
               <flip-postcard
                 v-if="windowWidth < 768"
                 :imgFront="postcardHistory.postcards[0].imgFront"
@@ -253,20 +335,23 @@
                 class="sidePostcards"
               />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
-        <b-row>
-          <b-col>
+        <v-row>
+          <v-col>
             <div class="postcardHistory__textDiv">
               <h2 class="title">{{ about.title }}</h2>
-              <span v-html="about.text" class="postcardText" />
+              <span
+                v-html="about.text"
+                class="postcardText"
+              />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
-        <b-row class="mt-4">
-          <b-col>
+        <v-row class="mt-4">
+          <v-col>
             <div class="postcardHistory__textDiv text-justify pt-3">
               <span class="postcardText">
                 If you would like to see a large selection of the Old-Time
@@ -285,7 +370,9 @@
                 >
                   <span style="font-size: 18px">SEE THE COLLECTION</span>
                   <br />
-                  <span class="d-block mb-n4" style="font-size: 28px"
+                  <span
+                    class="d-block mb-n4"
+                    style="font-size: 28px"
                     >GALLERY WEBSITE</span
                   >
                   <g-image
@@ -298,9 +385,9 @@
             </div>
 
             <BackToTop :staticImg="true" />
-          </b-col>
-        </b-row>
-      </b-container>
+          </v-col>
+        </v-row>
+      </v-container>
     </section>
 
     <footer :style="footerStyles" />
@@ -372,15 +459,14 @@
 }
 </static-query>
 
-
 <script scoped>
-import CollectionViewer from "../../components/CollectionViewer.vue";
-import FlipPostcard from "../../components/FlipPostcard.vue";
-import SlideshowZoom from "../../components/SlideshowZoom.vue";
-import BackToTop from "../../components/BackToTop.vue";
+import CollectionViewer from '../../components/CollectionViewer.vue';
+import FlipPostcard from '../../components/FlipPostcard.vue';
+import SlideshowZoom from '../../components/SlideshowZoom.vue';
+import BackToTop from '../../components/BackToTop.vue';
 
-const slugify = require("@sindresorhus/slugify");
-const MarkdownIt = require("markdown-it");
+const slugify = require('@sindresorhus/slugify');
+const MarkdownIt = require('markdown-it');
 
 export default {
   metaInfo() {
@@ -429,7 +515,7 @@ export default {
       return this.node.headerBgImg;
     },
     headerBgImgOpacity() {
-      return this.node.hasOwnProperty("backgroundImgOpacity")
+      return this.node.hasOwnProperty('backgroundImgOpacity')
         ? this.node.backgroundImgOpacity
         : 0.5;
     },
@@ -453,13 +539,13 @@ export default {
     },
     headerStyles() {
       return {
-        "--headerBgImg": "url(" + this.headerBgImg + ")",
-        "--bgOpacity": this.headerBgImgOpacity / 100,
+        '--headerBgImg': 'url(' + this.headerBgImg + ')',
+        '--bgOpacity': this.headerBgImgOpacity / 100,
       };
     },
     footerStyles() {
       return {
-        "--footerBgImg": "url(" + this.footerImg + ")",
+        '--footerBgImg': 'url(' + this.footerImg + ')',
       };
     },
     postcardsSidebarStyles() {
@@ -523,10 +609,10 @@ export default {
   mounted() {
     this.windowWidth = window.innerWidth;
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
-    window.addEventListener("orientationchange", () => {
+    window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
     });
   },
@@ -550,35 +636,33 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Francois+One&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Francois+One&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -594,7 +678,7 @@ header {
   padding-bottom: 12.5px;
 }
 header:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   top: 0;
@@ -624,8 +708,8 @@ header:after {
 }
 .collection_headerText {
   color: #000;
-  font-family: "NeueHaasGroteskText Pro65";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro65';
+  font-feature-settings: 'liga';
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -646,8 +730,8 @@ header:after {
 
 .collections_headerLinkText {
   color: #000;
-  font-family: "Francois One", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Francois One', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.8px;
@@ -735,7 +819,7 @@ footer {
   padding: 0 0 346px 0;
 }
 footer:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   bottom: 0;
@@ -750,7 +834,7 @@ footer:after {
 /* To fix poor scroll speed using "background-size: cover" and "background-attachment: fixed"
 Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/ */
 .layout::before {
-  content: " ";
+  content: ' ';
   position: fixed; /* instead of background-attachment */
   width: 100%;
   top: 0;
@@ -772,8 +856,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     margin: 0 auto;
 
     .title {
-      font-family: "Francois One", sans-serif;
-      font-feature-settings: "liga";
+      font-family: 'Francois One', sans-serif;
+      font-feature-settings: 'liga';
       font-weight: 400;
       font-size: 2.5rem;
       line-height: 2.75rem;
@@ -785,8 +869,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     }
 
     .postcardText {
-      font-family: "Crimson Text", serif;
-      font-feature-settings: "liga";
+      font-family: 'Crimson Text', serif;
+      font-feature-settings: 'liga';
       font-weight: 600;
       font-size: 1.3125rem;
       line-height: 1.5625rem;
@@ -796,8 +880,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     }
 
     .caption {
-      font-family: "Crimson Text", serif;
-      font-feature-settings: "liga";
+      font-family: 'Crimson Text', serif;
+      font-feature-settings: 'liga';
       font-style: italic;
       font-weight: 600;
       font-size: 1.125rem;
@@ -811,7 +895,7 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
 }
 
 .postcardHistory:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   top: 0;

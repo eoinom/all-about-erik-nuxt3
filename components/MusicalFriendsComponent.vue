@@ -1,11 +1,28 @@
 <template>
   <Layout class="pb-5">
-    <img :src="backgroundImgUrl" id="bgImg" :style="bgStyles" />
+    <img
+      :src="backgroundImgUrl"
+      id="bgImg"
+      :style="bgStyles"
+    />
 
-    <header id="header" :style="headerStyles">
-      <g-image :src="titleImg" id="titleImg" data-testid="title-img" />
-      <span v-html="titleSubText" id="titleSubText" />
-      <div v-if="!menuOnly" id="scrollDownContainer">
+    <header
+      id="header"
+      :style="headerStyles"
+    >
+      <g-image
+        :src="titleImg"
+        id="titleImg"
+        data-testid="title-img"
+      />
+      <span
+        v-html="titleSubText"
+        id="titleSubText"
+      />
+      <div
+        v-if="!menuOnly"
+        id="scrollDownContainer"
+      >
         <ScrollDownArrow scrollToElement="#friends" />
       </div>
       <p id="targetForOpacity"></p>
@@ -14,7 +31,7 @@
     <div id="topOfFriends"></div>
 
     <!-- LAYOUT FOR LARGE DESKTOPS -->
-    <b-container
+    <v-container
       v-if="windowWidth >= 1830"
       fluid
       style="max-width: 1540px"
@@ -22,8 +39,11 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters>
-        <b-col style="max-width: 652px" class="mr-3">
+      <v-row no-gutters>
+        <v-col
+          style="max-width: 652px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -62,11 +82,17 @@
             :imgScaleToContainerWidth="true"
             class="mb-3"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 872px">
-          <b-row no-gutters class="mb-3">
-            <b-col style="max-width: 431px" class="mr-3">
+        <v-col style="max-width: 872px">
+          <v-row
+            no-gutters
+            class="mb-3"
+          >
+            <v-col
+              style="max-width: 431px"
+              class="mr-3"
+            >
               <friend-card
                 :friend="friends[4]"
                 :index="4"
@@ -76,9 +102,9 @@
                 :imgMoveLeftPercent="Number(19)"
                 :imgHeight="Number(420)"
               />
-            </b-col>
+            </v-col>
 
-            <b-col style="max-width: 425px">
+            <v-col style="max-width: 425px">
               <friend-card
                 :friend="friends[5]"
                 :index="5"
@@ -86,11 +112,11 @@
                 :height="Number(688)"
                 :imgContainerHeight="Number(450)"
               />
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
 
-          <b-row no-gutters>
-            <b-col>
+          <v-row no-gutters>
+            <v-col>
               <friend-card
                 :friend="friends[6]"
                 :index="6"
@@ -120,13 +146,17 @@
                 :imgContainerHeight="Number(387)"
                 class="mb-3"
               />
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 1540px" class="mt-0">
-        <b-col class="mb-3">
+      <v-row
+        no-gutters
+        style="max-width: 1540px"
+        class="mt-0"
+      >
+        <v-col class="mb-3">
           <friend-card
             :friend="friends[9]"
             :index="9"
@@ -135,11 +165,17 @@
             :imgContainerHeight="Number(435)"
             :imgMoveDownPercent="Number(-24)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mt-0">
-        <b-col style="max-width: 793px" class="mb-3 mr-3">
+      <v-row
+        no-gutters
+        class="mt-0"
+      >
+        <v-col
+          style="max-width: 793px"
+          class="mb-3 mr-3"
+        >
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -149,9 +185,12 @@
             :imgContainerWidth="Number(487)"
             :imgContainerHeight="Number(503)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 731px" class="mb-3">
+        <v-col
+          style="max-width: 731px"
+          class="mb-3"
+        >
           <friend-card
             :friend="friends[11]"
             :index="11"
@@ -161,11 +200,14 @@
             :imgContainerHeight="Number(306)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters>
-        <b-col style="max-width: 388.5px" class="mb-3 mr-3">
+      <v-row no-gutters>
+        <v-col
+          style="max-width: 388.5px"
+          class="mb-3 mr-3"
+        >
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -174,9 +216,12 @@
             :imgMoveLeftPercent="Number(8)"
             :height="Number(927.33)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 388.5px" class="mb-3 mr-3">
+        <v-col
+          style="max-width: 388.5px"
+          class="mb-3 mr-3"
+        >
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -185,11 +230,11 @@
             :height="Number(927.33)"
             :imgMoveLeftPercent="Number(6)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="width: 731px">
-          <b-row no-gutters>
-            <b-col class="mb-3">
+        <v-col style="width: 731px">
+          <v-row no-gutters>
+            <v-col class="mb-3">
               <friend-card
                 :friend="friends[14]"
                 :index="14"
@@ -197,9 +242,9 @@
                 :imgContainerWidth="Number(400)"
                 :imgContainerHeight="Number(408)"
               />
-            </b-col>
+            </v-col>
 
-            <b-col class="mb-3">
+            <v-col class="mb-3">
               <friend-card
                 :friend="friends[15]"
                 :index="15"
@@ -209,15 +254,15 @@
                 :imgScaleToContainerWidth="true"
                 :height="Number(503.305)"
               />
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR LARGE DESKTOPS -->
 
     <!-- LAYOUT FOR MEDIUM DESKTOPS -->
-    <b-container
+    <v-container
       v-if="windowWidth >= 1380 && windowWidth < 1830"
       fluid
       style="max-width: 1215px"
@@ -225,8 +270,11 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters>
-        <b-col style="max-width: 652px" class="mr-3">
+      <v-row no-gutters>
+        <v-col
+          style="max-width: 652px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -265,9 +313,9 @@
             :imgScaleToContainerWidth="true"
             class="mb-3"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 547px">
+        <v-col style="max-width: 547px">
           <friend-card
             :friend="friends[4]"
             :index="4"
@@ -310,11 +358,15 @@
             :imgMoveLeftPercent="Number(38)"
             class="mb-3"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 1215px" class="mb-3 mt-0">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 1215px"
+        class="mb-3 mt-0"
+      >
+        <v-col>
           <friend-card
             :friend="friends[8]"
             :index="8"
@@ -325,11 +377,15 @@
             :imgMoveLeftPercent="Number(10)"
             :imgMoveDownPercent="Number(-10)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 1215px" class="mb-3 mt-0">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 1215px"
+        class="mb-3 mt-0"
+      >
+        <v-col>
           <friend-card
             :friend="friends[9]"
             :index="9"
@@ -338,11 +394,17 @@
             :imgContainerHeight="Number(435)"
             :imgMoveDownPercent="Number(-24)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3 mt-0">
-        <b-col style="max-width: 656px" class="mr-3">
+      <v-row
+        no-gutters
+        class="mb-3 mt-0"
+      >
+        <v-col
+          style="max-width: 656px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -352,9 +414,9 @@
             :imgContainerHeight="Number(503)"
             :imgMoveLeftPercent="Number(12)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 546px">
+        <v-col style="max-width: 546px">
           <friend-card
             :friend="friends[11]"
             :index="11"
@@ -364,11 +426,14 @@
             :imgContainerHeight="Number(280)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3 mt-0">
-        <b-col style="max-width: 1215px">
+      <v-row
+        no-gutters
+        class="mb-3 mt-0"
+      >
+        <v-col style="max-width: 1215px">
           <friend-card
             :friend="friends[15]"
             :index="15"
@@ -378,11 +443,18 @@
             :imgMoveLeftPercent="Number(5)"
             :imgMoveDownPercent="Number(0)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 1215px" class="mb-3">
-        <b-col style="max-width: 388.5px" class="mr-3">
+      <v-row
+        no-gutters
+        style="max-width: 1215px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 388.5px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -391,9 +463,12 @@
             :imgContainerHeight="Number(538)"
             :imgMoveLeftPercent="Number(8)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 388.5px" class="mr-3">
+        <v-col
+          style="max-width: 388.5px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -402,9 +477,9 @@
             :height="Number(927.33)"
             :imgMoveLeftPercent="Number(6)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 438px">
+        <v-col style="max-width: 438px">
           <friend-card
             :friend="friends[14]"
             :index="14"
@@ -414,13 +489,13 @@
             :imgMoveLeftPercent="Number(0)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR MEDIUM DESKTOPS -->
 
     <!-- LAYOUT FOR SMALL DESKTOPS -->
-    <b-container
+    <v-container
       v-if="windowWidth >= 992 && windowWidth < 1380"
       fluid
       style="max-width: 832px"
@@ -428,8 +503,12 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -438,11 +517,18 @@
             :imgContainerHeight="Number(355)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col style="max-width: 408px" class="mr-3">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 408px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[1]"
             :index="1"
@@ -452,9 +538,9 @@
             :imgContainerHeight="Number(420)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 408px">
+        <v-col style="max-width: 408px">
           <friend-card
             :friend="friends[2]"
             :index="2"
@@ -464,11 +550,15 @@
             :imgContainerHeight="Number(480)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[3]"
             :index="3"
@@ -479,11 +569,18 @@
             :imgWidth="Number(480)"
             :imgMoveDownPercent="Number(0)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col style="max-width: 408px" class="mr-3">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 408px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[4]"
             :index="4"
@@ -493,9 +590,9 @@
             :imgMoveLeftPercent="Number(20)"
             :imgHeight="Number(420)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 408px">
+        <v-col style="max-width: 408px">
           <friend-card
             :friend="friends[5]"
             :index="5"
@@ -504,11 +601,15 @@
             :imgContainerHeight="Number(460)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[6]"
             :index="6"
@@ -520,11 +621,15 @@
             :imgMoveDownPercent="Number(-3)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[7]"
             :index="7"
@@ -534,11 +639,15 @@
             :imgHeight="Number(500)"
             :imgMoveLeftPercent="Number(15)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[8]"
             :index="8"
@@ -549,11 +658,15 @@
             :imgMoveLeftPercent="Number(18)"
             :imgMoveDownPercent="Number(0)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col class="">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col class="">
           <friend-card
             :friend="friends[9]"
             :index="9"
@@ -563,11 +676,18 @@
             :imgContainerHeight="Number(435)"
             :imgMoveDownPercent="Number(-24)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col style="max-width: 408px" class="mr-3">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 408px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -578,9 +698,9 @@
             :imgMoveLeftPercent="Number(3)"
             :imgWidth="Number(460)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 408px">
+        <v-col style="max-width: 408px">
           <friend-card
             :friend="friends[11]"
             :index="11"
@@ -591,11 +711,18 @@
             :imgMoveLeftPercent="Number(66)"
             :imgHeight="Number(700)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col style="max-width: 832px" class="">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 832px"
+          class=""
+        >
           <friend-card
             :friend="friends[15]"
             :index="15"
@@ -606,11 +733,15 @@
             :imgMoveDownPercent="Number(0)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[14]"
             :index="14"
@@ -619,11 +750,18 @@
             :imgContainerHeight="Number(450)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters style="max-width: 832px" class="mb-3">
-        <b-col style="max-width: 408px" class="mr-3">
+      <v-row
+        no-gutters
+        style="max-width: 832px"
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: 408px"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -633,9 +771,9 @@
             :imgContainerHeight="Number(538)"
             :imgMoveLeftPercent="Number(2)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: 408px">
+        <v-col style="max-width: 408px">
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -645,13 +783,13 @@
             :imgContainerHeight="Number(581)"
             :imgMoveLeftPercent="Number(6)"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR SMALL DESKTOPS -->
 
     <!-- LAYOUT FOR (LARGE) TABLETS -->
-    <b-container
+    <v-container
       v-if="windowWidth >= 800 && windowWidth < 992"
       fluid
       style="max-width: 728px"
@@ -659,8 +797,11 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -669,11 +810,17 @@
             :imgContainerHeight="Number(355)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col style="max-width: calc(50% - 8px)" class="mr-3">
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: calc(50% - 8px)"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[1]"
             :index="1"
@@ -682,9 +829,9 @@
             :imgContainerHeight="Number(376)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: calc(50% - 8px)">
+        <v-col style="max-width: calc(50% - 8px)">
           <friend-card
             :friend="friends[2]"
             :index="2"
@@ -693,11 +840,14 @@
             :imgContainerHeight="Number(440)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[3]"
             :index="3"
@@ -707,11 +857,17 @@
             :imgContainerWidth="Number(460)"
             :imgWidth="Number(480)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col style="max-width: calc(50% - 8px)" class="mr-3">
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: calc(50% - 8px)"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[4]"
             :index="4"
@@ -721,9 +877,9 @@
             :imgMoveLeftPercent="Number(20)"
             :imgHeight="Number(380)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: calc(50% - 8px)">
+        <v-col style="max-width: calc(50% - 8px)">
           <friend-card
             :friend="friends[5]"
             :index="5"
@@ -732,11 +888,14 @@
             :imgContainerHeight="Number(460)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[6]"
             :index="6"
@@ -745,11 +904,14 @@
             :imgContainerHeight="Number(392)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[7]"
             :index="7"
@@ -759,11 +921,14 @@
             :imgHeight="Number(500)"
             :imgMoveLeftPercent="Number(25)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[8]"
             :index="8"
@@ -773,11 +938,14 @@
             :imgHeight="Number(650)"
             :imgMoveLeftPercent="Number(18)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[9]"
             :index="9"
@@ -787,11 +955,17 @@
             :imgMoveDownPercent="Number(-8)"
             :imgWidth="Number(800)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col style="max-width: calc(50% - 8px)" class="mr-3">
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: calc(50% - 8px)"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -800,9 +974,9 @@
             :imgContainerHeight="Number(304)"
             :imgHeight="Number(377)"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: calc(50% - 8px)">
+        <v-col style="max-width: calc(50% - 8px)">
           <friend-card
             :friend="friends[11]"
             :index="11"
@@ -812,11 +986,14 @@
             :imgMoveLeftPercent="Number(81)"
             :imgHeight="Number(700)"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[15]"
             :index="15"
@@ -825,11 +1002,14 @@
             :imgContainerHeight="Number(380)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col>
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col>
           <friend-card
             :friend="friends[14]"
             :index="14"
@@ -837,11 +1017,17 @@
             :imgContainerHeight="Number(450)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
+        </v-col>
+      </v-row>
 
-      <b-row no-gutters class="mb-3">
-        <b-col style="max-width: calc(50% - 8px)" class="mr-3">
+      <v-row
+        no-gutters
+        class="mb-3"
+      >
+        <v-col
+          style="max-width: calc(50% - 8px)"
+          class="mr-3"
+        >
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -850,9 +1036,9 @@
             :imgContainerHeight="Number(446)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
+        </v-col>
 
-        <b-col style="max-width: calc(50% - 8px)">
+        <v-col style="max-width: calc(50% - 8px)">
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -861,13 +1047,13 @@
             :imgContainerHeight="Number(452)"
             :imgScaleToContainerWidth="true"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR TABLETS -->
 
     <!-- LAYOUT FOR SMALL TABLETS / LANDSCAPE PHONES -->
-    <b-container
+    <v-container
       v-if="windowWidth >= 576 && windowWidth < 800"
       fluid
       style="max-width: 536px"
@@ -875,8 +1061,8 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters>
-        <b-col style="max-width: 536px">
+      <v-row no-gutters>
+        <v-col style="max-width: 536px">
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -1050,13 +1236,13 @@
             :imgScaleToContainerWidth="true"
             class="mb-3"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR LANDSCAPE PHONES -->
 
     <!-- LAYOUT FOR PORTRAIT PHONES -->
-    <b-container
+    <v-container
       v-if="windowWidth < 576"
       fluid
       style="max-width: 536px; width: 93%; margin: 0 auto"
@@ -1064,8 +1250,8 @@
       id="friends"
       class="main-col px-0 mt-4 mb-5"
     >
-      <b-row no-gutters>
-        <b-col style="max-width: 93%; margin: 0 auto">
+      <v-row no-gutters>
+        <v-col style="max-width: 93%; margin: 0 auto">
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -1219,9 +1405,9 @@
             :imgCenterHoriz="true"
             class="mb-3"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
     <!-- END OF LAYOUT FOR PORTRAIT PHONES -->
 
     <BackToTop />
@@ -1253,11 +1439,10 @@
 }
 </static-query>
 
-
 <script scoped>
-import FriendCard from "./FriendCard.vue";
-import ScrollDownArrow from "./ScrollDownArrow.vue";
-import BackToTop from "./BackToTop.vue";
+import FriendCard from './FriendCard.vue';
+import ScrollDownArrow from './ScrollDownArrow.vue';
+import BackToTop from './BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -1328,8 +1513,8 @@ export default {
         css.opacity = 0.4;
       }
       if (this.bgImgAspectRatio <= this.windowAspectRatio)
-        css.width = this.windowWidth + "px";
-      else css.height = this.windowHeight + "px";
+        css.width = this.windowWidth + 'px';
+      else css.height = this.windowHeight + 'px';
       return css;
     },
     paddingTop() {
@@ -1340,7 +1525,7 @@ export default {
     headerStyles() {
       let css = {};
       css.opacity = !this.menuOnly ? this.bgStyles.opacity : 1.0;
-      css.paddingTop = this.paddingTop + "px";
+      css.paddingTop = this.paddingTop + 'px';
       return css;
     },
   },
@@ -1355,7 +1540,7 @@ export default {
           this.scrollY = window.pageYOffset;
         }
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("topOfFriends");
+        let element = document.getElementById('topOfFriends');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }.bind(this),
@@ -1365,19 +1550,19 @@ export default {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
 
-    window.addEventListener("resize", this.onResize);
-    window.addEventListener("orientationchange", this.onResize);
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('orientationchange', this.onResize);
   },
 
   methods: {
     addScrollListener() {
-      window.addEventListener("scroll", this.scrollFunction);
+      window.addEventListener('scroll', this.scrollFunction);
     },
     scrollFunction() {
       if (this.scrollY != window.pageYOffset) {
         this.scrollY = window.pageYOffset;
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("topOfFriends");
+        let element = document.getElementById('topOfFriends');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }
@@ -1387,7 +1572,7 @@ export default {
       this.windowHeight = window.innerHeight;
 
       let bodyRect = document.body.getBoundingClientRect();
-      let element = document.getElementById("topOfFriends");
+      let element = document.getElementById('topOfFriends');
       let elemRect = element.getBoundingClientRect();
       this.targetPosY = elemRect.top - bodyRect.top;
     },
@@ -1395,10 +1580,8 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Merriweather:900&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Merriweather:900&display=swap');
 
 .layout {
   padding-top: 8px;
@@ -1432,8 +1615,8 @@ export default {
 
 #titleSubText {
   color: white;
-  font-family: "Merriweather", serif;
-  font-feature-settings: "liga";
+  font-family: 'Merriweather', serif;
+  font-feature-settings: 'liga';
   font-size: 28px;
   font-weight: 900;
   line-height: 40px;

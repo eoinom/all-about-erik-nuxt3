@@ -1,8 +1,14 @@
 <template>
   <Layout>
-    <b-container fluid class="main-col m-0, p-0">
-      <b-row no-gutters class="mb-1 px-1">
-        <b-col class="slideshowCol">
+    <v-container
+      fluid
+      class="main-col m-0, p-0"
+    >
+      <v-row
+        no-gutters
+        class="mb-1 px-1"
+      >
+        <v-col class="slideshowCol">
           <!-- SLIDESHOW OVERLAY -->
           <div class="slideshowOverlayMenu mb-3">
             <div class="mainContent mx-auto">
@@ -15,12 +21,15 @@
                 data-testid="title-img"
               />
 
-              <div v-html="slideshowText" id="slideshowText" />
+              <div
+                v-html="slideshowText"
+                id="slideshowText"
+              />
             </div>
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- TILES -->
     <ArchivesTiles :tiles="tiles" />
@@ -49,10 +58,9 @@
 }
 </page-query>
 
-
 <script scoped>
-import ArchivesTiles from "../../components/ArchivesTiles.vue";
-import BackToTop from "../../components/BackToTop.vue";
+import ArchivesTiles from '../../components/ArchivesTiles.vue';
+import BackToTop from '../../components/BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -83,19 +91,17 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -145,8 +151,8 @@ export default {
 
 #slideshowText {
   color: #ffffff;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro55';
+  font-feature-settings: 'liga';
   font-size: 1.375rem;
   font-weight: 400;
   line-height: 2.0625rem;

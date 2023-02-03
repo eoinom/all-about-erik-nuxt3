@@ -30,26 +30,43 @@
       />
     </div>
 
-    <header id="header" :style="headerStyles">
+    <header
+      id="header"
+      :style="headerStyles"
+    >
       <g-image
         :src="titleImg"
         id="titleImg"
         class="mb-4"
         data-testid="title-img"
       />
-      <p v-html="titleSubText" id="titleSubText" />
+      <p
+        v-html="titleSubText"
+        id="titleSubText"
+      />
       <p id="targetForOpacity"></p>
     </header>
 
-    <div id="scrollDownContainer" style="text-align: center" class="pb-5">
+    <div
+      id="scrollDownContainer"
+      style="text-align: center"
+      class="pb-5"
+    >
       <ScrollDownArrow scrollToElement="#topOfMainBody" />
     </div>
 
     <div id="topOfMainBody"></div>
 
-    <b-container fluid :style="bodyOpacity" class="mb-5 py-3 main-col">
+    <v-container
+      fluid
+      :style="bodyOpacity"
+      class="mb-5 py-3 main-col"
+    >
       <div class="px-4 py-3">
-        <span v-html="content" class="discography_content" />
+        <span
+          v-html="content"
+          class="discography_content"
+        />
       </div>
 
       <div class="px-4">
@@ -60,72 +77,121 @@
           class="mt-4 mb-2 mb-md-3 mb-lg-4 albumText"
           data-testid="album-container"
         >
-          <b-row>
-            <b-col>
+          <v-row>
+            <v-col>
               <div class="mb-3">
                 <span class="albumTitle">{{
-                  album.artist + " - " + album.title
+                  album.artist + ' - ' + album.title
                 }}</span>
               </div>
               <p class="albumIntroText">{{ album.text }}</p>
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
 
-          <b-row align-content="center">
-            <b-col cols="12" xl="6" xxl="5">
-              <div style="text-align: center" class="mb-3">
+          <v-row align-content="center">
+            <v-col
+              cols="12"
+              xl="6"
+              xxl="5"
+            >
+              <div
+                style="text-align: center"
+                class="mb-3"
+              >
                 <g-image
                   :src="album.thumbnailImg"
                   style="max-width: 100%"
                   class=""
                 />
               </div>
-            </b-col>
+            </v-col>
 
-            <b-col cols="12" xl="6" xxl="4">
+            <v-col
+              cols="12"
+              xl="6"
+              xxl="4"
+            >
               <span class="underline">Tracks</span>
               <div
                 v-html="convertTrackListingToHtml(album.trackListing)"
                 class="discography_albumTrackListing"
               />
-            </b-col>
+            </v-col>
 
-            <b-col cols="12" xl="12" xxl="3" class="albumDetailsText my-2">
+            <v-col
+              cols="12"
+              xl="12"
+              xxl="3"
+              class="albumDetailsText my-2"
+            >
               <span class="underline">Details</span>
-              <b-row>
-                <b-col cols="4" md="3" lg="2" xxl="4">Label: </b-col>
-                <b-col>{{ album.label }}</b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4" md="3" lg="2" xxl="4">Format: </b-col>
-                <b-col>{{ album.format }}</b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4" md="3" lg="2" xxl="4">Country: </b-col>
-                <b-col>{{ album.country }}</b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4" md="3" lg="2" xxl="4">Released: </b-col>
-                <b-col>{{ album.released }}</b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4" md="3" lg="2" xxl="4">Style: </b-col>
-                <b-col>{{ album.style }}</b-col>
-              </b-row>
-            </b-col>
+              <v-row>
+                <v-col
+                  cols="4"
+                  md="3"
+                  lg="2"
+                  xxl="4"
+                  >Label:
+                </v-col>
+                <v-col>{{ album.label }}</v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="4"
+                  md="3"
+                  lg="2"
+                  xxl="4"
+                  >Format:
+                </v-col>
+                <v-col>{{ album.format }}</v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="4"
+                  md="3"
+                  lg="2"
+                  xxl="4"
+                  >Country:
+                </v-col>
+                <v-col>{{ album.country }}</v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="4"
+                  md="3"
+                  lg="2"
+                  xxl="4"
+                  >Released:
+                </v-col>
+                <v-col>{{ album.released }}</v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="4"
+                  md="3"
+                  lg="2"
+                  xxl="4"
+                  >Style:
+                </v-col>
+                <v-col>{{ album.style }}</v-col>
+              </v-row>
+            </v-col>
 
-            <b-col cols="12" class="albumDetailsText my-2">
+            <v-col
+              cols="12"
+              class="albumDetailsText my-2"
+            >
               <span class="underline">Credits</span>
               <div
                 v-html="convertCreditsToHtml(album.credits)"
                 :class="albumCreditsClass(album.credits)"
                 class="discography_albumCredits"
               />
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
         </div>
       </div>
-    </b-container>
+    </v-container>
 
     <BackToTop />
   </Layout>
@@ -167,11 +233,10 @@
 }
 </page-query>
 
-
 <script scoped>
-import BackgroundMusic from "../../components/BackgroundMusic.vue";
-import ScrollDownArrow from "../../components/ScrollDownArrow.vue";
-import BackToTop from "../../components/BackToTop.vue";
+import BackgroundMusic from '../../components/BackgroundMusic.vue';
+import ScrollDownArrow from '../../components/ScrollDownArrow.vue';
+import BackToTop from '../../components/BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -231,8 +296,8 @@ export default {
     bgStyles() {
       let css = {};
       if (this.bgImgAspectRatio <= this.windowAspectRatio)
-        css.width = this.windowWidth + "px";
-      else css.height = this.windowHeight + "px";
+        css.width = this.windowWidth + 'px';
+      else css.height = this.windowHeight + 'px';
       return css;
     },
     bodyOpacity() {
@@ -247,7 +312,7 @@ export default {
         this.scrollY < this.targetPosY
           ? 1.0 - this.scrollY / this.targetPosY
           : 0.0;
-      css.paddingTop = this.paddingTop + "px";
+      css.paddingTop = this.paddingTop + 'px';
       return css;
     },
     bgImgAspectRatio() {
@@ -266,20 +331,20 @@ export default {
 
   methods: {
     hideBgImg(index) {
-      if (index === this.bgImgIndex) return "show";
+      if (index === this.bgImgIndex) return 'show';
       else if (index === this.bgImgIndex - 1 || index === this.bgImgIndex + 1)
-        return "hidden";
-      else return "displayNone"; // avoids having too many layers using up too much memory (causes page load failures on iOS devices)
+        return 'hidden';
+      else return 'displayNone'; // avoids having too many layers using up too much memory (causes page load failures on iOS devices)
       // Ref: https://medium.com/@jeffreyrussom/deadly-css-transforms-1e12b4c23f8
     },
     hideBgImgOverlay(index) {
-      if (index === this.bgImgOverlayIndex) return "showOverlay";
+      if (index === this.bgImgOverlayIndex) return 'showOverlay';
       else if (
         index === this.bgImgOverlayIndex - 1 ||
         index === this.bgImgOverlayIndex + 1
       )
-        return "hidden";
-      else return "displayNone";
+        return 'hidden';
+      else return 'displayNone';
     },
     scrollFunction() {
       this.getDocumentHeight();
@@ -287,61 +352,61 @@ export default {
       if (this.scrollY != window.pageYOffset) {
         this.scrollY = window.pageYOffset;
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("topOfMainBody");
+        let element = document.getElementById('topOfMainBody');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }
     },
     addScrollListener() {
-      window.addEventListener("scroll", this.scrollFunction);
+      window.addEventListener('scroll', this.scrollFunction);
     },
     convertTrackListingToHtml(input) {
-      let output = "";
-      const lines = input.split("\n");
+      let output = '';
+      const lines = input.split('\n');
       let inList = false;
       for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
-        if (line.substring(0, 2) === "* ") line = line.substring(2);
+        if (line.substring(0, 2) === '* ') line = line.substring(2);
 
         if (!line) continue;
 
-        if (line.toLowerCase().substring(0, 4) === "side") {
+        if (line.toLowerCase().substring(0, 4) === 'side') {
           if (inList) {
-            output += "</ol>";
+            output += '</ol>';
             inList = false;
           }
-          output += "<p>" + line + "</p>";
+          output += '<p>' + line + '</p>';
         } else {
           if (
-            output === "" ||
-            output.substring(output.length - 4, output.length) === "</p>"
+            output === '' ||
+            output.substring(output.length - 4, output.length) === '</p>'
           ) {
-            output += "<ol>";
+            output += '<ol>';
             inList = true;
           }
-          output += "<li>" + line + "</li>";
+          output += '<li>' + line + '</li>';
         }
       }
-      output += "</ol>";
+      output += '</ol>';
       return output;
     },
     convertCreditsToHtml(input) {
-      let output = "";
-      const lines = input.split("\n");
+      let output = '';
+      const lines = input.split('\n');
       let inList = false;
       for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
-        if (line.substring(0, 2) === "* ") line = line.substring(2);
+        if (line.substring(0, 2) === '* ') line = line.substring(2);
 
         if (!line) continue;
 
-        if (output === "") {
-          output += "<ul>";
+        if (output === '') {
+          output += '<ul>';
           inList = true;
         }
-        output += "<li>" + line + "</li>";
+        output += '<li>' + line + '</li>';
       }
-      output += "</ul>";
+      output += '</ul>';
       return output;
     },
     numListItems(inputText) {
@@ -350,9 +415,9 @@ export default {
     },
     albumCreditsClass(creditsText) {
       let numItems = this.numListItems(creditsText);
-      if (numItems <= 4) return "discography_albumCredits_sm";
-      else if (numItems <= 8) return "discography_albumCredits_md";
-      else return "discography_albumCredits_lg";
+      if (numItems <= 4) return 'discography_albumCredits_sm';
+      else if (numItems <= 8) return 'discography_albumCredits_md';
+      else return 'discography_albumCredits_lg';
     },
     getDocumentHeight() {
       // ref: https://stackoverflow.com/a/1147768
@@ -378,7 +443,7 @@ export default {
           this.scrollY = window.pageYOffset;
         }
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("topOfMainBody");
+        let element = document.getElementById('topOfMainBody');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }.bind(this),
@@ -390,13 +455,13 @@ export default {
     this.getDocumentHeight();
 
     this.$nextTick(() => {
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         this.windowWidth = window.innerWidth;
         this.windowHeight = window.innerHeight;
         this.getDocumentHeight();
 
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("topOfMainBody");
+        let element = document.getElementById('topOfMainBody');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       });
@@ -411,36 +476,34 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 /* Note: additional styles for injected html added to global styles.css */
 
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -499,8 +562,8 @@ export default {
 
 #titleSubText {
   color: white;
-  font-family: "NeueHaasGroteskText Pro65";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro65';
+  font-feature-settings: 'liga';
   font-size: 1.5rem; /* 24px at 16px default size */
   font-weight: 500;
   line-height: 34px;
@@ -520,8 +583,8 @@ export default {
 
 #albumReleasesHeading {
   color: #000000;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-size: 2.9375rem; /* 47px at 16px default size */
   letter-spacing: 5px;
@@ -533,13 +596,13 @@ export default {
 
 .albumText {
   color: #000000;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro55';
+  font-feature-settings: 'liga';
   font-weight: 400;
   letter-spacing: 1px;
 }
 .albumTitle {
-  font-family: "NeueHaasGroteskText Pro65";
+  font-family: 'NeueHaasGroteskText Pro65';
   font-size: 1.25rem; /* 20px at 16px default size */
   font-weight: 500;
   line-height: 26px;

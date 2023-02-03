@@ -21,10 +21,20 @@
       </div>
     </div>
 
-    <b-container fluid class="durationBanner">
-      <b-row align-h="center" align-v="center" style="height: 100%">
-        <b-col align-self="center">
-          <span v-if="video.duration != null" class="videoDurationText">
+    <v-container
+      fluid
+      class="durationBanner"
+    >
+      <v-row
+        align-h="center"
+        align-v="center"
+        style="height: 100%"
+      >
+        <v-col align-self="center">
+          <span
+            v-if="video.duration != null"
+            class="videoDurationText"
+          >
             {{ durationInMinsText(video.duration) }}
           </span>
           <br />
@@ -33,16 +43,15 @@
             src="~/assets/images/playarrowcircle-black.png"
             class="thumbnailPlayVideoImg"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
-
 <script scoped>
 export default {
-  name: "VideoThumbnailShortFilms",
+  name: 'VideoThumbnailShortFilms',
 
   props: {
     video: {
@@ -56,35 +65,33 @@ export default {
       if (mins >= 60) {
         let hrs = Math.floor(mins / 60);
         mins = mins - hrs * 60;
-        if (mins < 10) mins = "0" + mins;
-        if (hrs == 1) return "1 hr " + mins + " min";
-        else return hrs + " hrs " + mins + " min";
+        if (mins < 10) mins = '0' + mins;
+        if (hrs == 1) return '1 hr ' + mins + ' min';
+        else return hrs + ' hrs ' + mins + ' min';
       } else {
         secs = secs - mins * 60;
-        if (secs < 10) secs = "0" + secs;
-        return mins + ":" + secs + " min";
+        if (secs < 10) secs = '0' + secs;
+        return mins + ':' + secs + ' min';
       }
     },
   },
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -113,8 +120,8 @@ export default {
 }
 
 .videoTitle {
-  font-family: "Open Sans Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 300;
   font-size: 1.875rem;
   line-height: 1.875rem;
@@ -124,8 +131,8 @@ export default {
 
 .videoSubText {
   display: inline-block;
-  font-family: "NeueHaasGroteskText Pro65";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro65';
+  font-feature-settings: 'liga';
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.4375rem;
@@ -145,7 +152,7 @@ export default {
 
 .videoDurationText {
   display: inline;
-  font-family: "Lora", serif;
+  font-family: 'Lora', serif;
   font-weight: 700;
   font-size: 1rem;
 }

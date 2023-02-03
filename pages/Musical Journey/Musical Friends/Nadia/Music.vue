@@ -1,16 +1,16 @@
 <template>
   <Layout>
-    <b-container class="main-col pt-5">
+    <v-container class="main-col pt-5">
       <div style="text-align: center">
         <h1 class="heading">{{ title }}</h1>
       </div>
 
       <div class="mt-4">
-        <b-button
+        <v-button
           variant="danger"
           @click="onPlayAllClick()"
           data-testid="play-all"
-          >{{ playBtnText }}</b-button
+          >{{ playBtnText }}</v-button
         >
       </div>
 
@@ -20,35 +20,61 @@
         class="mb-3"
         data-testid="track-container"
       >
-        <b-row v-if="index % 2 === 0" align-h="end" align-v="center">
-          <b-col class="pr-2">
+        <v-row
+          v-if="index % 2 === 0"
+          align-h="end"
+          align-v="center"
+        >
+          <v-col class="pr-2">
             <p class="trackTitle textAlignEnd">{{ track.title }}</p>
             <p class="trackCaption textAlignEnd hideOnMobile">
               {{ track.caption }}
             </p>
-          </b-col>
-          <b-col cols="auto" class="pl-2">
-            <g-image :src="track.image" class="trackImg my-3" />
-          </b-col>
-          <b-col cols="12" class="pr-4">
+          </v-col>
+          <v-col
+            cols="auto"
+            class="pl-2"
+          >
+            <g-image
+              :src="track.image"
+              class="trackImg my-3"
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            class="pr-4"
+          >
             <p class="trackCaption textAlignEnd showOnMobile">
               {{ track.caption }}
             </p>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
-        <b-row v-else align-h="start" align-v="center">
-          <b-col cols="auto" class="pr-2">
-            <g-image :src="track.image" class="trackImg my-3" />
-          </b-col>
-          <b-col class="pl-2">
+        <v-row
+          v-else
+          align-h="start"
+          align-v="center"
+        >
+          <v-col
+            cols="auto"
+            class="pr-2"
+          >
+            <g-image
+              :src="track.image"
+              class="trackImg my-3"
+            />
+          </v-col>
+          <v-col class="pl-2">
             <p class="trackTitle">{{ track.title }}</p>
             <p class="trackCaption hideOnMobile">{{ track.caption }}</p>
-          </b-col>
-          <b-col cols="12" class="pl-4">
+          </v-col>
+          <v-col
+            cols="12"
+            class="pl-4"
+          >
             <p class="trackCaption showOnMobile">{{ track.caption }}</p>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
         <AudioPlayer
           :ref="'nadiaSong-' + index"
@@ -60,16 +86,19 @@
         <hr class="style-two" />
       </div>
 
-      <b-row align-h="center" class="text-center">
-        <b-col>
+      <v-row
+        align-h="center"
+        class="text-center"
+      >
+        <v-col>
           <g-link
             to="/musical-journey/musical-friends/nadia"
             class="nav_link py-3"
             >BACK TO NADIA</g-link
           >
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
   </Layout>
 </template>
 
@@ -93,10 +122,9 @@
 }
 </page-query>
 
-
 <script scoped>
-import AudioPlayer from "../../../../components/AudioPlayer";
-import { EventBus } from "../../../../event-bus";
+import AudioPlayer from '../../../../components/AudioPlayer';
+import { EventBus } from '../../../../event-bus';
 
 export default {
   metaInfo() {
@@ -122,12 +150,12 @@ export default {
       return this.$page.NadiaMusic.edges[0].node.tracks;
     },
     playBtnText() {
-      return this.playingAll ? "Stop" : "Play All";
+      return this.playingAll ? 'Stop' : 'Play All';
     },
   },
 
   mounted() {
-    EventBus.$on("audioEnded", this.eventBusListener);
+    EventBus.$on('audioEnded', this.eventBusListener);
   },
 
   methods: {
@@ -160,29 +188,27 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 @font-face {
   font-family: NeueHaasGroteskText Pro75Bd;
-  src: url("../../../../assets/fonts/nhaasgrotesktxpro-75bd.woff")
-      format("woff"),
+  src: url('../../../../assets/fonts/nhaasgrotesktxpro-75bd.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../../../assets/fonts/nhaasgrotesktxpro-75bd.ttf") format("ttf");
+      url('../../../../assets/fonts/nhaasgrotesktxpro-75bd.ttf') format('ttf');
   font-weight: normal;
 }
 
@@ -193,8 +219,8 @@ export default {
 
 .heading {
   color: white;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-size: 3.125rem;
   font-weight: 400;
   text-shadow: 1px 1px 2px rgba(28, 16, 23, 0.83);
@@ -205,8 +231,8 @@ export default {
 
 .trackTitle {
   color: #e7413f;
-  font-family: "NeueHaasGroteskText Pro75Bd";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro75Bd';
+  font-feature-settings: 'liga';
   font-size: 2.625rem;
   font-weight: 400;
   margin-bottom: 0;
@@ -214,8 +240,8 @@ export default {
 
 .trackCaption {
   color: #cecece;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro55';
+  font-feature-settings: 'liga';
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 0;
@@ -253,8 +279,8 @@ hr.style-two {
 .nav_link {
   color: white;
   display: block;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-style: italic;
   font-size: 2.4375rem;

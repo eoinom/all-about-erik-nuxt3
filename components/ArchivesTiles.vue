@@ -1,12 +1,15 @@
 <template>
-  <b-container fluid id="tilesContainer">
-    <b-row
+  <v-container
+    fluid
+    id="tilesContainer"
+  >
+    <v-row
       no-gutters
       align-h="center"
       id="tilesRow"
       class="mx-3 mx-sm-0 mb-5 pb-4"
     >
-      <b-col
+      <v-col
         v-for="(tile, index) in tiles"
         :key="index"
         cols="12"
@@ -17,17 +20,16 @@
         data-testid="archive-container"
       >
         <ArchivesThumbnail :thumbnailObj="tile" />
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-
 <script scoped>
-import ArchivesThumbnail from "./ArchivesThumbnail.vue";
+import ArchivesThumbnail from './ArchivesThumbnail.vue';
 
 export default {
-  name: "ArchivesTiles",
+  name: 'ArchivesTiles',
 
   components: {
     ArchivesThumbnail,
@@ -41,8 +43,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style scoped lang="scss">
 #tilesContainer {

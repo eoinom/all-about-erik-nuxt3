@@ -11,7 +11,10 @@
       "
     />
 
-    <header id="header" :style="headerStyles">
+    <header
+      id="header"
+      :style="headerStyles"
+    >
       <g-image
         :src="titleImg"
         id="titleImg"
@@ -20,21 +23,27 @@
       />
     </header>
 
-    <b-container
+    <v-container
       fluid
       id="mainContainer"
       class="mb-5 pb-5 px-2 px-md-3 px-lg-4 px-xl-5"
     >
-      <b-row no-gutters>
-        <b-col>
-          <g-image :src="mainImg" id="mainImg" />
-          <span v-html="mainText" id="mainImgText" />
-        </b-col>
-      </b-row>
+      <v-row no-gutters>
+        <v-col>
+          <g-image
+            :src="mainImg"
+            id="mainImg"
+          />
+          <span
+            v-html="mainText"
+            id="mainImgText"
+          />
+        </v-col>
+      </v-row>
 
       <!-- LAYOUT FOR PHONES & TABLETS -->
       <div v-if="windowWidth < 992">
-        <b-row
+        <v-row
           v-for="(section, iSec) in sections"
           :key="'S' + iSec + 1"
           no-gutters
@@ -112,7 +121,10 @@
                 section.lightboxes.length == 0 ? 'padding-bottom: 8px' : ''
               "
             />
-            <div v-if="section.lightboxes.length > 0" class="responsiveBtnDiv">
+            <div
+              v-if="section.lightboxes.length > 0"
+              class="responsiveBtnDiv"
+            >
               <button
                 v-for="(lightBox, iLightBox) in section.lightboxes"
                 :key="iLightBox + 1"
@@ -132,14 +144,21 @@
               :showTracks="true"
             />
           </div>
-        </b-row>
+        </v-row>
       </div>
 
       <!-- LAYOUT FOR DESKTOPS -->
       <div v-else>
         <!-- SECTIONS[0] - BOBO THE CHEERLEADER -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[0].productions"
               :key="iProd"
@@ -165,10 +184,14 @@
               :body="textBox.text"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[1] - SOUND OF SUMMER SHOWERS -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div
             style="width: 36.5%; max-width: 410px"
             v-if="sections[1].textBoxes.length > 0"
@@ -181,7 +204,10 @@
               :body="textBox.text"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[1].productions"
               :key="iProd"
@@ -196,11 +222,18 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[2] - A LITTLE LOVIN' -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[2].productions"
               :key="iProd"
@@ -226,11 +259,18 @@
               :body="textBox.text"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[3] - THE SLURP -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div id="theSlurpTextCol" v-if="sections[3].textBoxes.length > 0">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            id="theSlurpTextCol"
+            v-if="sections[3].textBoxes.length > 0"
+          >
             <music-production-text
               v-for="(textBox, iText) in sections[3].textBoxes"
               :key="iText"
@@ -253,7 +293,10 @@
               </button>
             </div>
           </div>
-          <div style="max-width: 805px; flex: 1" class="ml-3">
+          <div
+            style="max-width: 805px; flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[3].productions"
               :key="iProd"
@@ -271,18 +314,28 @@
               </button>
             </div>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[4] - ROOTY TOOT & WARM BABY -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div id="rootyTootTextBox" v-if="sections[4].textBoxes.length > 0">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            id="rootyTootTextBox"
+            v-if="sections[4].textBoxes.length > 0"
+          >
             <music-production-text
               :title="sections[4].textBoxes[0].heading"
               :body="sections[4].textBoxes[0].text"
               style="height: inherit"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[4].productions"
               :key="iProd"
@@ -310,7 +363,10 @@
                 </button>
               </div>
 
-              <div id="warmBabyTextBox" v-if="sections[4].textBoxes.length > 0">
+              <div
+                id="warmBabyTextBox"
+                v-if="sections[4].textBoxes.length > 0"
+              >
                 <music-production-text
                   :title="sections[4].textBoxes[1].heading"
                   :body="sections[4].textBoxes[1].text"
@@ -318,11 +374,18 @@
               </div>
             </div>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[5] - CASS, DENNY, JESTER, ZAL -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[5].productions"
               :key="iProd"
@@ -349,10 +412,14 @@
               style="height: inherit"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[6] - LADY GODIVA' -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div
             style="width: 32.3%; min-width: 380px"
             v-if="sections[6].textBoxes.length > 0"
@@ -364,7 +431,10 @@
               :body="textBox.text"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[6].productions"
               :key="iProd"
@@ -379,11 +449,18 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[7] - TWEEDLE DUM'S DRIVE-IN -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="max-width: 1095px; flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="max-width: 1095px; flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[7].productions"
               :key="iProd"
@@ -404,10 +481,14 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[8] - THE STRANGERS -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div
             style="width: 26.75%; max-width: 340px"
             v-if="sections[3].textBoxes.length > 0"
@@ -430,18 +511,28 @@
               </button>
             </div>
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[8].productions"
               :key="iProd"
               :production="production"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[9] - THE SELLOUTS -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="max-width: 805px; flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="max-width: 805px; flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[9].productions"
               :key="iProd"
@@ -467,10 +558,14 @@
               :body="textBox.text"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[10] - KEN & BOBBY FISCHLER -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div
             style="width: 32.11%; min-width: 246px"
             v-if="sections[10].textBoxes.length > 0"
@@ -482,7 +577,10 @@
               :body="textBox.text"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[10].productions"
               :key="iProd"
@@ -497,11 +595,18 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[11] - RAY ROE -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
-          <div style="flex: 1" class="mr-3">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
+          <div
+            style="flex: 1"
+            class="mr-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[11].productions"
               :key="iProd"
@@ -527,10 +632,14 @@
               :body="textBox.text"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[12] - KEN MELVILLE -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div
             style="width: 29.13%; min-width: 280px"
             v-if="sections[12].textBoxes.length > 0"
@@ -542,7 +651,10 @@
               :body="textBox.text"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[12].productions"
               :key="iProd"
@@ -557,10 +669,14 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[13] - TIM HARDIN -->
-        <b-row no-gutters class="py-4" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="py-4"
+          data-testid="production-container"
+        >
           <div style="flex: 1">
             <music-production
               v-for="(production, iProd) in sections[13].productions"
@@ -576,7 +692,10 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-          <div id="timHardinTextBox" v-if="sections[13].textBoxes.length > 0">
+          <div
+            id="timHardinTextBox"
+            v-if="sections[13].textBoxes.length > 0"
+          >
             <music-production-text
               v-for="(textBox, iText) in sections[13].textBoxes"
               :key="iText"
@@ -585,10 +704,14 @@
               style="height: inherit"
             />
           </div>
-        </b-row>
+        </v-row>
 
         <!-- SECTIONS[14] - PLUMB CREEK BOYS -->
-        <b-row no-gutters class="pt-4 pb-5" data-testid="production-container">
+        <v-row
+          no-gutters
+          class="pt-4 pb-5"
+          data-testid="production-container"
+        >
           <div
             style="width: 25.5%; min-width: 310px"
             v-if="sections[14].textBoxes.length > 0"
@@ -601,7 +724,10 @@
               style="height: inherit"
             />
           </div>
-          <div style="flex: 1" class="ml-3">
+          <div
+            style="flex: 1"
+            class="ml-3"
+          >
             <music-production
               v-for="(production, iProd) in sections[14].productions"
               :key="iProd"
@@ -616,10 +742,10 @@
               {{ lightBox.buttonText }}
             </button>
           </div>
-        </b-row>
+        </v-row>
       </div>
       <!-- END OF LAYOUT FOR TABLETS & PHONES -->
-    </b-container>
+    </v-container>
 
     <AudioLightBox
       v-if="audioTracks != null"
@@ -692,14 +818,13 @@
 }
 </page-query>
 
-
 <script scoped>
-import BackgroundMusic from "../../components/BackgroundMusic.vue";
-import AudioLightBox from "../../components/AudioLightBox.vue";
-import ImageLightBox from "../../components/ImageLightBox.vue";
-import MusicProduction from "../../components/MusicProduction.vue";
-import MusicProductionText from "../../components/MusicProductionText.vue";
-import BackToTop from "../../components/BackToTop.vue";
+import BackgroundMusic from '../../components/BackgroundMusic.vue';
+import AudioLightBox from '../../components/AudioLightBox.vue';
+import ImageLightBox from '../../components/ImageLightBox.vue';
+import MusicProduction from '../../components/MusicProduction.vue';
+import MusicProductionText from '../../components/MusicProductionText.vue';
+import BackToTop from '../../components/BackToTop.vue';
 
 export default {
   metaInfo() {
@@ -736,7 +861,7 @@ export default {
     },
     headerStyles() {
       let css = {
-        "--headerBgImg": "url(" + this.headerBgImg + ")",
+        '--headerBgImg': 'url(' + this.headerBgImg + ')',
       };
       // css.position = this.windowWidth < 992 ? 'sticky' : 'static'  // to make header sticky for mobiles + tablets
       // css.position = this.windowWidth < 768 ? 'sticky' : 'static'  // to make header sticky for mobiles only
@@ -746,7 +871,7 @@ export default {
 
   methods: {
     lightBoxBtnClick(lightbox) {
-      if (lightbox.image !== "") {
+      if (lightbox.image !== '') {
         this.image = [
           {
             img: lightbox.image,
@@ -754,7 +879,7 @@ export default {
           },
         ];
         this.imageIndex = 0;
-      } else if (lightbox.audio !== "") {
+      } else if (lightbox.audio !== '') {
         this.audioTracks = [
           {
             url: lightbox.audio,
@@ -766,12 +891,12 @@ export default {
     },
     sectionContainerDevicesStyles(production) {
       return {
-        "--bgImg": production.bgImg ? 'url("' + production.bgImg + '")' : "",
-        "--bgImgPos": production.bgImgPos
+        '--bgImg': production.bgImg ? 'url("' + production.bgImg + '")' : '',
+        '--bgImgPos': production.bgImgPos
           ? production.bgImgPos
-          : "center center",
-        "--bgColor": production.bgColor ? production.bgColor : "#000",
-        "--bgOpacity": production.bgOpacity ? production.bgOpacity : 0.5,
+          : 'center center',
+        '--bgColor': production.bgColor ? production.bgColor : '#000',
+        '--bgOpacity': production.bgOpacity ? production.bgOpacity : 0.5,
       };
     },
   },
@@ -780,11 +905,11 @@ export default {
     this.windowWidth = window.innerWidth;
 
     // this.$nextTick(() => {
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
     // })
-    window.addEventListener("orientationchange", () => {
+    window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
     });
 
@@ -815,36 +940,34 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Lato:700i&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lato:700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -890,8 +1013,8 @@ body {
 
 #mainImgText {
   color: white;
-  font-family: "NeueHaasGroteskText Pro65";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro65';
+  font-feature-settings: 'liga';
   font-weight: 500;
   font-size: 1.75rem; /* 28px with 16px default size */
   letter-spacing: 1px;
@@ -929,8 +1052,8 @@ body {
   border-radius: 9px;
 
   color: #ddcd95;
-  font-family: "Lato", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Lato', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 700;
   font-style: italic;
   font-size: 17px;
@@ -962,7 +1085,7 @@ body {
   text-align: left;
 }
 .sectionContainerDevices:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   bottom: 0;

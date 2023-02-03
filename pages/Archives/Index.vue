@@ -8,9 +8,18 @@
       :maxVolume="1.0"
     />
 
-    <b-container fluid class="main-col m-0, p-0">
-      <b-row no-gutters class="mb-1 px-1">
-        <b-col class="slideshowCol" :style="slideshowColStyles">
+    <v-container
+      fluid
+      class="main-col m-0, p-0"
+    >
+      <v-row
+        no-gutters
+        class="mb-1 px-1"
+      >
+        <v-col
+          class="slideshowCol"
+          :style="slideshowColStyles"
+        >
           <!-- HEADER SLIDESHOW -->
           <SlideshowKenBurnsSmall
             :slides="slides"
@@ -20,7 +29,10 @@
           />
 
           <!-- SLIDESHOW OVERLAY -->
-          <div class="slideshowOverlay mb-3" :style="slideshowOverlayStyles">
+          <div
+            class="slideshowOverlay mb-3"
+            :style="slideshowOverlayStyles"
+          >
             <div class="mainContent mx-auto">
               <g-image
                 alt="Archives title image"
@@ -31,19 +43,25 @@
                 data-testid="title-img"
               />
 
-              <div v-html="slideshowText" id="slideshowText" />
+              <div
+                v-html="slideshowText"
+                id="slideshowText"
+              />
 
               <div id="scrollDownContainer">
                 <ScrollDownArrow scrollToElement="#tilesRow" />
               </div>
             </div>
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- TILES -->
-    <ArchivesTiles :tiles="tiles" :style="tilesContainerStyles" />
+    <ArchivesTiles
+      :tiles="tiles"
+      :style="tilesContainerStyles"
+    />
 
     <BackToTop />
   </Layout>
@@ -79,13 +97,12 @@
 }
 </page-query>
 
-
 <script scoped>
-import ArchivesTiles from "../../components/ArchivesTiles.vue";
-import BackgroundMusic from "../../components/BackgroundMusic.vue";
-import ScrollDownArrow from "../../components/ScrollDownArrow.vue";
-import BackToTop from "../../components/BackToTop.vue";
-import SlideshowKenBurnsSmall from "../../components/SlideshowKenBurnsSmall.vue";
+import ArchivesTiles from '../../components/ArchivesTiles.vue';
+import BackgroundMusic from '../../components/BackgroundMusic.vue';
+import ScrollDownArrow from '../../components/ScrollDownArrow.vue';
+import BackToTop from '../../components/BackToTop.vue';
+import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
 
 export default {
   metaInfo() {
@@ -144,7 +161,7 @@ export default {
     },
     tilesContainerStyles() {
       return {
-        paddingTop: this.windowHeight + "px",
+        paddingTop: this.windowHeight + 'px',
       };
     },
   },
@@ -159,7 +176,7 @@ export default {
           this.scrollY = window.pageYOffset;
         }
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("tilesRow");
+        let element = document.getElementById('tilesRow');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }.bind(this),
@@ -167,19 +184,19 @@ export default {
     );
 
     this.windowHeight = window.innerHeight;
-    window.addEventListener("resize", this.onResize);
-    window.addEventListener("orientationchange", this.onResize);
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('orientationchange', this.onResize);
   },
 
   methods: {
     addScrollListener() {
-      window.addEventListener("scroll", this.scrollFunction);
+      window.addEventListener('scroll', this.scrollFunction);
     },
     scrollFunction() {
       if (this.scrollY != window.pageYOffset) {
         this.scrollY = window.pageYOffset;
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("tilesRow");
+        let element = document.getElementById('tilesRow');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }
@@ -189,7 +206,7 @@ export default {
         this.windowHeight = window.innerHeight;
 
         let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById("tilesRow");
+        let element = document.getElementById('tilesRow');
         let elemRect = element.getBoundingClientRect();
         this.targetPosY = elemRect.top - bodyRect.top;
       }
@@ -198,19 +215,17 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -265,8 +280,8 @@ export default {
 
 #slideshowText {
   color: #ffffff;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro55';
+  font-feature-settings: 'liga';
   font-size: 1.375rem;
   font-weight: 400;
   line-height: 2.0625rem;

@@ -7,68 +7,175 @@
     @touchend="touchendHandler"
     :style="viewerStyles"
   >
-    <div class="collection-viewer__modal" :style="`background: ${background}`" >
-      <div :class="['collection-viewer__spinner', !isImageLoaded || 'hide']" >
-        <div class="collection-viewer__dot" :style="`border-color: ${interfaceColor}`" />
-        <div class="collection-viewer__dot" :style="`border-color: ${interfaceColor}`" />
-        <div class="collection-viewer__dot" :style="`border-color: ${interfaceColor}`" />
+    <div
+      class="collection-viewer__modal"
+      :style="`background: ${background}`"
+    >
+      <div :class="['collection-viewer__spinner', !isImageLoaded || 'hide']">
+        <div
+          class="collection-viewer__dot"
+          :style="`border-color: ${interfaceColor}`"
+        />
+        <div
+          class="collection-viewer__dot"
+          :style="`border-color: ${interfaceColor}`"
+        />
+        <div
+          class="collection-viewer__dot"
+          :style="`border-color: ${interfaceColor}`"
+        />
       </div>
-      
-      <b-container fluid style="padding:0">        
-        <b-row no-gutters align-v="center" id="navLinksRow">
-          <b-col cols="2" lg="" xl="4">
-            <g-link :to="'/collections/' + prevCollection.link" v-b-tooltip.hover="{ variant: 'secondary' }" :title="prevCollection.title" class="nav_link nav_link_small" id="nav_prev">
-              <g-image immediate alt="previous" src="../assets/images/previous-collection-2lines-white.png" class="hideOnHover" />
-              <g-image immediate alt="previous" src="../assets/images/previous-collection-2lines-yellow.png" class="showOnHover" />
+
+      <v-container
+        fluid
+        style="padding: 0"
+      >
+        <v-row
+          no-gutters
+          align-v="center"
+          id="navLinksRow"
+        >
+          <v-col
+            cols="2"
+            lg=""
+            xl="4"
+          >
+            <g-link
+              :to="'/collections/' + prevCollection.link"
+              v-v-tooltip.hover="{ variant: 'secondary' }"
+              :title="prevCollection.title"
+              class="nav_link nav_link_small"
+              id="nav_prev"
+            >
+              <g-image
+                immediate
+                alt="previous"
+                src="../assets/images/previous-collection-2lines-white.png"
+                class="hideOnHover"
+              />
+              <g-image
+                immediate
+                alt="previous"
+                src="../assets/images/previous-collection-2lines-yellow.png"
+                class="showOnHover"
+              />
             </g-link>
 
-            <g-link :to="'/collections/' + prevCollection.link" v-b-tooltip.hover="{ variant: 'secondary' }" :title="prevCollection.title" class="nav_link nav_link_big" id="nav_prev">
-              <g-image immediate alt="previous" src="../assets/images/previous-collection-1line-white.png" class="hideOnHover" />
-              <g-image immediate alt="previous" src="../assets/images/previous-collection-1line-yellow.png" class="showOnHover" />
+            <g-link
+              :to="'/collections/' + prevCollection.link"
+              v-v-tooltip.hover="{ variant: 'secondary' }"
+              :title="prevCollection.title"
+              class="nav_link nav_link_big"
+              id="nav_prev"
+            >
+              <g-image
+                immediate
+                alt="previous"
+                src="../assets/images/previous-collection-1line-white.png"
+                class="hideOnHover"
+              />
+              <g-image
+                immediate
+                alt="previous"
+                src="../assets/images/previous-collection-1line-yellow.png"
+                class="showOnHover"
+              />
             </g-link>
-          </b-col>
-          
-          <b-col cols="8" lg="7" xl="4">
-            <div v-if="windowWidth > 1366" class="collection-viewer__text">HOVER OVER IMAGE FOR CLOSE-UP</div>
-          </b-col>
-          
-          <b-col cols="2" lg="" xl="4">
-            <g-link :to="'/collections/' + nextCollection.link" v-b-tooltip.hover="{ variant: 'secondary' }" :title="nextCollection.title" class="nav_link nav_link_small" id="nav_next">
-              <g-image immediate alt="next" src="../assets/images/next-collection-2lines-white.png" class="hideOnHover" />
-              <g-image immediate alt="next" src="../assets/images/next-collection-2lines-yellow.png" class="showOnHover" />
+          </v-col>
+
+          <v-col
+            cols="8"
+            lg="7"
+            xl="4"
+          >
+            <div
+              v-if="windowWidth > 1366"
+              class="collection-viewer__text"
+            >
+              HOVER OVER IMAGE FOR CLOSE-UP
+            </div>
+          </v-col>
+
+          <v-col
+            cols="2"
+            lg=""
+            xl="4"
+          >
+            <g-link
+              :to="'/collections/' + nextCollection.link"
+              v-v-tooltip.hover="{ variant: 'secondary' }"
+              :title="nextCollection.title"
+              class="nav_link nav_link_small"
+              id="nav_next"
+            >
+              <g-image
+                immediate
+                alt="next"
+                src="../assets/images/next-collection-2lines-white.png"
+                class="hideOnHover"
+              />
+              <g-image
+                immediate
+                alt="next"
+                src="../assets/images/next-collection-2lines-yellow.png"
+                class="showOnHover"
+              />
             </g-link>
 
-            <g-link :to="'/collections/' + nextCollection.link" v-b-tooltip.hover="{ variant: 'secondary' }" :title="nextCollection.title" class="nav_link nav_link_big" id="nav_next">
-              <g-image immediate alt="next" src="../assets/images/next-collection-1line-white.png" class="hideOnHover" />
-              <g-image immediate alt="next" src="../assets/images/next-collection-1line-yellow.png" class="showOnHover" />
+            <g-link
+              :to="'/collections/' + nextCollection.link"
+              v-v-tooltip.hover="{ variant: 'secondary' }"
+              :title="nextCollection.title"
+              class="nav_link nav_link_big"
+              id="nav_next"
+            >
+              <g-image
+                immediate
+                alt="next"
+                src="../assets/images/next-collection-1line-white.png"
+                class="hideOnHover"
+              />
+              <g-image
+                immediate
+                alt="next"
+                src="../assets/images/next-collection-1line-yellow.png"
+                class="showOnHover"
+              />
             </g-link>
-          </b-col>            
-        </b-row>
-
-      </b-container>
+          </v-col>
+        </v-row>
+      </v-container>
 
       <div class="collection-viewer__container">
         <ul class="collection-viewer__content">
           <li
             v-for="(image, imageIndex) in formattedImages"
             :key="imageIndex"
-            :style="`transform: translate3d(${currentIndex * -100}%, 0px, 0px);`"
+            :style="`transform: translate3d(${
+              currentIndex * -100
+            }%, 0px, 0px);`"
             class="collection-viewer__image-container"
           >
-            <div class="collection-viewer__image" style="position:relative">
-              <image-magnifier 
+            <div
+              class="collection-viewer__image"
+              style="position: relative"
+            >
+              <image-magnifier
                 :src="image.img"
                 :zoom-src="image.img"
-                :zoom="2"                    
-                :zoom-diameter=500
+                :zoom="2"
+                :zoom-diameter="500"
                 zoom-radius="50%"
                 :show-cursor="false"
                 @imgloaded="imageLoaded($event, imageIndex)"
               />
-              
-              <div v-if="isOldTime" class="collections_headerLinkText">
+
+              <div
+                v-if="isOldTime"
+                class="collections_headerLinkText"
+              >
                 <span>READ ALL ABOUT IT</span>
-                <br>
+                <br />
                 <span>KEEP SCROLLING</span>
               </div>
             </div>
@@ -76,49 +183,69 @@
         </ul>
       </div>
 
-      <div id="leftArrowContainer" v-if="currentIndex > 0" @click="prev()">
+      <div
+        id="leftArrowContainer"
+        v-if="currentIndex > 0"
+        @click="prev()"
+      >
         <img
-          alt="Left arrow, click for previous image" 
-          src="../assets/images/arrow-left.png" 
+          alt="Left arrow, click for previous image"
+          src="../assets/images/arrow-left.png"
           id="prevArrowImg"
-          class="prevArrow arrowImg" 
+          class="prevArrow arrowImg"
         />
         <img
-          alt="Left arrow, click for previous image" 
-          src="../assets/images/arrow-left-hover-yellow.png" 
+          alt="Left arrow, click for previous image"
+          src="../assets/images/arrow-left-hover-yellow.png"
           id="prevArrowImg-hover"
-          class="prevArrow arrowImg" 
+          class="prevArrow arrowImg"
         />
       </div>
 
-      <div id="rightArrowContainer" v-if="currentIndex + 1 < images.length" @click="next()">
+      <div
+        id="rightArrowContainer"
+        v-if="currentIndex + 1 < images.length"
+        @click="next()"
+      >
         <img
-          alt="Right arrow, click for next image" 
-          src="../assets/images/arrow-right.png" 
+          alt="Right arrow, click for next image"
+          src="../assets/images/arrow-right.png"
           id="nextArrowImg"
           class="nextArrow arrowImg"
         />
         <img
-          alt="Right arrow, click for next image" 
-          src="../assets/images/arrow-right-hover-yellow.png" 
+          alt="Right arrow, click for next image"
+          src="../assets/images/arrow-right-hover-yellow.png"
           id="nextArrowImg-hover"
-          class="nextArrow arrowImg" 
+          class="nextArrow arrowImg"
         />
       </div>
 
-      <g-link v-if="!isOldTime" :to="{ path: '/collections/', query: { playMusic: 'false' }}" class="nav_link pt-3" id="nav_back">
-        <g-image immediate alt="Back to collections menu" src="../assets/images/back-to-collections-menu-1line-white.png" class="hideOnHover" />
-        <g-image immediate alt="Back to collections menu" src="../assets/images/back-to-collections-menu-1line-yellow.png" class="showOnHover" />
+      <g-link
+        v-if="!isOldTime"
+        :to="{ path: '/collections/', query: { playMusic: 'false' } }"
+        class="nav_link pt-3"
+        id="nav_back"
+      >
+        <g-image
+          immediate
+          alt="Back to collections menu"
+          src="../assets/images/back-to-collections-menu-1line-white.png"
+          class="hideOnHover"
+        />
+        <g-image
+          immediate
+          alt="Back to collections menu"
+          src="../assets/images/back-to-collections-menu-1line-yellow.png"
+          class="showOnHover"
+        />
       </g-link>
-
     </div>
-
   </div>
 </template>
 
-
 <script>
-import ImageMagnifier from './ImageMagnifier.vue'
+import ImageMagnifier from './ImageMagnifier.vue';
 
 const keyMap = {
   LEFT: 37,
@@ -149,15 +276,15 @@ export default {
       default: 'rgba(255, 255, 255, 0.8)',
     },
     prevCollection: {
-      type: Object
+      type: Object,
     },
     nextCollection: {
-      type: Object
+      type: Object,
     },
     isOldTime: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 
   data() {
@@ -178,34 +305,34 @@ export default {
       headerEl: null,
       headerHeight: 0,
       windowWidth: 0.0,
-      interval: null
+      interval: null,
     };
   },
 
   computed: {
     formattedImages() {
-      return this.images.map(image => (typeof image === 'string'
-        ? { url: image } : image
-      ));
+      return this.images.map((image) =>
+        typeof image === 'string' ? { url: image } : image
+      );
     },
     viewerStyles() {
       return {
-        '--headerHeight': this.headerHeight + 'px'
-      }
-    }
+        '--headerHeight': this.headerHeight + 'px',
+      };
+    },
   },
 
   mounted() {
-    this.windowWidth = window.innerWidth
-    window.addEventListener('resize', () => {  
-      this.windowWidth = window.innerWidth
-    })
-    window.addEventListener('orientationchange', () => {  
-      this.windowWidth = window.innerWidth
-    })
-    
-    if (!document)  return;
-    this.observeNavLinksPosition()    
+    this.windowWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
+    window.addEventListener('orientationchange', () => {
+      this.windowWidth = window.innerWidth;
+    });
+
+    if (!document) return;
+    this.observeNavLinksPosition();
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
@@ -221,14 +348,14 @@ export default {
 
   watch: {
     index(val) {
-      if (!document)  return;      
+      if (!document) return;
       this.currentIndex = val;
       if (this.disableScroll && typeof val === 'number') {
         document.body.style.overflow = 'hidden';
       } else if (this.disableScroll && !val) {
         document.body.style.overflow = this.bodyOverflowStyle;
       }
-    }    
+    },
   },
 
   methods: {
@@ -238,21 +365,25 @@ export default {
     },
     next() {
       if (this.currentIndex === this.images.length - 1) return;
-      this.currentIndex += 1
+      this.currentIndex += 1;
     },
     imageLoaded(img_el, imageIndex) {
       img_el.classList.add('loaded');
       if (imageIndex === this.currentIndex) {
-        this.isImageLoaded = !img_el ? false : img_el.classList.contains('loaded');
+        this.isImageLoaded = !img_el
+          ? false
+          : img_el.classList.contains('loaded');
       }
     },
     shouldPreload(index) {
       const el = this.getImageElByIndex(index) || {};
       const { src } = el;
-      return !!src
-       || index === this.currentIndex
-       || index === this.currentIndex - 1
-       || index === this.currentIndex + 1;
+      return (
+        !!src ||
+        index === this.currentIndex ||
+        index === this.currentIndex - 1 ||
+        index === this.currentIndex + 1
+      );
     },
     bindEvents() {
       document.addEventListener('keydown', this.keyDownHandler, false);
@@ -314,36 +445,42 @@ export default {
       return {
         top,
         left,
-      }
+      };
     },
     observeNavLinksPosition() {
-      this.interval = setInterval(function () {    
-        let navLinksEl = document.getElementById('navLinksRow')
-        this.headerHeight = this.getElementOffset(navLinksEl).top
-      }.bind(this), 500);
-    }
+      this.interval = setInterval(
+        function () {
+          let navLinksEl = document.getElementById('navLinksRow');
+          this.headerHeight = this.getElementOffset(navLinksEl).top;
+        }.bind(this),
+        500
+      );
+    },
   },
-  
+
   components: {
-    ImageMagnifier
-  }
+    ImageMagnifier,
+  },
 };
 </script>
-
 
 <style lang="scss" scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
   src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg') format('svg'); /* Legacy iOS */
+  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */
+      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
 * {
-  --linkGutter:  45px;
-  --arrowOffset:  8.5%;
+  --linkGutter: 45px;
+  --arrowOffset: 8.5%;
 }
 
 .nav_link {
@@ -409,7 +546,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;
+    transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
   &__image {
     & {
@@ -429,20 +566,20 @@ export default {
         width: auto;
         object-fit: contain;
         opacity: 0;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
       }
-      &.loaded{
+      &.loaded {
         opacity: 1;
       }
     }
   }
-  &__text {    
+  &__text {
     font-family: 'NeueHaasGroteskText Pro55', sans-serif;
     font-feature-settings: 'liga';
     font-weight: 400;
     text-align: center;
     line-height: 13px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 10px;
     letter-spacing: 4px;
     margin: 14px 0px;
@@ -501,7 +638,7 @@ export default {
 }
 
 .arrowImg {
-  width: 7.0%;
+  width: 7%;
   max-width: 26px;
   min-width: 15px;
   padding: 0;
@@ -523,7 +660,7 @@ export default {
   left: var(--arrowOffset);
 }
 
-#prevArrowImg-hover, 
+#prevArrowImg-hover,
 #leftArrowContainer:hover #prevArrowImg {
   display: none;
 }
@@ -531,7 +668,7 @@ export default {
   display: inline;
 }
 
-#nextArrowImg-hover, 
+#nextArrowImg-hover,
 #rightArrowContainer:hover #nextArrowImg {
   display: none;
 }
@@ -561,15 +698,13 @@ export default {
   bottom: 25px;
 }
 
-
-
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
   * {
     --linkGutter: 25px;
-    --arrowOffset: 3.0%;
+    --arrowOffset: 3%;
   }
 }
 
@@ -585,13 +720,15 @@ export default {
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   * {
-    --linkGutter: calc(25px + 20 * (100vw - 576px) / (768 - 576) ); /* varies between 25px - 45px */
-    --arrowOffset: 3.0%;
+    --linkGutter: calc(
+      25px + 20 * (100vw - 576px) / (768 - 576)
+    ); /* varies between 25px - 45px */
+    --arrowOffset: 3%;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) { 
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
   * {
     --arrowOffset: 4.5%;
   }
@@ -604,7 +741,7 @@ export default {
 }
 
 /* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {  
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   * {
     --linkGutter: 25px;
     --arrowOffset: 4.5%;

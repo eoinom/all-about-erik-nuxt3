@@ -1,11 +1,14 @@
 <template>
-  <b-container
+  <v-container
     id="outerContainer"
     :style="outerContainerDims"
     data-testid="friend-card"
   >
-    <b-row no-gutters class="innerContainerRow">
-      <b-col
+    <v-row
+      no-gutters
+      class="innerContainerRow"
+    >
+      <v-col
         :order="imgOrder"
         :cols="imgCols"
         class="thumbnailImgCol"
@@ -20,9 +23,9 @@
             :id="'friendImg' + this.index"
           />
         </g-link>
-      </b-col>
+      </v-col>
 
-      <b-col
+      <v-col
         order="1"
         :cols="imgCols"
         class="px-3 pt-2 mb-0 textCol"
@@ -35,15 +38,14 @@
             <button class="seeMoreBtn mt-0 mb-3">...see more</button>
           </g-link>
         </div>
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
 
 <script scoped>
 export default {
-  name: "FriendCard",
+  name: 'FriendCard',
 
   props: {
     friend: {
@@ -53,7 +55,7 @@ export default {
       type: Number,
     },
     imgPosition: {
-      default: "top",
+      default: 'top',
       type: String,
     },
     imgContainerWidth: {
@@ -126,13 +128,13 @@ export default {
   computed: {
     outerContainerDims() {
       let css = {};
-      if (this.imgPosition == "top" || this.imgPosition == "bottom") {
+      if (this.imgPosition == 'top' || this.imgPosition == 'bottom') {
         if (this.imgContainerWidth > 0) {
-          css.width = this.imgContainerWidth + "px";
+          css.width = this.imgContainerWidth + 'px';
         }
       } else {
         if (this.imgContainerHeight > 0) {
-          css.height = this.imgContainerHeight + "px";
+          css.height = this.imgContainerHeight + 'px';
         }
       }
       return css;
@@ -146,75 +148,75 @@ export default {
     imgContainerDims() {
       let css = {};
       if (this.imgContainerWidth > 0) {
-        css.width = this.imgContainerWidth + "px";
+        css.width = this.imgContainerWidth + 'px';
       }
       if (this.imgContainerHeight > 0)
-        css.height = this.imgContainerHeight + "px";
-      if (this.imgPosition == "top" || this.imgPosition == "bottom")
-        css.overflow = "hidden";
+        css.height = this.imgContainerHeight + 'px';
+      if (this.imgPosition == 'top' || this.imgPosition == 'bottom')
+        css.overflow = 'hidden';
       return css;
     },
     imgDims() {
       let css = {};
       if (this.imgCenterHoriz) {
-        css.left = "50%";
+        css.left = '50%';
         let translateX = -50 - this.imgMoveLeftPercent;
-        css.transform = "translate(" + translateX + "%, 0%)";
+        css.transform = 'translate(' + translateX + '%, 0%)';
       }
       if (this.imgCenterVert) {
-        css.top = "50%";
+        css.top = '50%';
         let translateY = -50 + this.imgMoveDownPercent;
-        css.transform = "translate(0%, " + translateY + "%)";
+        css.transform = 'translate(0%, ' + translateY + '%)';
       }
       if (this.imgCenterCenter) {
-        css.left = "50%";
-        css.top = "50%";
+        css.left = '50%';
+        css.top = '50%';
         let translateX = -50 - this.imgMoveLeftPercent;
         let translateY = -50 + this.imgMoveDownPercent;
-        css.transform = "translate(" + translateX + "%, " + translateY + "%)";
+        css.transform = 'translate(' + translateX + '%, ' + translateY + '%)';
       }
-      if (this.imgWidth > 0) css.width = this.imgWidth + "px";
-      if (this.imgScaleToContainerWidth) css.width = "100%";
-      if (this.imgScaleToContainerHeight) css.height = "100%";
+      if (this.imgWidth > 0) css.width = this.imgWidth + 'px';
+      if (this.imgScaleToContainerWidth) css.width = '100%';
+      if (this.imgScaleToContainerHeight) css.height = '100%';
       if (this.imgScaleToFillContainer) {
         if (this.imgAspectRatio < this.imgContainerAspectRatio) {
-          css.width = "100%";
+          css.width = '100%';
         } else {
-          css.height = "100%";
+          css.height = '100%';
         }
       }
-      if (this.imgHeight > 0) css.height = this.imgHeight + "px";
+      if (this.imgHeight > 0) css.height = this.imgHeight + 'px';
       if (this.imgMoveLeftPercent !== 0)
-        css.right = this.imgMoveLeftPercent + "%";
+        css.right = this.imgMoveLeftPercent + '%';
       if (this.imgMoveDownPercent !== 0)
-        css.top = this.imgMoveDownPercent + "%";
+        css.top = this.imgMoveDownPercent + '%';
       return css;
     },
     imgOrder() {
-      return this.imgPosition == "top" || this.imgPosition == "left" ? 0 : 2;
+      return this.imgPosition == 'top' || this.imgPosition == 'left' ? 0 : 2;
     },
     imgCols() {
-      return this.imgPosition == "top" || this.imgPosition == "bottom"
-        ? "12"
-        : "";
+      return this.imgPosition == 'top' || this.imgPosition == 'bottom'
+        ? '12'
+        : '';
     },
     textCols() {
-      return this.imgPosition == "top" || this.imgPosition == "bottom"
-        ? "12"
-        : "6";
+      return this.imgPosition == 'top' || this.imgPosition == 'bottom'
+        ? '12'
+        : '6';
     },
     textColDims() {
       let css = {};
       if (this.width > 0 && this.imgContainerWidth > 0) {
-        css.width = this.width - this.imgContainerWidth + "px";
+        css.width = this.width - this.imgContainerWidth + 'px';
       }
-      if (this.imgPosition == "top" || this.imgPosition == "bottom") {
+      if (this.imgPosition == 'top' || this.imgPosition == 'bottom') {
         if (this.height > 0 && this.imgContainerHeight > 0) {
-          css.minHeight = this.height - this.imgContainerHeight + "px";
+          css.minHeight = this.height - this.imgContainerHeight + 'px';
         }
       } else {
         if (this.height > 0) {
-          css.minHeight = this.height + "px";
+          css.minHeight = this.height + 'px';
         }
       }
       return css;
@@ -224,16 +226,16 @@ export default {
   methods: {},
 
   mounted() {
-    let friendImg = document.getElementById("friendImg" + this.index);
+    let friendImg = document.getElementById('friendImg' + this.index);
     this.friendImgWidth = friendImg.clientWidth;
     this.friendImgHeight = friendImg.clientHeight;
 
-    let imgContainer = document.getElementById("thumbnailImgCol" + this.index);
+    let imgContainer = document.getElementById('thumbnailImgCol' + this.index);
     this.thumbnailImgColWidth = imgContainer.clientWidth;
     this.thumbnailImgColHeight = imgContainer.clientHeight;
 
     this.$nextTick(() => {
-      window.addEventListener("resize", () => {
+      window.addEventListener('resize', () => {
         this.friendImgWidth = friendImg.clientWidth;
         this.friendImgHeight = friendImg.clientHeight;
         this.thumbnailImgColWidth = imgContainer.clientWidth;
@@ -246,10 +248,8 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap');
 
 #outerContainer {
   background-color: white;
@@ -270,8 +270,8 @@ export default {
 }
 
 .textTitle {
-  font-family: "Lora", serif;
-  font-feature-settings: "liga";
+  font-family: 'Lora', serif;
+  font-feature-settings: 'liga';
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 3px;
@@ -282,8 +282,8 @@ export default {
 }
 
 .text {
-  font-family: "Lora", serif;
-  font-feature-settings: "liga";
+  font-family: 'Lora', serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-size: 17px;
   letter-spacing: 1px;
@@ -303,8 +303,8 @@ export default {
   padding: 0px;
   border-color: transparent;
   border-radius: 9px;
-  font-family: "Lora", serif;
-  font-feature-settings: "liga";
+  font-family: 'Lora', serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-size: 17px;
   font-style: italic;

@@ -1,16 +1,16 @@
 <template>
   <Layout>
-    <b-container class="main-col pt-5">
+    <v-container class="main-col pt-5">
       <div style="text-align: center">
         <h1 class="heading">{{ title }}</h1>
       </div>
 
       <div class="my-4">
-        <b-button
+        <v-button
           variant="danger"
           @click="onPlayAllClick()"
           data-testid="play-all"
-          >{{ playBtnText }}</b-button
+          >{{ playBtnText }}</v-button
         >
       </div>
 
@@ -20,17 +20,25 @@
         class="mb-3"
         data-testid="track-container"
       >
-        <b-row v-if="index % 2 === 0" align-h="end" align-v="center">
-          <b-col>
+        <v-row
+          v-if="index % 2 === 0"
+          align-h="end"
+          align-v="center"
+        >
+          <v-col>
             <p class="trackTitle textAlignEnd">{{ track.title }}</p>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
-        <b-row v-else align-h="start" align-v="center">
-          <b-col>
+        <v-row
+          v-else
+          align-h="start"
+          align-v="center"
+        >
+          <v-col>
             <p class="trackTitle">{{ track.title }}</p>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
 
         <AudioPlayer
           :ref="'unzSong-' + index"
@@ -42,16 +50,19 @@
         <hr class="style-two" />
       </div>
 
-      <b-row align-h="center" class="text-center">
-        <b-col>
+      <v-row
+        align-h="center"
+        class="text-center"
+      >
+        <v-col>
           <g-link
             to="/musical-journey/musical-friends/eduardo-unz"
             class="nav_link py-3"
             >BACK TO UNZ</g-link
           >
-        </b-col>
-      </b-row>
-    </b-container>
+        </v-col>
+      </v-row>
+    </v-container>
   </Layout>
 </template>
 
@@ -73,10 +84,9 @@
 }
 </page-query>
 
-
 <script scoped>
-import AudioPlayer from "../../../../components/AudioPlayer";
-import { EventBus } from "../../../../event-bus";
+import AudioPlayer from '../../../../components/AudioPlayer';
+import { EventBus } from '../../../../event-bus';
 
 export default {
   metaInfo() {
@@ -102,12 +112,12 @@ export default {
       return this.$page.EduardoUnzMusic.edges[0].node.tracks;
     },
     playBtnText() {
-      return this.playingAll ? "Stop" : "Play All";
+      return this.playingAll ? 'Stop' : 'Play All';
     },
   },
 
   mounted() {
-    EventBus.$on("audioEnded", this.eventBusListener);
+    EventBus.$on('audioEnded', this.eventBusListener);
   },
 
   methods: {
@@ -140,17 +150,15 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro75Bd;
-  src: url("../../../../assets/fonts/nhaasgrotesktxpro-75bd.woff")
-      format("woff"),
+  src: url('../../../../assets/fonts/nhaasgrotesktxpro-75bd.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../../../assets/fonts/nhaasgrotesktxpro-75bd.ttf") format("ttf");
+      url('../../../../assets/fonts/nhaasgrotesktxpro-75bd.ttf') format('ttf');
   font-weight: normal;
 }
 
@@ -161,8 +169,8 @@ export default {
 
 .heading {
   color: white;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-size: 3.125rem;
   font-weight: 400;
   text-shadow: 1px 1px 2px rgba(28, 16, 23, 0.83);
@@ -173,8 +181,8 @@ export default {
 
 .trackTitle {
   color: #e7413f;
-  font-family: "NeueHaasGroteskText Pro75Bd";
-  font-feature-settings: "liga";
+  font-family: 'NeueHaasGroteskText Pro75Bd';
+  font-feature-settings: 'liga';
   font-size: 2rem;
   font-weight: 400;
   margin-bottom: 0;
@@ -206,8 +214,8 @@ hr.style-two {
 .nav_link {
   color: white;
   display: block;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   font-style: italic;
   font-size: 2rem;

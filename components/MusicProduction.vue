@@ -1,14 +1,32 @@
 <template>
-  <b-container fluid class="productionContainer">
-    <b-row no-gutters>
-      <b-col>
-        <p v-if="showTitleCredits" class="titleText">{{ titleText }}</p>
+  <v-container
+    fluid
+    class="productionContainer"
+  >
+    <v-row no-gutters>
+      <v-col>
+        <p
+          v-if="showTitleCredits"
+          class="titleText"
+        >
+          {{ titleText }}
+        </p>
 
         <div class="imgAndTracksDiv">
-          <img v-if="showImage" :src="image" />
+          <img
+            v-if="showImage"
+            :src="image"
+          />
 
-          <div v-if="showTracks" :style="tracksDivStyles" class="tracksDiv">
-            <div v-for="(track, iTrack) in tracks" :key="iTrack">
+          <div
+            v-if="showTracks"
+            :style="tracksDivStyles"
+            class="tracksDiv"
+          >
+            <div
+              v-for="(track, iTrack) in tracks"
+              :key="iTrack"
+            >
               <p class="trackTitleText">{{ track.title }}</p>
               <audio-player
                 :src="track.track"
@@ -18,17 +36,16 @@
             </div>
           </div>
         </div>
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-
 <script scoped>
-import AudioPlayer from "./AudioPlayer";
+import AudioPlayer from './AudioPlayer';
 
 export default {
-  name: "MusicProduction",
+  name: 'MusicProduction',
 
   props: {
     production: {
@@ -54,28 +71,28 @@ export default {
 
   data() {
     return {
-      writer: this.production.hasOwnProperty("writer")
+      writer: this.production.hasOwnProperty('writer')
         ? this.production.writer
-        : "",
-      artist: this.production.hasOwnProperty("artist")
+        : '',
+      artist: this.production.hasOwnProperty('artist')
         ? this.production.artist
-        : "",
-      image: this.production.hasOwnProperty("image")
+        : '',
+      image: this.production.hasOwnProperty('image')
         ? this.production.image
-        : "",
-      bgImg: this.production.hasOwnProperty("bgImg")
+        : '',
+      bgImg: this.production.hasOwnProperty('bgImg')
         ? this.production.bgImg
-        : "",
-      bgImgPos: this.production.hasOwnProperty("bgImgPos")
+        : '',
+      bgImgPos: this.production.hasOwnProperty('bgImgPos')
         ? this.production.bgImgPos
-        : "center center",
-      bgColor: this.production.hasOwnProperty("bgColor")
+        : 'center center',
+      bgColor: this.production.hasOwnProperty('bgColor')
         ? this.production.bgColor
-        : "#000",
-      bgOpacity: this.production.hasOwnProperty("bgOpacity")
+        : '#000',
+      bgOpacity: this.production.hasOwnProperty('bgOpacity')
         ? this.production.bgOpacity
         : 0.5,
-      tracks: this.production.hasOwnProperty("tracks")
+      tracks: this.production.hasOwnProperty('tracks')
         ? this.production.tracks
         : [],
     };
@@ -83,32 +100,32 @@ export default {
 
   computed: {
     titleText() {
-      let titleText = "";
-      if (this.writer != "") {
-        if (this.writer.includes(",") || this.writer.includes("&")) {
-          titleText += "WRITERS: " + this.writer;
+      let titleText = '';
+      if (this.writer != '') {
+        if (this.writer.includes(',') || this.writer.includes('&')) {
+          titleText += 'WRITERS: ' + this.writer;
         } else {
-          titleText += "WRITER: " + this.writer;
+          titleText += 'WRITER: ' + this.writer;
         }
       }
-      if (this.artist != "") {
-        if (this.writer != "") {
-          titleText += " // ";
+      if (this.artist != '') {
+        if (this.writer != '') {
+          titleText += ' // ';
         }
-        if (this.artist.includes(",") || this.artist.includes("&")) {
-          titleText += "ARTISTS: " + this.artist;
+        if (this.artist.includes(',') || this.artist.includes('&')) {
+          titleText += 'ARTISTS: ' + this.artist;
         } else {
-          titleText += "ARTIST: " + this.artist;
+          titleText += 'ARTIST: ' + this.artist;
         }
       }
       return titleText;
     },
     tracksDivStyles() {
       return {
-        "--bgImg": this.showBgImage ? 'url("' + this.bgImg + '")' : "",
-        "--bgImgPos": this.bgImgPos,
-        "--bgColor": this.showBgImage ? this.bgColor : "transparent",
-        "--bgOpacity": this.showBgImage ? this.bgOpacity : 0,
+        '--bgImg': this.showBgImage ? 'url("' + this.bgImg + '")' : '',
+        '--bgImgPos': this.bgImgPos,
+        '--bgColor': this.showBgImage ? this.bgColor : 'transparent',
+        '--bgOpacity': this.showBgImage ? this.bgOpacity : 0,
       };
     },
   },
@@ -119,10 +136,8 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Lato:700,900&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lato:700,900&display=swap');
 
 .productionContainer {
   padding: 0px;
@@ -143,7 +158,7 @@ export default {
 }
 
 .tracksDiv:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   bottom: 0;
@@ -159,8 +174,8 @@ export default {
 
 .titleText {
   color: #e30829;
-  font-family: "Lato", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Lato', sans-serif;
+  font-feature-settings: 'liga';
   letter-spacing: 4px;
   line-height: 1.125rem;
   font-size: 0.9375rem;
@@ -173,8 +188,8 @@ export default {
 
 .trackTitleText {
   color: white;
-  font-family: "Lato", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Lato', sans-serif;
+  font-feature-settings: 'liga';
   letter-spacing: 5px;
   line-height: 1.125rem;
   font-size: 0.9375rem;
