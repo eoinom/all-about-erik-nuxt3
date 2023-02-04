@@ -1,14 +1,14 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <div class="pb-5">
     <BackgroundMusic
-      :audioFile="$page.Discography.edges[0].node.bgAudio"
-      :audioDuration="$page.Discography.edges[0].node.bgAudioDuration"
-      :audioFadeInDuration="
-        $page.Discography.edges[0].node.bgAudioFadeInDuration
-      "
-      :audioFadeOutDuration="
-        $page.Discography.edges[0].node.bgAudioFadeOutDuration
-      "
+      :audioFile="discographyPgContent.bgAudio"
+      :audioDuration="discographyPgContent.bgAudioDuration"
+      :audioFadeInDuration="discographyPgContent.bgAudioFadeInDuration"
+      :audioFadeOutDuration="discographyPgContent.bgAudioFadeOutDuration"
     />
 
     <div
@@ -197,56 +197,11 @@
   </div>
 </template>
 
-<page-query>
-{
-  Discography: allDiscography {
-    edges {
-      node {
-        pageTitle
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        backgroundImages {
-          img
-          imgOverlay
-        }
-        titleImg
-        titleText
-        content
-        albums {          
-          artist
-          title
-          text
-          thumbnailImg
-          trackListing
-          label
-          format
-          country
-          released
-          style
-          credits
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import ScrollDownArrow from '../../components/ScrollDownArrow.vue';
-import BackToTop from '../../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.Discography.edges[0].node.pageTitle,
-    };
-  },
-
   data() {
     return {
+      discographyPgContent: {},
       scrollY: 0.0,
       targetPosY: 0.0,
       windowWidth: 0.0,
@@ -259,20 +214,23 @@ export default {
   },
 
   computed: {
+    pageTitle() {
+      return this.discographyPgContent.pageTitle;
+    },
     titleImg() {
-      return this.$page.Discography.edges[0].node.titleImg;
+      return this.discographyPgContent.titleImg;
     },
     titleSubText() {
-      return this.$page.Discography.edges[0].node.titleText;
+      return this.discographyPgContent.titleText;
     },
     content() {
-      return this.$page.Discography.edges[0].node.content;
+      return this.discographyPgContent.content;
     },
     albums() {
-      return this.$page.Discography.edges[0].node.albums;
+      return this.discographyPgContent.albums;
     },
     backgroundImages() {
-      return this.$page.Discography.edges[0].node.backgroundImages;
+      return this.discographyPgContent.backgroundImages;
     },
     bgImgIndex() {
       if (this.documentHeight != null) {
@@ -327,6 +285,44 @@ export default {
       else if (this.windowWidth < 576) return this.windowHeight / 2 - 300;
       else return this.windowHeight / 2 - 200;
     },
+  },
+
+  async mounted() {
+    const discographyPgContent = await queryContent('discography').findOne();
+    this.discographyPgContent = discographyPgContent;
+
+    this.addScrollListener();
+
+    setTimeout(
+      function () {
+        if (window.pageYOffset != 0) {
+          window.scrollTo(0, 0); // scroll to top of page (avoid inconsistent behaviour of using browser back button)
+          this.scrollY = window.pageYOffset;
+        }
+        let bodyRect = document.body.getBoundingClientRect();
+        let element = document.getElementById('topOfMainBody');
+        let elemRect = element.getBoundingClientRect();
+        this.targetPosY = elemRect.top - bodyRect.top;
+      }.bind(this),
+      500
+    );
+
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+    this.getDocumentHeight();
+
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
+        this.getDocumentHeight();
+
+        let bodyRect = document.body.getBoundingClientRect();
+        let element = document.getElementById('topOfMainBody');
+        let elemRect = element.getBoundingClientRect();
+        this.targetPosY = elemRect.top - bodyRect.top;
+      });
+    });
   },
 
   methods: {
@@ -431,47 +427,6 @@ export default {
         html.offsetHeight
       );
     },
-  },
-
-  mounted() {
-    this.addScrollListener();
-
-    setTimeout(
-      function () {
-        if (window.pageYOffset != 0) {
-          window.scrollTo(0, 0); // scroll to top of page (avoid inconsistent behaviour of using browser back button)
-          this.scrollY = window.pageYOffset;
-        }
-        let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById('topOfMainBody');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
-      }.bind(this),
-      500
-    );
-
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
-    this.getDocumentHeight();
-
-    this.$nextTick(() => {
-      window.addEventListener('resize', () => {
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
-        this.getDocumentHeight();
-
-        let bodyRect = document.body.getBoundingClientRect();
-        let element = document.getElementById('topOfMainBody');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
-      });
-    });
-  },
-
-  components: {
-    BackgroundMusic,
-    ScrollDownArrow,
-    BackToTop,
   },
 };
 </script>
