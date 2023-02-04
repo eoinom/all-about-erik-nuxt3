@@ -464,9 +464,8 @@ import CollectionViewer from '../../components/CollectionViewer.vue';
 import FlipPostcard from '../../components/FlipPostcard.vue';
 import SlideshowZoom from '../../components/SlideshowZoom.vue';
 import BackToTop from '../../components/BackToTop.vue';
-
+import snarkdown from 'snarkdown';
 const slugify = require('@sindresorhus/slugify');
-const MarkdownIt = require('markdown-it');
 
 export default {
   metaInfo() {
@@ -619,8 +618,7 @@ export default {
 
   methods: {
     renderMarkdown(text) {
-      const md = new MarkdownIt();
-      return md.render(text);
+      return snarkdown(text);
     },
     postcardSize(index) {
       if (this.windowWidth >= 620) return this.postcardSizes[index];

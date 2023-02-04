@@ -128,7 +128,7 @@
 </page-query>
 
 <script>
-const MarkdownIt = require('markdown-it');
+import snarkdown from 'snarkdown';
 
 export default {
   metaInfo() {
@@ -160,8 +160,7 @@ export default {
 
   methods: {
     renderMarkdown(text) {
-      const md = new MarkdownIt();
-      return md.render(text);
+      return snarkdown(text);
     },
   },
 };
