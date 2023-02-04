@@ -40,7 +40,7 @@
             lg=""
             xl="4"
           >
-            <g-link
+            <NuxtLink
               :to="'/collections/' + prevCollection.link"
               v-v-tooltip.hover="{ variant: 'secondary' }"
               :title="prevCollection.title"
@@ -59,9 +59,9 @@
                 src="../assets/images/previous-collection-2lines-yellow.png"
                 class="showOnHover"
               />
-            </g-link>
+            </NuxtLink>
 
-            <g-link
+            <NuxtLink
               :to="'/collections/' + prevCollection.link"
               v-v-tooltip.hover="{ variant: 'secondary' }"
               :title="prevCollection.title"
@@ -80,7 +80,7 @@
                 src="../assets/images/previous-collection-1line-yellow.png"
                 class="showOnHover"
               />
-            </g-link>
+            </NuxtLink>
           </v-col>
 
           <v-col
@@ -101,7 +101,7 @@
             lg=""
             xl="4"
           >
-            <g-link
+            <NuxtLink
               :to="'/collections/' + nextCollection.link"
               v-v-tooltip.hover="{ variant: 'secondary' }"
               :title="nextCollection.title"
@@ -120,9 +120,9 @@
                 src="../assets/images/next-collection-2lines-yellow.png"
                 class="showOnHover"
               />
-            </g-link>
+            </NuxtLink>
 
-            <g-link
+            <NuxtLink
               :to="'/collections/' + nextCollection.link"
               v-v-tooltip.hover="{ variant: 'secondary' }"
               :title="nextCollection.title"
@@ -141,7 +141,7 @@
                 src="../assets/images/next-collection-1line-yellow.png"
                 class="showOnHover"
               />
-            </g-link>
+            </NuxtLink>
           </v-col>
         </v-row>
       </v-container>
@@ -221,7 +221,7 @@
         />
       </div>
 
-      <g-link
+      <NuxtLink
         v-if="!isOldTime"
         :to="{ path: '/collections/', query: { playMusic: 'false' } }"
         class="nav_link pt-3"
@@ -239,7 +239,7 @@
           src="../assets/images/back-to-collections-menu-1line-yellow.png"
           class="showOnHover"
         />
-      </g-link>
+      </NuxtLink>
     </div>
   </div>
 </template>

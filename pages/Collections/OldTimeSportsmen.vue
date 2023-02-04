@@ -81,7 +81,7 @@
               class="collection_headerText"
             />
 
-            <g-link
+            <NuxtLink
               :to="{ path: '/collections/', query: { playMusic: 'false' } }"
               class="nav_link py-2"
               id="nav_back"
@@ -98,7 +98,7 @@
                 src="../../assets/images/back-to-collections-menu-1line-yellow.png"
                 class="showOnHover"
               />
-            </g-link>
+            </NuxtLink>
           </v-col>
 
           <v-col

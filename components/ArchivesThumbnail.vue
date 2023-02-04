@@ -1,5 +1,5 @@
 <template>
-  <g-link
+  <NuxtLink
     :to="'/archives/' + link"
     class="thumbnailContainer"
   >
@@ -38,7 +38,7 @@
         </p>
       </div>
     </div>
-  </g-link>
+  </NuxtLink>
 </template>
 
 <script scoped>

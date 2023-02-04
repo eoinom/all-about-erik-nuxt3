@@ -15,14 +15,14 @@
         :style="imgContainerDims"
         :id="'thumbnailImgCol' + this.index"
       >
-        <g-link :to="'/musical-journey/musical-friends/' + friend.link">
+        <NuxtLink :to="'/musical-journey/musical-friends/' + friend.link">
           <img
             :src="friend.thumbnailImg"
             class="thumbnailImg"
             :style="imgDims"
             :id="'friendImg' + this.index"
           />
-        </g-link>
+        </NuxtLink>
       </v-col>
 
       <v-col
@@ -34,9 +34,9 @@
         <h3 class="textTitle mb-0 mt-1">{{ friend.name }}</h3>
         <p class="text mb-2">{{ friend.text }}</p>
         <div class="seeMoreBtnContainer">
-          <g-link :to="'/musical-journey/musical-friends/' + friend.link">
+          <NuxtLink :to="'/musical-journey/musical-friends/' + friend.link">
             <button class="seeMoreBtn mt-0 mb-3">...see more</button>
-          </g-link>
+          </NuxtLink>
         </div>
       </v-col>
     </v-row>

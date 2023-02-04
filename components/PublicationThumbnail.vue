@@ -1,42 +1,52 @@
 <template>
-
-  <g-link :to="'/publications/' + link" class="publication">
+  <NuxtLink
+    :to="'/publications/' + link"
+    class="publication"
+  >
     <div class="publicationImgDiv">
-      <img :src="image" class="thumbnailImg hideOnHover" />
-      <img :src="hoverImage" class="thumbnailImg showOnHover"/>
+      <img
+        :src="image"
+        class="thumbnailImg hideOnHover"
+      />
+      <img
+        :src="hoverImage"
+        class="thumbnailImg showOnHover"
+      />
     </div>
 
     <div>
       <span class="hoverText">MORE INFO</span>
     </div>
-  </g-link>
-
+  </NuxtLink>
 </template>
 
-
 <script scoped>
-const slugify = require('@sindresorhus/slugify')
+const slugify = require('@sindresorhus/slugify');
 
-export default { 
+export default {
   name: 'PublicationThumbnail',
 
   props: {
     publication: {
-      type: Object
-    }    
+      type: Object,
+    },
   },
 
   data() {
     return {
-      link: this.publication.hasOwnProperty('title') ? slugify(this.publication.title) : '',
-      image: this.publication.hasOwnProperty('thumbnailImg') ? this.publication.thumbnailImg : '',
-      hoverImage: this.publication.hasOwnProperty('thumbnailHoverImg') ? this.publication.thumbnailHoverImg : ''
-    }
-  }
-}
+      link: this.publication.hasOwnProperty('title')
+        ? slugify(this.publication.title)
+        : '',
+      image: this.publication.hasOwnProperty('thumbnailImg')
+        ? this.publication.thumbnailImg
+        : '',
+      hoverImage: this.publication.hasOwnProperty('thumbnailHoverImg')
+        ? this.publication.thumbnailHoverImg
+        : '',
+    };
+  },
+};
 </script>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
@@ -45,7 +55,7 @@ export default {
 * {
   --defaultWidth: 357.8px;
   --defaultHeight: 575px;
-  --scale: 1.0;
+  --scale: 1;
 }
 
 .publication {
@@ -64,7 +74,7 @@ export default {
   flex-direction: row;
 }
 
-.publicationImgDiv .thumbnailImg  {
+.publicationImgDiv .thumbnailImg {
   flex: 1;
   -webkit-box-flex: 1;
   max-width: 80vw;
@@ -73,12 +83,14 @@ export default {
   max-height: calc(var(--scale) * var(--defaultHeight));
 }
 
-.thumbnailImg.showOnHover, .publication:hover .thumbnailImg.hideOnHover {
+.thumbnailImg.showOnHover,
+.publication:hover .thumbnailImg.hideOnHover {
   display: none;
   opacity: 0;
-  transition: all 0.4s ease-in 0.1s;  /* Are these transitions working?! */
+  transition: all 0.4s ease-in 0.1s; /* Are these transitions working?! */
 }
-.thumbnailImg.hideOnHover, .publication:hover .thumbnailImg.showOnHover {
+.thumbnailImg.hideOnHover,
+.publication:hover .thumbnailImg.showOnHover {
   display: block;
   opacity: 1;
   transition: all 0.4s ease-in 0.1s;
@@ -86,7 +98,7 @@ export default {
 
 .hoverText {
   color: black;
-  background-color: rgba(221,221,221,0.74);
+  background-color: rgba(221, 221, 221, 0.74);
   display: none;
   text-align: left;
   position: absolute;
@@ -99,16 +111,15 @@ export default {
   letter-spacing: calc(var(--scale) * 9px);
   width: 400px;
   max-width: calc(100% - 8px - 16px);
-  padding-top: calc(var(--scale)*18px);
-  padding-bottom: calc(var(--scale)*18px);
+  padding-top: calc(var(--scale) * 18px);
+  padding-bottom: calc(var(--scale) * 18px);
   padding-right: 0px;
-  padding-left: calc(var(--scale)*16px);
+  padding-left: calc(var(--scale) * 16px);
   text-transform: uppercase;
 }
 .publication:hover .hoverText {
   display: inline;
 }
-
 
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
 
@@ -128,21 +139,21 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  * {    
+  * {
     --scale: 0.55934;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  * {    
+  * {
     --scale: 0.7;
   }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  * {    
+  * {
     --scale: 0.7;
   }
 }

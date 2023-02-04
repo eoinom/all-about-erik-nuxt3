@@ -91,10 +91,10 @@
         class="text-center"
       >
         <v-col>
-          <g-link
+          <NuxtLink
             to="/musical-journey/musical-friends/nadia"
             class="nav_link py-3"
-            >BACK TO NADIA</g-link
+            >BACK TO NADIA</NuxtLink
           >
         </v-col>
       </v-row>

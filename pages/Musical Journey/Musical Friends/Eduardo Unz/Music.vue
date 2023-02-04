@@ -55,10 +55,10 @@
         class="text-center"
       >
         <v-col>
-          <g-link
+          <NuxtLink
             to="/musical-journey/musical-friends/eduardo-unz"
             class="nav_link py-3"
-            >BACK TO UNZ</g-link
+            >BACK TO UNZ</NuxtLink
           >
         </v-col>
       </v-row>
