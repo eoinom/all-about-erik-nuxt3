@@ -1,11 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.ShortFilms.edges[0].node.bgAudio"
-    :audioDuration="$page.ShortFilms.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="$page.ShortFilms.edges[0].node.bgAudioFadeInDuration"
-    :audioFadeOutDuration="
-      $page.ShortFilms.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="shortFilmsPgContent.bgAudio"
+    :audioDuration="shortFilmsPgContent.bgAudioDuration"
+    :audioFadeInDuration="shortFilmsPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="shortFilmsPgContent.bgAudioFadeOutDuration"
   />
 
   <header
@@ -81,66 +83,30 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  ShortFilms: allShortFilms {
-    edges {
-      node {
-        id
-        pageTitle
-        headerBgImg
-        titleImg
-        mainVideoUrl
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        videos {
-          title
-          subText
-          url
-          thumbnailImg
-          duration
-          width
-          height
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../components/BackgroundMusic.vue';
-import VideoLightBox from '../components/VideoLightBox.vue';
-import VideoThumbnailShortFilms from '../components/VideoThumbnailShortFilms.vue';
-import BackToTop from '../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.ShortFilms.edges[0].node.pageTitle,
-    };
-  },
-
   data() {
     return {
+      shortFilmsPgContent: {},
       videoIndex: null,
     };
   },
 
   computed: {
+    pageTitle() {
+      return this.shortFilmsPgContent.pageTitle;
+    },
     headerBgImg() {
-      return this.$page.ShortFilms.edges[0].node.headerBgImg;
+      return this.shortFilmsPgContent.headerBgImg;
     },
     titleImg() {
-      return this.$page.ShortFilms.edges[0].node.titleImg;
+      return this.shortFilmsPgContent.titleImg;
     },
     mainVideoUrl() {
-      return this.$page.ShortFilms.edges[0].node.mainVideoUrl;
+      return this.shortFilmsPgContent.mainVideoUrl;
     },
     videos() {
-      return this.$page.ShortFilms.edges[0].node.videos;
+      return this.shortFilmsPgContent.videos;
     },
     headerStyle() {
       return {
@@ -149,11 +115,9 @@ export default {
     },
   },
 
-  components: {
-    BackgroundMusic,
-    VideoLightBox,
-    VideoThumbnailShortFilms,
-    BackToTop,
+  async mounted() {
+    const shortFilmsPgContent = await queryContent('short-films').findOne();
+    this.shortFilmsPgContent = shortFilmsPgContent;
   },
 };
 </script>
@@ -209,18 +173,6 @@ export default {
   #mainVideo {
     --containerWidth: calc(100vw - 16px);
   }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 
 @media only screen and (min-width: 977px) {
