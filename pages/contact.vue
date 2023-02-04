@@ -1,110 +1,108 @@
 <template>
-  <Layout>
-    <Head>
-      <Title>{{ pageTitle }}</Title>
-    </Head>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
 
-    <div class="container">
-      <img
-        :src="titleImg1Line"
-        class="titleImg titleImg1Line py-5"
-        data-testid="title-img"
-      />
-      <img
-        :src="titleImg2Lines"
-        class="titleImg titleImg2Lines py-4 my-3"
-        data-testid="title-img"
-      />
+  <div class="container">
+    <img
+      :src="titleImg1Line"
+      class="titleImg titleImg1Line py-5"
+      data-testid="title-img"
+    />
+    <img
+      :src="titleImg2Lines"
+      class="titleImg titleImg2Lines py-4 my-3"
+      data-testid="title-img"
+    />
 
-      <span
-        v-html="mainText"
-        class="text-main"
-      />
+    <span
+      v-html="mainText"
+      class="text-main"
+    />
 
-      <!-- CONTACT FORM -->
-      <div class="form-container mb-4 mb-md-5">
-        <form
-          name="contact"
-          method="POST"
-          netlify
-          data-netlify-honeypot="bot-field"
-        >
-          <input
-            type="hidden"
-            name="form-name"
-            value="contact"
-          />
-          <!-- Hidden honeypot field to prevent against bot spam -->
+    <!-- CONTACT FORM -->
+    <div class="form-container mb-4 mb-md-5">
+      <form
+        name="contact"
+        method="POST"
+        netlify
+        data-netlify-honeypot="bot-field"
+      >
+        <input
+          type="hidden"
+          name="form-name"
+          value="contact"
+        />
+        <!-- Hidden honeypot field to prevent against bot spam -->
 
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your name.."
-          />
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your name.."
+        />
 
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your email.."
-          />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email.."
+        />
 
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Your message.."
-            style="height: 200px"
-          ></textarea>
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your message.."
+          style="height: 200px"
+        ></textarea>
 
-          <input
-            type="submit"
-            value="Submit"
-          />
-        </form>
-      </div>
-
-      <!-- CREDITS -->
-      <div class="pb-4">
-        <div
-          v-for="(creditSection, i) in credits"
-          :key="'creditSection' + i"
-        >
-          <p
-            v-if="creditSection.heading"
-            class="text-titles"
-          >
-            {{ creditSection.heading }}
-          </p>
-          <span
-            v-html="renderMarkdown(creditSection.text)"
-            class="text-main contact_renderedContent"
-          />
-          <br />
-        </div>
-      </div>
+        <input
+          type="submit"
+          value="Submit"
+        />
+      </form>
     </div>
 
-    <!-- BACKGROUND VIDEO -->
-    <video
-      autoplay
-      loop
-      muted
-      id="contactBgVideo"
-    >
-      <source
-        :src="bgVideo.videoSrcWebm"
-        type="video/webm"
-      />
-      <source
-        :src="bgVideo.videoSrcMP4"
-        type="video/mp4"
-      />
-    </video>
-  </Layout>
+    <!-- CREDITS -->
+    <div class="pb-4">
+      <div
+        v-for="(creditSection, i) in credits"
+        :key="'creditSection' + i"
+      >
+        <p
+          v-if="creditSection.heading"
+          class="text-titles"
+        >
+          {{ creditSection.heading }}
+        </p>
+        <span
+          v-html="renderMarkdown(creditSection.text)"
+          class="text-main contact_renderedContent"
+        />
+        <br />
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND VIDEO -->
+  <video
+    autoplay
+    loop
+    muted
+    id="contactBgVideo"
+  >
+    <source
+      :src="bgVideo.videoSrcWebm"
+      type="video/webm"
+    />
+    <source
+      :src="bgVideo.videoSrcMP4"
+      type="video/mp4"
+    />
+  </video>
 </template>
 
 <page-query>

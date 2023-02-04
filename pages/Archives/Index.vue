@@ -1,70 +1,68 @@
 <template>
-  <Layout>
-    <BackgroundMusic
-      :audioFile="node.bgAudio"
-      :audioDuration="node.bgAudioDuration"
-      :audioFadeInDuration="node.bgAudioFadeInDuration"
-      :audioFadeOutDuration="node.bgAudioFadeOutDuration"
-      :maxVolume="1.0"
-    />
+  <BackgroundMusic
+    :audioFile="node.bgAudio"
+    :audioDuration="node.bgAudioDuration"
+    :audioFadeInDuration="node.bgAudioFadeInDuration"
+    :audioFadeOutDuration="node.bgAudioFadeOutDuration"
+    :maxVolume="1.0"
+  />
 
-    <v-container
-      fluid
-      class="main-col m-0, p-0"
+  <v-container
+    fluid
+    class="main-col m-0, p-0"
+  >
+    <v-row
+      no-gutters
+      class="mb-1 px-1"
     >
-      <v-row
-        no-gutters
-        class="mb-1 px-1"
+      <v-col
+        class="slideshowCol"
+        :style="slideshowColStyles"
       >
-        <v-col
-          class="slideshowCol"
-          :style="slideshowColStyles"
+        <!-- HEADER SLIDESHOW -->
+        <SlideshowKenBurnsSmall
+          :slides="slides"
+          height="100vh"
+          maxImgHeight="100vh"
+          :scaleImgToContainer="true"
+        />
+
+        <!-- SLIDESHOW OVERLAY -->
+        <div
+          class="slideshowOverlay mb-3"
+          :style="slideshowOverlayStyles"
         >
-          <!-- HEADER SLIDESHOW -->
-          <SlideshowKenBurnsSmall
-            :slides="slides"
-            height="100vh"
-            maxImgHeight="100vh"
-            :scaleImgToContainer="true"
-          />
+          <div class="mainContent mx-auto">
+            <img
+              alt="Archives title image"
+              v-if="titleImg != null"
+              :src="titleImg"
+              id="titleImg"
+              class="mb-md-1 mb-lg-2 mb-xl-3"
+              data-testid="title-img"
+            />
 
-          <!-- SLIDESHOW OVERLAY -->
-          <div
-            class="slideshowOverlay mb-3"
-            :style="slideshowOverlayStyles"
-          >
-            <div class="mainContent mx-auto">
-              <img
-                alt="Archives title image"
-                v-if="titleImg != null"
-                :src="titleImg"
-                id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-3"
-                data-testid="title-img"
-              />
+            <div
+              v-html="slideshowText"
+              id="slideshowText"
+            />
 
-              <div
-                v-html="slideshowText"
-                id="slideshowText"
-              />
-
-              <div id="scrollDownContainer">
-                <ScrollDownArrow scrollToElement="#tilesRow" />
-              </div>
+            <div id="scrollDownContainer">
+              <ScrollDownArrow scrollToElement="#tilesRow" />
             </div>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <!-- TILES -->
-    <ArchivesTiles
-      :tiles="tiles"
-      :style="tilesContainerStyles"
-    />
+  <!-- TILES -->
+  <ArchivesTiles
+    :tiles="tiles"
+    :style="tilesContainerStyles"
+  />
 
-    <BackToTop />
-  </Layout>
+  <BackToTop />
 </template>
 
 <page-query>

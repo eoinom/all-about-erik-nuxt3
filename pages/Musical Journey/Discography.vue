@@ -1,5 +1,5 @@
 <template>
-  <Layout class="pb-5">
+  <div class="pb-5">
     <BackgroundMusic
       :audioFile="$page.Discography.edges[0].node.bgAudio"
       :audioDuration="$page.Discography.edges[0].node.bgAudioDuration"
@@ -194,7 +194,7 @@
     </v-container>
 
     <BackToTop />
-  </Layout>
+  </div>
 </template>
 
 <page-query>

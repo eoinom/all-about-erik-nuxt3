@@ -1,41 +1,39 @@
 <template>
-  <Layout>
-    <v-container
-      fluid
-      class="main-col m-0, p-0"
+  <v-container
+    fluid
+    class="main-col m-0, p-0"
+  >
+    <v-row
+      no-gutters
+      class="mb-1 px-1"
     >
-      <v-row
-        no-gutters
-        class="mb-1 px-1"
-      >
-        <v-col class="slideshowCol">
-          <!-- SLIDESHOW OVERLAY -->
-          <div class="slideshowOverlayMenu mb-3">
-            <div class="mainContent mx-auto">
-              <img
-                alt="Archives title image"
-                v-if="titleImg != null"
-                :src="titleImg"
-                id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-3"
-                data-testid="title-img"
-              />
+      <v-col class="slideshowCol">
+        <!-- SLIDESHOW OVERLAY -->
+        <div class="slideshowOverlayMenu mb-3">
+          <div class="mainContent mx-auto">
+            <img
+              alt="Archives title image"
+              v-if="titleImg != null"
+              :src="titleImg"
+              id="titleImg"
+              class="mb-md-1 mb-lg-2 mb-xl-3"
+              data-testid="title-img"
+            />
 
-              <div
-                v-html="slideshowText"
-                id="slideshowText"
-              />
-            </div>
+            <div
+              v-html="slideshowText"
+              id="slideshowText"
+            />
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <!-- TILES -->
-    <ArchivesTiles :tiles="tiles" />
+  <!-- TILES -->
+  <ArchivesTiles :tiles="tiles" />
 
-    <BackToTop />
-  </Layout>
+  <BackToTop />
 </template>
 
 <page-query>

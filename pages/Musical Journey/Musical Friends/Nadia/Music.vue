@@ -1,105 +1,103 @@
 <template>
-  <Layout>
-    <v-container class="main-col pt-5">
-      <div style="text-align: center">
-        <h1 class="heading">{{ title }}</h1>
-      </div>
+  <v-container class="main-col pt-5">
+    <div style="text-align: center">
+      <h1 class="heading">{{ title }}</h1>
+    </div>
 
-      <div class="mt-4">
-        <v-button
-          variant="danger"
-          @click="onPlayAllClick()"
-          data-testid="play-all"
-          >{{ playBtnText }}</v-button
-        >
-      </div>
-
-      <div
-        v-for="(track, index) in tracks"
-        :key="index"
-        class="mb-3"
-        data-testid="track-container"
+    <div class="mt-4">
+      <v-button
+        variant="danger"
+        @click="onPlayAllClick()"
+        data-testid="play-all"
+        >{{ playBtnText }}</v-button
       >
-        <v-row
-          v-if="index % 2 === 0"
-          justify="end"
-          align="center"
-        >
-          <v-col class="pr-2">
-            <p class="trackTitle textAlignEnd">{{ track.title }}</p>
-            <p class="trackCaption textAlignEnd hideOnMobile">
-              {{ track.caption }}
-            </p>
-          </v-col>
-          <v-col
-            cols="auto"
-            class="pl-2"
-          >
-            <img
-              :src="track.image"
-              class="trackImg my-3"
-            />
-          </v-col>
-          <v-col
-            cols="12"
-            class="pr-4"
-          >
-            <p class="trackCaption textAlignEnd showOnMobile">
-              {{ track.caption }}
-            </p>
-          </v-col>
-        </v-row>
+    </div>
 
-        <v-row
-          v-else
-          justify="start"
-          align="center"
-        >
-          <v-col
-            cols="auto"
-            class="pr-2"
-          >
-            <img
-              :src="track.image"
-              class="trackImg my-3"
-            />
-          </v-col>
-          <v-col class="pl-2">
-            <p class="trackTitle">{{ track.title }}</p>
-            <p class="trackCaption hideOnMobile">{{ track.caption }}</p>
-          </v-col>
-          <v-col
-            cols="12"
-            class="pl-4"
-          >
-            <p class="trackCaption showOnMobile">{{ track.caption }}</p>
-          </v-col>
-        </v-row>
-
-        <AudioPlayer
-          :ref="'nadiaSong-' + index"
-          :src="track.url"
-          secondaryColor="#E7413F"
-          padding="5px 0px"
-        />
-
-        <hr class="style-two" />
-      </div>
-
+    <div
+      v-for="(track, index) in tracks"
+      :key="index"
+      class="mb-3"
+      data-testid="track-container"
+    >
       <v-row
-        justify="center"
-        class="text-center"
+        v-if="index % 2 === 0"
+        justify="end"
+        align="center"
       >
-        <v-col>
-          <NuxtLink
-            to="/musical-journey/musical-friends/nadia"
-            class="nav_link py-3"
-            >BACK TO NADIA</NuxtLink
-          >
+        <v-col class="pr-2">
+          <p class="trackTitle textAlignEnd">{{ track.title }}</p>
+          <p class="trackCaption textAlignEnd hideOnMobile">
+            {{ track.caption }}
+          </p>
+        </v-col>
+        <v-col
+          cols="auto"
+          class="pl-2"
+        >
+          <img
+            :src="track.image"
+            class="trackImg my-3"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          class="pr-4"
+        >
+          <p class="trackCaption textAlignEnd showOnMobile">
+            {{ track.caption }}
+          </p>
         </v-col>
       </v-row>
-    </v-container>
-  </Layout>
+
+      <v-row
+        v-else
+        justify="start"
+        align="center"
+      >
+        <v-col
+          cols="auto"
+          class="pr-2"
+        >
+          <img
+            :src="track.image"
+            class="trackImg my-3"
+          />
+        </v-col>
+        <v-col class="pl-2">
+          <p class="trackTitle">{{ track.title }}</p>
+          <p class="trackCaption hideOnMobile">{{ track.caption }}</p>
+        </v-col>
+        <v-col
+          cols="12"
+          class="pl-4"
+        >
+          <p class="trackCaption showOnMobile">{{ track.caption }}</p>
+        </v-col>
+      </v-row>
+
+      <AudioPlayer
+        :ref="'nadiaSong-' + index"
+        :src="track.url"
+        secondaryColor="#E7413F"
+        padding="5px 0px"
+      />
+
+      <hr class="style-two" />
+    </div>
+
+    <v-row
+      justify="center"
+      class="text-center"
+    >
+      <v-col>
+        <NuxtLink
+          to="/musical-journey/musical-friends/nadia"
+          class="nav_link py-3"
+          >BACK TO NADIA</NuxtLink
+        >
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <page-query>

@@ -1,78 +1,74 @@
 <template>
-  <Layout>
-    <BackgroundMusic
-      :audioFile="$page.Collections.edges[0].node.bgAudio"
-      :audioDuration="$page.Collections.edges[0].node.bgAudioDuration"
-      :audioFadeInDuration="
-        $page.Collections.edges[0].node.bgAudioFadeInDuration
-      "
-      :audioFadeOutDuration="
-        $page.Collections.edges[0].node.bgAudioFadeOutDuration
-      "
-      :playMusic="playMusic"
-    />
+  <BackgroundMusic
+    :audioFile="$page.Collections.edges[0].node.bgAudio"
+    :audioDuration="$page.Collections.edges[0].node.bgAudioDuration"
+    :audioFadeInDuration="$page.Collections.edges[0].node.bgAudioFadeInDuration"
+    :audioFadeOutDuration="
+      $page.Collections.edges[0].node.bgAudioFadeOutDuration
+    "
+    :playMusic="playMusic"
+  />
 
-    <v-container
-      fluid
-      class="main-col"
+  <v-container
+    fluid
+    class="main-col"
+  >
+    <v-row
+      no-gutters
+      class="mb-1 px-1"
     >
-      <v-row
-        no-gutters
-        class="mb-1 px-1"
-      >
-        <v-col class="slideshowCol">
-          <!-- HEADER SLIDESHOW -->
-          <SlideshowKenBurnsSmall
-            :slides="slides"
-            :height="slideshowHeight"
-          />
+      <v-col class="slideshowCol">
+        <!-- HEADER SLIDESHOW -->
+        <SlideshowKenBurnsSmall
+          :slides="slides"
+          :height="slideshowHeight"
+        />
 
-          <!-- SLIDESHOW OVERLAY -->
-          <div class="slideshowOverlay">
-            <div class="mainContent">
-              <img
-                alt="Collections title image"
-                v-if="titleImg != null"
-                :src="titleImg"
-                id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-3"
-                data-testid="title-img"
-              />
+        <!-- SLIDESHOW OVERLAY -->
+        <div class="slideshowOverlay">
+          <div class="mainContent">
+            <img
+              alt="Collections title image"
+              v-if="titleImg != null"
+              :src="titleImg"
+              id="titleImg"
+              class="mb-md-1 mb-lg-2 mb-xl-3"
+              data-testid="title-img"
+            />
 
-              <div
-                v-html="slideshowText"
-                id="slideshowText"
-              />
-            </div>
+            <div
+              v-html="slideshowText"
+              id="slideshowText"
+            />
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <v-container
-      fluid
-      class="collectionsContainer"
+  <v-container
+    fluid
+    class="collectionsContainer"
+  >
+    <v-row
+      no-gutters
+      justify="center"
+      class="collectionsRow mb-1"
     >
-      <v-row
-        no-gutters
-        justify="center"
-        class="collectionsRow mb-1"
+      <v-col
+        v-for="(collection, index) in collections"
+        :key="index"
+        cols=""
+        align-self="center"
+        class="collectionsCols p-0 mx-0 my-2"
+        data-testid="collection-container"
       >
-        <v-col
-          v-for="(collection, index) in collections"
-          :key="index"
-          cols=""
-          align-self="center"
-          class="collectionsCols p-0 mx-0 my-2"
-          data-testid="collection-container"
-        >
-          <CollectionThumbnail :collection="collection" />
-        </v-col>
-      </v-row>
-    </v-container>
+        <CollectionThumbnail :collection="collection" />
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <BackToTop />
-  </Layout>
+  <BackToTop />
 </template>
 
 <page-query>

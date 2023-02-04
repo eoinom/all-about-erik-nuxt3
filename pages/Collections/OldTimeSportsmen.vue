@@ -1,397 +1,383 @@
 <template>
-  <Layout>
-    <header :style="headerStyles">
-      <v-container
-        fluid
-        class="slideshowOverlay"
-      >
-        <v-row align="center">
-          <v-col
-            cols="3"
-            class="headerImageCol"
-            style="text-align: right"
-          >
-            <img
-              alt="Hunter"
-              v-if="headerLeftImg != null"
-              :src="headerLeftImg"
-              id="headerLeftImg"
-            />
-          </v-col>
-
-          <v-col id="headerItems">
-            <img
-              :src="titleImg1Line"
-              class="titleImg titleImg1Line"
-            />
-            <img
-              :src="titleImg2Lines"
-              class="titleImg titleImg2Lines"
-            />
-
-            <div
-              v-if="windowWidth < 1200"
-              class="collection_headerText pointer"
-              style="font-style: italic"
-              :aria-expanded="showIntro ? 'true' : 'false'"
-              aria-controls="collapse-1"
-              @click="showIntro = !showIntro"
-            >
-              {{ showIntro ? 'Hide intro' : 'Read intro' }}
-              <svg
-                viewBox="0 0 20 20"
-                width="20"
-                height="20"
-                class="arrow"
-              >
-                <line
-                  v-if="showIntro"
-                  x1="1"
-                  y1="13"
-                  x2="9"
-                  y2="4.5"
-                />
-                <line
-                  v-if="showIntro"
-                  x1="8"
-                  y1="4.5"
-                  x2="16"
-                  y2="13"
-                />
-                <line
-                  v-if="!showIntro"
-                  x1="1"
-                  y1="4.5"
-                  x2="9"
-                  y2="13"
-                />
-                <line
-                  v-if="!showIntro"
-                  x1="8"
-                  y1="13"
-                  x2="16"
-                  y2="4.5"
-                />
-              </svg>
-            </div>
-
-            <div
-              v-else
-              v-html="node.content"
-              class="collection_headerText"
-            />
-
-            <NuxtLink
-              :to="{ path: '/collections/', query: { playMusic: 'false' } }"
-              class="nav_link py-2"
-              id="nav_back"
-            >
-              <img
-                immediate
-                alt="Back to collections menu"
-                src="../../assets/images/back-to-collections-menu-1line-black.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="Back to collections menu"
-                src="../../assets/images/back-to-collections-menu-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-          </v-col>
-
-          <v-col
-            cols="3"
-            class="headerImageCol"
-            style="text-align: left"
-          >
-            <img
-              alt="ducks"
-              v-if="headerRightImg != null"
-              :src="headerRightImg"
-              id="headerRightImg"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
-    </header>
-
-    <v-collapse
-      v-if="windowWidth < 1200"
-      v-model="showIntro"
-      id="collapse-1"
+  <header :style="headerStyles">
+    <v-container
+      fluid
+      class="slideshowOverlay"
     >
-      <div
-        v-html="node.content"
-        class="collection_headerText"
-        id="headerTextDevice"
-      />
-    </v-collapse>
+      <v-row align="center">
+        <v-col
+          cols="3"
+          class="headerImageCol"
+          style="text-align: right"
+        >
+          <img
+            alt="Hunter"
+            v-if="headerLeftImg != null"
+            :src="headerLeftImg"
+            id="headerLeftImg"
+          />
+        </v-col>
 
-    <CollectionViewer
-      :images="images"
-      :index="imageIndex"
-      :disable-scroll="true"
-      :prevCollection="prev_collection"
-      :nextCollection="next_collection"
-      :isOldTime="true"
-    />
+        <v-col id="headerItems">
+          <img
+            :src="titleImg1Line"
+            class="titleImg titleImg1Line"
+          />
+          <img
+            :src="titleImg2Lines"
+            class="titleImg titleImg2Lines"
+          />
 
-    <section class="postcardHistory">
-      <v-container
-        fluid
-        class="slideshowOverlay"
-      >
-        <v-row align="center">
-          <v-col
-            v-if="windowWidth >= 2200"
-            align-self="start"
-            style="padding-top: 250px"
+          <div
+            v-if="windowWidth < 1200"
+            class="collection_headerText pointer"
+            style="font-style: italic"
+            :aria-expanded="showIntro ? 'true' : 'false'"
+            aria-controls="collapse-1"
+            @click="showIntro = !showIntro"
           >
-            <slideshow-zoom :slides="people_images" />
-          </v-col>
+            {{ showIntro ? 'Hide intro' : 'Read intro' }}
+            <svg
+              viewBox="0 0 20 20"
+              width="20"
+              height="20"
+              class="arrow"
+            >
+              <line
+                v-if="showIntro"
+                x1="1"
+                y1="13"
+                x2="9"
+                y2="4.5"
+              />
+              <line
+                v-if="showIntro"
+                x1="8"
+                y1="4.5"
+                x2="16"
+                y2="13"
+              />
+              <line
+                v-if="!showIntro"
+                x1="1"
+                y1="4.5"
+                x2="9"
+                y2="13"
+              />
+              <line
+                v-if="!showIntro"
+                x1="8"
+                y1="13"
+                x2="16"
+                y2="4.5"
+              />
+            </svg>
+          </div>
 
-          <v-col>
-            <div class="postcardHistory__textDiv">
-              <h2 class="title">{{ postcardHistory.title }}</h2>
-              <div class="pb-2 pb-sm-3">
-                <div
-                  class="pb-4 pb-xl-2 pt-3 pt-xl-0 mb-3 mb-xl-0 pl-5 pr-3"
-                  style="float: right"
-                >
-                  <flip-postcard
-                    v-if="windowWidth > 850"
-                    :imgFront="postcardHistory.postcards[0].imgFront"
-                    :imgBack="postcardHistory.postcards[0].imgBack"
-                    :caption="postcardHistory.postcards[0].caption"
-                    :seeTheBack="false"
-                    :width="480"
-                    :height="297"
-                  />
-                  <flip-postcard
-                    v-else-if="windowWidth >= 768"
-                    :imgFront="postcardHistory.postcards[0].imgFront"
-                    :imgBack="postcardHistory.postcards[0].imgBack"
-                    :caption="postcardHistory.postcards[0].caption"
-                    :seeTheBack="false"
-                    :width="408"
-                    :height="252.45"
-                  />
-                </div>
-                <br v-if="windowWidth >= 768" />
-                <span
-                  v-html="postcardHistory.textPt1"
-                  class="postcardText"
-                />
+          <div
+            v-else
+            v-html="node.content"
+            class="collection_headerText"
+          />
 
-                <img
-                  :src="postcardHistory.images[0].img"
-                  class="py-3 pr-3"
-                  style="float: left; max-width: 55%"
-                />
-                <span
-                  v-html="postcardHistory.textPt2"
-                  class="postcardText"
-                />
+          <NuxtLink
+            :to="{ path: '/collections/', query: { playMusic: 'false' } }"
+            class="nav_link py-2"
+            id="nav_back"
+          >
+            <img
+              immediate
+              alt="Back to collections menu"
+              src="../../assets/images/back-to-collections-menu-1line-black.png"
+              class="hideOnHover"
+            />
+            <img
+              immediate
+              alt="Back to collections menu"
+              src="../../assets/images/back-to-collections-menu-1line-yellow.png"
+              class="showOnHover"
+            />
+          </NuxtLink>
+        </v-col>
 
-                <img
-                  :src="postcardHistory.images[1].img"
-                  class="pl-3"
-                  style="float: right; max-width: 55%"
+        <v-col
+          cols="3"
+          class="headerImageCol"
+          style="text-align: left"
+        >
+          <img
+            alt="ducks"
+            v-if="headerRightImg != null"
+            :src="headerRightImg"
+            id="headerRightImg"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </header>
+
+  <v-collapse
+    v-if="windowWidth < 1200"
+    v-model="showIntro"
+    id="collapse-1"
+  >
+    <div
+      v-html="node.content"
+      class="collection_headerText"
+      id="headerTextDevice"
+    />
+  </v-collapse>
+
+  <CollectionViewer
+    :images="images"
+    :index="imageIndex"
+    :disable-scroll="true"
+    :prevCollection="prev_collection"
+    :nextCollection="next_collection"
+    :isOldTime="true"
+  />
+
+  <section class="postcardHistory">
+    <v-container
+      fluid
+      class="slideshowOverlay"
+    >
+      <v-row align="center">
+        <v-col
+          v-if="windowWidth >= 2200"
+          align-self="start"
+          style="padding-top: 250px"
+        >
+          <slideshow-zoom :slides="people_images" />
+        </v-col>
+
+        <v-col>
+          <div class="postcardHistory__textDiv">
+            <h2 class="title">{{ postcardHistory.title }}</h2>
+            <div class="pb-2 pb-sm-3">
+              <div
+                class="pb-4 pb-xl-2 pt-3 pt-xl-0 mb-3 mb-xl-0 pl-5 pr-3"
+                style="float: right"
+              >
+                <flip-postcard
+                  v-if="windowWidth > 850"
+                  :imgFront="postcardHistory.postcards[0].imgFront"
+                  :imgBack="postcardHistory.postcards[0].imgBack"
+                  :caption="postcardHistory.postcards[0].caption"
+                  :seeTheBack="false"
+                  :width="480"
+                  :height="297"
                 />
-                <span
-                  v-html="postcardHistory.textPt3"
-                  class="postcardText"
+                <flip-postcard
+                  v-else-if="windowWidth >= 768"
+                  :imgFront="postcardHistory.postcards[0].imgFront"
+                  :imgBack="postcardHistory.postcards[0].imgBack"
+                  :caption="postcardHistory.postcards[0].caption"
+                  :seeTheBack="false"
+                  :width="408"
+                  :height="252.45"
                 />
               </div>
-            </div>
-          </v-col>
-
-          <v-col
-            v-if="windowWidth >= 2200"
-            align-self="start"
-          >
-            <div
-              id="postcardsSidebar"
-              class="pt-3"
-            >
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[1].imgFront"
-                :imgBack="postcardHistory.postcards[1].imgBack"
-                :imgBackLarge="postcardHistory.postcards[1].imgBackLarge"
-                :caption="postcardHistory.postcards[1].caption"
-                :width="487"
-                :height="307"
-                :seeTheBack="true"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[1].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[2].imgFront"
-                :imgBack="postcardHistory.postcards[2].imgBack"
-                :imgBackLarge="postcardHistory.postcards[2].imgBackLarge"
-                :caption="postcardHistory.postcards[2].caption"
-                :width="487"
-                :height="309"
-                :seeTheBack="true"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[2].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[3].imgFront"
-                :imgBack="postcardHistory.postcards[3].imgBack"
-                :imgBackLarge="postcardHistory.postcards[3].imgBackLarge"
-                :caption="postcardHistory.postcards[3].caption"
-                :width="487"
-                :height="310"
-                :seeTheBack="true"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[3].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-            </div>
-          </v-col>
-        </v-row>
-
-        <v-row
-          v-if="windowWidth < 2200"
-          align="center"
-          justify="center"
-        >
-          <v-col
-            v-if="windowWidth > 1149"
-            align-self="start"
-            style="padding-top: 250px"
-          >
-            <slideshow-zoom :slides="people_images" />
-          </v-col>
-
-          <v-col
-            align-self="start"
-            :style="postcardsSidebarStyles"
-          >
-            <div
-              id="postcardsSidebar"
-              class="py-3"
-            >
-              <flip-postcard
-                v-if="windowWidth < 768"
-                :imgFront="postcardHistory.postcards[0].imgFront"
-                :imgBack="postcardHistory.postcards[0].imgBack"
-                :caption="postcardHistory.postcards[0].caption"
-                :seeTheBack="windowWidth >= 576"
-                :width="postcardSize(0).width"
-                :height="postcardSize(0).height"
-              />
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[1].imgFront"
-                :imgBack="postcardHistory.postcards[1].imgBack"
-                :imgBackLarge="postcardHistory.postcards[1].imgBackLarge"
-                :caption="postcardHistory.postcards[1].caption"
-                :width="postcardSize(1).width"
-                :height="postcardSize(1).height"
-                :seeTheBack="windowWidth >= 576"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[1].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[2].imgFront"
-                :imgBack="postcardHistory.postcards[2].imgBack"
-                :imgBackLarge="postcardHistory.postcards[2].imgBackLarge"
-                :caption="postcardHistory.postcards[2].caption"
-                :width="postcardSize(2).width"
-                :height="postcardSize(2).height"
-                :seeTheBack="windowWidth >= 576"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[2].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-              <flip-postcard
-                :imgFront="postcardHistory.postcards[3].imgFront"
-                :imgBack="postcardHistory.postcards[3].imgBack"
-                :imgBackLarge="postcardHistory.postcards[3].imgBackLarge"
-                :caption="postcardHistory.postcards[3].caption"
-                :width="postcardSize(3).width"
-                :height="postcardSize(3).height"
-                :seeTheBack="windowWidth >= 576"
-                :backText="
-                  renderMarkdown(postcardHistory.postcards[3].backText)
-                "
-                :backTextIsHTML="true"
-                class="sidePostcards"
-              />
-            </div>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col>
-            <div class="postcardHistory__textDiv">
-              <h2 class="title">{{ about.title }}</h2>
+              <br v-if="windowWidth >= 768" />
               <span
-                v-html="about.text"
+                v-html="postcardHistory.textPt1"
+                class="postcardText"
+              />
+
+              <img
+                :src="postcardHistory.images[0].img"
+                class="py-3 pr-3"
+                style="float: left; max-width: 55%"
+              />
+              <span
+                v-html="postcardHistory.textPt2"
+                class="postcardText"
+              />
+
+              <img
+                :src="postcardHistory.images[1].img"
+                class="pl-3"
+                style="float: right; max-width: 55%"
+              />
+              <span
+                v-html="postcardHistory.textPt3"
                 class="postcardText"
               />
             </div>
-          </v-col>
-        </v-row>
+          </div>
+        </v-col>
 
-        <v-row class="mt-4">
-          <v-col>
-            <div class="postcardHistory__textDiv text-justify pt-3">
-              <span class="postcardText">
-                If you would like to see a large selection of the Old-Time
-                Sportsmen collection, click the link below to open the gallery
-                website in a new tab.
-              </span>
-              <a
-                :href="sportsmenGalleryLink"
-                target="_blank"
-                class="sportsmenLinkText collections_headerLinkText mx-auto"
-                style="width: fit-content"
+        <v-col
+          v-if="windowWidth >= 2200"
+          align-self="start"
+        >
+          <div
+            id="postcardsSidebar"
+            class="pt-3"
+          >
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[1].imgFront"
+              :imgBack="postcardHistory.postcards[1].imgBack"
+              :imgBackLarge="postcardHistory.postcards[1].imgBackLarge"
+              :caption="postcardHistory.postcards[1].caption"
+              :width="487"
+              :height="307"
+              :seeTheBack="true"
+              :backText="renderMarkdown(postcardHistory.postcards[1].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[2].imgFront"
+              :imgBack="postcardHistory.postcards[2].imgBack"
+              :imgBackLarge="postcardHistory.postcards[2].imgBackLarge"
+              :caption="postcardHistory.postcards[2].caption"
+              :width="487"
+              :height="309"
+              :seeTheBack="true"
+              :backText="renderMarkdown(postcardHistory.postcards[2].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[3].imgFront"
+              :imgBack="postcardHistory.postcards[3].imgBack"
+              :imgBackLarge="postcardHistory.postcards[3].imgBackLarge"
+              :caption="postcardHistory.postcards[3].caption"
+              :width="487"
+              :height="310"
+              :seeTheBack="true"
+              :backText="renderMarkdown(postcardHistory.postcards[3].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+          </div>
+        </v-col>
+      </v-row>
+
+      <v-row
+        v-if="windowWidth < 2200"
+        align="center"
+        justify="center"
+      >
+        <v-col
+          v-if="windowWidth > 1149"
+          align-self="start"
+          style="padding-top: 250px"
+        >
+          <slideshow-zoom :slides="people_images" />
+        </v-col>
+
+        <v-col
+          align-self="start"
+          :style="postcardsSidebarStyles"
+        >
+          <div
+            id="postcardsSidebar"
+            class="py-3"
+          >
+            <flip-postcard
+              v-if="windowWidth < 768"
+              :imgFront="postcardHistory.postcards[0].imgFront"
+              :imgBack="postcardHistory.postcards[0].imgBack"
+              :caption="postcardHistory.postcards[0].caption"
+              :seeTheBack="windowWidth >= 576"
+              :width="postcardSize(0).width"
+              :height="postcardSize(0).height"
+            />
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[1].imgFront"
+              :imgBack="postcardHistory.postcards[1].imgBack"
+              :imgBackLarge="postcardHistory.postcards[1].imgBackLarge"
+              :caption="postcardHistory.postcards[1].caption"
+              :width="postcardSize(1).width"
+              :height="postcardSize(1).height"
+              :seeTheBack="windowWidth >= 576"
+              :backText="renderMarkdown(postcardHistory.postcards[1].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[2].imgFront"
+              :imgBack="postcardHistory.postcards[2].imgBack"
+              :imgBackLarge="postcardHistory.postcards[2].imgBackLarge"
+              :caption="postcardHistory.postcards[2].caption"
+              :width="postcardSize(2).width"
+              :height="postcardSize(2).height"
+              :seeTheBack="windowWidth >= 576"
+              :backText="renderMarkdown(postcardHistory.postcards[2].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+            <flip-postcard
+              :imgFront="postcardHistory.postcards[3].imgFront"
+              :imgBack="postcardHistory.postcards[3].imgBack"
+              :imgBackLarge="postcardHistory.postcards[3].imgBackLarge"
+              :caption="postcardHistory.postcards[3].caption"
+              :width="postcardSize(3).width"
+              :height="postcardSize(3).height"
+              :seeTheBack="windowWidth >= 576"
+              :backText="renderMarkdown(postcardHistory.postcards[3].backText)"
+              :backTextIsHTML="true"
+              class="sidePostcards"
+            />
+          </div>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <div class="postcardHistory__textDiv">
+            <h2 class="title">{{ about.title }}</h2>
+            <span
+              v-html="about.text"
+              class="postcardText"
+            />
+          </div>
+        </v-col>
+      </v-row>
+
+      <v-row class="mt-4">
+        <v-col>
+          <div class="postcardHistory__textDiv text-justify pt-3">
+            <span class="postcardText">
+              If you would like to see a large selection of the Old-Time
+              Sportsmen collection, click the link below to open the gallery
+              website in a new tab.
+            </span>
+            <a
+              :href="sportsmenGalleryLink"
+              target="_blank"
+              class="sportsmenLinkText collections_headerLinkText mx-auto"
+              style="width: fit-content"
+            >
+              <div
+                class="pt-3 pb-4"
+                style="width: fit-content; max-width: 90vw"
               >
-                <div
-                  class="pt-3 pb-4"
-                  style="width: fit-content; max-width: 90vw"
+                <span style="font-size: 18px">SEE THE COLLECTION</span>
+                <br />
+                <span
+                  class="d-block mb-n4"
+                  style="font-size: 28px"
+                  >GALLERY WEBSITE</span
                 >
-                  <span style="font-size: 18px">SEE THE COLLECTION</span>
-                  <br />
-                  <span
-                    class="d-block mb-n4"
-                    style="font-size: 28px"
-                    >GALLERY WEBSITE</span
-                  >
-                  <img
-                    src="https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1587596183/Publications/2.%20Old-Time%20Sportsmen/guns-crossed_imnn0f.png"
-                    alt="Guns crossed"
-                    class="d-block mx-auto w-100"
-                  />
-                </div>
-              </a>
-            </div>
+                <img
+                  src="https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1587596183/Publications/2.%20Old-Time%20Sportsmen/guns-crossed_imnn0f.png"
+                  alt="Guns crossed"
+                  class="d-block mx-auto w-100"
+                />
+              </div>
+            </a>
+          </div>
 
-            <BackToTop :staticImg="true" />
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
+          <BackToTop :staticImg="true" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </section>
 
-    <footer :style="footerStyles" />
-  </Layout>
+  <footer :style="footerStyles" />
 </template>
 
 <page-query>

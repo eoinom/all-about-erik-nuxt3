@@ -1,84 +1,82 @@
 <template>
-  <Layout>
-    <header
-      id="header"
-      :style="headerStyle"
-    >
-      <img
-        :src="titleImg"
-        id="titleImg"
-        class="my-4"
-        data-testid="title-img"
-      />
-    </header>
-
-    <v-container
-      fluid
-      id="mainContainer"
-      class="mb-3 pb-5 px-1"
-    >
-      <!-- MAIN VIDEO -->
-      <v-row
-        no-gutters
-        justify="center"
-        align="center"
-        id="mainVideoContainer"
-        class="my-2 my-sm-3 px-2 px-sm-3"
-      >
-        <v-col
-          cols="12"
-          align-self="center"
-          style="max-width: 960px"
-        >
-          <iframe
-            :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
-            width="960"
-            height="540"
-            frameborder="0"
-            id="mainVideo"
-          />
-          <span
-            v-html="mainVideoText"
-            id="mainVideoText"
-            class=""
-          />
-        </v-col>
-      </v-row>
-
-      <!-- VIDEOS -->
-      <v-row
-        no-gutters
-        justify="center"
-        id="videos"
-      >
-        <v-col
-          cols="12"
-          sm="6"
-          lg="4"
-          xl="3"
-          v-for="(video, index) in videos"
-          :key="video.title"
-          class="mb-2 mb-sm-3 px-2 px-sm-1"
-          @click="
-            videoIndex = index;
-            setStorage();
-          "
-          data-testid="video-container"
-        >
-          <VideoThumbnailTravels :video="video" />
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <VideoLightBox
-      :videos="videos"
-      :index="videoIndex"
-      :disable-scroll="true"
-      @close="videoIndex = null"
+  <header
+    id="header"
+    :style="headerStyle"
+  >
+    <img
+      :src="titleImg"
+      id="titleImg"
+      class="my-4"
+      data-testid="title-img"
     />
+  </header>
 
-    <BackToTop />
-  </Layout>
+  <v-container
+    fluid
+    id="mainContainer"
+    class="mb-3 pb-5 px-1"
+  >
+    <!-- MAIN VIDEO -->
+    <v-row
+      no-gutters
+      justify="center"
+      align="center"
+      id="mainVideoContainer"
+      class="my-2 my-sm-3 px-2 px-sm-3"
+    >
+      <v-col
+        cols="12"
+        align-self="center"
+        style="max-width: 960px"
+      >
+        <iframe
+          :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
+          width="960"
+          height="540"
+          frameborder="0"
+          id="mainVideo"
+        />
+        <span
+          v-html="mainVideoText"
+          id="mainVideoText"
+          class=""
+        />
+      </v-col>
+    </v-row>
+
+    <!-- VIDEOS -->
+    <v-row
+      no-gutters
+      justify="center"
+      id="videos"
+    >
+      <v-col
+        cols="12"
+        sm="6"
+        lg="4"
+        xl="3"
+        v-for="(video, index) in videos"
+        :key="video.title"
+        class="mb-2 mb-sm-3 px-2 px-sm-1"
+        @click="
+          videoIndex = index;
+          setStorage();
+        "
+        data-testid="video-container"
+      >
+        <VideoThumbnailTravels :video="video" />
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <VideoLightBox
+    :videos="videos"
+    :index="videoIndex"
+    :disable-scroll="true"
+    @close="videoIndex = null"
+  />
+
+  <BackToTop />
 </template>
 
 <page-query>

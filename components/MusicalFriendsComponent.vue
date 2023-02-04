@@ -1,5 +1,5 @@
 <template>
-  <Layout class="pb-5">
+  <div class="pb-5">
     <img
       :src="backgroundImgUrl"
       id="bgImg"
@@ -1411,7 +1411,7 @@
     <!-- END OF LAYOUT FOR PORTRAIT PHONES -->
 
     <BackToTop />
-  </Layout>
+  </div>
 </template>
 
 <static-query>

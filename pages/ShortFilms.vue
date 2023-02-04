@@ -1,88 +1,84 @@
 <template>
-  <Layout>
-    <BackgroundMusic
-      :audioFile="$page.ShortFilms.edges[0].node.bgAudio"
-      :audioDuration="$page.ShortFilms.edges[0].node.bgAudioDuration"
-      :audioFadeInDuration="
-        $page.ShortFilms.edges[0].node.bgAudioFadeInDuration
-      "
-      :audioFadeOutDuration="
-        $page.ShortFilms.edges[0].node.bgAudioFadeOutDuration
-      "
+  <BackgroundMusic
+    :audioFile="$page.ShortFilms.edges[0].node.bgAudio"
+    :audioDuration="$page.ShortFilms.edges[0].node.bgAudioDuration"
+    :audioFadeInDuration="$page.ShortFilms.edges[0].node.bgAudioFadeInDuration"
+    :audioFadeOutDuration="
+      $page.ShortFilms.edges[0].node.bgAudioFadeOutDuration
+    "
+  />
+
+  <header
+    id="header"
+    :style="headerStyle"
+  >
+    <img
+      :src="titleImg"
+      id="titleImg"
+      class="my-4"
+      data-testid="title-img"
     />
+  </header>
 
-    <header
-      id="header"
-      :style="headerStyle"
+  <v-container
+    fluid
+    id="mainContainer"
+    class="mb-4 pb-5 pb-xl-3 px-1"
+  >
+    <!-- MAIN VIDEO -->
+    <v-row
+      no-gutters
+      justify="center"
+      align="center"
+      id="mainVideoContainer"
+      class="my-2 my-sm-3 px-2 px-sm-3"
     >
-      <img
-        :src="titleImg"
-        id="titleImg"
-        class="my-4"
-        data-testid="title-img"
-      />
-    </header>
+      <v-col
+        cols="12"
+        align-self="center"
+      >
+        <div>
+          <iframe
+            :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
+            width="960"
+            height="540"
+            frameborder="0"
+            id="mainVideo"
+          />
+        </div>
+      </v-col>
+    </v-row>
 
-    <v-container
-      fluid
-      id="mainContainer"
-      class="mb-4 pb-5 pb-xl-3 px-1"
+    <!-- VIDEOS -->
+    <v-row
+      no-gutters
+      justify="center"
+      id="videos"
     >
-      <!-- MAIN VIDEO -->
-      <v-row
-        no-gutters
-        justify="center"
-        align="center"
-        id="mainVideoContainer"
-        class="my-2 my-sm-3 px-2 px-sm-3"
+      <v-col
+        cols="6"
+        sm="4"
+        xl="3"
+        align-self="center"
+        v-for="(video, index) in videos"
+        :key="video.title"
+        @click="videoIndex = index"
+        class="mb-2 mb-sm-3 px-2 px-sm-3"
+        data-testid="video-container"
       >
-        <v-col
-          cols="12"
-          align-self="center"
-        >
-          <div>
-            <iframe
-              :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
-              width="960"
-              height="540"
-              frameborder="0"
-              id="mainVideo"
-            />
-          </div>
-        </v-col>
-      </v-row>
+        <video-thumbnail-short-films :video="video" />
+      </v-col>
+    </v-row>
+  </v-container>
 
-      <!-- VIDEOS -->
-      <v-row
-        no-gutters
-        justify="center"
-        id="videos"
-      >
-        <v-col
-          cols="6"
-          sm="4"
-          xl="3"
-          align-self="center"
-          v-for="(video, index) in videos"
-          :key="video.title"
-          @click="videoIndex = index"
-          class="mb-2 mb-sm-3 px-2 px-sm-3"
-          data-testid="video-container"
-        >
-          <video-thumbnail-short-films :video="video" />
-        </v-col>
-      </v-row>
-    </v-container>
+  <VideoLightBox
+    :videos="videos"
+    :index="videoIndex"
+    :disable-scroll="true"
+    @close="videoIndex = null"
+  />
 
-    <VideoLightBox
-      :videos="videos"
-      :index="videoIndex"
-      :disable-scroll="true"
-      @close="videoIndex = null"
-    />
-
-    <BackToTop />
-  </Layout>
+  <BackToTop />
 </template>
 
 <page-query>

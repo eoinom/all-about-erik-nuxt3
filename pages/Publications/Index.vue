@@ -1,101 +1,99 @@
 <template>
-  <Layout>
-    <BackgroundMusic
-      :audioFile="$page.Publications.edges[0].node.bgAudio"
-      :audioDuration="$page.Publications.edges[0].node.bgAudioDuration"
-      :audioFadeInDuration="
-        $page.Publications.edges[0].node.bgAudioFadeInDuration
-      "
-      :audioFadeOutDuration="
-        $page.Publications.edges[0].node.bgAudioFadeOutDuration
-      "
-      :maxVolume="0.78"
-      :playMusic="playMusic"
-    />
+  <BackgroundMusic
+    :audioFile="$page.Publications.edges[0].node.bgAudio"
+    :audioDuration="$page.Publications.edges[0].node.bgAudioDuration"
+    :audioFadeInDuration="
+      $page.Publications.edges[0].node.bgAudioFadeInDuration
+    "
+    :audioFadeOutDuration="
+      $page.Publications.edges[0].node.bgAudioFadeOutDuration
+    "
+    :maxVolume="0.78"
+    :playMusic="playMusic"
+  />
 
-    <v-container
-      fluid
-      class="main-col"
+  <v-container
+    fluid
+    class="main-col"
+  >
+    <v-row
+      no-gutters
+      class="mb-1 pt-4 px-1"
     >
-      <v-row
-        no-gutters
-        class="mb-1 pt-4 px-1"
-      >
-        <v-col class="slideshowCol">
-          <!-- HEADER SLIDESHOW -->
-          <SlideshowKenBurnsSmall
-            :slides="slides"
-            :height="slideshowHeight"
-            :maxImgWidth="slideshowMaxWidth"
-            :centerVertically="true"
-            backgroundColor="#141414"
-          />
+      <v-col class="slideshowCol">
+        <!-- HEADER SLIDESHOW -->
+        <SlideshowKenBurnsSmall
+          :slides="slides"
+          :height="slideshowHeight"
+          :maxImgWidth="slideshowMaxWidth"
+          :centerVertically="true"
+          backgroundColor="#141414"
+        />
 
-          <!-- SLIDESHOW OVERLAY -->
-          <div class="slideshowOverlay">
-            <div class="mainContent">
-              <img
-                alt="Publications title image"
-                v-if="titleImg != null"
-                :src="titleImg"
-                id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-3"
-                data-testid="title-img"
-              />
-            </div>
+        <!-- SLIDESHOW OVERLAY -->
+        <div class="slideshowOverlay">
+          <div class="mainContent">
+            <img
+              alt="Publications title image"
+              v-if="titleImg != null"
+              :src="titleImg"
+              id="titleImg"
+              class="mb-md-1 mb-lg-2 mb-xl-3"
+              data-testid="title-img"
+            />
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <v-container
-      v-if="windowWidth > 1200"
-      fluid
-      class="publicationsContainer"
+  <v-container
+    v-if="windowWidth > 1200"
+    fluid
+    class="publicationsContainer"
+  >
+    <v-row
+      no-gutters
+      justify="center"
+      class="publicationsRow mb-1"
     >
-      <v-row
-        no-gutters
-        justify="center"
-        class="publicationsRow mb-1"
+      <v-col
+        v-for="(publication, i) in publications"
+        :key="'publication' + i"
+        cols=""
+        align-self="center"
+        class="publicationsCols p-0 m-2 m-md-3"
+        data-testid="publication-container"
       >
-        <v-col
-          v-for="(publication, i) in publications"
-          :key="'publication' + i"
-          cols=""
-          align-self="center"
-          class="publicationsCols p-0 m-2 m-md-3"
-          data-testid="publication-container"
-        >
-          <PublicationThumbnail :publication="publication" />
-        </v-col>
-      </v-row>
-    </v-container>
+        <PublicationThumbnail :publication="publication" />
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <v-container
-      v-if="windowWidth <= 1200"
-      fluid
-      class="publicationsContainer"
+  <v-container
+    v-if="windowWidth <= 1200"
+    fluid
+    class="publicationsContainer"
+  >
+    <v-row
+      no-gutters
+      justify="center"
+      class="publicationsRow mb-1"
     >
-      <v-row
-        no-gutters
-        justify="center"
-        class="publicationsRow mb-1"
+      <v-col
+        v-for="(newPublication, i) in publicationsAltOrder"
+        :key="'newPublication' + i"
+        cols=""
+        align-self="center"
+        class="publicationsCols p-0 m-2 m-md-3"
+        data-testid="publication-container"
       >
-        <v-col
-          v-for="(newPublication, i) in publicationsAltOrder"
-          :key="'newPublication' + i"
-          cols=""
-          align-self="center"
-          class="publicationsCols p-0 m-2 m-md-3"
-          data-testid="publication-container"
-        >
-          <PublicationThumbnail :publication="newPublication" />
-        </v-col>
-      </v-row>
-    </v-container>
+        <PublicationThumbnail :publication="newPublication" />
+      </v-col>
+    </v-row>
+  </v-container>
 
-    <BackToTop />
-  </Layout>
+  <BackToTop />
 </template>
 
 <page-query>
