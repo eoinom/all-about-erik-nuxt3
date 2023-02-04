@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <header
     id="header"
     :style="headerStyle"
@@ -79,70 +83,44 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  Travels: allTravels {
-    edges {
-      node {
-        id
-        pageTitle
-        headerBgImg
-        titleImg
-        mainVideoUrl
-        mainVideoText
-        videos {
-          title
-          url
-          thumbnailImg
-          duration
-          width
-          height
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import VideoLightBox from '../components/VideoLightBox.vue';
-import VideoThumbnailTravels from '../components/VideoThumbnailTravels.vue';
-import BackToTop from '../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.Travels.edges[0].node.pageTitle,
-    };
-  },
-
   data() {
     return {
+      travelsPgContent: {},
       videoIndex: null,
     };
   },
 
   computed: {
+    pageTitle() {
+      return this.travelsPgContent.pageTitle;
+    },
     headerBgImg() {
-      return this.$page.Travels.edges[0].node.headerBgImg;
+      return this.travelsPgContent.headerBgImg;
     },
     titleImg() {
-      return this.$page.Travels.edges[0].node.titleImg;
+      return this.travelsPgContent.titleImg;
     },
     mainVideoUrl() {
-      return this.$page.Travels.edges[0].node.mainVideoUrl;
+      return this.travelsPgContent.mainVideoUrl;
     },
     mainVideoText() {
-      return this.$page.Travels.edges[0].node.mainVideoText;
+      return this.travelsPgContent.mainVideoText;
     },
     videos() {
-      return this.$page.Travels.edges[0].node.videos;
+      return this.travelsPgContent.videos;
     },
     headerStyle() {
       return {
         '--headerBgImg': 'url(' + this.headerBgImg + ')',
       };
     },
+  },
+
+  async mounted() {
+    const travelsPgContent = await queryContent('travels').findOne();
+    this.travelsPgContent = travelsPgContent;
   },
 
   methods: {
@@ -152,12 +130,6 @@ export default {
     videoPreviouslyViewed() {
       return sessionStorage.getItem('travelVideoViewed') === 'true';
     },
-  },
-
-  components: {
-    VideoLightBox,
-    VideoThumbnailTravels,
-    BackToTop,
   },
 };
 </script>
