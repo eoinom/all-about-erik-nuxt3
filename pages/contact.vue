@@ -1,5 +1,9 @@
 <template>
   <Layout>
+    <Head>
+      <Title>{{ pageTitle }}</Title>
+    </Head>
+
     <div class="container">
       <img
         :src="titleImg1Line"
@@ -131,31 +135,36 @@
 import snarkdown from 'snarkdown';
 
 export default {
-  metaInfo() {
+  data() {
     return {
-      title: this.node.pageTitle,
+      contactPgContent: {},
     };
   },
 
   computed: {
-    node() {
-      return this.$page.Contact.edges[0].node;
+    pageTitle() {
+      return this.contactPgContent.pageTitle;
     },
     titleImg1Line() {
-      return this.node.headingImg;
+      return this.contactPgContent.headingImg;
     },
     titleImg2Lines() {
-      return this.node.headingImg2Lines;
+      return this.contactPgContent.headingImg2Lines;
     },
     mainText() {
-      return this.node.content;
+      return this.contactPgContent.content;
     },
     credits() {
-      return this.node.credits;
+      return this.contactPgContent.credits;
     },
     bgVideo() {
-      return this.node.bgVideo;
+      return this.contactPgContent.bgVideo;
     },
+  },
+
+  async mounted() {
+    const contactPgContent = await queryContent('contact').findOne();
+    this.contactPgContent = contactPgContent;
   },
 
   methods: {
