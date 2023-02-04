@@ -1,13 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.EarlyProductions.edges[0].node.bgAudio"
-    :audioDuration="$page.EarlyProductions.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="
-      $page.EarlyProductions.edges[0].node.bgAudioFadeInDuration
-    "
-    :audioFadeOutDuration="
-      $page.EarlyProductions.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="earlyProductionsPgContent.bgAudio"
+    :audioDuration="earlyProductionsPgContent.bgAudioDuration"
+    :audioFadeInDuration="earlyProductionsPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="earlyProductionsPgContent.bgAudioFadeOutDuration"
   />
 
   <header
@@ -765,68 +765,11 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  EarlyProductions: allEarlyProductions {
-    edges {
-      node {
-        pageTitle
-        headerBgImg
-        titleImg
-        mainImg
-        content
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        sections {
-          textBoxes {
-            heading
-            text
-          }
-          productions {
-            writer
-            artist
-            image
-            bgImg
-            bgImgPos
-            bgColor
-            bgOpacity
-            tracks {
-              title
-              track
-            }
-          }
-          lightboxes {
-            buttonText
-            caption
-            audio
-            image
-          }
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import AudioLightBox from '../../components/AudioLightBox.vue';
-import ImageLightBox from '../../components/ImageLightBox.vue';
-import MusicProduction from '../../components/MusicProduction.vue';
-import MusicProductionText from '../../components/MusicProductionText.vue';
-import BackToTop from '../../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.EarlyProductions.edges[0].node.pageTitle,
-    };
-  },
-
   data() {
     return {
+      earlyProductionsPgContent: {},
       audioIndex: null,
       audioTracks: null,
       imageIndex: null,
@@ -836,20 +779,23 @@ export default {
   },
 
   computed: {
+    pageTitle() {
+      return this.earlyProductionsPgContent.pageTitle;
+    },
     headerBgImg() {
-      return this.$page.EarlyProductions.edges[0].node.headerBgImg;
+      return this.earlyProductionsPgContent.headerBgImg;
     },
     titleImg() {
-      return this.$page.EarlyProductions.edges[0].node.titleImg;
+      return this.earlyProductionsPgContent.titleImg;
     },
     mainImg() {
-      return this.$page.EarlyProductions.edges[0].node.mainImg;
+      return this.earlyProductionsPgContent.mainImg;
     },
     mainText() {
-      return this.$page.EarlyProductions.edges[0].node.content;
+      return this.earlyProductionsPgContent.content;
     },
     sections() {
-      return this.$page.EarlyProductions.edges[0].node.sections;
+      return this.earlyProductionsPgContent.sections;
     },
     headerStyles() {
       let css = {
@@ -859,6 +805,39 @@ export default {
       // css.position = this.windowWidth < 768 ? 'sticky' : 'static'  // to make header sticky for mobiles only
       return css;
     },
+  },
+
+  async mounted() {
+    const earlyProductionsPgContent = await queryContent(
+      'short-films'
+    ).findOne();
+    this.earlyProductionsPgContent = earlyProductionsPgContent;
+
+    this.windowWidth = window.innerWidth;
+
+    // this.$nextTick(() => {
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
+    // })
+    window.addEventListener('orientationchange', () => {
+      this.windowWidth = window.innerWidth;
+    });
+
+    // // Prevents window from moving on touch on older browsers.
+    // window.addEventListener('touchmove', function (event) {
+    //   event.preventDefault()
+    // }, false)
+
+    // // Prevents window from moving on touch on newer browsers.
+    // window.addEventListener('touchmove', function (event) {
+    //   event.preventDefault()
+    // }, {passive: false})
+
+    // // Allows content to move on touch.
+    // document.querySelector("body").addEventListener('touchmove', function (event) {
+    //   event.stopPropagation()
+    // }, false)
   },
 
   methods: {
@@ -891,43 +870,6 @@ export default {
         '--bgOpacity': production.bgOpacity ? production.bgOpacity : 0.5,
       };
     },
-  },
-
-  mounted() {
-    this.windowWidth = window.innerWidth;
-
-    // this.$nextTick(() => {
-    window.addEventListener('resize', () => {
-      this.windowWidth = window.innerWidth;
-    });
-    // })
-    window.addEventListener('orientationchange', () => {
-      this.windowWidth = window.innerWidth;
-    });
-
-    // // Prevents window from moving on touch on older browsers.
-    // window.addEventListener('touchmove', function (event) {
-    //   event.preventDefault()
-    // }, false)
-
-    // // Prevents window from moving on touch on newer browsers.
-    // window.addEventListener('touchmove', function (event) {
-    //   event.preventDefault()
-    // }, {passive: false})
-
-    // // Allows content to move on touch.
-    // document.querySelector("body").addEventListener('touchmove', function (event) {
-    //   event.stopPropagation()
-    // }, false)
-  },
-
-  components: {
-    BackgroundMusic,
-    AudioLightBox,
-    ImageLightBox,
-    MusicProduction,
-    MusicProductionText,
-    BackToTop,
   },
 };
 </script>
