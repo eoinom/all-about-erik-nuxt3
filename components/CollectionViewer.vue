@@ -47,13 +47,13 @@
               class="nav_link nav_link_small"
               id="nav_prev"
             >
-              <g-image
+              <img
                 immediate
                 alt="previous"
                 src="../assets/images/previous-collection-2lines-white.png"
                 class="hideOnHover"
               />
-              <g-image
+              <img
                 immediate
                 alt="previous"
                 src="../assets/images/previous-collection-2lines-yellow.png"
@@ -68,13 +68,13 @@
               class="nav_link nav_link_big"
               id="nav_prev"
             >
-              <g-image
+              <img
                 immediate
                 alt="previous"
                 src="../assets/images/previous-collection-1line-white.png"
                 class="hideOnHover"
               />
-              <g-image
+              <img
                 immediate
                 alt="previous"
                 src="../assets/images/previous-collection-1line-yellow.png"
@@ -108,13 +108,13 @@
               class="nav_link nav_link_small"
               id="nav_next"
             >
-              <g-image
+              <img
                 immediate
                 alt="next"
                 src="../assets/images/next-collection-2lines-white.png"
                 class="hideOnHover"
               />
-              <g-image
+              <img
                 immediate
                 alt="next"
                 src="../assets/images/next-collection-2lines-yellow.png"
@@ -129,13 +129,13 @@
               class="nav_link nav_link_big"
               id="nav_next"
             >
-              <g-image
+              <img
                 immediate
                 alt="next"
                 src="../assets/images/next-collection-1line-white.png"
                 class="hideOnHover"
               />
-              <g-image
+              <img
                 immediate
                 alt="next"
                 src="../assets/images/next-collection-1line-yellow.png"
@@ -227,13 +227,13 @@
         class="nav_link pt-3"
         id="nav_back"
       >
-        <g-image
+        <img
           immediate
           alt="Back to collections menu"
           src="../assets/images/back-to-collections-menu-1line-white.png"
           class="hideOnHover"
         />
-        <g-image
+        <img
           immediate
           alt="Back to collections menu"
           src="../assets/images/back-to-collections-menu-1line-yellow.png"

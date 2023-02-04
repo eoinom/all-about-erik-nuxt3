@@ -15,7 +15,7 @@
       id="header"
       :style="headerStyle"
     >
-      <g-image
+      <img
         :src="titleImg"
         id="titleImg"
         class="my-4"
@@ -33,7 +33,7 @@
         class="mt-2"
       >
         <v-col>
-          <g-image
+          <img
             :src="mainImg"
             id="mainImg"
           />
@@ -61,7 +61,7 @@
           xl="7"
           class="thumbnailImgContainer"
         >
-          <g-image
+          <img
             :alt="video.title"
             v-if="video.thumbnailImg != null"
             :src="video.thumbnailImg"
@@ -77,7 +77,7 @@
 
           <div class="thumbnailImgOverlay">
             <p class="mb-0 mb-lg-1 mb-xl-2">
-              <g-image
+              <img
                 alt="Play symbol"
                 v-if="video.url != null"
                 src="~/assets/images/playarrowcircle.png"
@@ -134,12 +134,12 @@
               style="text-align: right"
               class="pr-1"
             >
-              <g-image
+              <img
                 alt="Play symbol"
                 src="~/assets/images/playarrowcircle-black.png"
                 class="playIconImg"
               />
-              <g-image
+              <img
                 alt="Play symbol"
                 src="~/assets/images/playarrowcircle-hover.png"
                 class="playIconImg-hover"

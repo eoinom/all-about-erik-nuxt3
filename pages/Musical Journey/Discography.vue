@@ -16,13 +16,13 @@
       :key="index"
       data-testid="background-img-container"
     >
-      <g-image
+      <img
         :src="img.img"
         class="bgImg bgImgBack"
         :class="hideBgImg(index)"
         :style="bgStyles"
       />
-      <g-image
+      <img
         :src="img.imgOverlay"
         class="bgImg bgImgOverlay"
         :class="hideBgImgOverlay(index)"
@@ -34,7 +34,7 @@
       id="header"
       :style="headerStyles"
     >
-      <g-image
+      <img
         :src="titleImg"
         id="titleImg"
         class="mb-4"
@@ -98,7 +98,7 @@
                 style="text-align: center"
                 class="mb-3"
               >
-                <g-image
+                <img
                   :src="album.thumbnailImg"
                   style="max-width: 100%"
                   class=""

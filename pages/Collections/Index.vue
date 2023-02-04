@@ -30,7 +30,7 @@
           <!-- SLIDESHOW OVERLAY -->
           <div class="slideshowOverlay">
             <div class="mainContent">
-              <g-image
+              <img
                 alt="Collections title image"
                 v-if="titleImg != null"
                 :src="titleImg"

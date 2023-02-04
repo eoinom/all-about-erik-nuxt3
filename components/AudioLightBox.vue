@@ -11,9 +11,7 @@
         class="audio-lightbox__modal"
         :style="`background: ${background}`"
       >
-        <div
-          :class="['audio-lightbox__spinner', !isAudioLoaded || 'hide']"
-        >
+        <div :class="['audio-lightbox__spinner', !isAudioLoaded || 'hide']">
           <div
             class="audio-lightbox__dot"
             :style="`border-color: ${interfaceColor}`"
@@ -33,91 +31,109 @@
             <li
               v-for="(audio, audioIndex) in formattedAudios"
               :key="audioIndex"
-              :style="`transform: translate3d(${currentIndex * -100}%, 0px, 0px);`"
+              :style="`transform: translate3d(${
+                currentIndex * -100
+              }%, 0px, 0px);`"
               class="audio-lightbox__audio-container"
             >
-              <div class="audio-lightbox__audio" :style="audioContainerCss">
-
-                <div style="width:100%;height:100%;position:relative;">                  
-                  <iframe 
-                    width="100%" 
-                    height="300" 
-                    scrolling="no" 
-                    frameborder="no" 
+              <div
+                class="audio-lightbox__audio"
+                :style="audioContainerCss"
+              >
+                <div style="width: 100%; height: 100%; position: relative">
+                  <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
                     allow="autoplay"
                     :ref="`lg-audio-${audioIndex}`"
-                    @load="audioLoaded($event, audioIndex)" 
+                    @load="audioLoaded($event, audioIndex)"
                     class="audioFrame"
-                    :id="'audio_' + audioIndex" 
-                    :src="audios[audioIndex].url" >
+                    :id="'audio_' + audioIndex"
+                    :src="audios[audioIndex].url"
+                  >
                   </iframe>
                 </div>
 
                 <div
-                  v-if="showCaption && (audio.caption || audio.title) && isAudioLoaded"
+                  v-if="
+                    showCaption &&
+                    (audio.caption || audio.title) &&
+                    isAudioLoaded
+                  "
                   class="audio-lightbox__text"
                   :style="audioTitleCss"
                 >
                   {{ audio.caption || audio.title }}
                 </div>
-
               </div>
             </li>
           </ul>
         </div>
 
-        <div id="leftArrowContainer" v-if="currentIndex > 0" @click="prev()">
-          <g-image 
-            alt="Left arrow, click for previous audio" 
-            src="~/assets/images/arrow-left.png" 
+        <div
+          id="leftArrowContainer"
+          v-if="currentIndex > 0"
+          @click="prev()"
+        >
+          <img
+            alt="Left arrow, click for previous audio"
+            src="~/assets/images/arrow-left.png"
             id="prevAudioImg"
-            class="audio-lightbox__prev arrowImg" 
+            class="audio-lightbox__prev arrowImg"
           />
-          <g-image 
-            alt="Left arrow, click for previous audio" 
-            src="~/assets/images/arrow-left-hover.png" 
+          <img
+            alt="Left arrow, click for previous audio"
+            src="~/assets/images/arrow-left-hover.png"
             id="prevAudioImg-hover"
-            class="audio-lightbox__prev arrowImg" 
+            class="audio-lightbox__prev arrowImg"
           />
         </div>
 
-        <div id="rightArrowContainer" v-if="currentIndex + 1 < audios.length" @click="next()">
-          <g-image 
-            alt="Right arrow, click for next audio" 
-            src="~/assets/images/arrow-right.png" 
+        <div
+          id="rightArrowContainer"
+          v-if="currentIndex + 1 < audios.length"
+          @click="next()"
+        >
+          <img
+            alt="Right arrow, click for next audio"
+            src="~/assets/images/arrow-right.png"
             id="nextAudioImg"
             class="audio-lightbox__next arrowImg"
           />
-          <g-image 
-            alt="Right arrow, click for next audio" 
-            src="~/assets/images/arrow-right-hover.png" 
+          <img
+            alt="Right arrow, click for next audio"
+            src="~/assets/images/arrow-right-hover.png"
             id="nextAudioImg-hover"
-            class="audio-lightbox__next arrowImg" 
+            class="audio-lightbox__next arrowImg"
           />
         </div>
 
-        <div id="closeImgContainer" @click="close()">
-          <g-image 
-            alt="Close icon, click to close lightbox" 
-            src="~/assets/images/lightbox-close.png" 
+        <div
+          id="closeImgContainer"
+          @click="close()"
+        >
+          <img
+            alt="Close icon, click to close lightbox"
+            src="~/assets/images/lightbox-close.png"
             id="closeImg"
-            class="audio-lightbox__close" 
+            class="audio-lightbox__close"
           />
-          <g-image 
-            alt="Close icon, click to close lightbox" 
-            src="~/assets/images/lightbox-close-hover.png" 
+          <img
+            alt="Close icon, click to close lightbox"
+            src="~/assets/images/lightbox-close-hover.png"
             id="closeImg-hover"
-            class="audio-lightbox__close" 
+            class="audio-lightbox__close"
           />
         </div>
-
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import { EventBus } from '../event-bus'
+import { EventBus } from '../event-bus';
 
 const keyMap = {
   LEFT: 37,
@@ -164,30 +180,30 @@ export default {
         flag: false,
       },
       windowWidth: 0,
-      windowHeight: 0
+      windowHeight: 0,
     };
   },
   computed: {
     formattedAudios() {
-      return this.audios.map(audio => (typeof audio === 'string'
-        ? { url: audio } : audio
-      ));
+      return this.audios.map((audio) =>
+        typeof audio === 'string' ? { url: audio } : audio
+      );
     },
     audioContainerCss() {
-      let css = {}
-      css.width = ((0.8 * this.windowWidth) - 80) + 'px'
-      css.height = '300px'
-      return css
+      let css = {};
+      css.width = 0.8 * this.windowWidth - 80 + 'px';
+      css.height = '300px';
+      return css;
     },
     audioTitleCss() {
-      let css = {}
-      let containerHeight = 300  
-      css.padding = 0
-      css.top = (containerHeight + 40) + 'px'
-      css.left = '0px'
-      css.textAlign = 'left'
-      return css
-    }
+      let css = {};
+      let containerHeight = 300;
+      css.padding = 0;
+      css.top = containerHeight + 40 + 'px';
+      css.left = '0px';
+      css.textAlign = 'left';
+      return css;
+    },
   },
   watch: {
     index(val) {
@@ -204,15 +220,15 @@ export default {
     },
   },
   mounted() {
-    this.windowWidth = window.innerWidth
-    this.windowHeight = window.innerHeight
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
 
     this.$nextTick(() => {
-      window.addEventListener('resize', () => {        
-        this.windowWidth = window.innerWidth
-        this.windowHeight = window.innerHeight 
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
       });
-    })
+    });
 
     if (!document) return;
     this.bodyOverflowStyle = document.body.style.overflow;
@@ -238,7 +254,7 @@ export default {
     next() {
       if (this.currentIndex === this.audios.length - 1) return;
       // this.pauseAudio(this.currentIndex)
-      this.currentIndex += 1
+      this.currentIndex += 1;
       this.$emit('slide', { index: this.currentIndex });
     },
     // pauseAudio (index) {
@@ -246,15 +262,15 @@ export default {
     //   var player = new Player(iframe)
     //   player.pause();
     // },
-    stopAudio (index) {
-      var iframe = document.getElementById('audio_' + index)
-      if ( iframe ) {
+    stopAudio(index) {
+      var iframe = document.getElementById('audio_' + index);
+      if (iframe) {
         var iframeSrc = iframe.src;
         iframe.src = iframeSrc;
       }
     },
     audioLoaded($event, audioIndex) {
-      EventBus.$emit('lightboxMediaLoaded');    // used to mute page background music   
+      EventBus.$emit('lightboxMediaLoaded'); // used to mute page background music
       const { target } = $event;
       target.classList.add('loaded');
       if (audioIndex === this.currentIndex) {
@@ -272,10 +288,12 @@ export default {
     shouldPreload(index) {
       const el = this.getAudioElByIndex(index) || {};
       const { src } = el;
-      return !!src
-       || index === this.currentIndex
-       || index === this.currentIndex - 1
-       || index === this.currentIndex + 1;
+      return (
+        !!src ||
+        index === this.currentIndex ||
+        index === this.currentIndex - 1 ||
+        index === this.currentIndex + 1
+      );
     },
     bindEvents() {
       document.addEventListener('keydown', this.keyDownHandler, false);
@@ -324,18 +342,21 @@ export default {
           break;
       }
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
   src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg') format('svg'); /* Legacy iOS */
+  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */
+      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -374,7 +395,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;
+    transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
   &__audio {
     & {
@@ -389,9 +410,9 @@ export default {
         max-width: 100%;
         max-height: 100vh;
         opacity: 0;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
       }
-      &.loaded{
+      &.loaded {
         opacity: 1;
       }
     }
@@ -403,7 +424,7 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
 
-    color: #FFFFFF;    
+    color: #ffffff;
     font-family: 'NeueHaasGroteskText Pro55', sans-serif;
     font-feature-settings: 'liga';
     font-size: 1.3125rem; /* 21px with 16px default size */
@@ -485,13 +506,15 @@ export default {
   }
 }
 // transition fade on opening / closing of lightbox
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   position: fixed;
   z-index: 1000;
   // transition: opacity 0.2s;
   transition: opacity 0.5s ease;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   position: fixed;
   opacity: 0;
   z-index: 1000;
@@ -507,12 +530,12 @@ export default {
 }
 
 .arrowImg {
-  width: 7.0%;
+  width: 7%;
   max-width: 26px;
   min-width: 15px;
   padding: 0;
 }
-#prevAudioImg-hover, 
+#prevAudioImg-hover,
 #leftArrowContainer:hover #prevAudioImg {
   display: none;
 }
@@ -520,7 +543,7 @@ export default {
   display: inline;
 }
 
-#nextAudioImg-hover, 
+#nextAudioImg-hover,
 #rightArrowContainer:hover #nextAudioImg {
   display: none;
 }
@@ -528,8 +551,9 @@ export default {
   display: inline;
 }
 
-#closeImg, #closeImg-hover {
-  width: 7.0%;
+#closeImg,
+#closeImg-hover {
+  width: 7%;
   max-width: 38px;
   min-width: 15px;
   padding: 0;
@@ -548,7 +572,7 @@ export default {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
-  .audio-lightbox{
+  .audio-lightbox {
     &__text {
       font-size: 0.8125rem; /* 13px with 16px default size */
     }
@@ -567,15 +591,15 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .audio-lightbox{
+  .audio-lightbox {
     &__text {
       font-size: 0.9375rem; /* 15px with 16px default size */
     }
     &__next {
-      right: 3.0%;
+      right: 3%;
     }
     &__prev {
-      left: 3.0%;
+      left: 3%;
     }
     &__close {
       top: 20px;
@@ -585,8 +609,8 @@ export default {
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) { 
-  .audio-lightbox{
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .audio-lightbox {
     &__text {
       font-size: 1.0625rem; /* 17px with 16px default size */
     }
@@ -604,8 +628,8 @@ export default {
 }
 
 /* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {  
-  .audio-lightbox{
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .audio-lightbox {
     &__text {
       font-size: 1.1875rem; /* 19px with 16px default size */
     }

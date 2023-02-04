@@ -15,7 +15,7 @@
       id="header"
       :style="headerStyle"
     >
-      <g-image
+      <img
         :src="titleImg"
         id="titleImg"
         class="my-4"

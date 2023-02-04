@@ -10,7 +10,7 @@
       id="header"
       :style="headerStyles"
     >
-      <g-image
+      <img
         :src="titleImg"
         id="titleImg"
         data-testid="title-img"

@@ -16,7 +16,7 @@
         :id="'thumbnailImgCol' + this.index"
       >
         <g-link :to="'/musical-journey/musical-friends/' + friend.link">
-          <g-image
+          <img
             :src="friend.thumbnailImg"
             class="thumbnailImg"
             :style="imgDims"

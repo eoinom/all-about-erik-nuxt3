@@ -34,7 +34,7 @@
             :style="slideshowOverlayStyles"
           >
             <div class="mainContent mx-auto">
-              <g-image
+              <img
                 alt="Archives title image"
                 v-if="titleImg != null"
                 :src="titleImg"

@@ -11,7 +11,7 @@
             class="headerImageCol"
             style="text-align: right"
           >
-            <g-image
+            <img
               alt="Hunter"
               v-if="headerLeftImg != null"
               :src="headerLeftImg"
@@ -20,11 +20,11 @@
           </v-col>
 
           <v-col id="headerItems">
-            <g-image
+            <img
               :src="titleImg1Line"
               class="titleImg titleImg1Line"
             />
-            <g-image
+            <img
               :src="titleImg2Lines"
               class="titleImg titleImg2Lines"
             />
@@ -86,13 +86,13 @@
               class="nav_link py-2"
               id="nav_back"
             >
-              <g-image
+              <img
                 immediate
                 alt="Back to collections menu"
                 src="../../assets/images/back-to-collections-menu-1line-black.png"
                 class="hideOnHover"
               />
-              <g-image
+              <img
                 immediate
                 alt="Back to collections menu"
                 src="../../assets/images/back-to-collections-menu-1line-yellow.png"
@@ -106,7 +106,7 @@
             class="headerImageCol"
             style="text-align: left"
           >
-            <g-image
+            <img
               alt="ducks"
               v-if="headerRightImg != null"
               :src="headerRightImg"
@@ -375,7 +375,7 @@
                     style="font-size: 28px"
                     >GALLERY WEBSITE</span
                   >
-                  <g-image
+                  <img
                     src="https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1587596183/Publications/2.%20Old-Time%20Sportsmen/guns-crossed_imnn0f.png"
                     alt="Guns crossed"
                     class="d-block mx-auto w-100"

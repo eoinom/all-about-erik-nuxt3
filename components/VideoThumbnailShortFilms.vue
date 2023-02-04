@@ -1,7 +1,7 @@
 <template>
   <div class="videoThumbnailContainer">
     <div>
-      <g-image
+      <img
         :alt="video.title"
         v-if="video.thumbnailImg != null"
         :src="video.thumbnailImg"
@@ -38,7 +38,7 @@
             {{ durationInMinsText(video.duration) }}
           </span>
           <br />
-          <g-image
+          <img
             alt="Play symbol"
             src="~/assets/images/playarrowcircle-black.png"
             class="thumbnailPlayVideoImg"

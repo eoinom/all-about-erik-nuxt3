@@ -35,7 +35,7 @@
             cols="auto"
             class="pl-2"
           >
-            <g-image
+            <img
               :src="track.image"
               class="trackImg my-3"
             />
@@ -59,7 +59,7 @@
             cols="auto"
             class="pr-2"
           >
-            <g-image
+            <img
               :src="track.image"
               class="trackImg my-3"
             />

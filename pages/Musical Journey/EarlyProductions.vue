@@ -15,7 +15,7 @@
       id="header"
       :style="headerStyles"
     >
-      <g-image
+      <img
         :src="titleImg"
         id="titleImg"
         class="my-4"
@@ -30,7 +30,7 @@
     >
       <v-row no-gutters>
         <v-col>
-          <g-image
+          <img
             :src="mainImg"
             id="mainImg"
           />
