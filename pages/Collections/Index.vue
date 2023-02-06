@@ -1,11 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.Collections.edges[0].node.bgAudio"
-    :audioDuration="$page.Collections.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="$page.Collections.edges[0].node.bgAudioFadeInDuration"
-    :audioFadeOutDuration="
-      $page.Collections.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="collectionsPgContent.bgAudio"
+    :audioDuration="collectionsPgContent.bgAudioDuration"
+    :audioFadeInDuration="collectionsPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="collectionsPgContent.bgAudioFadeOutDuration"
     :playMusic="playMusic"
   />
 
@@ -71,60 +73,11 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  Collections: allCollectionsIndex {
-    edges {
-      node {
-        id
-        pageTitle
-        titleImg
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        content
-        slides {
-          orderNo
-          img
-          opacity
-          panStart
-          scaleFrom
-          scaleTo
-        }
-        collections {
-          title
-          thumbnailImg
-          thumbnailHoverImg
-        }
-      }
-    }
-  }
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import CollectionThumbnail from '../../components/CollectionThumbnail.vue';
-import BackToTop from '../../components/BackToTop.vue';
-import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.Collections.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    BackgroundMusic,
-    CollectionThumbnail,
-    BackToTop,
-    SlideshowKenBurnsSmall,
-  },
-
   data() {
     return {
+      collectionsPgContent: {},
       videoIndex: null,
       mainColHeight: 600,
       interval: null,
@@ -133,17 +86,20 @@ export default {
   },
 
   computed: {
+    pageTitle() {
+      return this.collectionsPgContent.pageTitle;
+    },
     titleImg() {
-      return this.$page.Collections.edges[0].node.titleImg;
+      return this.collectionsPgContent.titleImg;
     },
     slides() {
-      return this.$page.Collections.edges[0].node.slides;
+      return this.collectionsPgContent.slides;
     },
     slideshowText() {
-      return this.$page.Collections.edges[0].node.content;
+      return this.collectionsPgContent.content;
     },
     collections() {
-      return this.$page.Collections.edges[0].node.collections;
+      return this.collectionsPgContent.collections;
     },
     slideshowHeight() {
       let height = this.mainColHeight + 30;
@@ -157,7 +113,12 @@ export default {
     }
   },
 
-  mounted() {
+  async mounted() {
+    const collectionsPgContent = await queryContent(
+      'collections-index'
+    ).findOne();
+    this.collectionsPgContent = collectionsPgContent;
+
     this.observeTextBlockHeight();
 
     setTimeout(clearInterval(this.interval), 8000);

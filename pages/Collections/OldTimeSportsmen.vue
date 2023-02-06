@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <header :style="headerStyles">
     <v-container
       fluid
@@ -380,95 +384,15 @@
   <footer :style="footerStyles" />
 </template>
 
-<page-query>
-{
-  OldTimeSportsmen: allOldTimeSportsmen {
-    edges {
-      node {
-        id
-        title
-        titleImg1Line
-        titleImg2Lines
-        headerBgImg
-        backgroundImgOpacity
-        headerLeftImg
-        headerRightImg
-        sportsmenSiteHoverImg
-        sportsmenBookHoverImg
-        sportsmenSiteLink
-        footerImg
-        content
-        images {
-          img
-        }
-        postcardHistory {
-          title
-          textPt1
-          textPt2
-          textPt3
-          images {
-            img
-            altText
-          }
-          postcards {
-            imgFront
-            imgBack
-            imgBackLarge
-            caption
-            backText
-          }
-        }
-        about {
-          title
-          text
-        }
-        people {
-          img
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
-<static-query>
-{
-  Collections: allCollectionsIndex {
-    edges {
-      node {
-        collections {
-          title
-        }
-      }
-    }
-  }	
-}
-</static-query>
-
 <script scoped>
-import CollectionViewer from '../../components/CollectionViewer.vue';
-import FlipPostcard from '../../components/FlipPostcard.vue';
-import SlideshowZoom from '../../components/SlideshowZoom.vue';
-import BackToTop from '../../components/BackToTop.vue';
 import snarkdown from 'snarkdown';
 const slugify = require('@sindresorhus/slugify');
 
 export default {
-  metaInfo() {
-    return {
-      title: this.title,
-    };
-  },
-
-  components: {
-    CollectionViewer,
-    FlipPostcard,
-    SlideshowZoom,
-    BackToTop,
-  },
-
   data() {
     return {
+      oldTimeSportsmenPgContent: {},
+      collectionsContent: {},
       imageIndex: 0,
       sportsmenSiteHover: false,
       sportsmenGalleryHover: false,
@@ -484,43 +408,48 @@ export default {
   },
 
   computed: {
+    pageTitle() {
+      return this.title;
+    },
     node() {
-      return this.$page.OldTimeSportsmen.edges[0].node;
+      return this.oldTimeSportsmenPgContent;
     },
     title() {
-      return this.node.title;
+      return this.oldTimeSportsmenPgContent.title;
     },
     titleImg1Line() {
-      return this.node.titleImg1Line;
+      return this.oldTimeSportsmenPgContent.titleImg1Line;
     },
     titleImg2Lines() {
-      return this.node.titleImg2Lines;
+      return this.oldTimeSportsmenPgContent.titleImg2Lines;
     },
     headerBgImg() {
-      return this.node.headerBgImg;
+      return this.oldTimeSportsmenPgContent.headerBgImg;
     },
     headerBgImgOpacity() {
-      return this.node.hasOwnProperty('backgroundImgOpacity')
-        ? this.node.backgroundImgOpacity
+      return this.oldTimeSportsmenPgContent.hasOwnProperty(
+        'backgroundImgOpacity'
+      )
+        ? this.oldTimeSportsmenPgContent.backgroundImgOpacity
         : 0.5;
     },
     headerLeftImg() {
-      return this.node.headerLeftImg;
+      return this.oldTimeSportsmenPgContent.headerLeftImg;
     },
     headerRightImg() {
-      return this.node.headerRightImg;
+      return this.oldTimeSportsmenPgContent.headerRightImg;
     },
     sportsmenSiteHoverImg() {
-      return this.node.sportsmenSiteHoverImg;
+      return this.oldTimeSportsmenPgContent.sportsmenSiteHoverImg;
     },
     sportsmenGalleryHoverImg() {
-      return this.node.sportsmenBookHoverImg;
+      return this.oldTimeSportsmenPgContent.sportsmenBookHoverImg;
     },
     sportsmenGalleryLink() {
-      return this.node.sportsmenSiteLink;
+      return this.oldTimeSportsmenPgContent.sportsmenSiteLink;
     },
     footerImg() {
-      return this.node.footerImg;
+      return this.oldTimeSportsmenPgContent.footerImg;
     },
     headerStyles() {
       return {
@@ -541,13 +470,13 @@ export default {
       }
     },
     images() {
-      return this.node.images;
+      return this.oldTimeSportsmenPgContent.images;
     },
     people_images() {
-      return this.node.people;
+      return this.oldTimeSportsmenPgContent.people;
     },
     collections() {
-      return this.$static.Collections.edges[0].node.collections;
+      return this.collectionsContent.collections;
     },
     collection_names() {
       return this.collections.map((x) => x.title);
@@ -572,10 +501,10 @@ export default {
       return collection;
     },
     postcardHistory() {
-      return this.node.postcardHistory;
+      return this.oldTimeSportsmenPgContent.postcardHistory;
     },
     about() {
-      return this.node.about;
+      return this.oldTimeSportsmenPgContent.about;
     },
   },
 
@@ -591,7 +520,17 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
+    const oldTimeSportsmenPgContent = await queryContent(
+      'old-time-sportsmen'
+    ).findOne();
+    this.oldTimeSportsmenPgContent = oldTimeSportsmenPgContent;
+
+    const collectionsContent = await queryContent(
+      'collections-index'
+    ).findOne();
+    this.collectionsContent = collectionsContent;
+
     this.windowWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
