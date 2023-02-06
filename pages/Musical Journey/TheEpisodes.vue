@@ -1,11 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.TheEpisodes.edges[0].node.bgAudio"
-    :audioDuration="$page.TheEpisodes.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="$page.TheEpisodes.edges[0].node.bgAudioFadeInDuration"
-    :audioFadeOutDuration="
-      $page.TheEpisodes.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="theEpisodesPgContent.bgAudio"
+    :audioDuration="theEpisodesPgContent.bgAudioDuration"
+    :audioFadeInDuration="theEpisodesPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="theEpisodesPgContent.bgAudioFadeOutDuration"
   />
 
   <header
@@ -182,76 +184,45 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  TheEpisodes: allTheEpisodes {
-    edges {
-      node {
-        id
-        pageTitle
-        headerBgImg
-        titleImg
-        content
-        mainImg
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        videos {
-          title
-          shortTitle
-          subText
-          url
-          thumbnailImg
-          orderNo
-          duration
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import VideoLightBox from '../../components/VideoLightBox.vue';
-import BackToTop from '../../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.TheEpisodes.edges[0].node.pageTitle,
-    };
-  },
-
   data() {
     return {
+      theEpisodesPgContent: {},
       videoIndex: null,
       videoIndexHover: null,
     };
   },
 
   computed: {
+    pageTitle() {
+      return this.theEpisodesPgContent.pageTitle;
+    },
     headerBgImg() {
-      return this.$page.TheEpisodes.edges[0].node.headerBgImg;
+      return this.theEpisodesPgContent.headerBgImg;
     },
     titleImg() {
-      return this.$page.TheEpisodes.edges[0].node.titleImg;
+      return this.theEpisodesPgContent.titleImg;
     },
     mainImg() {
-      return this.$page.TheEpisodes.edges[0].node.mainImg;
+      return this.theEpisodesPgContent.mainImg;
     },
     mainText() {
-      return this.$page.TheEpisodes.edges[0].node.content;
+      return this.theEpisodesPgContent.content;
     },
     videos() {
-      return this.$page.TheEpisodes.edges[0].node.videos;
+      return this.theEpisodesPgContent.videos;
     },
     headerStyle() {
       return {
         '--headerBgImg': 'url(' + this.headerBgImg + ')',
       };
     },
+  },
+
+  async mounted() {
+    const theEpisodesPgContent = await queryContent('the-episodes').findOne();
+    this.theEpisodesPgContent = theEpisodesPgContent;
   },
 
   methods: {
@@ -278,14 +249,6 @@ export default {
         };
       }
     },
-  },
-
-  mounted() {},
-
-  components: {
-    BackgroundMusic,
-    VideoLightBox,
-    BackToTop,
   },
 };
 </script>
