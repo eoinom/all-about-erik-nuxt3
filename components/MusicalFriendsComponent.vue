@@ -1414,50 +1414,13 @@
   </div>
 </template>
 
-<static-query>
-{
-  MusicalFriends: allMusicalFriends {
-    edges {
-      node {
-        id
-        pageTitle
-        backgroundImg
-        titleImg
-        content
-        friends {
-          name
-          text
-          link
-          orderNo
-          thumbnailImg
-          imgOrientation
-          imgPosition
-        }
-      }
-    }
-  }
-}
-</static-query>
-
 <script scoped>
-import FriendCard from './FriendCard.vue';
-import ScrollDownArrow from './ScrollDownArrow.vue';
-import BackToTop from './BackToTop.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$static.MusicalFriends.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    FriendCard,
-    ScrollDownArrow,
-    BackToTop,
-  },
-
   props: {
+    musicalFriendsPgContent: {
+      type: Object,
+      required: true,
+    },
     menuOnly: {
       type: Boolean,
       default: false,
@@ -1477,16 +1440,16 @@ export default {
 
   computed: {
     backgroundImgUrl() {
-      return this.$static.MusicalFriends.edges[0].node.backgroundImg;
+      return this.musicalFriendsPgContent.backgroundImg;
     },
     titleImg() {
-      return this.$static.MusicalFriends.edges[0].node.titleImg;
+      return this.musicalFriendsPgContent.titleImg;
     },
     titleSubText() {
-      return this.$static.MusicalFriends.edges[0].node.content;
+      return this.musicalFriendsPgContent.content;
     },
     friends() {
-      return this.$static.MusicalFriends.edges[0].node.friends;
+      return this.musicalFriendsPgContent.friends;
     },
     friendsOpacity() {
       let css = {};

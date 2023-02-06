@@ -11,7 +11,10 @@
     :maxVolume="0.9"
   />
 
-  <MusicalFriendsComponent :menuOnly="false" />
+  <MusicalFriendsComponent
+    :musicalFriendsPgContent="musicalFriendsPgContent"
+    :menuOnly="false"
+  />
 </template>
 
 <script scoped>
@@ -20,6 +23,12 @@ export default {
     return {
       musicalFriendsPgContent: {},
     };
+  },
+
+  computed: {
+    pageTitle() {
+      return this.musicalFriendsPgContent.pageTitle;
+    },
   },
 
   async mounted() {
