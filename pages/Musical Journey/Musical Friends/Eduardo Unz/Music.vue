@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <v-container class="main-col pt-5">
     <div style="text-align: center">
       <h1 class="heading">{{ title }}</h1>
@@ -64,57 +68,37 @@
   </v-container>
 </template>
 
-<page-query>
-{
-  EduardoUnzMusic: allEduardoUnzMusic {
-    edges {
-      node {
-        id
-        pageTitle
-        titleText
-        tracks {
-          title
-          url
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import AudioPlayer from '../../../../components/AudioPlayer';
-import { EventBus } from '../../../../event-bus';
+import { EventBus } from '../../../../composables/event-bus';
 
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.EduardoUnzMusic.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    AudioPlayer,
-  },
-
   data: () => ({
+    eduardoUnzMusicPgContent: {},
     playingAll: false,
     playingIndex: null,
   }),
 
   computed: {
+    pageTitle() {
+      return this.eduardoUnzMusicPgContent.pageTitle;
+    },
     title() {
-      return this.$page.EduardoUnzMusic.edges[0].node.titleText;
+      return this.eduardoUnzMusicPgContent.titleText;
     },
     tracks() {
-      return this.$page.EduardoUnzMusic.edges[0].node.tracks;
+      return this.eduardoUnzMusicPgContent.tracks;
     },
     playBtnText() {
       return this.playingAll ? 'Stop' : 'Play All';
     },
   },
 
-  mounted() {
+  async mounted() {
+    const eduardoUnzMusicPgContent = await queryContent(
+      'nadia-music'
+    ).findOne();
+    this.eduardoUnzMusicPgContent = eduardoUnzMusicPgContent;
+
     EventBus.$on('audioEnded', this.eventBusListener);
   },
 
@@ -288,9 +272,5 @@ hr.style-two {
   .nav_link {
     font-size: 1.75rem;
   }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 </style>

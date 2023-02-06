@@ -1,44 +1,32 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.MusicalFriends.edges[0].node.bgAudio"
-    :audioDuration="$page.MusicalFriends.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="
-      $page.MusicalFriends.edges[0].node.bgAudioFadeInDuration
-    "
-    :audioFadeOutDuration="
-      $page.MusicalFriends.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="musicalFriendsPgContent.bgAudio"
+    :audioDuration="musicalFriendsPgContent.bgAudioDuration"
+    :audioFadeInDuration="musicalFriendsPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="musicalFriendsPgContent.bgAudioFadeOutDuration"
     :maxVolume="0.9"
   />
 
   <MusicalFriendsComponent :menuOnly="false" />
 </template>
 
-<page-query>
-{
-  MusicalFriends: allMusicalFriends {
-    edges {
-      node {
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-      }
-    }
-  }
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../../components/BackgroundMusic.vue';
-import MusicalFriendsComponent from '../../../components/MusicalFriendsComponent.vue';
-
 export default {
-  components: {
-    BackgroundMusic,
-    MusicalFriendsComponent,
+  data() {
+    return {
+      musicalFriendsPgContent: {},
+    };
+  },
+
+  async mounted() {
+    const musicalFriendsPgContent = await queryContent(
+      'musical-friends'
+    ).findOne();
+    this.musicalFriendsPgContent = musicalFriendsPgContent;
   },
 };
 </script>
-
-<style scoped></style>

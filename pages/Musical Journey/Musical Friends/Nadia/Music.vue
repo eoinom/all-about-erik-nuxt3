@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <v-container class="main-col pt-5">
     <div style="text-align: center">
       <h1 class="heading">{{ title }}</h1>
@@ -100,59 +104,35 @@
   </v-container>
 </template>
 
-<page-query>
-{
-  NadiaMusic: allNadiaMusic {
-    edges {
-      node {
-        id
-        pageTitle
-        titleText
-        tracks {
-          title
-          caption
-          url
-          image
-        }
-      }
-    }
-  }	
-}
-</page-query>
-
 <script scoped>
-import AudioPlayer from '../../../../components/AudioPlayer';
-import { EventBus } from '../../../../event-bus';
+import { EventBus } from '../../../../composables/event-bus';
 
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.NadiaMusic.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    AudioPlayer,
-  },
-
   data: () => ({
+    nadiaMusicPgContent: {},
     playingAll: false,
     playingIndex: null,
   }),
 
   computed: {
+    pageTitle() {
+      return this.nadiaMusicPgContent.pageTitle;
+    },
     title() {
-      return this.$page.NadiaMusic.edges[0].node.titleText;
+      return this.nadiaMusicPgContent.titleText;
     },
     tracks() {
-      return this.$page.NadiaMusic.edges[0].node.tracks;
+      return this.nadiaMusicPgContent.tracks;
     },
     playBtnText() {
       return this.playingAll ? 'Stop' : 'Play All';
     },
   },
 
-  mounted() {
+  async mounted() {
+    const nadiaMusicPgContent = await queryContent('nadia-music').findOne();
+    this.nadiaMusicPgContent = nadiaMusicPgContent;
+
     EventBus.$on('audioEnded', this.eventBusListener);
   },
 
@@ -359,9 +339,5 @@ hr.style-two {
   .nav_link {
     font-size: 2.25rem;
   }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 </style>
