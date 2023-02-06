@@ -245,8 +245,6 @@
 </template>
 
 <script>
-import ImageMagnifier from './ImageMagnifier.vue';
-
 const keyMap = {
   LEFT: 37,
   RIGHT: 39,
@@ -456,10 +454,6 @@ export default {
         500
       );
     },
-  },
-
-  components: {
-    ImageMagnifier,
   },
 };
 </script>

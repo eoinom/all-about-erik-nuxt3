@@ -67,6 +67,16 @@ export default {
     },
   },
 
+  mounted() {
+    this.windowWidth = window.innerWidth;
+
+    this.$nextTick(() => {
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
+      });
+    });
+  },
+
   methods: {
     durationInMinsText(secs) {
       let mins = Math.floor(secs / 60);
@@ -83,18 +93,6 @@ export default {
       }
     },
   },
-
-  mounted() {
-    this.windowWidth = window.innerWidth;
-
-    this.$nextTick(() => {
-      window.addEventListener('resize', () => {
-        this.windowWidth = window.innerWidth;
-      });
-    });
-  },
-
-  components: {},
 };
 </script>
 

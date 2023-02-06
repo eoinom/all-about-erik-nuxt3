@@ -11,9 +11,7 @@
         class="image-lightbox__modal"
         :style="`background: ${background}`"
       >
-        <div
-          :class="['image-lightbox__spinner', !isImageLoaded || 'hide']"
-        >
+        <div :class="['image-lightbox__spinner', !isImageLoaded || 'hide']">
           <div
             class="image-lightbox__dot"
             :style="`border-color: ${interfaceColor}`"
@@ -32,17 +30,21 @@
             <li
               v-for="(image, imageIndex) in formattedImages"
               :key="imageIndex"
-              :style="`transform: translate3d(${currentIndex * -100}%, 0px, 0px);`"
+              :style="`transform: translate3d(${
+                currentIndex * -100
+              }%, 0px, 0px);`"
               class="image-lightbox__image-container"
             >
-              <div class="image-lightbox__image" :style="imageContainerCss">
-
+              <div
+                class="image-lightbox__image"
+                :style="imageContainerCss"
+              >
                 <img
                   :ref="`lg-img-${imageIndex}`"
                   :id="'img' + imageIndex"
                   :src="shouldPreload(imageIndex) ? image.img : false"
                   @load="imageLoaded($event, imageIndex)"
-                >
+                />
 
                 <div
                   v-show="(image.caption || image.title) && isImageLoaded"
@@ -53,62 +55,71 @@
                 </div>
 
                 <div
-                  v-show="(image.HTMLcaption) && isImageLoaded"
+                  v-show="image.HTMLcaption && isImageLoaded"
                   class="image-lightbox__HTMLtext"
                   :style="htmlCaptionCss"
                   v-html="image.HTMLcaption"
                 />
-
               </div>
             </li>
           </ul>
         </div>
 
-        <div id="leftArrowContainer" v-if="currentIndex > 0" @click="prev()">
+        <div
+          id="leftArrowContainer"
+          v-if="currentIndex > 0"
+          @click="prev()"
+        >
           <img
-            alt="Left arrow, click for previous image" 
-            src="../assets/images/arrow-left.png" 
+            alt="Left arrow, click for previous image"
+            src="../assets/images/arrow-left.png"
             id="prevImageImg"
-            class="image-lightbox__prev arrowImg" 
+            class="image-lightbox__prev arrowImg"
           />
           <img
-            alt="Left arrow, click for previous image" 
-            src="../assets/images/arrow-left-hover.png" 
+            alt="Left arrow, click for previous image"
+            src="../assets/images/arrow-left-hover.png"
             id="prevImageImg-hover"
-            class="image-lightbox__prev arrowImg" 
+            class="image-lightbox__prev arrowImg"
           />
         </div>
 
-        <div id="rightArrowContainer" v-if="currentIndex + 1 < images.length" @click="next()">
+        <div
+          id="rightArrowContainer"
+          v-if="currentIndex + 1 < images.length"
+          @click="next()"
+        >
           <img
-            alt="Right arrow, click for next image" 
-            src="../assets/images/arrow-right.png" 
+            alt="Right arrow, click for next image"
+            src="../assets/images/arrow-right.png"
             id="nextImageImg"
             class="image-lightbox__next arrowImg"
           />
           <img
-            alt="Right arrow, click for next image" 
-            src="../assets/images/arrow-right-hover.png" 
+            alt="Right arrow, click for next image"
+            src="../assets/images/arrow-right-hover.png"
             id="nextImageImg-hover"
-            class="image-lightbox__next arrowImg" 
+            class="image-lightbox__next arrowImg"
           />
         </div>
 
-        <div id="closeImgContainer" @click="close()">
+        <div
+          id="closeImgContainer"
+          @click="close()"
+        >
           <img
-            alt="Close icon, click to close lightbox" 
-            src="../assets/images/lightbox-close.png" 
+            alt="Close icon, click to close lightbox"
+            src="../assets/images/lightbox-close.png"
             id="closeImg"
-            class="image-lightbox__close" 
+            class="image-lightbox__close"
           />
           <img
-            alt="Close icon, click to close lightbox" 
-            src="../assets/images/lightbox-close-hover.png" 
+            alt="Close icon, click to close lightbox"
+            src="../assets/images/lightbox-close-hover.png"
             id="closeImg-hover"
-            class="image-lightbox__close" 
+            class="image-lightbox__close"
           />
         </div>
-
       </div>
     </div>
   </transition>
@@ -120,6 +131,7 @@ const keyMap = {
   RIGHT: 39,
   ESC: 27,
 };
+
 export default {
   props: {
     images: {
@@ -145,8 +157,9 @@ export default {
     centreTitle: {
       type: Boolean,
       default: true,
-    }
+    },
   },
+
   data() {
     return {
       currentIndex: this.index,
@@ -161,69 +174,72 @@ export default {
       },
       windowWidth: 0,
       windowHeight: 0,
-      imageWidth: 0
+      imageWidth: 0,
     };
   },
+
   computed: {
     formattedImages() {
-      return this.images.map(image => (typeof image === 'string'
-        ? { url: image } : image
-      ));
+      return this.images.map((image) =>
+        typeof image === 'string' ? { url: image } : image
+      );
     },
     containerFactor() {
-      return this.formattedImages[this.currentIndex].hasOwnProperty('HTMLcaption') ? 0.6 : 0.8
+      return this.formattedImages[this.currentIndex].hasOwnProperty(
+        'HTMLcaption'
+      )
+        ? 0.6
+        : 0.8;
     },
     imageContainerCss() {
-      let css = {}
-      css.width = (this.containerFactor * this.windowWidth) + 'px'
-      css.height = (this.containerFactor * this.windowHeight) + 'px'
-      return css
+      let css = {};
+      css.width = this.containerFactor * this.windowWidth + 'px';
+      css.height = this.containerFactor * this.windowHeight + 'px';
+      return css;
     },
     imageTitleCss() {
-      let css = {}
+      let css = {};
       if (this.centreTitle) {
-        css.textAlign = 'center'
-        css.marginTop = '20px'
-      }
-      else { 
-        let containerWidth = this.containerFactor * this.windowWidth
-        let containerHeight = this.containerFactor * this.windowHeight      
-        const containerAspectRatio = containerWidth / containerHeight
-        const imageAspectRatio = 1502.22 / 845.0
-        const heightGoverns = containerAspectRatio >= imageAspectRatio
+        css.textAlign = 'center';
+        css.marginTop = '20px';
+      } else {
+        let containerWidth = this.containerFactor * this.windowWidth;
+        let containerHeight = this.containerFactor * this.windowHeight;
+        const containerAspectRatio = containerWidth / containerHeight;
+        const imageAspectRatio = 1502.22 / 845.0;
+        const heightGoverns = containerAspectRatio >= imageAspectRatio;
         if (heightGoverns) {
-          var actualImgHeight = containerHeight
-          var actualImgWidth = actualImgHeight * imageAspectRatio
+          var actualImgHeight = containerHeight;
+          var actualImgWidth = actualImgHeight * imageAspectRatio;
+        } else {
+          var actualImgWidth = containerWidth;
+          var actualImgHeight = actualImgWidth / imageAspectRatio;
         }
-        else {
-          var actualImgWidth = containerWidth
-          var actualImgHeight = actualImgWidth / imageAspectRatio
-        }
-        css.position = 'absolute'
-        css.padding = 0
-        css.bottom = ((containerHeight - actualImgHeight) / 2 - 40) + 'px'
-        css.left = ((containerWidth - actualImgWidth) / 2) + 'px'
+        css.position = 'absolute';
+        css.padding = 0;
+        css.bottom = (containerHeight - actualImgHeight) / 2 - 40 + 'px';
+        css.left = (containerWidth - actualImgWidth) / 2 + 'px';
       }
-      return css
+      return css;
     },
     htmlCaptionCss() {
-      let css = {}
+      let css = {};
       if (this.centreTitle) {
-        css.textAlign = 'center'
-        css.marginTop = '20px'
-      }
-      else {
+        css.textAlign = 'center';
+        css.marginTop = '20px';
+      } else {
         if (this.isImageLoaded) {
-          this.updateImageWidth()
-          css.width = this.imageWidth + 'px'
+          this.updateImageWidth();
+          css.width = this.imageWidth + 'px';
         }
-        css.textAlign = 'left'
-        css.margin = '40px auto 0 auto'
-        css.maxWidth = '600px'
+        css.textAlign = 'left';
+        css.margin = '40px auto 0 auto';
+        css.maxWidth = '600px';
       }
-      return css
-    }
+      return css;
+    },
   },
+
   watch: {
     index(val) {
       if (!document) return;
@@ -238,22 +254,24 @@ export default {
       this.setImageLoaded(val);
     },
   },
+
   mounted() {
-    this.windowWidth = window.innerWidth
-    this.windowHeight = window.innerHeight
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
 
     this.$nextTick(() => {
-      window.addEventListener('resize', () => {        
-        this.windowWidth = window.innerWidth
-        this.windowHeight = window.innerHeight 
-        this.updateImageWidth()
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
+        this.updateImageWidth();
       });
-    })
+    });
 
     if (!document) return;
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
+
   beforeDestroy() {
     if (!document) return;
     if (this.disableScroll) {
@@ -261,6 +279,7 @@ export default {
     }
     this.unbindEvents();
   },
+
   methods: {
     close() {
       this.$emit('close');
@@ -272,7 +291,7 @@ export default {
     },
     next() {
       if (this.currentIndex === this.images.length - 1) return;
-      this.currentIndex += 1
+      this.currentIndex += 1;
       this.$emit('slide', { index: this.currentIndex });
     },
     imageLoaded($event, imageIndex) {
@@ -281,7 +300,7 @@ export default {
       if (imageIndex === this.currentIndex) {
         this.setImageLoaded(imageIndex);
       }
-      this.updateImageWidth()
+      this.updateImageWidth();
     },
     getImageElByIndex(index) {
       const elements = this.$refs[`lg-img-${index}`] || [];
@@ -294,10 +313,12 @@ export default {
     shouldPreload(index) {
       const el = this.getImageElByIndex(index) || {};
       const { src } = el;
-      return !!src
-       || index === this.currentIndex
-       || index === this.currentIndex - 1
-       || index === this.currentIndex + 1;
+      return (
+        !!src ||
+        index === this.currentIndex ||
+        index === this.currentIndex - 1 ||
+        index === this.currentIndex + 1
+      );
     },
     bindEvents() {
       document.addEventListener('keydown', this.keyDownHandler, false);
@@ -356,24 +377,27 @@ export default {
     // },
     updateImageWidth() {
       if (this.isImageLoaded) {
-        let el = document.getElementById('img' + this.currentIndex)
-        this.imageWidth = el.width
+        let el = document.getElementById('img' + this.currentIndex);
+        this.imageWidth = el.width;
       }
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
   src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg') format('svg'); /* Legacy iOS */
+  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */
+      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -412,7 +436,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;
+    transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
   &__image {
     & {
@@ -430,9 +454,9 @@ export default {
         width: auto;
         object-fit: contain;
         opacity: 0;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
       }
-      &.loaded{
+      &.loaded {
         opacity: 1;
       }
     }
@@ -444,7 +468,7 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
 
-    color: #FFFFFF;    
+    color: #ffffff;
     font-family: 'NeueHaasGroteskText Pro55', sans-serif;
     font-feature-settings: 'liga';
     font-size: 1.3125rem; /* 21px with 16px default size */
@@ -463,7 +487,7 @@ export default {
     // margin: 0 auto;
     box-sizing: border-box;
 
-    color: #FFFFFF;    
+    color: #ffffff;
     font-family: 'Crimson Text', serif;
     font-feature-settings: 'liga';
     font-size: 1.125rem; /* 18px with 16px default size */
@@ -475,7 +499,7 @@ export default {
     line-height: 1.375rem; /* 22px with 16px default size */
     white-space: normal;
   }
-  
+
   &__next,
   &__prev,
   &__close {
@@ -545,13 +569,15 @@ export default {
   }
 }
 // transition fade on opening / closing of lightbox
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   position: fixed;
   z-index: 1000;
   // transition: opacity 0.2s;
   transition: opacity 0.5s ease;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   position: fixed;
   opacity: 0;
   z-index: 1000;
@@ -567,12 +593,12 @@ export default {
 }
 
 .arrowImg {
-  width: 7.0%;
+  width: 7%;
   max-width: 26px;
   min-width: 15px;
   padding: 0;
 }
-#prevImageImg-hover, 
+#prevImageImg-hover,
 #leftArrowContainer:hover #prevImageImg {
   display: none;
 }
@@ -580,7 +606,7 @@ export default {
   display: inline;
 }
 
-#nextImageImg-hover, 
+#nextImageImg-hover,
 #rightArrowContainer:hover #nextImageImg {
   display: none;
 }
@@ -588,8 +614,9 @@ export default {
   display: inline;
 }
 
-#closeImg, #closeImg-hover {
-  width: 7.0%;
+#closeImg,
+#closeImg-hover {
+  width: 7%;
   max-width: 38px;
   min-width: 15px;
   padding: 0;
@@ -608,7 +635,7 @@ export default {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
-  .image-lightbox{
+  .image-lightbox {
     &__text {
       font-size: 0.8125rem; /* 13px with 16px default size */
     }
@@ -627,15 +654,15 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .image-lightbox{
+  .image-lightbox {
     &__text {
       font-size: 0.9375rem; /* 15px with 16px default size */
     }
     &__next {
-      right: 3.0%;
+      right: 3%;
     }
     &__prev {
-      left: 3.0%;
+      left: 3%;
     }
     &__close {
       top: 20px;
@@ -645,8 +672,8 @@ export default {
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) { 
-  .image-lightbox{
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .image-lightbox {
     &__text {
       font-size: 1.0625rem; /* 17px with 16px default size */
     }
@@ -664,8 +691,8 @@ export default {
 }
 
 /* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {  
-  .image-lightbox{
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .image-lightbox {
     &__text {
       font-size: 1.1875rem; /* 19px with 16px default size */
     }

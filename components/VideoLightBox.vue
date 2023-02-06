@@ -141,6 +141,7 @@ const keyMap = {
   RIGHT: 39,
   ESC: 27,
 };
+
 export default {
   props: {
     videos: {

@@ -11,9 +11,7 @@
         class="light-gallery__modal"
         :style="`background: ${background}`"
       >
-        <div
-          :class="['light-gallery__spinner', !isImageLoaded || 'hide']"
-        >
+        <div :class="['light-gallery__spinner', !isImageLoaded || 'hide']">
           <div
             class="light-gallery__dot"
             :style="`border-color: ${interfaceColor}`"
@@ -32,7 +30,9 @@
             <li
               v-for="(image, imageIndex) in formattedImages"
               :key="imageIndex"
-              :style="`transform: translate3d(${currentIndex * -100}%, 0px, 0px);`"
+              :style="`transform: translate3d(${
+                currentIndex * -100
+              }%, 0px, 0px);`"
               class="light-gallery__image-container"
             >
               <div class="light-gallery__image">
@@ -47,7 +47,7 @@
                   :ref="`lg-img-${imageIndex}`"
                   :src="shouldPreload(imageIndex) ? image.url : false"
                   @load="imageLoaded($event, imageIndex)"
-                >
+                />
               </div>
             </li>
           </ul>
@@ -133,6 +133,7 @@ const keyMap = {
   RIGHT: 39,
   ESC: 27,
 };
+
 export default {
   props: {
     images: {
@@ -156,6 +157,7 @@ export default {
       default: 'rgba(255, 255, 255, 0.8)',
     },
   },
+
   data() {
     return {
       currentIndex: this.index,
@@ -170,13 +172,15 @@ export default {
       },
     };
   },
+
   computed: {
     formattedImages() {
-      return this.images.map(image => (typeof image === 'string'
-        ? { url: image } : image
-      ));
+      return this.images.map((image) =>
+        typeof image === 'string' ? { url: image } : image
+      );
     },
   },
+
   watch: {
     index(val) {
       if (!document) return;
@@ -191,11 +195,13 @@ export default {
       this.setImageLoaded(val);
     },
   },
+
   mounted() {
     if (!document) return;
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
+
   beforeDestroy() {
     if (!document) return;
     if (this.disableScroll) {
@@ -203,6 +209,7 @@ export default {
     }
     this.unbindEvents();
   },
+
   methods: {
     close() {
       this.$emit('close');
@@ -235,10 +242,12 @@ export default {
     shouldPreload(index) {
       const el = this.getImageElByIndex(index) || {};
       const { src } = el;
-      return !!src
-       || index === this.currentIndex
-       || index === this.currentIndex - 1
-       || index === this.currentIndex + 1;
+      return (
+        !!src ||
+        index === this.currentIndex ||
+        index === this.currentIndex - 1 ||
+        index === this.currentIndex + 1
+      );
     },
     bindEvents() {
       document.addEventListener('keydown', this.keyDownHandler, false);
@@ -327,7 +336,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;
+    transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
   &__image {
     & {
@@ -343,9 +352,9 @@ export default {
         max-width: 100%;
         max-height: 100vh;
         opacity: 0;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
       }
-      &.loaded{
+      &.loaded {
         opacity: 1;
       }
     }
@@ -429,12 +438,14 @@ export default {
     }
   }
 }
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   position: fixed;
   z-index: 1000;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   position: fixed;
   opacity: 0;
   z-index: 1000;

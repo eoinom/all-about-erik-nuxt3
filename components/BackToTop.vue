@@ -60,9 +60,9 @@ export default {
   },
 
   mounted() {
-    var myScrollFunc = function () {
+    const myScrollFunc = function () {
       this.scrollPosY = window.scrollY;
-      var btnElement = document.getElementById('scrollToTopBtn');
+      let btnElement = document.getElementById('scrollToTopBtn');
       if (btnElement !== null) {
         if (this.scrollPosY >= 800) {
           btnElement.className = 'show';
@@ -178,13 +178,5 @@ export default {
     width: 17.5px;
     height: 17.5px;
   }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 </style>

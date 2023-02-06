@@ -1,8 +1,10 @@
 <template>
-  <div class="SlideshowKenBurns" :style="{'backgroundColor':this.backgroundColor}">
-    
+  <div
+    class="SlideshowKenBurns"
+    :style="{ backgroundColor: this.backgroundColor }"
+  >
     <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
-    <transition-group     
+    <transition-group
       tag="div"
       enter-active-class="SlideshowKenBurns__enterActive"
       enter-class="SlideshowKenBurns__enter"
@@ -19,12 +21,10 @@
         class="SlideshowKenBurns__image"
         :style="imgStyle(index)"
         alt=""
-      >
+      />
     </transition-group>
-
   </div>
 </template>
-
 
 <script>
 export default {
@@ -33,31 +33,31 @@ export default {
   props: {
     slides: {
       default: () => [],
-      type: Array
+      type: Array,
     },
     height: {
       default: '40vh',
-      type: String
+      type: String,
     },
     maxImgWidth: {
       default: 'initial',
-      type: String
+      type: String,
     },
     maxImgHeight: {
       default: 'initial',
-      type: String
+      type: String,
     },
     centerVertically: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     scaleImgToContainer: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     backgroundColor: {
       default: 'black',
-      type: String
+      type: String,
     },
   },
 
@@ -65,71 +65,97 @@ export default {
     return {
       activeIndex: 0,
       time: 0,
-      translateFactor: 1.5
+      translateFactor: 1.5,
     };
   },
 
   computed: {
-    images() {    
-      return this.slides.map(a => a.img)
+    images() {
+      return this.slides.map((a) => a.img);
     },
     slideshowStyles() {
       return {
-        '--height': this.height
-      }
-    }
+        '--height': this.height,
+      };
+    },
+  },
+
+  beforeMount() {
+    this.createKeyFrames();
+    this.goToIndex(0);
+    this.startInterval();
   },
 
   methods: {
     goToIndex(index) {
-      this.activeIndex = index
-      this.time = this.interval(index)      
+      this.activeIndex = index;
+      this.time = this.interval(index);
     },
 
     imgStyle(index) {
-      let css = {}
-      css.animationName = 'kenburns-'+ (index+1)
-      css.transformOrigin = this.panStart(index)
-      css['--imgOpacity'] = this.slides[index].opacity ? this.slides[index].opacity / 100 : 0.62
-      css.maxWidth = this.maxImgWidth
-      css.maxHeight = this.maxImgHeight
+      let css = {};
+      css.animationName = 'kenburns-' + (index + 1);
+      css.transformOrigin = this.panStart(index);
+      css['--imgOpacity'] = this.slides[index].opacity
+        ? this.slides[index].opacity / 100
+        : 0.62;
+      css.maxWidth = this.maxImgWidth;
+      css.maxHeight = this.maxImgHeight;
       if (this.centerVertically) {
-        css.top = '50%'
+        css.top = '50%';
       }
       if (this.scaleImgToContainer) {
-        css.minWidth = '100%'
-        css.minHeight = '100%'
+        css.minWidth = '100%';
+        css.minHeight = '100%';
       }
-      return css
+      return css;
     },
 
     panStart(index) {
       if (this.slides[index].hasOwnProperty('panStart')) {
-        switch(this.slides[index].panStart.toLowerCase()) {
-          case 'bottom-left':   return 'bottom left';
-          case 'bottom':        return 'bottom';
-          case 'bottom-right':  return 'bottom right';
-          case 'left':          return 'left';
-          case 'centre':        return 'center';
-          case 'right':         return 'right';
-          case 'top-left':      return 'top left';
-          case 'top':           return 'top';
-          case 'top-right':     return 'top right';
+        switch (this.slides[index].panStart.toLowerCase()) {
+          case 'bottom-left':
+            return 'bottom left';
+          case 'bottom':
+            return 'bottom';
+          case 'bottom-right':
+            return 'bottom right';
+          case 'left':
+            return 'left';
+          case 'centre':
+            return 'center';
+          case 'right':
+            return 'right';
+          case 'top-left':
+            return 'top left';
+          case 'top':
+            return 'top';
+          case 'top-right':
+            return 'top right';
           default:
-            console.log('Did not recognise value for slides[' + index + '].panStart: ' + this.slides[index].panStart)
-            console.log('this.slides[' + index + ']: ')
-            console.log(this.slides[index])
-        } 
-        return 'center'
+            console.log(
+              'Did not recognise value for slides[' +
+                index +
+                '].panStart: ' +
+                this.slides[index].panStart
+            );
+            console.log('this.slides[' + index + ']: ');
+            console.log(this.slides[index]);
+        }
+        return 'center';
       }
     },
 
     scaleFrom(index) {
-      return this.slides[index].hasOwnProperty('scaleFrom') ? this.slides[index].scaleFrom : 0.8
+      return this.slides[index].hasOwnProperty('scaleFrom')
+        ? this.slides[index].scaleFrom
+        : 0.8;
     },
 
     scaleTo(index) {
-      return this.slides[index].hasOwnProperty('scaleTo') ? this.slides[index].scaleTo : 1.0
+      return this.slides[index].hasOwnProperty('scaleTo')
+        ? this.slides[index].scaleTo
+        : 1.0;
     },
 
     startInterval() {
@@ -140,7 +166,7 @@ export default {
           this.next();
         }
       }, precision);
-      
+
       // Clear the interval if the component is destroyed to prevent memory leaks
       this.$once('hook:destroyed', () => clearInterval(clock));
     },
@@ -149,66 +175,97 @@ export default {
       return 5000;
     },
 
-    next() {  
+    next() {
       let nextIndex = this.activeIndex + 1;
       // Go to the first image if the active image ist the last one
       if (!this.images[nextIndex]) {
-        nextIndex = 0
+        nextIndex = 0;
       }
       this.goToIndex(nextIndex);
     },
 
     createKeyFrames() {
-      for (let i = 0; i < this.slides.length; i++) {        
-        let startPos = [0, 0, 0]  // x, y, z
-        switch(this.panStart(i)) {
-          case 'bottom left':   startPos = [-1, 1, 0];      break;
-          case 'bottom':        startPos = [0, 1, 0];       break;
-          case 'bottom right':  startPos = [1, 1, 0];       break;
-          case 'left':          startPos = [-1, 0, 0];      break;
-          case 'center':        startPos = [0, 0, 0];       break;
-          case 'right':         startPos = [1, 0, 0];       break;
-          case 'top left':      startPos = [-1, -1, 0];     break;
-          case 'top':           startPos = [0, -1, 0];      break;
-          case 'top right':     startPos = [1, -1, 0];      break;
+      for (let i = 0; i < this.slides.length; i++) {
+        let startPos = [0, 0, 0]; // x, y, z
+        switch (this.panStart(i)) {
+          case 'bottom left':
+            startPos = [-1, 1, 0];
+            break;
+          case 'bottom':
+            startPos = [0, 1, 0];
+            break;
+          case 'bottom right':
+            startPos = [1, 1, 0];
+            break;
+          case 'left':
+            startPos = [-1, 0, 0];
+            break;
+          case 'center':
+            startPos = [0, 0, 0];
+            break;
+          case 'right':
+            startPos = [1, 0, 0];
+            break;
+          case 'top left':
+            startPos = [-1, -1, 0];
+            break;
+          case 'top':
+            startPos = [0, -1, 0];
+            break;
+          case 'top right':
+            startPos = [1, -1, 0];
+            break;
           default:
-            console.log('Did not recognise value for slides.panStart: ' + this.panStart(i))
+            console.log(
+              'Did not recognise value for slides.panStart: ' + this.panStart(i)
+            );
         }
-        const num = i + 1
-        const scaleFrom = this.scaleFrom(i)
-        const scaleTo = this.scaleTo(i)
-        const Tx = this.translateFactor * startPos[0]
-        const Ty = this.centerVertically ? -50 + (this.translateFactor * startPos[1]) : this.translateFactor * startPos[1]
-        const translateTo = this.centerVertically ? '-50%' : '0'
-        var style = document.createElement('style');
+        const num = i + 1;
+        const scaleFrom = this.scaleFrom(i);
+        const scaleTo = this.scaleTo(i);
+        const Tx = this.translateFactor * startPos[0];
+        const Ty = this.centerVertically
+          ? -50 + this.translateFactor * startPos[1]
+          : this.translateFactor * startPos[1];
+        const translateTo = this.centerVertically ? '-50%' : '0';
+        let style = document.createElement('style');
         style.type = 'text/css';
-        var keyFrame = '\
-        @keyframes kenburns-' + num + ' {\
+        const keyFrame =
+          '\
+        @keyframes kenburns-' +
+          num +
+          ' {\
           0% {\
-            transform: scale3d('+ scaleFrom + ', '+ scaleFrom + ', 1) translate3d('+ Tx + '%, '+ Ty + '%, 0);\
+            transform: scale3d(' +
+          scaleFrom +
+          ', ' +
+          scaleFrom +
+          ', 1) translate3d(' +
+          Tx +
+          '%, ' +
+          Ty +
+          '%, 0);\
           }\
           100% {\
-            transform: scale3d('+ scaleTo + ', '+ scaleTo + ', 1) translate3d(0, ' + translateTo + ', 0);\
+            transform: scale3d(' +
+          scaleTo +
+          ', ' +
+          scaleTo +
+          ', 1) translate3d(0, ' +
+          translateTo +
+          ', 0);\
           }\
         }';
 
-        style.innerHTML = keyFrame
-        document.head.appendChild(style)
+        style.innerHTML = keyFrame;
+        document.head.appendChild(style);
       }
-    }
-  },
-
-  beforeMount() {
-    this.createKeyFrames()
-    this.goToIndex(0);
-    this.startInterval();
+    },
   },
 };
 </script>
 
-
 <style lang="scss" scoped>
-
 .SlideshowKenBurns {
   --translateFactor: 1.5%;
 
@@ -222,20 +279,21 @@ export default {
   &__image {
     position: absolute;
     width: auto;
-    height: auto;   
-    overflow: hidden;  
+    height: auto;
+    overflow: hidden;
     opacity: var(--imgOpacity);
     animation-duration: 8s;
-    animation-fill-mode: forwards;  // The element will retain the style values that is set by the last keyframe
+    animation-fill-mode: forwards; // The element will retain the style values that is set by the last keyframe
   }
 
-  &__enterActive, &__leaveActive {
+  &__enterActive,
+  &__leaveActive {
     transition: opacity 3s linear;
   }
 
-  &__enter, &__leaveTo {
+  &__enterFrom,
+  &__leaveTo {
     opacity: 0;
-  }  
+  }
 }
-
 </style>

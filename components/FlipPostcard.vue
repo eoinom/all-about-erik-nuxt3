@@ -1,5 +1,9 @@
 <template>
-  <div class="flip-card" :style="dimStyles" @click="lightBoxOpen()">
+  <div
+    class="flip-card"
+    :style="dimStyles"
+    @click="lightBoxOpen()"
+  >
     <img
       v-if="seeTheBack"
       src="../assets/images/see-the-back.png"
@@ -9,10 +13,18 @@
     />
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img :src="imgFront" :alt="caption" :style="dimStyles" />
+        <img
+          :src="imgFront"
+          :alt="caption"
+          :style="dimStyles"
+        />
       </div>
       <div class="flip-card-back">
-        <img :src="imgBack" :alt="caption" :style="dimStyles" />
+        <img
+          :src="imgBack"
+          :alt="caption"
+          :style="dimStyles"
+        />
       </div>
     </div>
     <p class="caption">{{ caption }}</p>
@@ -30,12 +42,9 @@
   </div>
 </template>
 
-
 <script scoped>
-import ImageLightBox from "./ImageLightBox.vue";
-
 export default {
-  name: "FlipPostcard",
+  name: 'FlipPostcard',
 
   props: {
     imgFront: {
@@ -79,9 +88,9 @@ export default {
   computed: {
     dimStyles() {
       return {
-        width: this.width + "px",
-        height: this.height + "px",
-        cursor: this.imgBackLarge ? "pointer" : "auto",
+        width: this.width + 'px',
+        height: this.height + 'px',
+        cursor: this.imgBackLarge ? 'pointer' : 'auto',
       };
     },
   },
@@ -106,21 +115,15 @@ export default {
       if (this.imgBackLarge) this.postcardIndex = 0;
     },
   },
-
-  components: {
-    ImageLightBox,
-  },
 };
 </script>
 
-
-
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap');
 
 .caption {
-  font-family: "Crimson Text", serif;
-  font-feature-settings: "liga";
+  font-family: 'Crimson Text', serif;
+  font-feature-settings: 'liga';
   font-style: italic;
   font-weight: 600;
   font-size: 1.125rem;

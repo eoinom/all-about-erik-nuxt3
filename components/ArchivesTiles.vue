@@ -26,14 +26,8 @@
 </template>
 
 <script scoped>
-import ArchivesThumbnail from './ArchivesThumbnail.vue';
-
 export default {
   name: 'ArchivesTiles',
-
-  components: {
-    ArchivesThumbnail,
-  },
 
   props: {
     tiles: {

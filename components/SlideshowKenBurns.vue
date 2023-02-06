@@ -192,8 +192,8 @@ export default {
         const scaleTo = this.scaleTo(i);
         const Tx = this.translateFactor * startPos[0];
         const Ty = this.translateFactor * startPos[1];
-        var style = document.createElement('style');
-        var keyFrame =
+        let style = document.createElement('style');
+        const keyFrame =
           '\
         @keyframes kenburns-' +
           num +

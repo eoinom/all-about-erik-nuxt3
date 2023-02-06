@@ -90,6 +90,48 @@ export default {
     },
   },
 
+  watch: {
+    audioFinished(val) {
+      if (val) {
+        // play audio again with fade in/out
+        this.playAndFadeAudio();
+      }
+    },
+    audioMuted(val) {
+      if (!val && this.audioPlaying) {
+        EventBus.$emit('backgroundMusicPlaying');
+      }
+    },
+    audioPlaying(val) {
+      if (val && !this.audioMuted) {
+        EventBus.$emit('backgroundMusicPlaying');
+      }
+    },
+  },
+
+  mounted() {
+    this.audio = this.$refs.audioEl;
+    if (this.playMusic) {
+      this.playAndFadeAudio();
+    }
+
+    EventBus.$on('audioPlaying', this.eventBusListener);
+    EventBus.$on('lightboxMediaLoaded', this.eventBusListener);
+  },
+
+  updated() {
+    this.audio = this.$refs.audioEl;
+  },
+
+  beforeDestroy() {
+    // set data for fading out audio
+    this.leavingPage = true;
+    this.audioTimeAtStartPageLeave = this.audio.currentTime;
+
+    EventBus.$off('audioPlaying', this.eventBusListener);
+    EventBus.$off('lightboxMediaLoaded', this.eventBusListener);
+  },
+
   methods: {
     clickAudioIcon() {
       if (!this.audio) return;
@@ -209,48 +251,6 @@ export default {
         this.audioMuted = true;
       }
     },
-  },
-
-  watch: {
-    audioFinished(val) {
-      if (val) {
-        // play audio again with fade in/out
-        this.playAndFadeAudio();
-      }
-    },
-    audioMuted(val) {
-      if (!val && this.audioPlaying) {
-        EventBus.$emit('backgroundMusicPlaying');
-      }
-    },
-    audioPlaying(val) {
-      if (val && !this.audioMuted) {
-        EventBus.$emit('backgroundMusicPlaying');
-      }
-    },
-  },
-
-  mounted() {
-    this.audio = this.$refs.audioEl;
-    if (this.playMusic) {
-      this.playAndFadeAudio();
-    }
-
-    EventBus.$on('audioPlaying', this.eventBusListener);
-    EventBus.$on('lightboxMediaLoaded', this.eventBusListener);
-  },
-
-  updated() {
-    this.audio = this.$refs.audioEl;
-  },
-
-  beforeDestroy() {
-    // set data for fading out audio
-    this.leavingPage = true;
-    this.audioTimeAtStartPageLeave = this.audio.currentTime;
-
-    EventBus.$off('audioPlaying', this.eventBusListener);
-    EventBus.$off('lightboxMediaLoaded', this.eventBusListener);
   },
 };
 </script>

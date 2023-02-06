@@ -75,8 +75,6 @@ export default {
     },
   },
 
-  methods: {},
-
   mounted() {
     this.windowWidth = window.innerWidth;
 

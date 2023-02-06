@@ -1,8 +1,7 @@
 <template>
   <div class="SlideshowZoom">
-    
     <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
-    <transition-group     
+    <transition-group
       tag="div"
       enter-active-class="SlideshowZoom__enterActive"
       enter-class="SlideshowZoom__enter"
@@ -18,12 +17,10 @@
         class="SlideshowZoom__image"
         :style="imgStyle(index)"
         alt=""
-      >
+      />
     </transition-group>
-
   </div>
 </template>
-
 
 <script>
 export default {
@@ -40,35 +37,45 @@ export default {
     return {
       activeIndex: 0,
       time: 0,
-      translateFactor: 1.5
+      translateFactor: 1.5,
     };
   },
 
   computed: {
-    images() {    
-      return this.slides.map(a => a.img)
+    images() {
+      return this.slides.map((a) => a.img);
     },
+  },
+
+  beforeMount() {
+    this.createKeyFrames();
+    this.goToIndex(0);
+    this.startInterval();
   },
 
   methods: {
     goToIndex(index) {
-      this.activeIndex = index
-      this.time = this.interval(index)      
+      this.activeIndex = index;
+      this.time = this.interval(index);
     },
 
     imgStyle(index) {
-      let css = {}
-      css.animationName = 'keyframe-'+ (index+1)
-      css.transformOrigin = 'center'
-      return css
+      let css = {};
+      css.animationName = 'keyframe-' + (index + 1);
+      css.transformOrigin = 'center';
+      return css;
     },
 
     scaleFrom(index) {
-      return this.slides[index].hasOwnProperty('scaleFrom') ? this.slides[index].scaleFrom : 0.8
+      return this.slides[index].hasOwnProperty('scaleFrom')
+        ? this.slides[index].scaleFrom
+        : 0.8;
     },
 
     scaleTo(index) {
-      return this.slides[index].hasOwnProperty('scaleTo') ? this.slides[index].scaleTo : 1.0
+      return this.slides[index].hasOwnProperty('scaleTo')
+        ? this.slides[index].scaleTo
+        : 1.0;
     },
 
     startInterval() {
@@ -79,7 +86,7 @@ export default {
           this.next();
         }
       }, precision);
-      
+
       // Clear the interval if the component is destroyed to prevent memory leaks
       this.$once('hook:destroyed', () => clearInterval(clock));
     },
@@ -89,53 +96,60 @@ export default {
       return 5000;
     },
 
-    next() {  
+    next() {
       let nextIndex = this.activeIndex + 1;
       // Go to the first image if the active image ist the last one
       if (!this.images[nextIndex]) {
-        nextIndex = 0
+        nextIndex = 0;
       }
       this.goToIndex(nextIndex);
     },
 
     createKeyFrames() {
-      for (let i = 0; i < this.slides.length; i++) {        
-        let startPos = [0, 0, 0]  // x, y, z   (center)     
-        const num = i + 1
-        const scaleFrom = this.scaleFrom(i)
-        const scaleTo = this.scaleTo(i)
-        const Tx = this.translateFactor * startPos[0]
-        const Ty = this.translateFactor * startPos[1]
-        var style = document.createElement('style');
+      for (let i = 0; i < this.slides.length; i++) {
+        let startPos = [0, 0, 0]; // x, y, z   (center)
+        const num = i + 1;
+        const scaleFrom = this.scaleFrom(i);
+        const scaleTo = this.scaleTo(i);
+        const Tx = this.translateFactor * startPos[0];
+        const Ty = this.translateFactor * startPos[1];
+        let style = document.createElement('style');
         style.type = 'text/css';
-        var keyFrame = '\
-        @keyframes keyframe-' + num + ' {\
+        const keyFrame =
+          '\
+        @keyframes keyframe-' +
+          num +
+          ' {\
           0% {\
-            transform: scale3d('+ scaleFrom + ', '+ scaleFrom + ', 1) translate3d('+ Tx + '%, '+ Ty + '%, 0);\
+            transform: scale3d(' +
+          scaleFrom +
+          ', ' +
+          scaleFrom +
+          ', 1) translate3d(' +
+          Tx +
+          '%, ' +
+          Ty +
+          '%, 0);\
           }\
           100% {\
-            transform: scale3d('+ scaleTo + ', '+ scaleTo + ', 1) translate3d(0, 0, 0);\
+            transform: scale3d(' +
+          scaleTo +
+          ', ' +
+          scaleTo +
+          ', 1) translate3d(0, 0, 0);\
           }\
         }';
-        style.innerHTML = keyFrame
-        document.head.appendChild(style)
+        style.innerHTML = keyFrame;
+        document.head.appendChild(style);
       }
-    }
-  },
-
-  beforeMount() {
-    this.createKeyFrames()
-    this.goToIndex(0);
-    this.startInterval();
+    },
   },
 };
 </script>
 
-
 <style lang="scss" scoped>
-
 .SlideshowZoom {
-  --translateFactor: 1.5%;    
+  --translateFactor: 1.5%;
   background-color: transparent;
 
   &__slides {
@@ -147,37 +161,20 @@ export default {
   &__image {
     position: absolute;
     width: auto;
-    height: auto;    
-    overflow: hidden;  
+    height: auto;
+    overflow: hidden;
     animation-duration: 8s;
-    animation-fill-mode: forwards;  // The element will retain the style values that is set by the last keyframe
+    animation-fill-mode: forwards; // The element will retain the style values that is set by the last keyframe
   }
 
-  &__enterActive, &__leaveActive {
+  &__enterActive,
+  &__leaveActive {
     transition: opacity 2s linear;
   }
 
-  &__enter, &__leaveTo {
+  &__enterFrom,
+  &__leaveTo {
     opacity: 0;
-  }  
-}
-
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) { 
+  }
 }
 </style>

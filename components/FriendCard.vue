@@ -223,8 +223,6 @@ export default {
     },
   },
 
-  methods: {},
-
   mounted() {
     let friendImg = document.getElementById('friendImg' + this.index);
     this.friendImgWidth = friendImg.clientWidth;
@@ -243,8 +241,6 @@ export default {
       });
     });
   },
-
-  components: {},
 };
 </script>
 

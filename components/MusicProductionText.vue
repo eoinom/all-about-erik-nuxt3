@@ -1,52 +1,62 @@
 <template>
-  <div class="productionTextDiv" :class="dynamicClass" :style="dynamicStyles">
-    <p v-if="title != null && title != ''" class="title">{{ title }}</p>
-    <p v-if="body != null && body != ''" class="body">{{ body }}</p>
+  <div
+    class="productionTextDiv"
+    :class="dynamicClass"
+    :style="dynamicStyles"
+  >
+    <p
+      v-if="title != null && title != ''"
+      class="title"
+    >
+      {{ title }}
+    </p>
+    <p
+      v-if="body != null && body != ''"
+      class="body"
+    >
+      {{ body }}
+    </p>
   </div>
-
 </template>
 
-
 <script scoped>
-export default { 
+export default {
   name: 'MusicProductionText',
 
   props: {
     title: {
-      type: String
+      type: String,
     },
     body: {
-      type: String
+      type: String,
     },
     includeBorder: {
       type: Boolean,
-      default: true
+      default: true,
     },
     divHeight: {
       type: String,
-      default: '100%'
+      default: '100%',
     },
     divPadding: {
       type: String,
-      default: '15px 20px'
-    } 
+      default: '15px 20px',
+    },
   },
 
   computed: {
     dynamicClass() {
-      return this.includeBorder ? 'border' : ''
+      return this.includeBorder ? 'border' : '';
     },
     dynamicStyles() {
       return {
-        '--divHeight' : this.divHeight,
-        '--divPadding' : this.divPadding
-      }
-    }
-  }
-}
+        '--divHeight': this.divHeight,
+        '--divPadding': this.divPadding,
+      };
+    },
+  },
+};
 </script>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700&display=swap');
@@ -64,7 +74,7 @@ export default {
 .border {
   border-style: solid;
   border-width: 1px;
-  border-color: #FCFEF4;
+  border-color: #fcfef4;
   border-radius: 9px;
 }
 
@@ -89,12 +99,10 @@ export default {
   padding: 0px;
 }
 
-
-
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
 
 /* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {  
+@media only screen and (max-width: 575.98px) {
   .title {
     font-size: 1.125rem;
     line-height: 1.125rem;
@@ -121,12 +129,9 @@ export default {
 
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-
 }
 
 /* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) { 
-
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
-
 </style>

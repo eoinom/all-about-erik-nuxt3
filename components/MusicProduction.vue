@@ -42,8 +42,6 @@
 </template>
 
 <script scoped>
-import AudioPlayer from './AudioPlayer';
-
 export default {
   name: 'MusicProduction',
 
@@ -128,10 +126,6 @@ export default {
         '--bgOpacity': this.showBgImage ? this.bgOpacity : 0,
       };
     },
-  },
-
-  components: {
-    AudioPlayer,
   },
 };
 </script>
@@ -240,9 +234,5 @@ export default {
     font-weight: 900;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 </style>

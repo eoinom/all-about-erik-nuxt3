@@ -133,13 +133,14 @@
 </template>
 
 <script>
-import { EventBus } from '../event-bus';
+import { EventBus } from '../composables/event-bus';
 
 const keyMap = {
   LEFT: 37,
   RIGHT: 39,
   ESC: 27,
 };
+
 export default {
   props: {
     audios: {
@@ -167,6 +168,7 @@ export default {
       default: true,
     },
   },
+
   data() {
     return {
       currentIndex: this.index,
@@ -183,6 +185,7 @@ export default {
       windowHeight: 0,
     };
   },
+
   computed: {
     formattedAudios() {
       return this.audios.map((audio) =>
@@ -205,6 +208,7 @@ export default {
       return css;
     },
   },
+
   watch: {
     index(val) {
       if (!document) return;
@@ -219,6 +223,7 @@ export default {
       this.setAudioLoaded(val);
     },
   },
+
   mounted() {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
@@ -234,6 +239,7 @@ export default {
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
+
   beforeDestroy() {
     if (!document) return;
     if (this.disableScroll) {
@@ -241,6 +247,7 @@ export default {
     }
     this.unbindEvents();
   },
+
   methods: {
     close() {
       this.$emit('close');
