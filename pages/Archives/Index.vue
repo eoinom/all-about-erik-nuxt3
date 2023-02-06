@@ -1,9 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="node.bgAudio"
-    :audioDuration="node.bgAudioDuration"
-    :audioFadeInDuration="node.bgAudioFadeInDuration"
-    :audioFadeOutDuration="node.bgAudioFadeOutDuration"
+    :audioFile="archivesPgContent.bgAudio"
+    :audioDuration="archivesPgContent.bgAudioDuration"
+    :audioFadeInDuration="archivesPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="archivesPgContent.bgAudioFadeOutDuration"
     :maxVolume="1.0"
   />
 
@@ -65,60 +69,11 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  Archives: allArchivesIndex {
-    edges {
-      node {
-        pageTitle
-        titleImg
-        content
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        slides {
-          img
-          panStart
-          scaleFrom
-          scaleTo
-        }
-        tiles {
-          text
-          opacity
-          img
-          img_bright
-        }
-      }
-    }
-  }
-}
-</page-query>
-
 <script scoped>
-import ArchivesTiles from '../../components/ArchivesTiles.vue';
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import ScrollDownArrow from '../../components/ScrollDownArrow.vue';
-import BackToTop from '../../components/BackToTop.vue';
-import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.Archives.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    ArchivesTiles,
-    BackgroundMusic,
-    ScrollDownArrow,
-    BackToTop,
-    SlideshowKenBurnsSmall,
-  },
-
   data() {
     return {
+      archivesPgContent: {},
       scrollY: 0.0,
       targetPosY: 0.0,
       windowHeight: 0,
@@ -126,17 +81,17 @@ export default {
   },
 
   computed: {
-    node() {
-      return this.$page.Archives.edges[0].node;
+    pageTitle() {
+      return this.archivesPgContent.pageTitle;
     },
     titleImg() {
-      return this.node.titleImg;
+      return this.archivesPgContent.titleImg;
     },
     slideshowText() {
-      return this.node.content;
+      return this.archivesPgContent.content;
     },
     slides() {
-      return this.node.slides;
+      return this.archivesPgContent.slides;
     },
     slideshowColStyles() {
       return {
@@ -155,7 +110,7 @@ export default {
       };
     },
     tiles() {
-      return this.node.tiles;
+      return this.archivesPgContent.tiles;
     },
     tilesContainerStyles() {
       return {
@@ -164,7 +119,10 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
+    const archivesPgContent = await queryContent('archives-index').findOne();
+    this.archivesPgContent = archivesPgContent;
+
     this.addScrollListener();
 
     setTimeout(

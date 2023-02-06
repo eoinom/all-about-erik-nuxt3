@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <v-container
     fluid
     class="main-col m-0, p-0"
@@ -36,55 +40,32 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  Archives: allArchivesIndex {
-    edges {
-      node {
-        pageTitle
-        titleImg
-        content
-        tiles {
-          text
-          opacity
-          img
-          img_bright
-        }
-      }
-    }
-  }
-}
-</page-query>
-
 <script scoped>
-import ArchivesTiles from '../../components/ArchivesTiles.vue';
-import BackToTop from '../../components/BackToTop.vue';
-
 export default {
-  metaInfo() {
+  data() {
     return {
-      title: this.$page.Archives.edges[0].node.pageTitle,
+      archivesPgContent: {},
     };
   },
 
-  components: {
-    ArchivesTiles,
-    BackToTop,
-  },
-
   computed: {
-    node() {
-      return this.$page.Archives.edges[0].node;
+    pageTitle() {
+      return this.archivesPgContent.pageTitle;
     },
     titleImg() {
-      return this.node.titleImg;
+      return this.archivesPgContent.titleImg;
     },
     slideshowText() {
-      return this.node.content;
+      return this.archivesPgContent.content;
     },
     tiles() {
-      return this.node.tiles;
+      return this.archivesPgContent.tiles;
     },
+  },
+
+  async mounted() {
+    const archivesPgContent = await queryContent('archives-index').findOne();
+    this.archivesPgContent = archivesPgContent;
   },
 };
 </script>
