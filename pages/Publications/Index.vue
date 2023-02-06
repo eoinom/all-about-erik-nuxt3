@@ -1,13 +1,13 @@
 <template>
+  <Head>
+    <Title>{{ pageTitle }}</Title>
+  </Head>
+
   <BackgroundMusic
-    :audioFile="$page.Publications.edges[0].node.bgAudio"
-    :audioDuration="$page.Publications.edges[0].node.bgAudioDuration"
-    :audioFadeInDuration="
-      $page.Publications.edges[0].node.bgAudioFadeInDuration
-    "
-    :audioFadeOutDuration="
-      $page.Publications.edges[0].node.bgAudioFadeOutDuration
-    "
+    :audioFile="publicationsPgContent.bgAudio"
+    :audioDuration="publicationsPgContent.bgAudioDuration"
+    :audioFadeInDuration="publicationsPgContent.bgAudioFadeInDuration"
+    :audioFadeOutDuration="publicationsPgContent.bgAudioFadeOutDuration"
     :maxVolume="0.78"
     :playMusic="playMusic"
   />
@@ -96,72 +96,28 @@
   <BackToTop />
 </template>
 
-<page-query>
-{
-  Publications: allPublicationsIndex {
-    edges {
-      node {
-        id
-        pageTitle
-        titleImg
-        bgAudio
-        bgAudioDuration
-        bgAudioFadeInDuration
-        bgAudioFadeOutDuration
-        slides {
-          img
-          opacity
-          panStart
-          scaleFrom
-          scaleTo
-        }
-        publications {
-          title
-          thumbnailImg
-          thumbnailHoverImg
-        }
-      }
-    }
-  }
-}
-</page-query>
-
 <script scoped>
-import BackgroundMusic from '../../components/BackgroundMusic.vue';
-import PublicationThumbnail from '../../components/PublicationThumbnail.vue';
-import BackToTop from '../../components/BackToTop.vue';
-import SlideshowKenBurnsSmall from '../../components/SlideshowKenBurnsSmall.vue';
-
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.Publications.edges[0].node.pageTitle,
-    };
-  },
-
-  components: {
-    BackgroundMusic,
-    PublicationThumbnail,
-    BackToTop,
-    SlideshowKenBurnsSmall,
-  },
-
   data() {
     return {
+      publicationsPgContent: {},
       windowWidth: 0.0,
       playMusic: true,
     };
   },
 
   computed: {
+    pageTitle() {
+      return this.publicationsPgContent.pageTitle;
+    },
     titleImg() {
-      return this.$page.Publications.edges[0].node.titleImg;
+      return this.publicationsPgContent.titleImg;
     },
     slides() {
-      return this.$page.Publications.edges[0].node.slides;
+      return this.publicationsPgContent.slides;
     },
     publications() {
-      return this.$page.Publications.edges[0].node.publications;
+      return this.publicationsPgContent.publications;
     },
     publicationsAltOrder() {
       let publicationsClone = [...this.publications];
@@ -193,7 +149,12 @@ export default {
     }
   },
 
-  mounted() {
+  async mounted() {
+    const publicationsPgContent = await queryContent(
+      'publications-index'
+    ).findOne();
+    this.publicationsPgContent = publicationsPgContent;
+
     this.windowWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
