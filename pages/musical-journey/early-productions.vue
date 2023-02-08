@@ -809,7 +809,7 @@ export default {
 
   async mounted() {
     const earlyProductionsPgContent = await queryContent(
-      'short-films'
+      'musical-journey/early-productions'
     ).findOne();
     this.earlyProductionsPgContent = earlyProductionsPgContent;
 

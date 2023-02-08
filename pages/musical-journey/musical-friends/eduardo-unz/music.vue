@@ -95,7 +95,7 @@ export default {
 
   async mounted() {
     const eduardoUnzMusicPgContent = await queryContent(
-      'nadia-music'
+      'musical-journey/nadia-music'
     ).findOne();
     this.eduardoUnzMusicPgContent = eduardoUnzMusicPgContent;
 

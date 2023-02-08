@@ -25,7 +25,7 @@ export default {
 
   async mounted() {
     const musicalFriendsPgContent = await queryContent(
-      'musical-friends'
+      'musical-journey/musical-friends'
     ).findOne();
     this.musicalFriendsPgContent = musicalFriendsPgContent;
   },

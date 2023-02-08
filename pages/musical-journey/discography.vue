@@ -288,7 +288,9 @@ export default {
   },
 
   async mounted() {
-    const discographyPgContent = await queryContent('discography').findOne();
+    const discographyPgContent = await queryContent(
+      'musical-journey/discography'
+    ).findOne();
     this.discographyPgContent = discographyPgContent;
 
     this.addScrollListener();

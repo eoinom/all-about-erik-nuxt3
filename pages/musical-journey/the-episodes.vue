@@ -221,7 +221,9 @@ export default {
   },
 
   async mounted() {
-    const theEpisodesPgContent = await queryContent('the-episodes').findOne();
+    const theEpisodesPgContent = await queryContent(
+      'musical-journey/the-episodes'
+    ).findOne();
     this.theEpisodesPgContent = theEpisodesPgContent;
   },
 

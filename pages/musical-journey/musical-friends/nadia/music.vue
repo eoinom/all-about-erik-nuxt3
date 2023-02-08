@@ -130,7 +130,9 @@ export default {
   },
 
   async mounted() {
-    const nadiaMusicPgContent = await queryContent('nadia-music').findOne();
+    const nadiaMusicPgContent = await queryContent(
+      'musical-journey/nadia-music'
+    ).findOne();
     this.nadiaMusicPgContent = nadiaMusicPgContent;
 
     EventBus.$on('audioEnded', this.eventBusListener);
