@@ -22,7 +22,7 @@
 </template>
 
 <script scoped>
-const slugify = require('@sindresorhus/slugify');
+import slugify from '@sindresorhus/slugify';
 
 export default {
   name: 'CollectionThumbnail',

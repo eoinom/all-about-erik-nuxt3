@@ -386,7 +386,7 @@
 
 <script scoped>
 import snarkdown from 'snarkdown';
-const slugify = require('@sindresorhus/slugify');
+import slugify from '@sindresorhus/slugify';
 
 export default {
   data() {
