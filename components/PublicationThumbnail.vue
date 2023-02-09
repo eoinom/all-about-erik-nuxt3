@@ -34,13 +34,13 @@ export default {
 
   data() {
     return {
-      link: this.publication.hasOwnProperty('title')
+      link: this.publication?.hasOwnProperty('title')
         ? slugify(this.publication.title)
         : '',
-      image: this.publication.hasOwnProperty('thumbnailImg')
+      image: this.publication?.hasOwnProperty('thumbnailImg')
         ? this.publication.thumbnailImg
         : '',
-      hoverImage: this.publication.hasOwnProperty('thumbnailHoverImg')
+      hoverImage: this.publication?.hasOwnProperty('thumbnailHoverImg')
         ? this.publication.thumbnailHoverImg
         : '',
     };

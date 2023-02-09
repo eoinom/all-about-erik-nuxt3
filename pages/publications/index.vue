@@ -117,7 +117,7 @@ export default {
       return this.publicationsPgContent.slides;
     },
     publications() {
-      return this.publicationsPgContent.publications;
+      return this.publicationsPgContent.publications || [];
     },
     publicationsAltOrder() {
       let publicationsClone = [...this.publications];
