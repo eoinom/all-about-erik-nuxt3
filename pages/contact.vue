@@ -95,39 +95,15 @@
     id="contactBgVideo"
   >
     <source
-      :src="bgVideo.videoSrcWebm"
+      :src="bgVideo?.videoSrcWebm"
       type="video/webm"
     />
     <source
-      :src="bgVideo.videoSrcMP4"
+      :src="bgVideo?.videoSrcMP4"
       type="video/mp4"
     />
   </video>
 </template>
-
-<page-query>
-{
-  Contact: allContact {
-    edges {
-      node {
-        id
-        pageTitle
-        headingImg
-        headingImg2Lines
-        content
-        credits {
-          heading
-          text
-        }
-        bgVideo {
-          videoSrcWebm
-          videoSrcMP4
-        }
-      }
-    }
-  }	
-}
-</page-query>
 
 <script>
 import snarkdown from 'snarkdown';
