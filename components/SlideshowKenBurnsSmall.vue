@@ -66,6 +66,7 @@ export default {
       activeIndex: 0,
       time: 0,
       translateFactor: 1.5,
+      intervalClock: null,
     };
   },
 
@@ -83,7 +84,19 @@ export default {
   beforeMount() {
     this.createKeyFrames();
     this.goToIndex(0);
+  },
+
+  mounted() {
     this.startInterval();
+  },
+
+  updated() {
+    this.createKeyFrames();
+  },
+
+  unmounted() {
+    // Clear the interval if the component is destroyed to prevent memory leaks
+    clearInterval(this.intervalClock);
   },
 
   methods: {
@@ -160,15 +173,12 @@ export default {
 
     startInterval() {
       const precision = 100;
-      const clock = setInterval(() => {
+      this.intervalClock = setInterval(() => {
         this.time -= precision;
         if (this.time <= 0) {
           this.next();
         }
       }, precision);
-
-      // Clear the interval if the component is destroyed to prevent memory leaks
-      this.$once('hook:destroyed', () => clearInterval(clock));
     },
 
     interval(index) {
