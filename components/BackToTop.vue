@@ -1,9 +1,10 @@
 <template>
   <div v-if="staticImg">
-    <div
+    <!-- <div
       v-scroll-to="{ el: 'body', duration: 1500, easing: 'ease' }"
       id="backToTopStaticDiv"
-    >
+    > -->
+    <div id="backToTopStaticDiv">
       <img
         alt="back to top"
         src="../assets/images/back-to-top-1line-black.png"
@@ -15,8 +16,12 @@
     v-else-if="addBtnToDOM"
     id="backToTopContainer"
   >
-    <button
+    <!-- <button
       v-scroll-to="{ el: 'body', duration: 1500, easing: 'ease' }"
+      id="scrollToTopBtn"
+      class="hide"
+    > -->
+    <button
       id="scrollToTopBtn"
       class="hide"
     >

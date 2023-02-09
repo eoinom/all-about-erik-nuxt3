@@ -3,8 +3,12 @@
     v-if="addBtnToDOM"
     id="scrollToTopContainer"
   >
-    <button
+    <!-- <button
       v-scroll-to="{ el: 'body', duration: 1500, easing: 'ease' }"
+      id="scrollToTopBtn"
+      class="hide"
+    > -->
+    <button
       id="scrollToTopBtn"
       class="hide"
     >
