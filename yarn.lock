@@ -1675,6 +1675,11 @@ core-js@^3.22.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.27.2.tgz#85b35453a424abdcacb97474797815f4d62ebbf7"
   integrity sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==
 
+core-js@^3.26.1:
+  version "3.28.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.28.0.tgz#ed8b9e99c273879fdfff0edfc77ee709a5800e4a"
+  integrity sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==
+
 core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
@@ -4049,6 +4054,17 @@ pkg-types@^1.0.1:
     jsonc-parser "^3.2.0"
     mlly "^1.0.0"
     pathe "^1.0.0"
+
+plyr@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.7.3.tgz#31465bb45dc910babed5f05f4cf2667604898fa5"
+  integrity sha512-ORULENBvEvvzMYXRQBALDmEi8P+wZt1Hr/NvHqchu/t7E2xJKNkRYWx0qCA1HETIGZ6zobrOVgqeAUqWimS7fQ==
+  dependencies:
+    core-js "^3.26.1"
+    custom-event-polyfill "^1.0.7"
+    loadjs "^4.2.0"
+    rangetouch "^2.0.1"
+    url-polyfill "^1.1.12"
 
 "plyr@github:sampotts/plyr#develop":
   version "3.7.0"

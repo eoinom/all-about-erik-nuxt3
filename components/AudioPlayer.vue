@@ -1,11 +1,13 @@
 <template>
-  <div v-if="mounted">
+  <div
+    v-if="mounted"
+    :style="dynamicStyles"
+  >
     <vue-plyr
       ref="plyr"
       :emit="['playing', 'ended']"
       @playing="emitGlobalPlayingEvent"
       @ended="emitGlobalEndedEvent"
-      :style="dynamicStyles"
     >
       <audio>
         <source
@@ -18,15 +20,10 @@
 </template>
 
 <script scoped>
-import VuePlyr from 'vue-plyr';
 import { EventBus } from '../composables/event-bus';
 
 export default {
   name: 'AudioPlayer',
-
-  components: {
-    VuePlyr,
-  },
 
   props: {
     src: {
