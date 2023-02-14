@@ -28,15 +28,19 @@
     class="mb-5 pb-5 px-2 px-md-3 px-lg-4 px-xl-5"
   >
     <v-row no-gutters>
-      <v-col>
+      <v-col id="mainImgContainer">
         <img
           :src="mainImg"
           id="mainImg"
         />
-        <span
-          v-html="mainText"
-          id="mainImgText"
-        />
+        <div>
+          <ContentRenderer
+            :value="earlyProductionsPgContent"
+            tag="span"
+            id="mainImgText"
+            class="mb-4"
+          />
+        </div>
       </v-col>
     </v-row>
 
@@ -50,7 +54,9 @@
         data-testid="production-container"
       >
         <div
-          v-if="section.textBoxes.length > 1 || section.productions.length > 1"
+          v-if="
+            section.textBoxes?.length > 1 || section.productions?.length > 1
+          "
           class="sectionContainerDevices"
           :style="sectionContainerDevicesStyles(section.productions[0])"
         >
@@ -114,10 +120,12 @@
             :includeBorder="false"
             :divHeight="'fit-content'"
             divPadding="0"
-            :style="section.lightboxes.length == 0 ? 'padding-bottom: 8px' : ''"
+            :style="
+              section.lightboxes?.length == 0 ? 'padding-bottom: 8px' : ''
+            "
           />
           <div
-            v-if="section.lightboxes.length > 0"
+            v-if="section.lightboxes?.length > 0"
             class="responsiveBtnDiv"
           >
             <button
@@ -170,7 +178,7 @@
         </div>
         <div
           style="width: 38.5%; min-width: 444px"
-          v-if="sections[0].textBoxes.length > 0"
+          v-if="sections[0].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[0].textBoxes"
@@ -189,7 +197,7 @@
       >
         <div
           style="width: 36.5%; max-width: 410px"
-          v-if="sections[1].textBoxes.length > 0"
+          v-if="sections[1].textBoxes?.length > 0"
           class=""
         >
           <music-production-text
@@ -245,7 +253,7 @@
         </div>
         <div
           style="width: 38.5%; max-width: 400px"
-          v-if="sections[2].textBoxes.length > 0"
+          v-if="sections[2].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[2].textBoxes"
@@ -264,7 +272,7 @@
       >
         <div
           id="theSlurpTextCol"
-          v-if="sections[3].textBoxes.length > 0"
+          v-if="sections[3].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[3].textBoxes"
@@ -319,7 +327,7 @@
       >
         <div
           id="rootyTootTextBox"
-          v-if="sections[4].textBoxes.length > 0"
+          v-if="sections[4].textBoxes?.length > 0"
         >
           <music-production-text
             :title="sections[4].textBoxes[0].heading"
@@ -358,7 +366,7 @@
 
             <div
               id="warmBabyTextBox"
-              v-if="sections[4].textBoxes.length > 0"
+              v-if="sections[4].textBoxes?.length > 0"
             >
               <music-production-text
                 :title="sections[4].textBoxes[1].heading"
@@ -395,7 +403,7 @@
         </div>
         <div
           style="width: 26.4%; min-width: 250px; max-width: 347px"
-          v-if="sections[5].textBoxes.length > 0"
+          v-if="sections[5].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[5].textBoxes"
@@ -415,7 +423,7 @@
       >
         <div
           style="width: 32.3%; min-width: 380px"
-          v-if="sections[6].textBoxes.length > 0"
+          v-if="sections[6].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[6].textBoxes"
@@ -462,7 +470,7 @@
         </div>
         <div
           style="min-width: 200px; position: relative"
-          v-if="sections[7].lightboxes.length > 0"
+          v-if="sections[7].lightboxes?.length > 0"
         >
           <button
             v-for="(lightBox, iLightBox) in sections[7].lightboxes"
@@ -484,7 +492,7 @@
       >
         <div
           style="width: 26.75%; max-width: 340px"
-          v-if="sections[3].textBoxes.length > 0"
+          v-if="sections[3].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[8].textBoxes"
@@ -542,7 +550,7 @@
         </div>
         <div
           style="width: 41.2%; min-width: 415px; max-width: 495px"
-          v-if="sections[9].textBoxes.length > 0"
+          v-if="sections[9].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[9].textBoxes"
@@ -561,7 +569,7 @@
       >
         <div
           style="width: 32.11%; min-width: 246px"
-          v-if="sections[10].textBoxes.length > 0"
+          v-if="sections[10].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[10].textBoxes"
@@ -616,7 +624,7 @@
         </div>
         <div
           style="width: 25.38%; min-width: 246px"
-          v-if="sections[11].textBoxes.length > 0"
+          v-if="sections[11].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[11].textBoxes"
@@ -635,7 +643,7 @@
       >
         <div
           style="width: 29.13%; min-width: 280px"
-          v-if="sections[12].textBoxes.length > 0"
+          v-if="sections[12].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[12].textBoxes"
@@ -687,7 +695,7 @@
         </div>
         <div
           id="timHardinTextBox"
-          v-if="sections[13].textBoxes.length > 0"
+          v-if="sections[13].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[13].textBoxes"
@@ -707,7 +715,7 @@
       >
         <div
           style="width: 25.5%; min-width: 310px"
-          v-if="sections[14].textBoxes.length > 0"
+          v-if="sections[14].textBoxes?.length > 0"
         >
           <music-production-text
             v-for="(textBox, iText) in sections[14].textBoxes"
@@ -790,9 +798,6 @@ export default {
     },
     mainImg() {
       return this.earlyProductionsPgContent.mainImg;
-    },
-    mainText() {
-      return this.earlyProductionsPgContent.content;
     },
     sections() {
       return this.earlyProductionsPgContent.sections;
@@ -938,6 +943,10 @@ body {
   max-width: 1412px;
   padding-top: 0;
   text-align: center;
+}
+
+#mainImgContainer {
+  position: relative;
 }
 
 #mainImg {
