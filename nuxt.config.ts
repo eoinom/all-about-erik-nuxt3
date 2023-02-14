@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxt/content',
+    '@nuxt/devtools',
     // ['vue-scrollto/nuxt3', { duration: 300 }],
   ],
   build: {
