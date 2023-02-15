@@ -40,10 +40,7 @@
         class="mb-4"
         data-testid="title-img"
       />
-      <p
-        v-html="titleSubText"
-        id="titleSubText"
-      />
+      <p id="titleSubText">{{ titleSubText }}</p>
       <p id="targetForOpacity"></p>
     </header>
 
@@ -63,10 +60,13 @@
       class="mb-5 py-3 main-col"
     >
       <div class="px-4 py-3">
-        <span
-          v-html="content"
-          class="discography_content"
-        />
+        <div>
+          <ContentRenderer
+            :value="discographyPgContent"
+            tag="span"
+            class="discography_content"
+          />
+        </div>
       </div>
 
       <div class="px-4">
@@ -222,9 +222,6 @@ export default {
     },
     titleSubText() {
       return this.discographyPgContent.titleText;
-    },
-    content() {
-      return this.discographyPgContent.content;
     },
     albums() {
       return this.discographyPgContent.albums;
