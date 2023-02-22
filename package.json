@@ -23,6 +23,7 @@
     "simplebar": "^6.2.0",
     "simplebar-vue3": "^0.2.0",
     "snarkdown": "^2.0.0",
+    "vite-plugin-vuetify": "^1.0.2",
     "vue-material-design-icons": "^5.2.0",
     "vue-plyr": "^7.0.0",
     "vuetify": "^3.1.6"
