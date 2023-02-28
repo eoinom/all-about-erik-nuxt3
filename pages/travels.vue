@@ -32,6 +32,7 @@
         cols="12"
         align-self="center"
         style="max-width: 960px"
+        class="position-relative"
       >
         <iframe
           :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
