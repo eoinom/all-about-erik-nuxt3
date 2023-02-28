@@ -23,12 +23,12 @@
 
     <v-container
       fluid
-      class="durationBanner"
+      class="durationBanner py-0"
     >
       <v-row
         justify="center"
         align="center"
-        style="height: 100%"
+        class="h-100 my-0"
       >
         <v-col align-self="center">
           <span
