@@ -37,9 +37,9 @@
               class="mb-md-1 mb-lg-2 mb-xl-3"
               data-testid="title-img"
             />
-
-            <div
-              v-html="slideshowText"
+            <ContentRenderer
+              :value="collectionsPgContent"
+              tag="div"
               id="slideshowText"
             />
           </div>
@@ -55,7 +55,7 @@
     <v-row
       no-gutters
       justify="center"
-      class="collectionsRow mb-1"
+      class="collectionsRow mb-1 mx-auto"
     >
       <v-col
         v-for="(collection, index) in collections"
@@ -94,9 +94,6 @@ export default {
     },
     slides() {
       return this.collectionsPgContent.slides;
-    },
-    slideshowText() {
-      return this.collectionsPgContent.content;
     },
     collections() {
       return this.collectionsPgContent.collections;
@@ -167,7 +164,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
 
 @font-face {
@@ -266,6 +263,10 @@ export default {
   text-align: justify;
   text-shadow: 0px 0px 250px #1c0f07, 0px 0px 250px #1c0f07 /* glow */,
     1px 1px 2px rgba(28, 16, 23, 0.89) /* drop shadow*/;
+}
+
+#slideshowText > p {
+  margin-bottom: 16px !important;
 }
 
 .collectionsContainer {
