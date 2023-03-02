@@ -37,11 +37,13 @@
               class="mb-md-1 mb-lg-2 mb-xl-3"
               data-testid="title-img"
             />
-            <ContentRenderer
-              :value="collectionsPgContent"
-              tag="div"
-              id="slideshowText"
-            />
+            <div>
+              <ContentRenderer
+                :value="collectionsPgContent"
+                tag="div"
+                id="slideshowText"
+              />
+            </div>
           </div>
         </div>
       </v-col>
@@ -280,7 +282,9 @@ export default {
 }
 
 .collectionsCols {
-  max-width: calc(var(--collectionsDivWidth) / var(--maxCollectionsPerRow));
+  max-width: calc(
+    var(--collectionsDivWidth) / var(--maxCollectionsPerRow)
+  ) !important;
 }
 
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
