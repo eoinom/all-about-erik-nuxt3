@@ -666,7 +666,7 @@
         style="max-width: 832px"
         class="mb-3"
       >
-        <v-col class="">
+        <v-col>
           <friend-card
             :friend="friends[9]"
             :index="9"

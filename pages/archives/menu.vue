@@ -5,7 +5,7 @@
 
   <v-container
     fluid
-    class="main-col m-0, p-0"
+    class="main-col ma-0, pa-0"
   >
     <v-row
       no-gutters

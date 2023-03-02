@@ -62,7 +62,7 @@
         :key="'publication' + i"
         cols=""
         align-self="center"
-        class="publicationsCols p-0 m-2 m-md-3"
+        class="publicationsCols pa-0 ma-2 ma-md-4"
         data-testid="publication-container"
       >
         <PublicationThumbnail :publication="publication" />
@@ -85,7 +85,7 @@
         :key="'newPublication' + i"
         cols=""
         align-self="center"
-        class="publicationsCols p-0 m-2 m-md-3"
+        class="publicationsCols pa-0 ma-2 ma-md-4"
         data-testid="publication-container"
       >
         <PublicationThumbnail :publication="newPublication" />
@@ -214,6 +214,7 @@ export default {
 
 .main-col {
   max-width: 1458px;
+  min-height: initial;
 }
 
 .slideshowCol {

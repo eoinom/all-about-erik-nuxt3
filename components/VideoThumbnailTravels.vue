@@ -25,7 +25,7 @@
 
     <v-container
       fluid
-      class="captionBanner p-2"
+      class="captionBanner pa-2"
     >
       <v-row
         justify="center"
