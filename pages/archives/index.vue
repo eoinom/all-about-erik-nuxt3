@@ -36,7 +36,7 @@
           class="slideshowOverlay mb-3"
           :style="slideshowOverlayStyles"
         >
-          <div class="mainContent mx-auto">
+          <div class="mainContent mx-auto py-0">
             <img
               alt="Archives title image"
               v-if="titleImg != null"
@@ -45,11 +45,13 @@
               class="mb-md-1 mb-lg-2 mb-xl-3"
               data-testid="title-img"
             />
-
-            <div
-              v-html="slideshowText"
-              id="slideshowText"
-            />
+            <div>
+              <ContentRenderer
+                :value="archivesPgContent"
+                tag="div"
+                id="slideshowText"
+              />
+            </div>
 
             <div id="scrollDownContainer">
               <ScrollDownArrow scrollToElement="#tilesRow" />
@@ -86,9 +88,6 @@ export default {
     },
     titleImg() {
       return this.archivesPgContent.titleImg;
-    },
-    slideshowText() {
-      return this.archivesPgContent.content;
     },
     slides() {
       return this.archivesPgContent.slides;
@@ -210,6 +209,7 @@ export default {
 
 .slideshowOverlay {
   position: absolute;
+  top: auto;
   bottom: 0;
   z-index: 10;
   width: 100%;

@@ -5,7 +5,7 @@
     id="scrollImgContainer"
   > -->
   <div id="scrollImgContainer">
-    <p class="mb-0 mt-sm-1 mt-md-3 mt-lg-4 mt-xl-5">
+    <p class="mb-0 mt-sm-1 mt-md-4 mt-lg-6 mt-xl-12">
       <img
         alt="Scroll text"
         src="../assets/images/scroll.png"

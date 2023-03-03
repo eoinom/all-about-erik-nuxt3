@@ -16,7 +16,7 @@
         md="5"
         xl="3"
         align-self="center"
-        class="tilesCols pa-0 ma-2 ma-sm-3"
+        class="tilesCols position-relative pa-0 ma-2 ma-sm-3"
         data-testid="archive-container"
       >
         <ArchivesThumbnail :thumbnailObj="tile" />
