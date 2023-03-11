@@ -3,25 +3,25 @@
     <Title>{{ pageTitle }}</Title>
   </Head>
 
-  <div class="container">
+  <v-container class="main-container">
     <img
       :src="titleImg1Line"
-      class="titleImg titleImg1Line py-5"
+      class="titleImg titleImg1Line py-12"
       data-testid="title-img"
     />
     <img
       :src="titleImg2Lines"
-      class="titleImg titleImg2Lines py-4 my-3"
+      class="titleImg titleImg2Lines py-6 my-4"
       data-testid="title-img"
     />
 
-    <span
+    <div
       v-html="mainText"
-      class="text-main"
+      class="text-main mb-4"
     />
 
     <!-- CONTACT FORM -->
-    <div class="form-container mb-4 mb-md-5">
+    <div class="form-container mb-4 mb-md-12">
       <form
         name="contact"
         method="POST"
@@ -67,7 +67,7 @@
     </div>
 
     <!-- CREDITS -->
-    <div class="pb-4">
+    <div class="pb-6">
       <div
         v-for="(creditSection, i) in credits"
         :key="'creditSection' + i"
@@ -78,28 +78,29 @@
         >
           {{ creditSection.heading }}
         </p>
-        <span
+        <div
           v-html="renderMarkdown(creditSection.text)"
           class="text-main contact_renderedContent"
         />
         <br />
       </div>
     </div>
-  </div>
+  </v-container>
 
   <!-- BACKGROUND VIDEO -->
   <video
+    v-if="bgVideo"
     autoplay
     loop
     muted
     id="contactBgVideo"
   >
     <source
-      :src="bgVideo?.videoSrcWebm"
+      :src="bgVideo.videoSrcWebm"
       type="video/webm"
     />
     <source
-      :src="bgVideo?.videoSrcMP4"
+      :src="bgVideo.videoSrcMP4"
       type="video/mp4"
     />
   </video>
@@ -126,7 +127,7 @@ export default {
       return this.contactPgContent.headingImg2Lines;
     },
     mainText() {
-      return this.contactPgContent.content;
+      return this.contactPgContent.description;
     },
     credits() {
       return this.contactPgContent.credits;
@@ -143,13 +144,14 @@ export default {
 
   methods: {
     renderMarkdown(text) {
-      return snarkdown(text);
+      let sn = snarkdown(text);
+      return '<p>' + sn.replaceAll('<br />', '</p><p>') + '</p>';
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
   src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
@@ -173,9 +175,14 @@ export default {
   z-index: -1;
 }
 
-.container {
-  width: 900px;
-  max-width: 75%;
+.main-container {
+  width: 900px !important;
+  max-width: 75% !important;
+}
+
+.layout {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .titleImg {
@@ -203,7 +210,7 @@ export default {
 /* Style inputs with type="text", select elements and textareas */
 input[type='text'],
 input[type='email'],
-textarea {
+textarea#message {
   width: 100%; /* Full width */
   padding: 12px; /* Some padding */
   border: 1px solid #ccc; /* Gray border */
@@ -259,6 +266,7 @@ label,
   text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.5);
 }
 label {
+  display: inline-block;
   color: #406689;
   font-size: 1.3125rem;
   line-height: 1.3125rem;
@@ -283,6 +291,10 @@ label {
   font-size: 1.25rem;
   letter-spacing: 1px;
   line-height: 24px;
+
+  p {
+    margin-bottom: 1rem;
+  }
 }
 li.text-main {
   padding: 4.5px 0;
@@ -292,12 +304,14 @@ li.text-main {
 
 /* Extra small devices (portrait phones, < 576px) */
 @media only screen and (max-width: 575.98px) {
-  /* @media only screen and (min-width: 400px) and (max-width: 575.98px) { */
   label,
   input[type='submit'],
   .text-titles {
     font-size: 1.0625rem;
     letter-spacing: 4px;
+  }
+  input[type='submit'],
+  .text-titles {
     margin-bottom: 1rem;
   }
   input[type='submit'] {
@@ -312,7 +326,10 @@ li.text-main {
   }
   .contact_renderedContent {
     text-align: initial;
-    // See styles.css for additional
+
+    p {
+      margin-bottom: 0.5rem;
+    }
   }
   .titleImg1Line {
     display: none;
@@ -360,13 +377,5 @@ li.text-main {
   li.text-main {
     text-align: initial;
   }
-}
-
-/* Large devices (desktops, 992 - 1200px) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-}
-
-/* X-large devices (large desktops, 1200 - 1500px) */
-@media only screen and (min-width: 1200px) and (max-width: 1499.98px) {
 }
 </style>

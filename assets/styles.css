@@ -218,10 +218,6 @@ body {
     text-indent: 0px;
   }
 
-  .contact_renderedContent p {
-    margin-bottom: 0.5rem;
-  }
-
   .publication_mainText h2 {
     font-size: calc(0.9375rem + 3 * (100vw - 375px) / (576 - 375));
     /* varies between 15px (0.9375rem) and 18px */
