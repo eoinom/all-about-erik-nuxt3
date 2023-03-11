@@ -206,10 +206,6 @@ export default {
   ); /* Full width for a 27" screen */
 }
 
-.layout {
-  padding: 0;
-}
-
 .row {
   margin-bottom: 20px;
 }
@@ -295,7 +291,6 @@ export default {
     --collectionScale: 0.65;
     --maxCollectionsPerRow: 1;
   }
-  .layout,
   .main-col {
     padding: 0 0;
   }

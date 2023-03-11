@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div :class="{ layout: true, 'pa-0': applyZeroLayoutPadding }">
     <div class="openbtn">
       <img
         alt="Open navigation menu"
@@ -154,11 +154,19 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | All About Erik` : 'All About Erik';
   },
 });
+
+const route = useRoute();
+const applyZeroLayoutPadding = ref(false);
+if (route.path.includes('/collections')) {
+  applyZeroLayoutPadding.value = true;
+}
 </script>
 
 <script type="text/javascript">
@@ -262,7 +270,8 @@ body {
 .layout {
   max-width: 100%;
   margin: 0 auto;
-  padding: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 /* The side navigation menu */
