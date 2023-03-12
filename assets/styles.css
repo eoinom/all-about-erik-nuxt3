@@ -16,6 +16,10 @@ body {
   /* Fix for collections & publications index pages which was impacted by Bootstrap-Vue's change (added min-width: 0) */
 }
 
+img, svg {
+  vertical-align: middle;
+}
+
 /* Page image navigation styles */
 .nav_link_small {
   display: none;
