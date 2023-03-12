@@ -3,12 +3,12 @@
     <Title>{{ pageTitle }}</Title>
   </Head>
 
-  <v-container class="main-col pt-5">
+  <v-container class="main-col pt-12">
     <div style="text-align: center">
       <h1 class="heading">{{ title }}</h1>
     </div>
 
-    <div class="my-4">
+    <div class="my-6">
       <v-button
         variant="danger"
         @click="onPlayAllClick()"
@@ -20,7 +20,7 @@
     <div
       v-for="(track, index) in tracks"
       :key="index"
-      class="mb-3"
+      class="mb-4"
       data-testid="track-container"
     >
       <v-row
@@ -60,7 +60,7 @@
       <v-col>
         <NuxtLink
           to="/musical-journey/musical-friends/eduardo-unz"
-          class="nav_link py-3"
+          class="nav_link py-4"
           >BACK TO UNZ</NuxtLink
         >
       </v-col>

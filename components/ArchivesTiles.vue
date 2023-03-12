@@ -7,7 +7,7 @@
       no-gutters
       justify="center"
       id="tilesRow"
-      class="mx-3 mx-sm-0 mb-5 pb-4"
+      class="mx-4 mx-sm-0 mb-12 pb-6"
     >
       <v-col
         v-for="(tile, index) in tiles"
@@ -16,7 +16,7 @@
         md="5"
         xl="3"
         align-self="center"
-        class="tilesCols position-relative pa-0 ma-2 ma-sm-3"
+        class="tilesCols position-relative pa-0 ma-2 ma-sm-4"
         data-testid="archive-container"
       >
         <ArchivesThumbnail :thumbnailObj="tile" />

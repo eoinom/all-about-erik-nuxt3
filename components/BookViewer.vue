@@ -23,7 +23,7 @@
           @flip-right-end="onFlipRightEnd"
         >
           <span
-            class="page-num pb-3"
+            class="page-num pb-4"
             id="page-num-sm"
           >
             Page {{ flipbook.page }} of {{ flipbook.numPages }}

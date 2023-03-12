@@ -17,7 +17,7 @@
     <img
       :src="titleImg"
       id="titleImg"
-      class="my-4"
+      class="my-6"
       data-testid="title-img"
     />
   </header>
@@ -25,7 +25,7 @@
   <v-container
     fluid
     id="mainContainer"
-    class="mb-5 pb-5 px-2 px-md-3 px-lg-4 px-xl-5"
+    class="mb-12 pb-12 px-2 px-md-6 px-lg-6 px-xl-12"
   >
     <v-row no-gutters>
       <v-col id="mainImgContainer">
@@ -50,7 +50,7 @@
         v-for="(section, iSec) in sections"
         :key="'S' + iSec + 1"
         no-gutters
-        class="pt-3 pb-2"
+        class="pt-4 pb-2"
         data-testid="production-container"
       >
         <div
@@ -155,12 +155,12 @@
       <!-- SECTIONS[0] - BOBO THE CHEERLEADER -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[0].productions"
@@ -192,7 +192,7 @@
       <!-- SECTIONS[1] - SOUND OF SUMMER SHOWERS -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -209,7 +209,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[1].productions"
@@ -230,12 +230,12 @@
       <!-- SECTIONS[2] - A LITTLE LOVIN' -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[2].productions"
@@ -267,7 +267,7 @@
       <!-- SECTIONS[3] - THE SLURP -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -298,7 +298,7 @@
         </div>
         <div
           style="max-width: 805px; flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[3].productions"
@@ -322,7 +322,7 @@
       <!-- SECTIONS[4] - ROOTY TOOT & WARM BABY -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -337,7 +337,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[4].productions"
@@ -380,12 +380,12 @@
       <!-- SECTIONS[5] - CASS, DENNY, JESTER, ZAL -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[5].productions"
@@ -418,7 +418,7 @@
       <!-- SECTIONS[6] - LADY GODIVA' -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -434,7 +434,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[6].productions"
@@ -455,12 +455,12 @@
       <!-- SECTIONS[7] - TWEEDLE DUM'S DRIVE-IN -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="max-width: 1095px; flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[7].productions"
@@ -487,7 +487,7 @@
       <!-- SECTIONS[8] - THE STRANGERS -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -514,7 +514,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[8].productions"
@@ -527,12 +527,12 @@
       <!-- SECTIONS[9] - THE SELLOUTS -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="max-width: 805px; flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[9].productions"
@@ -564,7 +564,7 @@
       <!-- SECTIONS[10] - KEN & BOBBY FISCHLER -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -580,7 +580,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[10].productions"
@@ -601,12 +601,12 @@
       <!-- SECTIONS[11] - RAY ROE -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
           style="flex: 1"
-          class="mr-3"
+          class="mr-4"
         >
           <music-production
             v-for="(production, iProd) in sections[11].productions"
@@ -638,7 +638,7 @@
       <!-- SECTIONS[12] - KEN MELVILLE -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div
@@ -654,7 +654,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[12].productions"
@@ -675,7 +675,7 @@
       <!-- SECTIONS[13] - TIM HARDIN -->
       <v-row
         no-gutters
-        class="py-4"
+        class="py-6"
         data-testid="production-container"
       >
         <div style="flex: 1">
@@ -710,7 +710,7 @@
       <!-- SECTIONS[14] - PLUMB CREEK BOYS -->
       <v-row
         no-gutters
-        class="pt-4 pb-5"
+        class="pt-6 pb-12"
         data-testid="production-container"
       >
         <div
@@ -727,7 +727,7 @@
         </div>
         <div
           style="flex: 1"
-          class="ml-3"
+          class="ml-4"
         >
           <music-production
             v-for="(production, iProd) in sections[14].productions"

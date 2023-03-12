@@ -11,7 +11,7 @@
 
     <div class="thumbnailImgTextOverlay">
       <div class="showOnHover">
-        <h4 class="videoTitle mb-1 mb-sm-2 mb-lg-4">{{ video.title }}</h4>
+        <h4 class="videoTitle mb-1 mb-sm-2 mb-lg-6">{{ video.title }}</h4>
         <span
           class="videoSubText"
           :class="video.subText.length > 60 ? 'hideText' : ''"

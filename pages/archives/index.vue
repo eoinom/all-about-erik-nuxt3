@@ -33,7 +33,7 @@
 
         <!-- SLIDESHOW OVERLAY -->
         <div
-          class="slideshowOverlay mb-3"
+          class="slideshowOverlay mb-4"
           :style="slideshowOverlayStyles"
         >
           <div class="mainContent mx-auto py-0">
@@ -42,7 +42,7 @@
               v-if="titleImg != null"
               :src="titleImg"
               id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-3"
+              class="mb-md-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
             <div>

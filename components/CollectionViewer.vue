@@ -224,7 +224,7 @@
       <NuxtLink
         v-if="!isOldTime"
         :to="{ path: '/collections/', query: { playMusic: 'false' } }"
-        class="nav_link pt-3"
+        class="nav_link pt-4"
         id="nav_back"
       >
         <img

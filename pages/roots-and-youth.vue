@@ -37,7 +37,7 @@
                 v-if="titleImg != null"
                 :src="titleImg"
                 id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-3"
+                class="mb-md-1 mb-lg-2 mb-xl-4"
                 data-testid="title-img"
               />
 
@@ -97,7 +97,7 @@
             <v-row
               align="center"
               justify="center"
-              class="mb-0 py-4"
+              class="mb-0 py-6"
             >
               <v-col
                 cols="auto"

@@ -23,7 +23,7 @@
 
     <div class="thumbnailImgTextOverlay">
       <div class="hideOnHover">
-        <span class="overlayText px-3">{{ thumbnailObj.text }}</span>
+        <span class="overlayText px-4">{{ thumbnailObj.text }}</span>
       </div>
 
       <div class="showOnHover">

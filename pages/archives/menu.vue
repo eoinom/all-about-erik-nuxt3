@@ -13,14 +13,14 @@
     >
       <v-col class="slideshowCol">
         <!-- SLIDESHOW OVERLAY -->
-        <div class="slideshowOverlayMenu mb-3">
+        <div class="slideshowOverlayMenu mb-4">
           <div class="mainContent mx-auto">
             <img
               alt="Archives title image"
               v-if="titleImg != null"
               :src="titleImg"
               id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-3"
+              class="mb-md-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
 

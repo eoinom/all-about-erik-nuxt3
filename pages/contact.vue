@@ -21,7 +21,7 @@
     />
 
     <!-- CONTACT FORM -->
-    <div class="form-container mb-4 mb-md-12">
+    <div class="form-container mb-6 mb-md-12">
       <form
         name="contact"
         method="POST"

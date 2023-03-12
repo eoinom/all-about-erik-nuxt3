@@ -34,7 +34,7 @@
               v-if="titleImg != null"
               :src="titleImg"
               id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-3"
+              class="mb-md-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
             <div>

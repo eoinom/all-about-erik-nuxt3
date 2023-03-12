@@ -18,7 +18,7 @@
   >
     <v-row
       no-gutters
-      class="mb-1 pt-4 px-1"
+      class="mb-1 pt-6 px-1"
     >
       <v-col class="slideshowCol">
         <!-- HEADER SLIDESHOW -->
@@ -38,7 +38,7 @@
               v-if="titleImg != null"
               :src="titleImg"
               id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-3"
+              class="mb-md-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
           </div>
@@ -62,7 +62,7 @@
         :key="'publication' + i"
         cols=""
         align-self="center"
-        class="publicationsCols pa-0 ma-2 ma-md-4"
+        class="publicationsCols pa-0 ma-2 ma-md-6"
         data-testid="publication-container"
       >
         <PublicationThumbnail :publication="publication" />
@@ -85,7 +85,7 @@
         :key="'newPublication' + i"
         cols=""
         align-self="center"
-        class="publicationsCols pa-0 ma-2 ma-md-4"
+        class="publicationsCols pa-0 ma-2 ma-md-6"
         data-testid="publication-container"
       >
         <PublicationThumbnail :publication="newPublication" />

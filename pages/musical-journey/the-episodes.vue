@@ -17,7 +17,7 @@
     <img
       :src="titleImg"
       id="titleImg"
-      class="my-4"
+      class="my-6"
       data-testid="title-img"
     />
   </header>
@@ -25,7 +25,7 @@
   <v-container
     fluid
     id="mainContainer"
-    class="mb-3 pb-5 pb-xl-3 px-1"
+    class="mb-4 pb-12 pb-xl-4 px-1"
   >
     <v-row
       no-gutters
@@ -52,7 +52,7 @@
       @mouseover="videoIndexHover = index"
       @mouseleave="videoIndexHover = null"
       style="cursor: pointer"
-      class="mt-3"
+      class="mt-4"
       data-testid="video-container"
     >
       <v-col
@@ -95,12 +95,12 @@
       <v-col
         cols="12"
         xl="5"
-        class="videoContentContainer px-5"
+        class="videoContentContainer px-12"
       >
         <v-row
           align="center"
           justify="center"
-          class="mb-0 pt-2 pt-md-3 pt-xl-4"
+          class="mb-0 pt-2 pt-md-4 pt-xl-6"
         >
           <v-col
             cols="auto"
@@ -109,7 +109,7 @@
           >
             <h2
               v-if="video.title != null"
-              class="videoTitle mb-4"
+              class="videoTitle mb-6"
             >
               {{ video.shortTitle }}
             </h2>
@@ -125,7 +125,7 @@
 
         <v-row
           justify="center"
-          class="playIconRow mb-0 py-2 py-md-3 py-xl-4"
+          class="playIconRow mb-0 py-2 py-md-4 py-xl-6"
         >
           <v-col
             cols="auto"

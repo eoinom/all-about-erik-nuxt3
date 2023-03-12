@@ -10,7 +10,7 @@
     <img
       :src="titleImg"
       id="titleImg"
-      class="my-4"
+      class="my-6"
       data-testid="title-img"
     />
   </header>
@@ -18,7 +18,7 @@
   <v-container
     fluid
     id="mainContainer"
-    class="mb-3 pb-5 px-1"
+    class="mb-4 pb-12 px-1"
   >
     <!-- MAIN VIDEO -->
     <v-row
@@ -26,7 +26,7 @@
       justify="center"
       align="center"
       id="mainVideoContainer"
-      class="my-2 my-sm-3 px-2 px-sm-3"
+      class="my-2 my-sm-4 px-2 px-sm-4"
     >
       <v-col
         cols="12"
@@ -62,7 +62,7 @@
         xl="3"
         v-for="(video, index) in videos"
         :key="video.title"
-        class="mb-2 mb-sm-3 px-2 px-sm-1"
+        class="mb-2 mb-sm-4 px-2 px-sm-1"
         @click="
           videoIndex = index;
           setStorage();

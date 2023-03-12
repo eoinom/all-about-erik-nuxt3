@@ -3,12 +3,12 @@
     <Title>{{ pageTitle }}</Title>
   </Head>
 
-  <v-container class="main-col pt-5">
+  <v-container class="main-col pt-12">
     <div style="text-align: center">
       <h1 class="heading">{{ title }}</h1>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-6">
       <v-button
         variant="danger"
         @click="onPlayAllClick()"
@@ -20,7 +20,7 @@
     <div
       v-for="(track, index) in tracks"
       :key="index"
-      class="mb-3"
+      class="mb-4"
       data-testid="track-container"
     >
       <v-row
@@ -40,12 +40,12 @@
         >
           <img
             :src="track.image"
-            class="trackImg my-3"
+            class="trackImg my-4"
           />
         </v-col>
         <v-col
           cols="12"
-          class="pr-4"
+          class="pr-6"
         >
           <p class="trackCaption textAlignEnd showOnMobile">
             {{ track.caption }}
@@ -64,7 +64,7 @@
         >
           <img
             :src="track.image"
-            class="trackImg my-3"
+            class="trackImg my-4"
           />
         </v-col>
         <v-col class="pl-2">
@@ -73,7 +73,7 @@
         </v-col>
         <v-col
           cols="12"
-          class="pl-4"
+          class="pl-6"
         >
           <p class="trackCaption showOnMobile">{{ track.caption }}</p>
         </v-col>
@@ -96,7 +96,7 @@
       <v-col>
         <NuxtLink
           to="/musical-journey/musical-friends/nadia"
-          class="nav_link py-3"
+          class="nav_link py-4"
           >BACK TO NADIA</NuxtLink
         >
       </v-col>

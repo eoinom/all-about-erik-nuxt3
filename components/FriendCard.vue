@@ -28,14 +28,14 @@
       <v-col
         order="1"
         :cols="imgCols"
-        class="px-3 pt-2 mb-0 textCol"
+        class="px-4 pt-2 mb-0 textCol"
         :style="textColDims"
       >
         <h3 class="textTitle mb-0 mt-1">{{ friend.name }}</h3>
         <p class="text mb-2">{{ friend.text }}</p>
         <div class="seeMoreBtnContainer">
           <NuxtLink :to="'/musical-journey/musical-friends/' + friend.link">
-            <button class="seeMoreBtn mt-0 mb-3">...see more</button>
+            <button class="seeMoreBtn mt-0 mb-4">...see more</button>
           </NuxtLink>
         </div>
       </v-col>

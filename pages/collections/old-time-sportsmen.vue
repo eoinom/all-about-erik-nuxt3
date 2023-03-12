@@ -158,9 +158,9 @@
         <v-col>
           <div class="postcardHistory__textDiv">
             <h2 class="title">{{ postcardHistory.title }}</h2>
-            <div class="pb-2 pb-sm-3">
+            <div class="pb-2 pb-sm-4">
               <div
-                class="pb-4 pb-xl-2 pt-3 pt-xl-0 mb-3 mb-xl-0 pl-5 pr-3"
+                class="pb-6 pb-xl-2 pt-4 pt-xl-0 mb-4 mb-xl-0 pl-12 pr-4"
                 style="float: right"
               >
                 <flip-postcard
@@ -190,7 +190,7 @@
 
               <img
                 :src="postcardHistory.images[0].img"
-                class="py-3 pr-3"
+                class="py-4 pr-4"
                 style="float: left; max-width: 55%"
               />
               <span
@@ -200,7 +200,7 @@
 
               <img
                 :src="postcardHistory.images[1].img"
-                class="pl-3"
+                class="pl-4"
                 style="float: right; max-width: 55%"
               />
               <span
@@ -217,7 +217,7 @@
         >
           <div
             id="postcardsSidebar"
-            class="pt-3"
+            class="pt-4"
           >
             <flip-postcard
               :imgFront="postcardHistory.postcards[1].imgFront"
@@ -278,7 +278,7 @@
         >
           <div
             id="postcardsSidebar"
-            class="py-3"
+            class="py-4"
           >
             <flip-postcard
               v-if="windowWidth < 768"
@@ -341,9 +341,9 @@
         </v-col>
       </v-row>
 
-      <v-row class="mt-4">
+      <v-row class="mt-6">
         <v-col>
-          <div class="postcardHistory__textDiv text-justify pt-3">
+          <div class="postcardHistory__textDiv text-justify pt-4">
             <span class="postcardText">
               If you would like to see a large selection of the Old-Time
               Sportsmen collection, click the link below to open the gallery
@@ -356,7 +356,7 @@
               style="width: fit-content"
             >
               <div
-                class="pt-3 pb-4"
+                class="pt-4 pb-6"
                 style="width: fit-content; max-width: 90vw"
               >
                 <span style="font-size: 18px">SEE THE COLLECTION</span>

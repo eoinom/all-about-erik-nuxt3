@@ -3,7 +3,7 @@
     <Title>{{ pageTitle }}</Title>
   </Head>
 
-  <div class="pb-5">
+  <div class="pb-12">
     <BackgroundMusic
       :audioFile="discographyPgContent.bgAudio"
       :audioDuration="discographyPgContent.bgAudioDuration"
@@ -37,7 +37,7 @@
       <img
         :src="titleImg"
         id="titleImg"
-        class="mb-4"
+        class="mb-6"
         data-testid="title-img"
       />
       <p id="titleSubText">{{ titleSubText }}</p>
@@ -47,7 +47,7 @@
     <div
       id="scrollDownContainer"
       style="text-align: center"
-      class="pb-5"
+      class="pb-12"
     >
       <ScrollDownArrow scrollToElement="#topOfMainBody" />
     </div>
@@ -57,9 +57,9 @@
     <v-container
       fluid
       :style="bodyOpacity"
-      class="mb-5 py-3 main-col"
+      class="mb-12 py-4 main-col"
     >
-      <div class="px-4 py-3">
+      <div class="px-6 py-4">
         <div>
           <ContentRenderer
             :value="discographyPgContent"
@@ -69,17 +69,17 @@
         </div>
       </div>
 
-      <div class="px-4">
+      <div class="px-6">
         <h2 id="albumReleasesHeading">ALBUM RELEASES</h2>
         <div
           v-for="(album, index) in albums"
           :key="index"
-          class="mt-4 mb-2 mb-md-3 mb-lg-4 albumText"
+          class="mt-6 mb-2 mb-md-4 mb-lg-6 albumText"
           data-testid="album-container"
         >
           <v-row>
             <v-col>
-              <div class="mb-3">
+              <div class="mb-4">
                 <span class="albumTitle">{{
                   album.artist + ' - ' + album.title
                 }}</span>
@@ -96,7 +96,7 @@
             >
               <div
                 style="text-align: center"
-                class="mb-3"
+                class="mb-4"
               >
                 <img
                   :src="album.thumbnailImg"
