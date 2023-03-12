@@ -154,7 +154,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -162,11 +162,39 @@ useHead({
   },
 });
 
-const route = useRoute();
 const applyZeroLayoutPadding = ref(false);
-if (route.path.includes('/collections')) {
-  applyZeroLayoutPadding.value = true;
-}
+const pagesForZeroPadding = [
+  '/roots-and-youth',
+  '/the-episodes',
+  '/early-productions',
+  '/short-films',
+  '/travels',
+  '/collections',
+  '/publications',
+  'archives',
+];
+
+const path = computed(() => {
+  const route = useRoute();
+  return route.path;
+});
+
+const applyPageLayoutPadding = (currentPath) => {
+  applyZeroLayoutPadding.value = false;
+  pagesForZeroPadding.forEach((page) => {
+    if (currentPath.includes(page)) {
+      applyZeroLayoutPadding.value = true;
+    }
+  });
+};
+
+onMounted(() => {
+  applyPageLayoutPadding(path.value);
+});
+
+watch(path, (newPath) => {
+  applyPageLayoutPadding(newPath);
+});
 </script>
 
 <script type="text/javascript">
