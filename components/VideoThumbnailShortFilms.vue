@@ -26,11 +26,10 @@
       class="durationBanner py-0"
     >
       <v-row
-        justify="center"
         align="center"
         class="h-100 my-0"
       >
-        <v-col align-self="center">
+        <v-col class="py-0">
           <span
             v-if="video.duration != null"
             class="videoDurationText"
