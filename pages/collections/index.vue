@@ -292,7 +292,7 @@ export default {
     --maxCollectionsPerRow: 1;
   }
   .main-col {
-    padding: 0 0;
+    padding: 0 !important;
   }
   .mainContent {
     padding-left: 15%;
