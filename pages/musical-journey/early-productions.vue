@@ -914,10 +914,6 @@ body {
   overscroll-behavior: contain;
 }
 
-.layout {
-  padding: 0;
-}
-
 #header {
   background-image: var(--headerBgImg);
   background-position: center;

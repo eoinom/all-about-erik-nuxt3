@@ -461,10 +461,6 @@ export default {
   font-weight: normal;
 }
 
-.layout {
-  padding-top: 8px;
-}
-
 .hidden {
   opacity: 0;
 }

@@ -184,10 +184,6 @@ export default {
   font-weight: normal;
 }
 
-.layout {
-  padding: 0;
-}
-
 .row {
   margin-bottom: 20px;
 }

@@ -180,11 +180,6 @@ export default {
   max-width: 75% !important;
 }
 
-.layout {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
 .titleImg {
   display: block;
   width: 100%;

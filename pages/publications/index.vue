@@ -203,11 +203,6 @@ export default {
   --publicationsDivWidth: 1900px;
 }
 
-.layout {
-  padding: 0;
-  background-color: #141414 !important;
-}
-
 .row {
   margin-bottom: 20px;
 }

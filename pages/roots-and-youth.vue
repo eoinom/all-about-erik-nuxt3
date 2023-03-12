@@ -266,10 +266,6 @@ export default {
   font-weight: normal;
 }
 
-.layout {
-  background-color: #dddddd;
-}
-
 .row {
   margin-bottom: 20px;
 }
@@ -375,8 +371,8 @@ export default {
 
 // Extra small devices (portrait phones, less than 576px)
 @media only screen and (max-width: 575.98px) {
-  .layout {
-    padding: 0 0;
+  .main-col {
+    padding: 0;
   }
   .slideshowOverlay .mainContent {
     padding-left: 15%;

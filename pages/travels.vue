@@ -149,10 +149,6 @@ export default {
   font-weight: normal;
 }
 
-.layout {
-  padding: 0;
-}
-
 #header {
   background-image: var(--headerBgImg);
   background-position: center;

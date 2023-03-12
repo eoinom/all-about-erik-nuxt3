@@ -1,5 +1,14 @@
 <template>
-  <div :class="{ layout: true, 'pa-0': applyZeroLayoutPadding }">
+  <div
+    :class="{
+      layout: true,
+      'layout--grey': applyGreyBackground,
+      'layout--darkgrey': applyDarkGreyBackground,
+      'layout--zero-padding-mbl': applyZeroLayoutPaddingMblOnly,
+      'pa-0': applyZeroLayoutPadding,
+      'pt-2': applyTopPadding,
+    }"
+  >
     <div class="openbtn">
       <img
         alt="Open navigation menu"
@@ -162,38 +171,64 @@ useHead({
   },
 });
 
+const applyGreyBackground = ref(false);
+const pagesForGreyBackground = ['/roots-and-youth', '/the-episodes'];
+
 const applyZeroLayoutPadding = ref(false);
 const pagesForZeroPadding = [
-  '/roots-and-youth',
   '/the-episodes',
   '/early-productions',
   '/short-films',
   '/travels',
   '/collections',
   '/publications',
-  'archives',
+  '/archives',
 ];
+
+const applyZeroLayoutPaddingMblOnly = ref(false);
+const applyTopPadding = ref(false);
+const applyDarkGreyBackground = ref(false);
 
 const path = computed(() => {
   const route = useRoute();
   return route.path;
 });
 
-const applyPageLayoutPadding = (currentPath) => {
+const applyPageLayoutStyling = (currentPath) => {
   applyZeroLayoutPadding.value = false;
   pagesForZeroPadding.forEach((page) => {
     if (currentPath.includes(page)) {
       applyZeroLayoutPadding.value = true;
     }
   });
+  applyZeroLayoutPaddingMblOnly.value = false;
+  if (currentPath.includes('/roots-and-youth')) {
+    applyZeroLayoutPaddingMblOnly.value = true;
+  }
+
+  applyGreyBackground.value = false;
+  pagesForGreyBackground.forEach((page) => {
+    if (currentPath.includes(page)) {
+      applyGreyBackground.value = true;
+    }
+  });
+
+  applyTopPadding.value = false;
+  if (currentPath.includes('/discography')) {
+    applyTopPadding.value = true;
+  }
+  applyDarkGreyBackground.value = false;
+  if (currentPath.includes('/publications')) {
+    applyDarkGreyBackground.value = true;
+  }
 };
 
 onMounted(() => {
-  applyPageLayoutPadding(path.value);
+  applyPageLayoutStyling(path.value);
 });
 
 watch(path, (newPath) => {
-  applyPageLayoutPadding(newPath);
+  applyPageLayoutStyling(newPath);
 });
 </script>
 
@@ -300,6 +335,13 @@ body {
   margin: 0 auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+
+  &--grey {
+    background-color: #dddddd;
+  }
+  &--darkgrey {
+    background-color: #141414;
+  }
 }
 
 /* The side navigation menu */
@@ -554,6 +596,11 @@ body {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
+  .layout {
+    &--zero-padding-mbl {
+      padding: 0;
+    }
+  }
   #sideNav-main {
     padding: 15px 0;
   }
