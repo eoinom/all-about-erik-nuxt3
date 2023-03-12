@@ -765,10 +765,10 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.0.tgz#c7bd7e9a516514e612d5d2e511ffc399e0eac322"
   integrity sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==
 
-"@nuxt/devtools@^0.1.2":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-0.1.6.tgz#d239daca67432abee93d05d6a55098286a760c23"
-  integrity sha512-sBa5uUdc/5DM0MDgNIZIEfL+nKI9y4wGRQWbiM7QstWov/4o73ptOKa68a7EdHDqFDtTAqjqmWQkzsBEEGYB7g==
+"@nuxt/devtools@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-0.2.3.tgz#e4c94e5b8083b77f6fd4c339c903202c70ae7d14"
+  integrity sha512-lwMMaZWh5+ncJNIgvP8i036uMFRkCWybe7pIXFD2acLPuq9NBRJ0UbuCX/q3LFKMklmWo/VxRk2RdInmqkKsdA==
   dependencies:
     "@antfu/install-pkg" "^0.1.1"
     "@nuxt/kit" "^3.2.2"

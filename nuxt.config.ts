@@ -26,6 +26,13 @@ export default defineNuxtConfig({
     },
     // ['vue-scrollto/nuxt3', { duration: 300 }],
   ],
+  devtools: {
+    // Enable devtools (default: true)
+    enabled: false,
+    // VS Code Server options
+    vscode: {},
+    // ...other options
+  },
   build: {
     transpile: ['vuetify'],
   },

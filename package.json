@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@nuxt/content": "^2.3.0",
-    "@nuxt/devtools": "^0.1.2",
+    "@nuxt/devtools": "^0.2.3",
     "@popperjs/core": "^2.11.6",
     "nuxt": "^3.2.2",
     "sass": "^1.58.0"
