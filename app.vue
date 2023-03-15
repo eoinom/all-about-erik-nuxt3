@@ -264,6 +264,22 @@ export default {
     },
   },
 
+  watch: {
+    $route() {
+      this.closeNav();
+    },
+  },
+
+  async mounted() {
+    const navItems = await queryContent('navigation')
+      .sort({ orderNo: 1 }) // sort ascending
+      .find();
+
+    this.navMenuItems = navItems;
+
+    this.documentLoaded = true;
+  },
+
   methods: {
     subSideNavStyles() {
       if (this.documentLoaded) {
@@ -302,16 +318,6 @@ export default {
     getImageUrl(name) {
       return new URL(`./dynamic-images/${name}`, import.meta.url).href;
     },
-  },
-
-  async mounted() {
-    const navItems = await queryContent('navigation')
-      .sort({ orderNo: 1 }) // sort ascending
-      .find();
-
-    this.navMenuItems = navItems;
-
-    this.documentLoaded = true;
   },
 
   components: {
