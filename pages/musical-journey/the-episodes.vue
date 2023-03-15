@@ -330,6 +330,7 @@ export default {
 }
 
 .thumbnailImgContainer {
+  position: relative;
   max-width: 100%;
 }
 
@@ -384,6 +385,7 @@ export default {
 }
 
 .videoContentContainer {
+  position: relative;
   background-color: white;
 }
 
