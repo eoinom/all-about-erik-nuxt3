@@ -535,8 +535,6 @@ export default {
     ).findOne();
     this.musicalFriendPgContent = musicalFriendPgContent;
 
-    console.log({ musicalFriendPgContent });
-
     const musicalFriendsContent = await queryContent(
       'musical-journey/musical-friends'
     ).findOne();

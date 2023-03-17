@@ -11,6 +11,10 @@ body {
   background-color: black !important;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 .col {
   min-width: auto !important;
   /* Fix for collections & publications index pages which was impacted by Bootstrap-Vue's change (added min-width: 0) */
