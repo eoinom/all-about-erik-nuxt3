@@ -41,7 +41,7 @@
   </NuxtLink>
 </template>
 
-<script scoped>
+<script>
 import slugify from '@sindresorhus/slugify';
 
 export default {

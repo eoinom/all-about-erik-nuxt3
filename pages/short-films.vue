@@ -1,89 +1,93 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="shortFilmsPgContent.bgAudio"
-    :audioDuration="shortFilmsPgContent.bgAudioDuration"
-    :audioFadeInDuration="shortFilmsPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="shortFilmsPgContent.bgAudioFadeOutDuration"
-  />
+      <BackgroundMusic
+        :audioFile="shortFilmsPgContent.bgAudio"
+        :audioDuration="shortFilmsPgContent.bgAudioDuration"
+        :audioFadeInDuration="shortFilmsPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="shortFilmsPgContent.bgAudioFadeOutDuration"
+      />
 
-  <header
-    id="header"
-    :style="headerStyle"
-  >
-    <img
-      :src="titleImg"
-      id="titleImg"
-      class="my-6"
-      data-testid="title-img"
-    />
-  </header>
-
-  <v-container
-    fluid
-    id="mainContainer"
-    class="mb-6 pb-12 pb-xl-4 px-1"
-  >
-    <!-- MAIN VIDEO -->
-    <v-row
-      no-gutters
-      justify="center"
-      align="center"
-      id="mainVideoContainer"
-      class="my-2 my-sm-4 px-2 px-sm-4"
-    >
-      <v-col
-        cols="12"
-        align-self="center"
+      <header
+        id="header"
+        :style="headerStyle"
       >
-        <div>
-          <iframe
-            :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
-            width="960"
-            height="540"
-            frameborder="0"
-            id="mainVideo"
-          />
-        </div>
-      </v-col>
-    </v-row>
+        <img
+          :src="titleImg"
+          id="titleImg"
+          class="my-6"
+          data-testid="title-img"
+        />
+      </header>
 
-    <!-- VIDEOS -->
-    <v-row
-      no-gutters
-      justify="center"
-      id="videos"
-    >
-      <v-col
-        cols="6"
-        sm="4"
-        xl="3"
-        align-self="center"
-        v-for="(video, index) in videos"
-        :key="video.title"
-        @click="videoIndex = index"
-        class="mb-2 mb-sm-4 px-2 px-sm-4"
-        data-testid="video-container"
+      <v-container
+        fluid
+        id="mainContainer"
+        class="mb-6 pb-12 pb-xl-4 px-1"
       >
-        <video-thumbnail-short-films :video="video" />
-      </v-col>
-    </v-row>
-  </v-container>
+        <!-- MAIN VIDEO -->
+        <v-row
+          no-gutters
+          justify="center"
+          align="center"
+          id="mainVideoContainer"
+          class="my-2 my-sm-4 px-2 px-sm-4"
+        >
+          <v-col
+            cols="12"
+            align-self="center"
+          >
+            <div>
+              <iframe
+                :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
+                width="960"
+                height="540"
+                frameborder="0"
+                id="mainVideo"
+              />
+            </div>
+          </v-col>
+        </v-row>
 
-  <VideoLightBox
-    :videos="videos"
-    :index="videoIndex"
-    :disable-scroll="true"
-    @close="videoIndex = null"
-  />
+        <!-- VIDEOS -->
+        <v-row
+          no-gutters
+          justify="center"
+          id="videos"
+        >
+          <v-col
+            cols="6"
+            sm="4"
+            xl="3"
+            align-self="center"
+            v-for="(video, index) in videos"
+            :key="video.title"
+            @click="videoIndex = index"
+            class="mb-2 mb-sm-4 px-2 px-sm-4"
+            data-testid="video-container"
+          >
+            <video-thumbnail-short-films :video="video" />
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <BackToTop />
+      <VideoLightBox
+        :videos="videos"
+        :index="videoIndex"
+        :disable-scroll="true"
+        @close="videoIndex = null"
+      />
+
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

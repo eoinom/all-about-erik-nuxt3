@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     head: {
       script: [{ src: 'https://cdn.jsdelivr.net/npm/vue-scrollto' }],
     },
+    pageTransition: { name: 'page', mode: 'default' },
   },
   css: [
     '@/assets/styles.css',

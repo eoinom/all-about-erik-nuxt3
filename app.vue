@@ -151,14 +151,9 @@
       </main>
     </transition> -->
 
-    <transition
-      name="home"
-      appear
-    >
-      <main>
-        <NuxtPage />
-      </main>
-    </transition>
+    <main>
+      <NuxtPage />
+    </main>
   </div>
 </template>
 
@@ -571,30 +566,18 @@ body {
 }
 
 /* Transition styles on router-view for fading the page */
-.home-enter-active {
-  /* transition-duration: 6.5s; */
-  transition-duration: 5.5s;
-  transition-property: opacity;
-  transition-timing-function: ease-in-out;
-}
-
 .page-enter-active {
   transition-duration: 5.5s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
 }
-
-.home-leave-active,
 .page-leave-active {
   transition-duration: 1.5s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
 }
-
-.home-enter,
-.page-enter,
-.home-leave-active,
-.page-leave-active {
+.page-enter-from,
+.page-leave-to {
   opacity: 0;
 }
 

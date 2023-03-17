@@ -1,77 +1,82 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="archivesPgContent.bgAudio"
-    :audioDuration="archivesPgContent.bgAudioDuration"
-    :audioFadeInDuration="archivesPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="archivesPgContent.bgAudioFadeOutDuration"
-    :maxVolume="1.0"
-  />
+      <BackgroundMusic
+        :audioFile="archivesPgContent.bgAudio"
+        :audioDuration="archivesPgContent.bgAudioDuration"
+        :audioFadeInDuration="archivesPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="archivesPgContent.bgAudioFadeOutDuration"
+        :maxVolume="1.0"
+      />
 
-  <v-container
-    fluid
-    class="main-col ma-0, pa-0"
-  >
-    <v-row
-      no-gutters
-      class="mb-1 px-1"
-    >
-      <v-col
-        class="slideshowCol"
-        :style="slideshowColStyles"
+      <v-container
+        fluid
+        class="main-col ma-0, pa-0"
       >
-        <!-- HEADER SLIDESHOW -->
-        <SlideshowKenBurnsSmall
-          :slides="slides"
-          height="100vh"
-          maxImgHeight="100vh"
-          :scaleImgToContainer="true"
-        />
-
-        <!-- SLIDESHOW OVERLAY -->
-        <div
-          class="slideshowOverlay mb-4"
-          :style="slideshowOverlayStyles"
+        <v-row
+          no-gutters
+          class="mb-1 px-1"
         >
-          <div class="mainContent mx-auto py-0">
-            <img
-              alt="Archives title image"
-              v-if="titleImg != null"
-              :src="titleImg"
-              id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-4"
-              data-testid="title-img"
+          <v-col
+            class="slideshowCol"
+            :style="slideshowColStyles"
+          >
+            <!-- HEADER SLIDESHOW -->
+            <SlideshowKenBurnsSmall
+              :slides="slides"
+              height="100vh"
+              maxImgHeight="100vh"
+              :scaleImgToContainer="true"
             />
-            <div>
-              <ContentRenderer
-                :value="archivesPgContent"
-                tag="div"
-                id="slideshowText"
-              />
+
+            <!-- SLIDESHOW OVERLAY -->
+            <div
+              class="slideshowOverlay mb-4"
+              :style="slideshowOverlayStyles"
+            >
+              <div class="mainContent mx-auto py-0">
+                <img
+                  alt="Archives title image"
+                  v-if="titleImg != null"
+                  :src="titleImg"
+                  id="titleImg"
+                  class="mb-md-1 mb-lg-2 mb-xl-4"
+                  data-testid="title-img"
+                />
+                <div>
+                  <ContentRenderer
+                    :value="archivesPgContent"
+                    tag="div"
+                    id="slideshowText"
+                  />
+                </div>
+
+                <div id="scrollDownContainer">
+                  <ScrollDownArrow scrollToElement="#tilesRow" />
+                </div>
+              </div>
             </div>
+          </v-col>
+        </v-row>
+      </v-container>
 
-            <div id="scrollDownContainer">
-              <ScrollDownArrow scrollToElement="#tilesRow" />
-            </div>
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-  </v-container>
+      <!-- TILES -->
+      <ArchivesTiles
+        v-if="tiles"
+        :tiles="tiles"
+        :style="tilesContainerStyles"
+      />
 
-  <!-- TILES -->
-  <ArchivesTiles
-    :tiles="tiles"
-    :style="tilesContainerStyles"
-  />
-
-  <BackToTop />
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {
@@ -132,8 +137,10 @@ export default {
         }
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('tilesRow');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
+        if (element) {
+          let elemRect = element.getBoundingClientRect();
+          this.targetPosY = elemRect.top - bodyRect.top;
+        }
       }.bind(this),
       500
     );
@@ -152,8 +159,10 @@ export default {
         this.scrollY = window.pageYOffset;
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('tilesRow');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
+        if (element) {
+          let elemRect = element.getBoundingClientRect();
+          this.targetPosY = elemRect.top - bodyRect.top;
+        }
       }
     },
     onResize() {
@@ -162,8 +171,10 @@ export default {
 
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('tilesRow');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
+        if (element) {
+          let elemRect = element.getBoundingClientRect();
+          this.targetPosY = elemRect.top - bodyRect.top;
+        }
       }
     },
   },

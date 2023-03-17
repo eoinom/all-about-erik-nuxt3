@@ -1,51 +1,55 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="audioFile"
-    :audioDuration="audioDuration"
-    :audioFadeInDuration="audioFadeInDuration"
-    :audioFadeOutDuration="audioFadeOutDuration"
-  />
+      <BackgroundMusic
+        :audioFile="audioFile"
+        :audioDuration="audioDuration"
+        :audioFadeInDuration="audioFadeInDuration"
+        :audioFadeOutDuration="audioFadeOutDuration"
+      />
 
-  <v-container fluid>
-    <div class="contentContainer">
-      <div class="content">
-        <div class="mainContent">
-          <img
-            alt="All About Erik logo"
-            v-if="titleImg != null"
-            :src="titleImg"
-            class="titleImg"
-            data-testid="title-img"
-          />
-          <div>
-            <ContentRenderer
-              :value="homePgContent"
-              tag="span"
-              class="homePgMainText"
-            />
+      <v-container fluid>
+        <div class="contentContainer">
+          <div class="content">
+            <div class="mainContent">
+              <img
+                alt="All About Erik logo"
+                v-if="titleImg != null"
+                :src="titleImg"
+                class="titleImg"
+                data-testid="title-img"
+              />
+              <div>
+                <ContentRenderer
+                  :value="homePgContent"
+                  tag="span"
+                  class="homePgMainText"
+                />
+              </div>
+            </div>
+
+            <div class="secondaryContent">
+              <span
+                v-html="creditText"
+                class="homePgCreditText"
+              />
+            </div>
           </div>
         </div>
+      </v-container>
 
-        <div class="secondaryContent">
-          <span
-            v-html="creditText"
-            class="homePgCreditText"
-          />
-        </div>
+      <div
+        v-show="slides"
+        class="slideshow"
+      >
+        <SlideshowKenBurns :slides="slides" />
       </div>
     </div>
-  </v-container>
-
-  <div
-    v-show="slides"
-    class="slideshow"
-  >
-    <SlideshowKenBurns :slides="slides" />
-  </div>
+  </router-view>
 </template>
 
 <script>

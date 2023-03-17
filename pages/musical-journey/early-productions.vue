@@ -1,361 +1,176 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="earlyProductionsPgContent.bgAudio"
-    :audioDuration="earlyProductionsPgContent.bgAudioDuration"
-    :audioFadeInDuration="earlyProductionsPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="earlyProductionsPgContent.bgAudioFadeOutDuration"
-  />
+      <BackgroundMusic
+        :audioFile="earlyProductionsPgContent.bgAudio"
+        :audioDuration="earlyProductionsPgContent.bgAudioDuration"
+        :audioFadeInDuration="earlyProductionsPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="earlyProductionsPgContent.bgAudioFadeOutDuration"
+      />
 
-  <header
-    id="header"
-    :style="headerStyles"
-  >
-    <img
-      :src="titleImg"
-      id="titleImg"
-      class="my-6"
-      data-testid="title-img"
-    />
-  </header>
-
-  <v-container
-    fluid
-    id="mainContainer"
-    class="mb-12 pb-12 px-2 px-md-6 px-lg-6 px-xl-12"
-  >
-    <v-row no-gutters>
-      <v-col id="mainImgContainer">
+      <header
+        id="header"
+        :style="headerStyles"
+      >
         <img
-          :src="mainImg"
-          id="mainImg"
+          :src="titleImg"
+          id="titleImg"
+          class="my-6"
+          data-testid="title-img"
         />
-        <div>
-          <ContentRenderer
-            :value="earlyProductionsPgContent"
-            tag="span"
-            id="mainImgText"
-            class="mb-4"
-          />
-        </div>
-      </v-col>
-    </v-row>
+      </header>
 
-    <!-- LAYOUT FOR PHONES & TABLETS -->
-    <div v-if="windowWidth < 992">
-      <v-row
-        v-for="(section, iSec) in sections"
-        :key="'S' + iSec + 1"
-        no-gutters
-        class="pt-4 pb-2"
-        data-testid="production-container"
+      <v-container
+        fluid
+        id="mainContainer"
+        class="mb-12 pb-12 px-2 px-md-6 px-lg-6 px-xl-12"
       >
-        <div
-          v-if="
-            section.textBoxes?.length > 1 || section.productions?.length > 1
-          "
-          class="sectionContainerDevices"
-          :style="sectionContainerDevicesStyles(section.productions[0])"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in section.textBoxes"
-            :key="'S' + (iSec + 1) + 'T' + (iText + 1)"
-            :title="textBox.heading"
-            :body="textBox.text"
-            :includeBorder="false"
-            :divHeight="'fit-content'"
-            :divPadding="iText === 0 ? '0' : '12px 0 0 0'"
-          />
-          <div class="responsiveBtnDiv">
-            <button
-              v-for="(lightBox, iLightBox) in section.lightboxes"
-              :key="'S' + (iSec + 1) + 'L' + (iLightBox + 1)"
-              class="lightBoxBtn"
-              @click="lightBoxBtnClick(lightBox)"
-            >
-              {{ lightBox.buttonText }}
-            </button>
-          </div>
-          <music-production
-            v-for="(production, iProd) in section.productions"
-            :key="'S' + (iSec + 1) + 'P' + (iProd + 1)"
-            :production="production"
-            :showImage="false"
-            :showBgImage="false"
-            :showTitleCredits="true"
-            :showTracks="true"
-            :style="iProd > 0 ? 'padding-top: 8px' : ''"
-          />
-        </div>
+        <v-row no-gutters>
+          <v-col id="mainImgContainer">
+            <img
+              :src="mainImg"
+              id="mainImg"
+            />
+            <div>
+              <ContentRenderer
+                :value="earlyProductionsPgContent"
+                tag="span"
+                id="mainImgText"
+                class="mb-4"
+              />
+            </div>
+          </v-col>
+        </v-row>
 
-        <div
-          v-else
-          class="sectionContainerDevices"
-          :style="sectionContainerDevicesStyles(section.productions[0])"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in section.textBoxes"
-            :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'h'"
-            :title="textBox.heading"
-            :includeBorder="false"
-            :divHeight="'fit-content'"
-            divPadding="0"
-          />
-          <music-production
-            v-for="(production, iProd) in section.productions"
-            :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 'c'"
-            :production="production"
-            :showImage="false"
-            :showBgImage="false"
-            :showTitleCredits="true"
-            :showTracks="false"
-          />
-          <music-production-text
-            v-for="(textBox, iText) in section.textBoxes"
-            :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'b'"
-            :body="textBox.text"
-            :includeBorder="false"
-            :divHeight="'fit-content'"
-            divPadding="0"
-            :style="
-              section.lightboxes?.length == 0 ? 'padding-bottom: 8px' : ''
-            "
-          />
-          <div
-            v-if="section.lightboxes?.length > 0"
-            class="responsiveBtnDiv"
+        <!-- LAYOUT FOR PHONES & TABLETS -->
+        <div v-if="windowWidth < 992">
+          <v-row
+            v-for="(section, iSec) in sections"
+            :key="'S' + iSec + 1"
+            no-gutters
+            class="pt-4 pb-2"
+            data-testid="production-container"
           >
-            <button
-              v-for="(lightBox, iLightBox) in section.lightboxes"
-              :key="iLightBox + 1"
-              class="lightBoxBtn"
-              @click="lightBoxBtnClick(lightBox)"
-            >
-              {{ lightBox.buttonText }}
-            </button>
-          </div>
-          <music-production
-            v-for="(production, iProd) in section.productions"
-            :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 't'"
-            :production="production"
-            :showImage="false"
-            :showBgImage="false"
-            :showTitleCredits="false"
-            :showTracks="true"
-          />
-        </div>
-      </v-row>
-    </div>
-
-    <!-- LAYOUT FOR DESKTOPS -->
-    <div v-else>
-      <!-- SECTIONS[0] - BOBO THE CHEERLEADER -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[0].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[0].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          style="width: 38.5%; min-width: 444px"
-          v-if="sections[0].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[0].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[1] - SOUND OF SUMMER SHOWERS -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 36.5%; max-width: 410px"
-          v-if="sections[1].textBoxes?.length > 0"
-          class=""
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[1].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[1].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[1].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[2] - A LITTLE LOVIN' -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[2].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[2].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          style="width: 38.5%; max-width: 400px"
-          v-if="sections[2].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[2].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[3] - THE SLURP -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          id="theSlurpTextCol"
-          v-if="sections[3].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[3].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-            style="height: inherit"
-          />
-          <div
-            v-if="windowWidth >= 1200"
-            style="display: flex; justify-content: space-between"
-          >
-            <button
-              v-for="(lightBox, iLightBox) in sections[3].lightboxes"
-              :key="iLightBox + 1"
-              class="lightBoxBtn"
-              style="margin-right: 0"
-              @click="lightBoxBtnClick(lightBox)"
-            >
-              {{ lightBox.buttonText }}
-            </button>
-          </div>
-        </div>
-        <div
-          style="max-width: 805px; flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[3].productions"
-            :key="iProd"
-            :production="production"
-            :style="iProd == 0 ? 'margin-bottom:5px' : ''"
-          />
-          <div v-if="windowWidth < 1200">
-            <button
-              v-for="(lightBox, iLightBox) in sections[3].lightboxes"
-              :key="iLightBox + 1"
-              class="lightBoxBtn"
-              @click="lightBoxBtnClick(lightBox)"
-            >
-              {{ lightBox.buttonText }}
-            </button>
-          </div>
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[4] - ROOTY TOOT & WARM BABY -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          id="rootyTootTextBox"
-          v-if="sections[4].textBoxes?.length > 0"
-        >
-          <music-production-text
-            :title="sections[4].textBoxes[0].heading"
-            :body="sections[4].textBoxes[0].text"
-            style="height: inherit"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[4].productions"
-            :key="iProd"
-            :production="production"
-          />
-
-          <div style="width: 100%; display: flex; flex-direction: row; flex: 1">
             <div
-              style="
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                justify-content: space-between;
+              v-if="
+                section.textBoxes?.length > 1 || section.productions?.length > 1
               "
+              class="sectionContainerDevices"
+              :style="sectionContainerDevicesStyles(section.productions[0])"
             >
+              <music-production-text
+                v-for="(textBox, iText) in section.textBoxes"
+                :key="'S' + (iSec + 1) + 'T' + (iText + 1)"
+                :title="textBox.heading"
+                :body="textBox.text"
+                :includeBorder="false"
+                :divHeight="'fit-content'"
+                :divPadding="iText === 0 ? '0' : '12px 0 0 0'"
+              />
+              <div class="responsiveBtnDiv">
+                <button
+                  v-for="(lightBox, iLightBox) in section.lightboxes"
+                  :key="'S' + (iSec + 1) + 'L' + (iLightBox + 1)"
+                  class="lightBoxBtn"
+                  @click="lightBoxBtnClick(lightBox)"
+                >
+                  {{ lightBox.buttonText }}
+                </button>
+              </div>
+              <music-production
+                v-for="(production, iProd) in section.productions"
+                :key="'S' + (iSec + 1) + 'P' + (iProd + 1)"
+                :production="production"
+                :showImage="false"
+                :showBgImage="false"
+                :showTitleCredits="true"
+                :showTracks="true"
+                :style="iProd > 0 ? 'padding-top: 8px' : ''"
+              />
+            </div>
+
+            <div
+              v-else
+              class="sectionContainerDevices"
+              :style="sectionContainerDevicesStyles(section.productions[0])"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in section.textBoxes"
+                :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'h'"
+                :title="textBox.heading"
+                :includeBorder="false"
+                :divHeight="'fit-content'"
+                divPadding="0"
+              />
+              <music-production
+                v-for="(production, iProd) in section.productions"
+                :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 'c'"
+                :production="production"
+                :showImage="false"
+                :showBgImage="false"
+                :showTitleCredits="true"
+                :showTracks="false"
+              />
+              <music-production-text
+                v-for="(textBox, iText) in section.textBoxes"
+                :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'b'"
+                :body="textBox.text"
+                :includeBorder="false"
+                :divHeight="'fit-content'"
+                divPadding="0"
+                :style="
+                  section.lightboxes?.length == 0 ? 'padding-bottom: 8px' : ''
+                "
+              />
+              <div
+                v-if="section.lightboxes?.length > 0"
+                class="responsiveBtnDiv"
+              >
+                <button
+                  v-for="(lightBox, iLightBox) in section.lightboxes"
+                  :key="iLightBox + 1"
+                  class="lightBoxBtn"
+                  @click="lightBoxBtnClick(lightBox)"
+                >
+                  {{ lightBox.buttonText }}
+                </button>
+              </div>
+              <music-production
+                v-for="(production, iProd) in section.productions"
+                :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 't'"
+                :production="production"
+                :showImage="false"
+                :showBgImage="false"
+                :showTitleCredits="false"
+                :showTracks="true"
+              />
+            </div>
+          </v-row>
+        </div>
+
+        <!-- LAYOUT FOR DESKTOPS -->
+        <div v-else>
+          <!-- SECTIONS[0] - BOBO THE CHEERLEADER -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[0].productions"
+                :key="iProd"
+                :production="production"
+              />
               <button
-                v-for="(lightBox, iLightBox) in sections[4].lightboxes"
+                v-for="(lightBox, iLightBox) in sections[0].lightboxes"
                 :key="iLightBox + 1"
                 class="lightBoxBtn"
                 @click="lightBoxBtnClick(lightBox)"
@@ -363,417 +178,608 @@
                 {{ lightBox.buttonText }}
               </button>
             </div>
-
             <div
-              id="warmBabyTextBox"
+              style="width: 38.5%; min-width: 444px"
+              v-if="sections[0].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[0].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[1] - SOUND OF SUMMER SHOWERS -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="width: 36.5%; max-width: 410px"
+              v-if="sections[1].textBoxes?.length > 0"
+              class=""
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[1].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[1].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[1].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[2] - A LITTLE LOVIN' -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[2].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[2].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+            <div
+              style="width: 38.5%; max-width: 400px"
+              v-if="sections[2].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[2].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[3] - THE SLURP -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              id="theSlurpTextCol"
+              v-if="sections[3].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[3].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+                style="height: inherit"
+              />
+              <div
+                v-if="windowWidth >= 1200"
+                style="display: flex; justify-content: space-between"
+              >
+                <button
+                  v-for="(lightBox, iLightBox) in sections[3].lightboxes"
+                  :key="iLightBox + 1"
+                  class="lightBoxBtn"
+                  style="margin-right: 0"
+                  @click="lightBoxBtnClick(lightBox)"
+                >
+                  {{ lightBox.buttonText }}
+                </button>
+              </div>
+            </div>
+            <div
+              style="max-width: 805px; flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[3].productions"
+                :key="iProd"
+                :production="production"
+                :style="iProd == 0 ? 'margin-bottom:5px' : ''"
+              />
+              <div v-if="windowWidth < 1200">
+                <button
+                  v-for="(lightBox, iLightBox) in sections[3].lightboxes"
+                  :key="iLightBox + 1"
+                  class="lightBoxBtn"
+                  @click="lightBoxBtnClick(lightBox)"
+                >
+                  {{ lightBox.buttonText }}
+                </button>
+              </div>
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[4] - ROOTY TOOT & WARM BABY -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              id="rootyTootTextBox"
               v-if="sections[4].textBoxes?.length > 0"
             >
               <music-production-text
-                :title="sections[4].textBoxes[1].heading"
-                :body="sections[4].textBoxes[1].text"
+                :title="sections[4].textBoxes[0].heading"
+                :body="sections[4].textBoxes[0].text"
+                style="height: inherit"
               />
             </div>
-          </div>
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[5] - CASS, DENNY, JESTER, ZAL -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[5].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[5].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          style="width: 26.4%; min-width: 250px; max-width: 347px"
-          v-if="sections[5].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[5].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-            style="height: inherit"
-          />
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[6] - LADY GODIVA' -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 32.3%; min-width: 380px"
-          v-if="sections[6].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[6].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[6].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[6].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[7] - TWEEDLE DUM'S DRIVE-IN -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="max-width: 1095px; flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[7].productions"
-            :key="iProd"
-            :production="production"
-          />
-        </div>
-        <div
-          style="min-width: 200px; position: relative"
-          v-if="sections[7].lightboxes?.length > 0"
-        >
-          <button
-            v-for="(lightBox, iLightBox) in sections[7].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            style="position: absolute; bottom: 0; right: 0; margin-right: 0"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-      </v-row>
-
-      <!-- SECTIONS[8] - THE STRANGERS -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 26.75%; max-width: 340px"
-          v-if="sections[3].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[8].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-            style="height: inherit"
-          />
-          <div>
-            <button
-              v-for="(lightBox, iLightBox) in sections[8].lightboxes"
-              :key="iLightBox + 1"
-              class="lightBoxBtn"
-              @click="lightBoxBtnClick(lightBox)"
+            <div
+              style="flex: 1"
+              class="ml-4"
             >
-              {{ lightBox.buttonText }}
-            </button>
-          </div>
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[8].productions"
-            :key="iProd"
-            :production="production"
-          />
-        </div>
-      </v-row>
+              <music-production
+                v-for="(production, iProd) in sections[4].productions"
+                :key="iProd"
+                :production="production"
+              />
 
-      <!-- SECTIONS[9] - THE SELLOUTS -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="max-width: 805px; flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[9].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[9].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          style="width: 41.2%; min-width: 415px; max-width: 495px"
-          v-if="sections[9].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[9].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-      </v-row>
+              <div
+                style="width: 100%; display: flex; flex-direction: row; flex: 1"
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    justify-content: space-between;
+                  "
+                >
+                  <button
+                    v-for="(lightBox, iLightBox) in sections[4].lightboxes"
+                    :key="iLightBox + 1"
+                    class="lightBoxBtn"
+                    @click="lightBoxBtnClick(lightBox)"
+                  >
+                    {{ lightBox.buttonText }}
+                  </button>
+                </div>
 
-      <!-- SECTIONS[10] - KEN & BOBBY FISCHLER -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 32.11%; min-width: 246px"
-          v-if="sections[10].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[10].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[10].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[10].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
-          >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-      </v-row>
+                <div
+                  id="warmBabyTextBox"
+                  v-if="sections[4].textBoxes?.length > 0"
+                >
+                  <music-production-text
+                    :title="sections[4].textBoxes[1].heading"
+                    :body="sections[4].textBoxes[1].text"
+                  />
+                </div>
+              </div>
+            </div>
+          </v-row>
 
-      <!-- SECTIONS[11] - RAY ROE -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="flex: 1"
-          class="mr-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[11].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[11].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
+          <!-- SECTIONS[5] - CASS, DENNY, JESTER, ZAL -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
           >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          style="width: 25.38%; min-width: 246px"
-          v-if="sections[11].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[11].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-      </v-row>
+            <div
+              style="flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[5].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[5].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+            <div
+              style="width: 26.4%; min-width: 250px; max-width: 347px"
+              v-if="sections[5].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[5].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+                style="height: inherit"
+              />
+            </div>
+          </v-row>
 
-      <!-- SECTIONS[12] - KEN MELVILLE -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 29.13%; min-width: 280px"
-          v-if="sections[12].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[12].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[12].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[12].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
+          <!-- SECTIONS[6] - LADY GODIVA' -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
           >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-      </v-row>
+            <div
+              style="width: 32.3%; min-width: 380px"
+              v-if="sections[6].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[6].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[6].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[6].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
 
-      <!-- SECTIONS[13] - TIM HARDIN -->
-      <v-row
-        no-gutters
-        class="py-6"
-        data-testid="production-container"
-      >
-        <div style="flex: 1">
-          <music-production
-            v-for="(production, iProd) in sections[13].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[13].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
+          <!-- SECTIONS[7] - TWEEDLE DUM'S DRIVE-IN -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
           >
-            {{ lightBox.buttonText }}
-          </button>
-        </div>
-        <div
-          id="timHardinTextBox"
-          v-if="sections[13].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[13].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-            style="height: inherit"
-          />
-        </div>
-      </v-row>
+            <div
+              style="max-width: 1095px; flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[7].productions"
+                :key="iProd"
+                :production="production"
+              />
+            </div>
+            <div
+              style="min-width: 200px; position: relative"
+              v-if="sections[7].lightboxes?.length > 0"
+            >
+              <button
+                v-for="(lightBox, iLightBox) in sections[7].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                style="position: absolute; bottom: 0; right: 0; margin-right: 0"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
 
-      <!-- SECTIONS[14] - PLUMB CREEK BOYS -->
-      <v-row
-        no-gutters
-        class="pt-6 pb-12"
-        data-testid="production-container"
-      >
-        <div
-          style="width: 25.5%; min-width: 310px"
-          v-if="sections[14].textBoxes?.length > 0"
-        >
-          <music-production-text
-            v-for="(textBox, iText) in sections[14].textBoxes"
-            :key="iText"
-            :title="textBox.heading"
-            :body="textBox.text"
-            style="height: inherit"
-          />
-        </div>
-        <div
-          style="flex: 1"
-          class="ml-4"
-        >
-          <music-production
-            v-for="(production, iProd) in sections[14].productions"
-            :key="iProd"
-            :production="production"
-          />
-          <button
-            v-for="(lightBox, iLightBox) in sections[14].lightboxes"
-            :key="iLightBox + 1"
-            class="lightBoxBtn"
-            @click="lightBoxBtnClick(lightBox)"
+          <!-- SECTIONS[8] - THE STRANGERS -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
           >
-            {{ lightBox.buttonText }}
-          </button>
+            <div
+              style="width: 26.75%; max-width: 340px"
+              v-if="sections[3].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[8].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+                style="height: inherit"
+              />
+              <div>
+                <button
+                  v-for="(lightBox, iLightBox) in sections[8].lightboxes"
+                  :key="iLightBox + 1"
+                  class="lightBoxBtn"
+                  @click="lightBoxBtnClick(lightBox)"
+                >
+                  {{ lightBox.buttonText }}
+                </button>
+              </div>
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[8].productions"
+                :key="iProd"
+                :production="production"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[9] - THE SELLOUTS -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="max-width: 805px; flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[9].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[9].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+            <div
+              style="width: 41.2%; min-width: 415px; max-width: 495px"
+              v-if="sections[9].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[9].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[10] - KEN & BOBBY FISCHLER -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="width: 32.11%; min-width: 246px"
+              v-if="sections[10].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[10].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[10].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[10].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[11] - RAY ROE -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="flex: 1"
+              class="mr-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[11].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[11].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+            <div
+              style="width: 25.38%; min-width: 246px"
+              v-if="sections[11].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[11].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[12] - KEN MELVILLE -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div
+              style="width: 29.13%; min-width: 280px"
+              v-if="sections[12].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[12].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+              />
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[12].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[12].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[13] - TIM HARDIN -->
+          <v-row
+            no-gutters
+            class="py-6"
+            data-testid="production-container"
+          >
+            <div style="flex: 1">
+              <music-production
+                v-for="(production, iProd) in sections[13].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[13].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+            <div
+              id="timHardinTextBox"
+              v-if="sections[13].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[13].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+                style="height: inherit"
+              />
+            </div>
+          </v-row>
+
+          <!-- SECTIONS[14] - PLUMB CREEK BOYS -->
+          <v-row
+            no-gutters
+            class="pt-6 pb-12"
+            data-testid="production-container"
+          >
+            <div
+              style="width: 25.5%; min-width: 310px"
+              v-if="sections[14].textBoxes?.length > 0"
+            >
+              <music-production-text
+                v-for="(textBox, iText) in sections[14].textBoxes"
+                :key="iText"
+                :title="textBox.heading"
+                :body="textBox.text"
+                style="height: inherit"
+              />
+            </div>
+            <div
+              style="flex: 1"
+              class="ml-4"
+            >
+              <music-production
+                v-for="(production, iProd) in sections[14].productions"
+                :key="iProd"
+                :production="production"
+              />
+              <button
+                v-for="(lightBox, iLightBox) in sections[14].lightboxes"
+                :key="iLightBox + 1"
+                class="lightBoxBtn"
+                @click="lightBoxBtnClick(lightBox)"
+              >
+                {{ lightBox.buttonText }}
+              </button>
+            </div>
+          </v-row>
         </div>
-      </v-row>
+        <!-- END OF LAYOUT FOR TABLETS & PHONES -->
+      </v-container>
+
+      <AudioLightBox
+        v-if="audioTracks != null"
+        :audios="audioTracks"
+        :index="audioIndex"
+        :disable-scroll="true"
+        :show-caption="true"
+        @close="
+          audioIndex = null;
+          audioTracks = null;
+        "
+      />
+
+      <ImageLightBox
+        :images="image"
+        :index="imageIndex"
+        :disable-scroll="true"
+        @close="
+          imageIndex = null;
+          image = null;
+        "
+      />
+
+      <BackToTop />
     </div>
-    <!-- END OF LAYOUT FOR TABLETS & PHONES -->
-  </v-container>
-
-  <AudioLightBox
-    v-if="audioTracks != null"
-    :audios="audioTracks"
-    :index="audioIndex"
-    :disable-scroll="true"
-    :show-caption="true"
-    @close="
-      audioIndex = null;
-      audioTracks = null;
-    "
-  />
-
-  <ImageLightBox
-    :images="image"
-    :index="imageIndex"
-    :disable-scroll="true"
-    @close="
-      imageIndex = null;
-      image = null;
-    "
-  />
-
-  <BackToTop />
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

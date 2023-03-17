@@ -1,5 +1,8 @@
 <template>
-  <div class="pb-12">
+  <div
+    v-if="friends.length > 0"
+    class="pb-12"
+  >
     <img
       :src="backgroundImgUrl"
       id="bgImg"
@@ -1415,7 +1418,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
 export default {
   props: {
     musicalFriendsPgContent: {
@@ -1450,7 +1453,7 @@ export default {
       return this.musicalFriendsPgContent.content;
     },
     friends() {
-      return this.musicalFriendsPgContent.friends;
+      return this.musicalFriendsPgContent.friends || [];
     },
     friendsOpacity() {
       let css = {};
@@ -1505,8 +1508,10 @@ export default {
         }
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('topOfFriends');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
+        if (element) {
+          let elemRect = element.getBoundingClientRect();
+          this.targetPosY = elemRect.top - bodyRect.top;
+        }
       }.bind(this),
       500
     );
@@ -1527,8 +1532,10 @@ export default {
         this.scrollY = window.pageYOffset;
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('topOfFriends');
-        let elemRect = element.getBoundingClientRect();
-        this.targetPosY = elemRect.top - bodyRect.top;
+        if (element) {
+          let elemRect = element.getBoundingClientRect();
+          this.targetPosY = elemRect.top - bodyRect.top;
+        }
       }
     },
     onResize() {
@@ -1537,8 +1544,10 @@ export default {
 
       let bodyRect = document.body.getBoundingClientRect();
       let element = document.getElementById('topOfFriends');
-      let elemRect = element.getBoundingClientRect();
-      this.targetPosY = elemRect.top - bodyRect.top;
+      if (element) {
+        let elemRect = element.getBoundingClientRect();
+        this.targetPosY = elemRect.top - bodyRect.top;
+      }
     },
   },
 };
@@ -1627,9 +1636,5 @@ export default {
     line-height: 34px;
     letter-spacing: 5.1px;
   }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 }
 </style>

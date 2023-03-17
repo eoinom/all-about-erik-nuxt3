@@ -1,43 +1,47 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <v-container
-    fluid
-    class="main-col ma-0, pa-0"
-  >
-    <v-row
-      no-gutters
-      class="mb-1 px-1"
-    >
-      <v-col class="slideshowCol">
-        <!-- SLIDESHOW OVERLAY -->
-        <div class="slideshowOverlayMenu mb-4">
-          <div class="mainContent mx-auto">
-            <img
-              alt="Archives title image"
-              v-if="titleImg != null"
-              :src="titleImg"
-              id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-4"
-              data-testid="title-img"
-            />
+      <v-container
+        fluid
+        class="main-col ma-0, pa-0"
+      >
+        <v-row
+          no-gutters
+          class="mb-1 px-1"
+        >
+          <v-col class="slideshowCol">
+            <!-- SLIDESHOW OVERLAY -->
+            <div class="slideshowOverlayMenu mb-4">
+              <div class="mainContent mx-auto">
+                <img
+                  alt="Archives title image"
+                  v-if="titleImg != null"
+                  :src="titleImg"
+                  id="titleImg"
+                  class="mb-md-1 mb-lg-2 mb-xl-4"
+                  data-testid="title-img"
+                />
 
-            <div
-              v-html="slideshowText"
-              id="slideshowText"
-            />
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-  </v-container>
+                <div
+                  v-html="slideshowText"
+                  id="slideshowText"
+                />
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <!-- TILES -->
-  <ArchivesTiles :tiles="tiles" />
+      <!-- TILES -->
+      <ArchivesTiles :tiles="tiles" />
 
-  <BackToTop />
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
 <script scoped>

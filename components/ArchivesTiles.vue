@@ -25,7 +25,7 @@
   </v-container>
 </template>
 
-<script scoped>
+<script>
 export default {
   name: 'ArchivesTiles',
 

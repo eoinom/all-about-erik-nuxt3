@@ -1,15 +1,19 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <MusicalFriendsComponent
-    :musicalFriendsPgContent="musicalFriendsPgContent"
-    :menuOnly="true"
-  />
+      <MusicalFriendsComponent
+        :musicalFriendsPgContent="musicalFriendsPgContent"
+        :menuOnly="true"
+      />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

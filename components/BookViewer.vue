@@ -221,7 +221,7 @@
   </ClientOnly>
 </template>
 
-<script scoped>
+<script>
 import 'vue-material-design-icons/styles.css';
 import Flipbook from 'flipbook-vue';
 import FirstPageIcon from 'vue-material-design-icons/PageFirst';

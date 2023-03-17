@@ -1,102 +1,106 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="publicationsPgContent.bgAudio"
-    :audioDuration="publicationsPgContent.bgAudioDuration"
-    :audioFadeInDuration="publicationsPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="publicationsPgContent.bgAudioFadeOutDuration"
-    :maxVolume="0.78"
-    :playMusic="playMusic"
-  />
+      <BackgroundMusic
+        :audioFile="publicationsPgContent.bgAudio"
+        :audioDuration="publicationsPgContent.bgAudioDuration"
+        :audioFadeInDuration="publicationsPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="publicationsPgContent.bgAudioFadeOutDuration"
+        :maxVolume="0.78"
+        :playMusic="playMusic"
+      />
 
-  <v-container
-    fluid
-    class="main-col"
-  >
-    <v-row
-      no-gutters
-      class="mb-1 pt-6 px-1"
-    >
-      <v-col class="slideshowCol">
-        <!-- HEADER SLIDESHOW -->
-        <SlideshowKenBurnsSmall
-          :slides="slides"
-          :height="slideshowHeight"
-          :maxImgWidth="slideshowMaxWidth"
-          :centerVertically="true"
-          backgroundColor="#141414"
-        />
-
-        <!-- SLIDESHOW OVERLAY -->
-        <div class="slideshowOverlay">
-          <div class="mainContent">
-            <img
-              alt="Publications title image"
-              v-if="titleImg != null"
-              :src="titleImg"
-              id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-4"
-              data-testid="title-img"
+      <v-container
+        fluid
+        class="main-col"
+      >
+        <v-row
+          no-gutters
+          class="mb-1 pt-6 px-1"
+        >
+          <v-col class="slideshowCol">
+            <!-- HEADER SLIDESHOW -->
+            <SlideshowKenBurnsSmall
+              :slides="slides"
+              :height="slideshowHeight"
+              :maxImgWidth="slideshowMaxWidth"
+              :centerVertically="true"
+              backgroundColor="#141414"
             />
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-  </v-container>
 
-  <v-container
-    v-if="windowWidth > 1200"
-    fluid
-    class="publicationsContainer"
-  >
-    <v-row
-      no-gutters
-      justify="center"
-      class="publicationsRow mb-1"
-    >
-      <v-col
-        v-for="(publication, i) in publications"
-        :key="'publication' + i"
-        cols=""
-        align-self="center"
-        class="publicationsCols pa-0 ma-2 ma-md-6"
-        data-testid="publication-container"
+            <!-- SLIDESHOW OVERLAY -->
+            <div class="slideshowOverlay">
+              <div class="mainContent">
+                <img
+                  alt="Publications title image"
+                  v-if="titleImg != null"
+                  :src="titleImg"
+                  id="titleImg"
+                  class="mb-md-1 mb-lg-2 mb-xl-4"
+                  data-testid="title-img"
+                />
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-container
+        v-if="windowWidth > 1200"
+        fluid
+        class="publicationsContainer"
       >
-        <PublicationThumbnail :publication="publication" />
-      </v-col>
-    </v-row>
-  </v-container>
+        <v-row
+          no-gutters
+          justify="center"
+          class="publicationsRow mb-1"
+        >
+          <v-col
+            v-for="(publication, i) in publications"
+            :key="'publication' + i"
+            cols=""
+            align-self="center"
+            class="publicationsCols pa-0 ma-2 ma-md-6"
+            data-testid="publication-container"
+          >
+            <PublicationThumbnail :publication="publication" />
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <v-container
-    v-if="windowWidth <= 1200"
-    fluid
-    class="publicationsContainer"
-  >
-    <v-row
-      no-gutters
-      justify="center"
-      class="publicationsRow mb-1"
-    >
-      <v-col
-        v-for="(newPublication, i) in publicationsAltOrder"
-        :key="'newPublication' + i"
-        cols=""
-        align-self="center"
-        class="publicationsCols pa-0 ma-2 ma-md-6"
-        data-testid="publication-container"
+      <v-container
+        v-if="windowWidth <= 1200"
+        fluid
+        class="publicationsContainer"
       >
-        <PublicationThumbnail :publication="newPublication" />
-      </v-col>
-    </v-row>
-  </v-container>
+        <v-row
+          no-gutters
+          justify="center"
+          class="publicationsRow mb-1"
+        >
+          <v-col
+            v-for="(newPublication, i) in publicationsAltOrder"
+            :key="'newPublication' + i"
+            cols=""
+            align-self="center"
+            class="publicationsCols pa-0 ma-2 ma-md-6"
+            data-testid="publication-container"
+          >
+            <PublicationThumbnail :publication="newPublication" />
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <BackToTop />
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

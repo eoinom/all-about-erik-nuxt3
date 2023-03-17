@@ -1,190 +1,194 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="theEpisodesPgContent.bgAudio"
-    :audioDuration="theEpisodesPgContent.bgAudioDuration"
-    :audioFadeInDuration="theEpisodesPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="theEpisodesPgContent.bgAudioFadeOutDuration"
-  />
+      <BackgroundMusic
+        :audioFile="theEpisodesPgContent.bgAudio"
+        :audioDuration="theEpisodesPgContent.bgAudioDuration"
+        :audioFadeInDuration="theEpisodesPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="theEpisodesPgContent.bgAudioFadeOutDuration"
+      />
 
-  <header
-    id="header"
-    :style="headerStyle"
-  >
-    <img
-      :src="titleImg"
-      id="titleImg"
-      class="my-6"
-      data-testid="title-img"
-    />
-  </header>
-
-  <v-container
-    fluid
-    id="mainContainer"
-    class="mb-4 pb-12 pb-xl-4 px-1"
-  >
-    <v-row
-      no-gutters
-      class="mt-2"
-    >
-      <v-col>
-        <img
-          :src="mainImg"
-          id="mainImg"
-        />
-        <span
-          v-html="mainText"
-          id="mainImgText"
-        />
-      </v-col>
-    </v-row>
-
-    <!-- VIDEOS -->
-    <v-row
-      no-gutters
-      v-for="(video, index) in videos"
-      :key="video.title"
-      @click="videoIndex = index"
-      @mouseover="videoIndexHover = index"
-      @mouseleave="videoIndexHover = null"
-      style="cursor: pointer"
-      class="mt-4"
-      data-testid="video-container"
-    >
-      <v-col
-        cols="12"
-        xl="7"
-        class="thumbnailImgContainer"
+      <header
+        id="header"
+        :style="headerStyle"
       >
         <img
-          :alt="video.title"
-          v-if="video.thumbnailImg != null"
-          :src="video.thumbnailImg"
-          class="thumbnailImg"
+          :src="titleImg"
+          id="titleImg"
+          class="my-6"
+          data-testid="title-img"
         />
+      </header>
 
-        <span
-          v-if="index < videos.length - 1"
-          class="imgNumberText"
-        >
-          {{ index + 1 }}
-        </span>
-
-        <div class="thumbnailImgOverlay">
-          <p class="mb-0 mb-lg-1 mb-xl-2">
-            <img
-              alt="Play symbol"
-              v-if="video.url != null"
-              src="~/assets/images/playarrowcircle.png"
-              class="thumbnailPlayVideoImg thumbnailImgHovered"
-            />
-          </p>
-          <p
-            v-if="video.duration != null"
-            class="videoDurationText thumbnailImgHovered"
-          >
-            {{ durationInMinsText(video.duration) }}
-          </p>
-        </div>
-      </v-col>
-
-      <v-col
-        cols="12"
-        xl="5"
-        class="videoContentContainer px-12"
+      <v-container
+        fluid
+        id="mainContainer"
+        class="mb-4 pb-12 pb-xl-4 px-1"
       >
         <v-row
-          align="center"
-          justify="center"
-          class="mb-0 pt-2 pt-md-4 pt-xl-6"
+          no-gutters
+          class="mt-2"
         >
-          <v-col
-            cols="auto"
-            id="videoTextContainer"
-            class="mt-2"
-          >
-            <h2
-              v-if="video.title != null"
-              class="videoTitle mb-6"
-            >
-              {{ video.shortTitle }}
-            </h2>
-            <p
-              v-if="video.subText != null"
-              class="videoSubText"
-              :style="shortText(video.subText)"
-            >
-              {{ video.subText }}
-            </p>
+          <v-col>
+            <img
+              :src="mainImg"
+              id="mainImg"
+            />
+            <span
+              v-html="mainText"
+              id="mainImgText"
+            />
           </v-col>
         </v-row>
 
+        <!-- VIDEOS -->
         <v-row
-          justify="center"
-          class="playIconRow mb-0 py-2 py-md-4 py-xl-6"
+          no-gutters
+          v-for="(video, index) in videos"
+          :key="video.title"
+          @click="videoIndex = index"
+          @mouseover="videoIndexHover = index"
+          @mouseleave="videoIndexHover = null"
+          style="cursor: pointer"
+          class="mt-4"
+          data-testid="video-container"
         >
           <v-col
-            cols="auto"
-            id="playIconCol"
-            style="text-align: right"
-            class="pr-1"
+            cols="12"
+            xl="7"
+            class="thumbnailImgContainer"
           >
             <img
-              alt="Play symbol"
-              src="~/assets/images/playarrowcircle-black.png"
-              class="playIconImg"
+              :alt="video.title"
+              v-if="video.thumbnailImg != null"
+              :src="video.thumbnailImg"
+              class="thumbnailImg"
             />
-            <img
-              alt="Play symbol"
-              src="~/assets/images/playarrowcircle-hover.png"
-              class="playIconImg-hover"
-            />
-          </v-col>
 
-          <v-col
-            cols="auto"
-            style="text-align: left"
-            class="playIconTextCol pl-1"
-          >
-            <p
+            <span
               v-if="index < videos.length - 1"
-              class="playVideoText mb-0"
+              class="imgNumberText"
             >
-              PLAY EPISODE
-            </p>
-            <p
-              v-else
-              class="playVideoText mb-0"
+              {{ index + 1 }}
+            </span>
+
+            <div class="thumbnailImgOverlay">
+              <p class="mb-0 mb-lg-1 mb-xl-2">
+                <img
+                  alt="Play symbol"
+                  v-if="video.url != null"
+                  src="~/assets/images/playarrowcircle.png"
+                  class="thumbnailPlayVideoImg thumbnailImgHovered"
+                />
+              </p>
+              <p
+                v-if="video.duration != null"
+                class="videoDurationText thumbnailImgHovered"
+              >
+                {{ durationInMinsText(video.duration) }}
+              </p>
+            </div>
+          </v-col>
+
+          <v-col
+            cols="12"
+            xl="5"
+            class="videoContentContainer px-12"
+          >
+            <v-row
+              align="center"
+              justify="center"
+              class="mb-0 pt-2 pt-md-4 pt-xl-6"
             >
-              PLAY FILM
-            </p>
-            <p
-              v-if="video.duration != null"
-              class="videoDurationText mb-2"
+              <v-col
+                cols="auto"
+                id="videoTextContainer"
+                class="mt-2"
+              >
+                <h2
+                  v-if="video.title != null"
+                  class="videoTitle mb-6"
+                >
+                  {{ video.shortTitle }}
+                </h2>
+                <p
+                  v-if="video.subText != null"
+                  class="videoSubText"
+                  :style="shortText(video.subText)"
+                >
+                  {{ video.subText }}
+                </p>
+              </v-col>
+            </v-row>
+
+            <v-row
+              justify="center"
+              class="playIconRow mb-0 py-2 py-md-4 py-xl-6"
             >
-              {{ durationInMinsText(video.duration) }}
-            </p>
+              <v-col
+                cols="auto"
+                id="playIconCol"
+                style="text-align: right"
+                class="pr-1"
+              >
+                <img
+                  alt="Play symbol"
+                  src="~/assets/images/playarrowcircle-black.png"
+                  class="playIconImg"
+                />
+                <img
+                  alt="Play symbol"
+                  src="~/assets/images/playarrowcircle-hover.png"
+                  class="playIconImg-hover"
+                />
+              </v-col>
+
+              <v-col
+                cols="auto"
+                style="text-align: left"
+                class="playIconTextCol pl-1"
+              >
+                <p
+                  v-if="index < videos.length - 1"
+                  class="playVideoText mb-0"
+                >
+                  PLAY EPISODE
+                </p>
+                <p
+                  v-else
+                  class="playVideoText mb-0"
+                >
+                  PLAY FILM
+                </p>
+                <p
+                  v-if="video.duration != null"
+                  class="videoDurationText mb-2"
+                >
+                  {{ durationInMinsText(video.duration) }}
+                </p>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+      </v-container>
 
-  <VideoLightBox
-    :videos="videos"
-    :index="videoIndex"
-    :disable-scroll="true"
-    @close="videoIndex = null"
-  />
+      <VideoLightBox
+        :videos="videos"
+        :index="videoIndex"
+        :disable-scroll="true"
+        @close="videoIndex = null"
+      />
 
-  <BackToTop />
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

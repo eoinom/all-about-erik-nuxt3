@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
 import { EventBus } from '../composables/event-bus';
 
 export default {

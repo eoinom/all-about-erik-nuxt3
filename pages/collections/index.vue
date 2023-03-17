@@ -1,81 +1,85 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="collectionsPgContent.bgAudio"
-    :audioDuration="collectionsPgContent.bgAudioDuration"
-    :audioFadeInDuration="collectionsPgContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="collectionsPgContent.bgAudioFadeOutDuration"
-    :playMusic="playMusic"
-  />
+      <BackgroundMusic
+        :audioFile="collectionsPgContent.bgAudio"
+        :audioDuration="collectionsPgContent.bgAudioDuration"
+        :audioFadeInDuration="collectionsPgContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="collectionsPgContent.bgAudioFadeOutDuration"
+        :playMusic="playMusic"
+      />
 
-  <v-container
-    fluid
-    class="main-col"
-  >
-    <v-row
-      no-gutters
-      class="mb-1 px-1"
-    >
-      <v-col class="slideshowCol">
-        <!-- HEADER SLIDESHOW -->
-        <SlideshowKenBurnsSmall
-          :slides="slides"
-          :height="slideshowHeight"
-        />
-
-        <!-- SLIDESHOW OVERLAY -->
-        <div class="slideshowOverlay">
-          <div class="mainContent">
-            <img
-              alt="Collections title image"
-              v-if="titleImg != null"
-              :src="titleImg"
-              id="titleImg"
-              class="mb-md-1 mb-lg-2 mb-xl-4"
-              data-testid="title-img"
-            />
-            <div>
-              <ContentRenderer
-                :value="collectionsPgContent"
-                tag="div"
-                id="slideshowText"
-              />
-            </div>
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-  </v-container>
-
-  <v-container
-    fluid
-    class="collectionsContainer"
-  >
-    <v-row
-      no-gutters
-      justify="center"
-      class="collectionsRow mb-1 mx-auto"
-    >
-      <v-col
-        v-for="(collection, index) in collections"
-        :key="index"
-        cols=""
-        align-self="center"
-        class="collectionsCols pa-0 mx-0 my-2"
-        data-testid="collection-container"
+      <v-container
+        fluid
+        class="main-col"
       >
-        <CollectionThumbnail :collection="collection" />
-      </v-col>
-    </v-row>
-  </v-container>
+        <v-row
+          no-gutters
+          class="mb-1 px-1"
+        >
+          <v-col class="slideshowCol">
+            <!-- HEADER SLIDESHOW -->
+            <SlideshowKenBurnsSmall
+              :slides="slides"
+              :height="slideshowHeight"
+            />
 
-  <BackToTop />
+            <!-- SLIDESHOW OVERLAY -->
+            <div class="slideshowOverlay">
+              <div class="mainContent">
+                <img
+                  alt="Collections title image"
+                  v-if="titleImg != null"
+                  :src="titleImg"
+                  id="titleImg"
+                  class="mb-md-1 mb-lg-2 mb-xl-4"
+                  data-testid="title-img"
+                />
+                <div>
+                  <ContentRenderer
+                    :value="collectionsPgContent"
+                    tag="div"
+                    id="slideshowText"
+                  />
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-container
+        fluid
+        class="collectionsContainer"
+      >
+        <v-row
+          no-gutters
+          justify="center"
+          class="collectionsRow mb-1 mx-auto"
+        >
+          <v-col
+            v-for="(collection, index) in collections"
+            :key="index"
+            cols=""
+            align-self="center"
+            class="collectionsCols pa-0 mx-0 my-2"
+            data-testid="collection-container"
+          >
+            <CollectionThumbnail :collection="collection" />
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

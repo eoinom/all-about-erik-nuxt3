@@ -1,161 +1,165 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <BackgroundMusic
-    :audioFile="rootsContent.bgAudio"
-    :audioDuration="rootsContent.bgAudioDuration"
-    :audioFadeInDuration="rootsContent.bgAudioFadeInDuration"
-    :audioFadeOutDuration="rootsContent.bgAudioFadeOutDuration"
-  />
+      <BackgroundMusic
+        :audioFile="rootsContent.bgAudio"
+        :audioDuration="rootsContent.bgAudioDuration"
+        :audioFadeInDuration="rootsContent.bgAudioFadeInDuration"
+        :audioFadeOutDuration="rootsContent.bgAudioFadeOutDuration"
+      />
 
-  <v-container
-    fluid
-    class="main-col"
-  >
-    <!-- HEADER SLIDESHOW -->
-    <v-row
-      no-gutters
-      style="max-height: 1224px; width: auto"
-      class="mb-1 px-1"
-    >
-      <v-col class="slideshowCol">
-        <slideshow-images
-          :slides="slides"
-          :carouselHeight="carouselHeight"
-        />
-
-        <v-container
-          fluid
-          class="slideshowOverlay"
-        >
-          <v-row>
-            <v-col class="mainContent">
-              <img
-                alt="Roots and Youth title image"
-                v-if="titleImg != null"
-                :src="titleImg"
-                id="titleImg"
-                class="mb-md-1 mb-lg-2 mb-xl-4"
-                data-testid="title-img"
-              />
-
-              <div>
-                <ContentRenderer
-                  :value="rootsContent"
-                  tag="div"
-                  id="mainText"
-                />
-              </div>
-
-              <!-- Scroll with arrow images - hidden on xs (e.g. portrait mobile devices) -->
-              <ScrollDownArrow
-                scrollToElement="#videos"
-                class="d-none d-sm-inline"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col>
-    </v-row>
-
-    <!-- VIDEOS -->
-    <v-row
-      no-gutters
-      id="videos"
-      class="mb-1"
-    >
-      <v-col
-        cols="12"
-        lg="6"
-        v-for="(video, index) in videos"
-        :key="video.title"
-        @click="videoIndex = index"
-        class="my-1 px-1 video-container"
-        data-testid="video-container"
+      <v-container
+        fluid
+        class="main-col"
       >
-        <video-thumbnail-roots :video="video" />
-      </v-col>
-    </v-row>
-
-    <!-- COMPLETE FILM -->
-    <v-row
-      v-if="fullVideo != null"
-      no-gutters
-      class="mb-0 px-1"
-    >
-      <v-col>
+        <!-- HEADER SLIDESHOW -->
         <v-row
-          id="completeFilmContainer"
-          class="mx-0 mb-2"
+          no-gutters
+          style="max-height: 1224px; width: auto"
+          class="mb-1 px-1"
+        >
+          <v-col class="slideshowCol">
+            <slideshow-images
+              :slides="slides"
+              :carouselHeight="carouselHeight"
+            />
+
+            <v-container
+              fluid
+              class="slideshowOverlay"
+            >
+              <v-row>
+                <v-col class="mainContent">
+                  <img
+                    alt="Roots and Youth title image"
+                    v-if="titleImg != null"
+                    :src="titleImg"
+                    id="titleImg"
+                    class="mb-md-1 mb-lg-2 mb-xl-4"
+                    data-testid="title-img"
+                  />
+
+                  <div>
+                    <ContentRenderer
+                      :value="rootsContent"
+                      tag="div"
+                      id="mainText"
+                    />
+                  </div>
+
+                  <!-- Scroll with arrow images - hidden on xs (e.g. portrait mobile devices) -->
+                  <ScrollDownArrow
+                    scrollToElement="#videos"
+                    class="d-none d-sm-inline"
+                  />
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-col>
+        </v-row>
+
+        <!-- VIDEOS -->
+        <v-row
+          no-gutters
+          id="videos"
+          class="mb-1"
         >
           <v-col
-            class="completeFilmContent"
-            @click="videoIndex = allVideos.length - 1"
+            cols="12"
+            lg="6"
+            v-for="(video, index) in videos"
+            :key="video.title"
+            @click="videoIndex = index"
+            class="my-1 px-1 video-container"
+            data-testid="video-container"
           >
+            <video-thumbnail-roots :video="video" />
+          </v-col>
+        </v-row>
+
+        <!-- COMPLETE FILM -->
+        <v-row
+          v-if="fullVideo != null"
+          no-gutters
+          class="mb-0 px-1"
+        >
+          <v-col>
             <v-row
-              align="center"
-              justify="center"
-              class="mb-0 py-6"
+              id="completeFilmContainer"
+              class="mx-0 mb-2"
             >
               <v-col
-                cols="auto"
-                id="completeFilmPlayIconCol"
-                style="text-align: right"
-                class="pr-1"
+                class="completeFilmContent"
+                @click="videoIndex = allVideos.length - 1"
               >
-                <img
-                  alt="Play symbol"
-                  src="~/assets/images/playarrowcircle-black.png"
-                  id="fullVideoPlayImg"
-                />
-                <img
-                  alt="Play symbol"
-                  src="~/assets/images/playarrowcircle-hover.png"
-                  id="fullVideoPlayImg-hover"
-                />
-              </v-col>
-
-              <v-col
-                cols="auto"
-                id="completeFilmIconTextCol"
-                style="text-align: left"
-                class="pl-1"
-              >
-                <p class="playFilmText mb-0">PLAY FILM</p>
-                <p
-                  v-if="fullVideo.duration != null"
-                  class="fullVideoDurationText mb-2"
+                <v-row
+                  align="center"
+                  justify="center"
+                  class="mb-0 py-6"
                 >
-                  {{ durationInMinsText(fullVideo.duration) }}
-                </p>
-              </v-col>
+                  <v-col
+                    cols="auto"
+                    id="completeFilmPlayIconCol"
+                    style="text-align: right"
+                    class="pr-1"
+                  >
+                    <img
+                      alt="Play symbol"
+                      src="~/assets/images/playarrowcircle-black.png"
+                      id="fullVideoPlayImg"
+                    />
+                    <img
+                      alt="Play symbol"
+                      src="~/assets/images/playarrowcircle-hover.png"
+                      id="fullVideoPlayImg-hover"
+                    />
+                  </v-col>
 
-              <v-col cols="auto">
-                <p
-                  id="completeFilmSubText"
-                  class="mb-0 mt-1"
-                >
-                  {{ fullVideo.text }}
-                </p>
+                  <v-col
+                    cols="auto"
+                    id="completeFilmIconTextCol"
+                    style="text-align: left"
+                    class="pl-1"
+                  >
+                    <p class="playFilmText mb-0">PLAY FILM</p>
+                    <p
+                      v-if="fullVideo.duration != null"
+                      class="fullVideoDurationText mb-2"
+                    >
+                      {{ durationInMinsText(fullVideo.duration) }}
+                    </p>
+                  </v-col>
+
+                  <v-col cols="auto">
+                    <p
+                      id="completeFilmSubText"
+                      class="mb-0 mt-1"
+                    >
+                      {{ fullVideo.text }}
+                    </p>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+      </v-container>
 
-  <VideoLightBox
-    :videos="allVideos"
-    :index="videoIndex"
-    :disable-scroll="true"
-    @close="videoIndex = null"
-  />
+      <VideoLightBox
+        :videos="allVideos"
+        :index="videoIndex"
+        :disable-scroll="true"
+        @close="videoIndex = null"
+      />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {
@@ -206,7 +210,6 @@ export default {
 
   async mounted() {
     const rootsContent = await queryContent('roots-and-youth').findOne();
-    console.log({ rootsContent });
     this.rootsContent = rootsContent;
 
     this.windowWidth = window.innerWidth;

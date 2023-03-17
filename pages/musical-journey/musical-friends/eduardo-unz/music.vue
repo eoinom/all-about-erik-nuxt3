@@ -1,74 +1,78 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <v-container class="main-col pt-12">
-    <div style="text-align: center">
-      <h1 class="heading">{{ title }}</h1>
-    </div>
+      <v-container class="main-col pt-12">
+        <div style="text-align: center">
+          <h1 class="heading">{{ title }}</h1>
+        </div>
 
-    <div class="my-6">
-      <v-button
-        variant="danger"
-        @click="onPlayAllClick()"
-        data-testid="play-all"
-        >{{ playBtnText }}</v-button
-      >
-    </div>
+        <div class="my-6">
+          <v-button
+            variant="danger"
+            @click="onPlayAllClick()"
+            data-testid="play-all"
+            >{{ playBtnText }}</v-button
+          >
+        </div>
 
-    <div
-      v-for="(track, index) in tracks"
-      :key="index"
-      class="mb-4"
-      data-testid="track-container"
-    >
-      <v-row
-        v-if="index % 2 === 0"
-        justify="end"
-        align="center"
-      >
-        <v-col>
-          <p class="trackTitle textAlignEnd">{{ track.title }}</p>
-        </v-col>
-      </v-row>
-
-      <v-row
-        v-else
-        justify="start"
-        align="center"
-      >
-        <v-col>
-          <p class="trackTitle">{{ track.title }}</p>
-        </v-col>
-      </v-row>
-
-      <AudioPlayer
-        :ref="'unzSong-' + index"
-        :src="track.url"
-        secondaryColor="#E7413F"
-        padding="5px 0px"
-      />
-
-      <hr class="style-two" />
-    </div>
-
-    <v-row
-      justify="center"
-      class="text-center"
-    >
-      <v-col>
-        <NuxtLink
-          to="/musical-journey/musical-friends/eduardo-unz"
-          class="nav_link py-4"
-          >BACK TO UNZ</NuxtLink
+        <div
+          v-for="(track, index) in tracks"
+          :key="index"
+          class="mb-4"
+          data-testid="track-container"
         >
-      </v-col>
-    </v-row>
-  </v-container>
+          <v-row
+            v-if="index % 2 === 0"
+            justify="end"
+            align="center"
+          >
+            <v-col>
+              <p class="trackTitle textAlignEnd">{{ track.title }}</p>
+            </v-col>
+          </v-row>
+
+          <v-row
+            v-else
+            justify="start"
+            align="center"
+          >
+            <v-col>
+              <p class="trackTitle">{{ track.title }}</p>
+            </v-col>
+          </v-row>
+
+          <AudioPlayer
+            :ref="'unzSong-' + index"
+            :src="track.url"
+            secondaryColor="#E7413F"
+            padding="5px 0px"
+          />
+
+          <hr class="style-two" />
+        </div>
+
+        <v-row
+          justify="center"
+          class="text-center"
+        >
+          <v-col>
+            <NuxtLink
+              to="/musical-journey/musical-friends/eduardo-unz"
+              class="nav_link py-4"
+              >BACK TO UNZ</NuxtLink
+            >
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 import { EventBus } from '../../../../composables/event-bus';
 
 export default {

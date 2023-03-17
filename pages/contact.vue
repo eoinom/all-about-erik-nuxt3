@@ -1,109 +1,113 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <v-container class="main-container">
-    <img
-      :src="titleImg1Line"
-      class="titleImg titleImg1Line py-12"
-      data-testid="title-img"
-    />
-    <img
-      :src="titleImg2Lines"
-      class="titleImg titleImg2Lines py-6 my-4"
-      data-testid="title-img"
-    />
-
-    <div
-      v-html="mainText"
-      class="text-main mb-4"
-    />
-
-    <!-- CONTACT FORM -->
-    <div class="form-container mb-6 mb-md-12">
-      <form
-        name="contact"
-        method="POST"
-        netlify
-        data-netlify-honeypot="bot-field"
-      >
-        <input
-          type="hidden"
-          name="form-name"
-          value="contact"
+      <v-container class="main-container">
+        <img
+          :src="titleImg1Line"
+          class="titleImg titleImg1Line py-12"
+          data-testid="title-img"
         />
-        <!-- Hidden honeypot field to prevent against bot spam -->
-
-        <label for="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Your name.."
+        <img
+          :src="titleImg2Lines"
+          class="titleImg titleImg2Lines py-6 my-4"
+          data-testid="title-img"
         />
 
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email.."
-        />
-
-        <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Your message.."
-          style="height: 200px"
-        ></textarea>
-
-        <input
-          type="submit"
-          value="Submit"
-        />
-      </form>
-    </div>
-
-    <!-- CREDITS -->
-    <div class="pb-6">
-      <div
-        v-for="(creditSection, i) in credits"
-        :key="'creditSection' + i"
-      >
-        <p
-          v-if="creditSection.heading"
-          class="text-titles"
-        >
-          {{ creditSection.heading }}
-        </p>
         <div
-          v-html="renderMarkdown(creditSection.text)"
-          class="text-main contact_renderedContent"
+          v-html="mainText"
+          class="text-main mb-4"
         />
-        <br />
-      </div>
-    </div>
-  </v-container>
 
-  <!-- BACKGROUND VIDEO -->
-  <video
-    v-if="bgVideo"
-    autoplay
-    loop
-    muted
-    id="contactBgVideo"
-  >
-    <source
-      :src="bgVideo.videoSrcWebm"
-      type="video/webm"
-    />
-    <source
-      :src="bgVideo.videoSrcMP4"
-      type="video/mp4"
-    />
-  </video>
+        <!-- CONTACT FORM -->
+        <div class="form-container mb-6 mb-md-12">
+          <form
+            name="contact"
+            method="POST"
+            netlify
+            data-netlify-honeypot="bot-field"
+          >
+            <input
+              type="hidden"
+              name="form-name"
+              value="contact"
+            />
+            <!-- Hidden honeypot field to prevent against bot spam -->
+
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name.."
+            />
+
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email.."
+            />
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your message.."
+              style="height: 200px"
+            ></textarea>
+
+            <input
+              type="submit"
+              value="Submit"
+            />
+          </form>
+        </div>
+
+        <!-- CREDITS -->
+        <div class="pb-6">
+          <div
+            v-for="(creditSection, i) in credits"
+            :key="'creditSection' + i"
+          >
+            <p
+              v-if="creditSection.heading"
+              class="text-titles"
+            >
+              {{ creditSection.heading }}
+            </p>
+            <div
+              v-html="renderMarkdown(creditSection.text)"
+              class="text-main contact_renderedContent"
+            />
+            <br />
+          </div>
+        </div>
+      </v-container>
+
+      <!-- BACKGROUND VIDEO -->
+      <video
+        v-if="bgVideo"
+        autoplay
+        loop
+        muted
+        id="contactBgVideo"
+      >
+        <source
+          :src="bgVideo.videoSrcWebm"
+          type="video/webm"
+        />
+        <source
+          :src="bgVideo.videoSrcMP4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+  </router-view>
 </template>
 
 <script>

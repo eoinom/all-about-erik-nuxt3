@@ -1,203 +1,207 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <div class="pb-12">
-    <BackgroundMusic
-      :audioFile="discographyPgContent.bgAudio"
-      :audioDuration="discographyPgContent.bgAudioDuration"
-      :audioFadeInDuration="discographyPgContent.bgAudioFadeInDuration"
-      :audioFadeOutDuration="discographyPgContent.bgAudioFadeOutDuration"
-    />
+      <div class="pb-12">
+        <BackgroundMusic
+          :audioFile="discographyPgContent.bgAudio"
+          :audioDuration="discographyPgContent.bgAudioDuration"
+          :audioFadeInDuration="discographyPgContent.bgAudioFadeInDuration"
+          :audioFadeOutDuration="discographyPgContent.bgAudioFadeOutDuration"
+        />
 
-    <div
-      v-for="(img, index) in backgroundImages"
-      :key="index"
-      data-testid="background-img-container"
-    >
-      <img
-        :src="img.img"
-        class="bgImg bgImgBack"
-        :class="hideBgImg(index)"
-        :style="bgStyles"
-      />
-      <img
-        :src="img.imgOverlay"
-        class="bgImg bgImgOverlay"
-        :class="hideBgImgOverlay(index)"
-        :style="bgStyles"
-      />
-    </div>
-
-    <header
-      id="header"
-      :style="headerStyles"
-    >
-      <img
-        :src="titleImg"
-        id="titleImg"
-        class="mb-6"
-        data-testid="title-img"
-      />
-      <p id="titleSubText">{{ titleSubText }}</p>
-      <p id="targetForOpacity"></p>
-    </header>
-
-    <div
-      id="scrollDownContainer"
-      style="text-align: center"
-      class="pb-12"
-    >
-      <ScrollDownArrow scrollToElement="#topOfMainBody" />
-    </div>
-
-    <div id="topOfMainBody"></div>
-
-    <v-container
-      fluid
-      :style="bodyOpacity"
-      class="mb-12 py-4 main-col"
-    >
-      <div class="px-6 py-4">
-        <div>
-          <ContentRenderer
-            :value="discographyPgContent"
-            tag="span"
-            class="discography_content"
+        <div
+          v-for="(img, index) in backgroundImages"
+          :key="index"
+          data-testid="background-img-container"
+        >
+          <img
+            :src="img.img"
+            class="bgImg bgImgBack"
+            :class="hideBgImg(index)"
+            :style="bgStyles"
+          />
+          <img
+            :src="img.imgOverlay"
+            class="bgImg bgImgOverlay"
+            :class="hideBgImgOverlay(index)"
+            :style="bgStyles"
           />
         </div>
-      </div>
 
-      <div class="px-6">
-        <h2 id="albumReleasesHeading">ALBUM RELEASES</h2>
-        <div
-          v-for="(album, index) in albums"
-          :key="index"
-          class="mt-6 mb-2 mb-md-4 mb-lg-6 albumText"
-          data-testid="album-container"
+        <header
+          id="header"
+          :style="headerStyles"
         >
-          <v-row>
-            <v-col>
-              <div class="mb-4">
-                <span class="albumTitle">{{
-                  album.artist + ' - ' + album.title
-                }}</span>
-              </div>
-              <p class="albumIntroText">{{ album.text }}</p>
-            </v-col>
-          </v-row>
+          <img
+            :src="titleImg"
+            id="titleImg"
+            class="mb-6"
+            data-testid="title-img"
+          />
+          <p id="titleSubText">{{ titleSubText }}</p>
+          <p id="targetForOpacity"></p>
+        </header>
 
-          <v-row align-content="center">
-            <v-col
-              cols="12"
-              xl="6"
-              xxl="5"
-            >
-              <div
-                style="text-align: center"
-                class="mb-4"
-              >
-                <img
-                  :src="album.thumbnailImg"
-                  style="max-width: 100%"
-                  class=""
-                />
-              </div>
-            </v-col>
-
-            <v-col
-              cols="12"
-              xl="6"
-              xxl="4"
-            >
-              <span class="underline">Tracks</span>
-              <div
-                v-html="convertTrackListingToHtml(album.trackListing)"
-                class="discography_albumTrackListing"
-              />
-            </v-col>
-
-            <v-col
-              cols="12"
-              xl="12"
-              xxl="3"
-              class="albumDetailsText my-2"
-            >
-              <span class="underline">Details</span>
-              <v-row>
-                <v-col
-                  cols="4"
-                  md="3"
-                  lg="2"
-                  xxl="4"
-                  >Label:
-                </v-col>
-                <v-col>{{ album.label }}</v-col>
-              </v-row>
-              <v-row>
-                <v-col
-                  cols="4"
-                  md="3"
-                  lg="2"
-                  xxl="4"
-                  >Format:
-                </v-col>
-                <v-col>{{ album.format }}</v-col>
-              </v-row>
-              <v-row>
-                <v-col
-                  cols="4"
-                  md="3"
-                  lg="2"
-                  xxl="4"
-                  >Country:
-                </v-col>
-                <v-col>{{ album.country }}</v-col>
-              </v-row>
-              <v-row>
-                <v-col
-                  cols="4"
-                  md="3"
-                  lg="2"
-                  xxl="4"
-                  >Released:
-                </v-col>
-                <v-col>{{ album.released }}</v-col>
-              </v-row>
-              <v-row>
-                <v-col
-                  cols="4"
-                  md="3"
-                  lg="2"
-                  xxl="4"
-                  >Style:
-                </v-col>
-                <v-col>{{ album.style }}</v-col>
-              </v-row>
-            </v-col>
-
-            <v-col
-              cols="12"
-              class="albumDetailsText my-2"
-            >
-              <span class="underline">Credits</span>
-              <div
-                v-html="convertCreditsToHtml(album.credits)"
-                :class="albumCreditsClass(album.credits)"
-                class="discography_albumCredits"
-              />
-            </v-col>
-          </v-row>
+        <div
+          id="scrollDownContainer"
+          style="text-align: center"
+          class="pb-12"
+        >
+          <ScrollDownArrow scrollToElement="#topOfMainBody" />
         </div>
-      </div>
-    </v-container>
 
-    <BackToTop />
-  </div>
+        <div id="topOfMainBody"></div>
+
+        <v-container
+          fluid
+          :style="bodyOpacity"
+          class="mb-12 py-4 main-col"
+        >
+          <div class="px-6 py-4">
+            <div>
+              <ContentRenderer
+                :value="discographyPgContent"
+                tag="span"
+                class="discography_content"
+              />
+            </div>
+          </div>
+
+          <div class="px-6">
+            <h2 id="albumReleasesHeading">ALBUM RELEASES</h2>
+            <div
+              v-for="(album, index) in albums"
+              :key="index"
+              class="mt-6 mb-2 mb-md-4 mb-lg-6 albumText"
+              data-testid="album-container"
+            >
+              <v-row>
+                <v-col>
+                  <div class="mb-4">
+                    <span class="albumTitle">{{
+                      album.artist + ' - ' + album.title
+                    }}</span>
+                  </div>
+                  <p class="albumIntroText">{{ album.text }}</p>
+                </v-col>
+              </v-row>
+
+              <v-row align-content="center">
+                <v-col
+                  cols="12"
+                  xl="6"
+                  xxl="5"
+                >
+                  <div
+                    style="text-align: center"
+                    class="mb-4"
+                  >
+                    <img
+                      :src="album.thumbnailImg"
+                      style="max-width: 100%"
+                      class=""
+                    />
+                  </div>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  xl="6"
+                  xxl="4"
+                >
+                  <span class="underline">Tracks</span>
+                  <div
+                    v-html="convertTrackListingToHtml(album.trackListing)"
+                    class="discography_albumTrackListing"
+                  />
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  xl="12"
+                  xxl="3"
+                  class="albumDetailsText my-2"
+                >
+                  <span class="underline">Details</span>
+                  <v-row>
+                    <v-col
+                      cols="4"
+                      md="3"
+                      lg="2"
+                      xxl="4"
+                      >Label:
+                    </v-col>
+                    <v-col>{{ album.label }}</v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col
+                      cols="4"
+                      md="3"
+                      lg="2"
+                      xxl="4"
+                      >Format:
+                    </v-col>
+                    <v-col>{{ album.format }}</v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col
+                      cols="4"
+                      md="3"
+                      lg="2"
+                      xxl="4"
+                      >Country:
+                    </v-col>
+                    <v-col>{{ album.country }}</v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col
+                      cols="4"
+                      md="3"
+                      lg="2"
+                      xxl="4"
+                      >Released:
+                    </v-col>
+                    <v-col>{{ album.released }}</v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col
+                      cols="4"
+                      md="3"
+                      lg="2"
+                      xxl="4"
+                      >Style:
+                    </v-col>
+                    <v-col>{{ album.style }}</v-col>
+                  </v-row>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  class="albumDetailsText my-2"
+                >
+                  <span class="underline">Credits</span>
+                  <div
+                    v-html="convertCreditsToHtml(album.credits)"
+                    :class="albumCreditsClass(album.credits)"
+                    class="discography_albumCredits"
+                  />
+                </v-col>
+              </v-row>
+            </div>
+          </div>
+        </v-container>
+
+        <BackToTop />
+      </div>
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

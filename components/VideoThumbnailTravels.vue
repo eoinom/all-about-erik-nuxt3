@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
 export default {
   name: 'VideoThumbnailTravels',
 

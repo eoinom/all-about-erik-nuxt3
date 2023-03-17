@@ -1,90 +1,94 @@
 <template>
-  <Head>
-    <Title>{{ pageTitle }}</Title>
-  </Head>
+  <router-view v-slot="{ route }">
+    <div :key="route.fullPath">
+      <Head>
+        <Title>{{ pageTitle }}</Title>
+      </Head>
 
-  <header
-    id="header"
-    :style="headerStyle"
-  >
-    <img
-      :src="titleImg"
-      id="titleImg"
-      class="my-6"
-      data-testid="title-img"
-    />
-  </header>
-
-  <v-container
-    fluid
-    id="mainContainer"
-    class="mb-4 pb-12 px-1"
-  >
-    <!-- MAIN VIDEO -->
-    <v-row
-      no-gutters
-      justify="center"
-      align="center"
-      id="mainVideoContainer"
-      class="my-2 my-sm-4 px-2 px-sm-4"
-    >
-      <v-col
-        cols="12"
-        align-self="center"
-        style="max-width: 960px"
-        class="position-relative"
+      <header
+        id="header"
+        :style="headerStyle"
       >
-        <iframe
-          :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
-          width="960"
-          height="540"
-          frameborder="0"
-          id="mainVideo"
+        <img
+          :src="titleImg"
+          id="titleImg"
+          class="my-6"
+          data-testid="title-img"
         />
-        <span
-          v-html="mainVideoText"
-          id="mainVideoText"
-          class=""
-        />
-      </v-col>
-    </v-row>
+      </header>
 
-    <!-- VIDEOS -->
-    <v-row
-      no-gutters
-      justify="center"
-      id="videos"
-    >
-      <v-col
-        cols="12"
-        sm="6"
-        lg="4"
-        xl="3"
-        v-for="(video, index) in videos"
-        :key="video.title"
-        class="mb-2 mb-sm-4 px-2 px-sm-1"
-        @click="
-          videoIndex = index;
-          setStorage();
-        "
-        data-testid="video-container"
+      <v-container
+        fluid
+        id="mainContainer"
+        class="mb-4 pb-12 px-1"
       >
-        <VideoThumbnailTravels :video="video" />
-      </v-col>
-    </v-row>
-  </v-container>
+        <!-- MAIN VIDEO -->
+        <v-row
+          no-gutters
+          justify="center"
+          align="center"
+          id="mainVideoContainer"
+          class="my-2 my-sm-4 px-2 px-sm-4"
+        >
+          <v-col
+            cols="12"
+            align-self="center"
+            style="max-width: 960px"
+            class="position-relative"
+          >
+            <iframe
+              :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
+              width="960"
+              height="540"
+              frameborder="0"
+              id="mainVideo"
+            />
+            <span
+              v-html="mainVideoText"
+              id="mainVideoText"
+              class=""
+            />
+          </v-col>
+        </v-row>
 
-  <VideoLightBox
-    :videos="videos"
-    :index="videoIndex"
-    :disable-scroll="true"
-    @close="videoIndex = null"
-  />
+        <!-- VIDEOS -->
+        <v-row
+          no-gutters
+          justify="center"
+          id="videos"
+        >
+          <v-col
+            cols="12"
+            sm="6"
+            lg="4"
+            xl="3"
+            v-for="(video, index) in videos"
+            :key="video.title"
+            class="mb-2 mb-sm-4 px-2 px-sm-1"
+            @click="
+              videoIndex = index;
+              setStorage();
+            "
+            data-testid="video-container"
+          >
+            <VideoThumbnailTravels :video="video" />
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <BackToTop />
+      <VideoLightBox
+        :videos="videos"
+        :index="videoIndex"
+        :disable-scroll="true"
+        @close="videoIndex = null"
+      />
+
+      <BackToTop />
+    </div>
+  </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {
