@@ -261,6 +261,7 @@ export default {
 }
 
 .textCol {
+  position: relative;
   background-color: white;
   padding-bottom: 38px; /* for the see more button */
 }
