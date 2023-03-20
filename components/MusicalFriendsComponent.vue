@@ -1576,7 +1576,7 @@ export default {
 }
 
 #titleImg {
-  width: 90%;
+  width: 80%;
   max-width: 1324px;
   min-width: 350px;
   height: auto;
@@ -1607,9 +1607,8 @@ export default {
   #titleImg {
     margin-left: 0px;
     margin-right: 0px;
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
+    width: 71%;
+    min-width: 71%;
   }
   #titleSubText {
     font-size: 16px;
@@ -1620,6 +1619,10 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  #titleImg {
+    width: 75%;
+    min-width: 75%;
+  }
   #titleSubText {
     font-size: 20px;
     line-height: 28.5px;
@@ -1627,8 +1630,12 @@ export default {
   }
 }
 
-/* Medium devices (tablets, 800px and up) */
-@media only screen and (min-width: 800px) and (max-width: 991.98px) {
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  #titleImg {
+    width: 75%;
+    min-width: 75%;
+  }
   #titleSubText {
     font-size: 24px;
     line-height: 34px;
