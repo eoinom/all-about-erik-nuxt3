@@ -18,8 +18,9 @@
         id="titleImg"
         data-testid="title-img"
       />
-      <span
-        v-html="titleSubText"
+      <ContentRenderer
+        :value="musicalFriendsPgContent"
+        tag="span"
         id="titleSubText"
       />
       <div
@@ -1448,9 +1449,6 @@ export default {
     },
     titleImg() {
       return this.musicalFriendsPgContent.titleImg;
-    },
-    titleSubText() {
-      return this.musicalFriendsPgContent.content;
     },
     friends() {
       return this.musicalFriendsPgContent.friends || [];
