@@ -926,7 +926,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     max-width: 100%;
     height: auto;
   }
-  .nav_link_small img {
+  #nav_prev.nav_link_small img,
+  #nav_next.nav_link_small img {
     height: 30px;
     max-height: 3.65vw;
     width: auto;
