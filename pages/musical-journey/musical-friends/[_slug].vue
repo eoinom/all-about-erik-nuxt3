@@ -130,7 +130,9 @@
                 v-b-toggle="String(index + 1)"
                 @click="
                   ($event) => {
-                    $event.preventDefault();
+                    if (item.mediaType !== 'link') {
+                      $event.preventDefault();
+                    }
                     mediaItemClick(item, index);
                   }
                 "
@@ -285,13 +287,20 @@
               id="mediaItemsRow"
               class="galleriesContainer mx-0"
             >
-              <v-col
+              <a
                 v-for="(item, index) in musicalFriendPgContent.mediaItems"
                 :key="index"
                 :href="item.mediaType == 'link' ? item.galleries[0].url : ''"
                 class="mediaItems pa-2"
                 v-b-toggle="String(index + 1)"
-                @click="mediaItemClick(item, index)"
+                @click="
+                  ($event) => {
+                    if (item.mediaType !== 'link') {
+                      $event.preventDefault();
+                    }
+                    mediaItemClick(item, index);
+                  }
+                "
               >
                 <img
                   :src="item.thumbnailImg"
@@ -323,7 +332,7 @@
                     </span>
                   </div>
                 </v-collapse>
-              </v-col>
+              </a>
             </v-row>
 
             <v-row
