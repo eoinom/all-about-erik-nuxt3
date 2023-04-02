@@ -2,9 +2,8 @@
   <router-view v-slot="{ route }">
     <div :key="route.fullPath">
       <Head>
-        <Title>{{ pageTitle }}</Title>
+        <Title>{{ title }}</Title>
       </Head>
-
       <header :style="headerStyles">
         <v-container
           fluid
@@ -82,7 +81,7 @@
 
               <div
                 v-else
-                v-html="node.content"
+                v-html="oldTimeSportsmenPgContent.description"
                 class="collection_headerText"
               />
 
@@ -122,18 +121,6 @@
         </v-container>
       </header>
 
-      <v-collapse
-        v-if="windowWidth < 1200"
-        v-model="showIntro"
-        id="collapse-1"
-      >
-        <div
-          v-html="node.content"
-          class="collection_headerText"
-          id="headerTextDevice"
-        />
-      </v-collapse>
-
       <CollectionViewer
         :images="images"
         :index="imageIndex"
@@ -154,10 +141,10 @@
               align-self="start"
               style="padding-top: 250px"
             >
-              <slideshow-zoom :slides="people_images" />
+              <SlideshowZoom :slides="people_images" />
             </v-col>
 
-            <v-col>
+            <v-col v-if="postcardHistory">
               <div class="postcardHistory__textDiv">
                 <h2 class="title">{{ postcardHistory.title }}</h2>
                 <div class="pb-2 pb-sm-4">
@@ -273,14 +260,15 @@
             justify="center"
           >
             <v-col
-              v-if="windowWidth > 1149"
+              v-if="windowWidth > 1149 && people_images"
               align-self="start"
               style="padding-top: 250px"
             >
-              <slideshow-zoom :slides="people_images" />
+              <SlideshowZoom :slides="people_images" />
             </v-col>
 
             <v-col
+              v-if="postcardHistory"
               align-self="start"
               :style="postcardsSidebarStyles"
             >
@@ -343,7 +331,7 @@
             </v-col>
           </v-row>
 
-          <v-row>
+          <v-row v-if="about">
             <v-col>
               <div class="postcardHistory__textDiv">
                 <h2 class="title">{{ about.title }}</h2>
@@ -424,12 +412,6 @@ export default {
   },
 
   computed: {
-    pageTitle() {
-      return this.title;
-    },
-    node() {
-      return this.oldTimeSportsmenPgContent;
-    },
     title() {
       return this.oldTimeSportsmenPgContent.title;
     },
@@ -484,6 +466,7 @@ export default {
           flex: 0,
         };
       }
+      return {};
     },
     images() {
       return this.oldTimeSportsmenPgContent.images;
@@ -495,13 +478,19 @@ export default {
       return this.collectionsContent.collections;
     },
     collection_names() {
-      return this.collections.map((x) => x.title);
+      return this.collections !== undefined
+        ? this.collections.map((x) => x.title)
+        : [];
     },
     collectionIndex() {
-      return this.collection_names.indexOf(this.title);
+      return this.collection_names !== undefined &&
+        this.collection_names.length > 0
+        ? this.collection_names.indexOf(this.title)
+        : 0;
     },
     prev_collection() {
       const i = this.collectionIndex;
+      if (this.collection_names.length === 0) return {};
       if (i === 0) var prev_i = this.collection_names.length - 1;
       else prev_i = i - 1;
       let collection = { ...this.collections[prev_i] };
@@ -510,6 +499,7 @@ export default {
     },
     next_collection() {
       const i = this.collectionIndex;
+      if (this.collection_names.length === 0) return {};
       if (i === this.collection_names.length - 1) var next_i = 0;
       else next_i = i + 1;
       let collection = { ...this.collections[next_i] };
@@ -524,6 +514,25 @@ export default {
     },
   },
 
+  async mounted() {
+    const oldTimeSportsmenPgContent = await queryContent(
+      'collections',
+      'old-time-sportsmen'
+    ).findOne();
+    this.oldTimeSportsmenPgContent = oldTimeSportsmenPgContent;
+    const collectionsContent = await queryContent(
+      'collections-index'
+    ).findOne();
+    this.collectionsContent = collectionsContent;
+    this.windowWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
+    window.addEventListener('orientationchange', () => {
+      this.windowWidth = window.innerWidth;
+    });
+  },
+
   watch: {
     windowWidth: function (val) {
       if (val >= 576 && val <= 1366) {
@@ -534,27 +543,6 @@ export default {
         this.sportsmenGalleryHover = false;
       }
     },
-  },
-
-  async mounted() {
-    const oldTimeSportsmenPgContent = await queryContent(
-      'old-time-sportsmen'
-    ).findOne();
-    this.oldTimeSportsmenPgContent = oldTimeSportsmenPgContent;
-
-    const collectionsContent = await queryContent(
-      'collections-index'
-    ).findOne();
-    this.collectionsContent = collectionsContent;
-
-    this.windowWidth = window.innerWidth;
-
-    window.addEventListener('resize', () => {
-      this.windowWidth = window.innerWidth;
-    });
-    window.addEventListener('orientationchange', () => {
-      this.windowWidth = window.innerWidth;
-    });
   },
 
   methods: {
@@ -785,7 +773,6 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
 }
 
 .postcardHistory {
-  // background-color: #E6E5DF;
   position: relative;
   background-color: transparent;
   width: 100%;
