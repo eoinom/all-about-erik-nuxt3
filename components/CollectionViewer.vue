@@ -42,7 +42,7 @@
           >
             <NuxtLink
               :to="'/collections/' + prevCollection.link"
-              v-v-tooltip.hover="{ variant: 'secondary' }"
+              v-tooltip.hover="{ variant: 'secondary' }"
               :title="prevCollection.title"
               class="nav_link nav_link_small"
               id="nav_prev"
@@ -63,7 +63,7 @@
 
             <NuxtLink
               :to="'/collections/' + prevCollection.link"
-              v-v-tooltip.hover="{ variant: 'secondary' }"
+              v-tooltip.hover="{ variant: 'secondary' }"
               :title="prevCollection.title"
               class="nav_link nav_link_big"
               id="nav_prev"
@@ -103,7 +103,7 @@
           >
             <NuxtLink
               :to="'/collections/' + nextCollection.link"
-              v-v-tooltip.hover="{ variant: 'secondary' }"
+              v-tooltip.hover="{ variant: 'secondary' }"
               :title="nextCollection.title"
               class="nav_link nav_link_small"
               id="nav_next"
@@ -124,7 +124,7 @@
 
             <NuxtLink
               :to="'/collections/' + nextCollection.link"
-              v-v-tooltip.hover="{ variant: 'secondary' }"
+              v-tooltip.hover="{ variant: 'secondary' }"
               :title="nextCollection.title"
               class="nav_link nav_link_big"
               id="nav_next"
