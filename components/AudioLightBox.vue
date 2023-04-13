@@ -79,13 +79,13 @@
         >
           <img
             alt="Left arrow, click for previous audio"
-            src="~/assets/images/arrow-left.png"
+            src="../assets/images/arrow-left.png"
             id="prevAudioImg"
             class="audio-lightbox__prev arrowImg"
           />
           <img
             alt="Left arrow, click for previous audio"
-            src="~/assets/images/arrow-left-hover.png"
+            src="../assets/images/arrow-left-hover.png"
             id="prevAudioImg-hover"
             class="audio-lightbox__prev arrowImg"
           />
@@ -98,13 +98,13 @@
         >
           <img
             alt="Right arrow, click for next audio"
-            src="~/assets/images/arrow-right.png"
+            src="../assets/images/arrow-right.png"
             id="nextAudioImg"
             class="audio-lightbox__next arrowImg"
           />
           <img
             alt="Right arrow, click for next audio"
-            src="~/assets/images/arrow-right-hover.png"
+            src="../assets/images/arrow-right-hover.png"
             id="nextAudioImg-hover"
             class="audio-lightbox__next arrowImg"
           />
@@ -116,13 +116,13 @@
         >
           <img
             alt="Close icon, click to close lightbox"
-            src="~/assets/images/lightbox-close.png"
+            src="../assets/images/lightbox-close.png"
             id="closeImg"
             class="audio-lightbox__close"
           />
           <img
             alt="Close icon, click to close lightbox"
-            src="~/assets/images/lightbox-close-hover.png"
+            src="../assets/images/lightbox-close-hover.png"
             id="closeImg-hover"
             class="audio-lightbox__close"
           />

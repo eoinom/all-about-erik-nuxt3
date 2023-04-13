@@ -109,12 +109,12 @@
                   >
                     <img
                       alt="Play symbol"
-                      src="~/assets/images/playarrowcircle-black.png"
+                      src="../assets/images/playarrowcircle-black.png"
                       id="fullVideoPlayImg"
                     />
                     <img
                       alt="Play symbol"
-                      src="~/assets/images/playarrowcircle-hover.png"
+                      src="../assets/images/playarrowcircle-hover.png"
                       id="fullVideoPlayImg-hover"
                     />
                   </v-col>

@@ -26,7 +26,7 @@
             <img
               alt="Play symbol"
               v-if="video.url != null"
-              src="~/assets/images/playarrowcircle.png"
+              src="../assets/images/playarrowcircle.png"
               class="thumbnailPlayVideoImg"
             />
           </p>

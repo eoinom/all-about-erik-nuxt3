@@ -44,7 +44,7 @@
   </router-view>
 </template>
 
-<script scoped>
+<script>
 export default {
   data() {
     return {

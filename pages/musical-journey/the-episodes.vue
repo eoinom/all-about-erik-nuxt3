@@ -81,7 +81,7 @@
                 <img
                   alt="Play symbol"
                   v-if="video.url != null"
-                  src="~/assets/images/playarrowcircle.png"
+                  src="../../assets/images/playarrowcircle.png"
                   class="thumbnailPlayVideoImg thumbnailImgHovered"
                 />
               </p>
@@ -137,12 +137,12 @@
               >
                 <img
                   alt="Play symbol"
-                  src="~/assets/images/playarrowcircle-black.png"
+                  src="../../assets/images/playarrowcircle-black.png"
                   class="playIconImg"
                 />
                 <img
                   alt="Play symbol"
-                  src="~/assets/images/playarrowcircle-hover.png"
+                  src="../../assets/images/playarrowcircle-hover.png"
                   class="playIconImg-hover"
                 />
               </v-col>
