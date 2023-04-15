@@ -187,37 +187,39 @@
               >
             </div>
 
-            <FullscreenIcon
-              v-if="!isFullscreen"
-              class="btn"
-              @click="toggleFullscreen"
-              id="fullscreen_icon"
-            />
-            <v-tooltip
-              v-if="!isFullscreen"
-              target="fullscreen_icon"
-              triggers="hover"
-              variant="secondary"
-              >Fullscreen</v-tooltip
-            >
+            <div class="btn_wrapper">
+              <FullscreenIcon
+                v-if="!isFullscreen"
+                class="btn"
+                @click="toggleFullscreen"
+                id="fullscreen_icon"
+              />
+              <v-tooltip
+                v-if="!isFullscreen"
+                target="fullscreen_icon"
+                triggers="hover"
+                variant="secondary"
+                >Fullscreen</v-tooltip
+              >
 
-            <FullscreenExitIcon
-              v-if="isFullscreen"
-              class="btn"
-              @click="toggleFullscreen"
-              id="fullscreenExit_icon"
-            />
-            <v-tooltip
-              v-if="isFullscreen"
-              target="fullscreenExit_icon"
-              triggers="hover"
-              variant="secondary"
-              >Exit fullscreen</v-tooltip
-            >
+              <FullscreenExitIcon
+                v-if="isFullscreen"
+                class="btn"
+                @click="toggleFullscreen"
+                id="fullscreenExit_icon"
+              />
+              <v-tooltip
+                v-if="isFullscreen"
+                target="fullscreenExit_icon"
+                triggers="hover"
+                variant="secondary"
+                >Exit fullscreen</v-tooltip
+              >
+            </div>
           </div>
         </Flipbook>
       </div>
-    </transition>
+    </router-view>
   </ClientOnly>
 </template>
 
@@ -437,7 +439,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 #flipbookContainer {
   padding-bottom: 46px; // to account for the action-bar
 }
@@ -473,43 +475,50 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.action-bar .btn {
-  font-size: 30px;
-  color: #999;
-  padding: 0;
-}
+  .btn_wrapper {
+    margin-left: 10px;
+  }
 
-.action-bar .btn svg {
-  bottom: 0;
-}
+  .btn {
+    font-size: 30px;
+    color: #999;
+    padding: 0;
+    cursor: pointer;
 
-.action-bar .btn:not(:first-child),
-.btn_wrapper {
-  margin-left: 10px;
-}
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
 
-.has-mouse .action-bar .btn:hover {
-  color: #ccc;
-  filter: drop-shadow(1px 1px 5px #000);
-  cursor: pointer;
-}
+    &:active {
+      filter: none !important;
+    }
 
-.action-bar .btn:active {
-  filter: none !important;
-}
+    &:hover {
+      color: #ccc;
+      filter: drop-shadow(1px 1px 5px #000);
+    }
 
-.action-bar .btn.disabled {
-  color: #666;
-  pointer-events: none;
-}
+    &.disabled {
+      pointer-events: none;
+      // color: #666;
 
-.page-num {
-  color: white;
-  font-size: 1rem;
-  margin-left: 30px;
-  margin-right: 20px;
+      .material-design-icon__svg {
+        background-color: #666;
+      }
+    }
+
+    svg {
+      bottom: 0;
+    }
+  }
+
+  .page-num {
+    color: white;
+    font-size: 1rem;
+    margin-left: 30px;
+    margin-right: 20px;
+  }
 }
 
 .flipbook .bounding-box {
