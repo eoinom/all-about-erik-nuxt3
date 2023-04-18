@@ -11,7 +11,7 @@
       >
         <NuxtLink
           :to="'/musical-journey/musical-friends/' + prev_friend.link"
-          v-b-tooltip.hover="{ variant: 'secondary' }"
+          v-tooltip.hover="{ variant: 'secondary' }"
           :title="prev_friend.title"
           class="nav_link nav_link_small"
           id="nav_prev"
@@ -32,7 +32,7 @@
 
         <NuxtLink
           :to="'/musical-journey/musical-friends/' + prev_friend.link"
-          v-b-tooltip.hover="{ variant: 'secondary' }"
+          v-tooltip.hover="{ variant: 'secondary' }"
           :title="prev_friend.title"
           class="nav_link nav_link_big"
           id="nav_previous"
@@ -53,7 +53,7 @@
 
         <NuxtLink
           :to="'/musical-journey/musical-friends/' + next_friend.link"
-          v-b-tooltip.hover="{ variant: 'secondary' }"
+          v-tooltip.hover="{ variant: 'secondary' }"
           :title="next_friend.title"
           class="nav_link nav_link_small"
           id="nav_next"
@@ -74,7 +74,7 @@
 
         <NuxtLink
           :to="'/musical-journey/musical-friends/' + next_friend.link"
-          v-b-tooltip.hover="{ variant: 'secondary' }"
+          v-tooltip.hover="{ variant: 'secondary' }"
           :title="next_friend.title"
           class="nav_link nav_link_big"
           id="nav_next"
@@ -146,7 +146,7 @@
                 <span class="mediaItemsText mediaItemsLabel">{{
                   item.label
                 }}</span>
-                <v-collapse
+                <!-- <v-collapse
                   v-if="item.galleries[0].label"
                   :id="String(index + 1)"
                   accordion="mediaItems-accordion"
@@ -166,7 +166,7 @@
                       {{ gallery.label }}
                     </span>
                   </div>
-                </v-collapse>
+                </v-collapse> -->
               </a>
             </v-row>
 
@@ -233,7 +233,7 @@
                 >
                   <NuxtLink
                     :to="'/musical-journey/musical-friends/' + prev_friend.link"
-                    v-b-tooltip.hover="{ variant: 'secondary' }"
+                    v-tooltip.hover="{ variant: 'secondary' }"
                     :title="prev_friend.name"
                     class="nav_link"
                     id="nav_prev"
@@ -255,7 +255,7 @@
                 >
                   <NuxtLink
                     :to="'/musical-journey/musical-friends/' + next_friend.link"
-                    v-b-tooltip.hover="{ variant: 'secondary' }"
+                    v-tooltip.hover="{ variant: 'secondary' }"
                     :title="next_friend.name"
                     class="nav_link"
                     id="nav_next"
@@ -311,7 +311,7 @@
                 <span class="mediaItemsText mediaItemsLabel">{{
                   item.label
                 }}</span>
-                <v-collapse
+                <!-- <v-collapse
                   v-if="item.galleries[0].label"
                   :id="String(index + 1)"
                   accordion="mediaItems-accordion"
@@ -331,7 +331,7 @@
                       {{ gallery.label }}
                     </span>
                   </div>
-                </v-collapse>
+                </v-collapse> -->
               </a>
             </v-row>
 

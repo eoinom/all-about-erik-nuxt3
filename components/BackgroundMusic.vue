@@ -4,7 +4,7 @@
     class="soundIconContainer"
   >
     <!-- <span
-      v-v-tooltip.hover="{ variant: 'light' }"
+      v-tooltip.hover="{ variant: 'light' }"
       :title="tooltipText"
     > -->
     <img

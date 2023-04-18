@@ -76,7 +76,7 @@
         </div>
       </header>
 
-      <v-collapse
+      <!-- <v-collapse
         v-if="windowWidth < 1200"
         v-model="showIntro"
         id="collapse-1"
@@ -86,7 +86,7 @@
           class="collection_headerText"
           id="headerTextDevice"
         />
-      </v-collapse>
+      </v-collapse> -->
 
       <CollectionViewer
         :images="images"
