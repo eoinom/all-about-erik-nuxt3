@@ -1,229 +1,228 @@
 <template>
-  <ClientOnly>
-    <transition
-      name="fade"
-      mode="out-in"
+  <ClientOnly
+    fallback-tag="span"
+    fallback="Loading book..."
+  >
+    <div
+      id="flipbookContainer"
+      :class="{ fullscreenContainer: isFullscreen }"
     >
-      <div
-        id="flipbookContainer"
-        :class="{ fullscreenContainer: isFullscreen }"
+      <Flipbook
+        class="flipbook"
+        :class="{ fullscreen: isFullscreen }"
+        :style="{ width: viewportWidth, height: viewportHeight }"
+        :pages="pages"
+        :pagesHiRes="pagesHiRes"
+        :startPage="pageNum"
+        :flipDuration="1000"
+        :singlePage="showSinglePage"
+        ref="flipbook"
+        v-slot="flipbook"
+        @flip-left-end="onFlipLeftEnd"
+        @flip-right-end="onFlipRightEnd"
       >
-        <Flipbook
-          class="flipbook"
-          :class="{ fullscreen: isFullscreen }"
-          :style="{ width: viewportWidth, height: viewportHeight }"
-          :pages="pages"
-          :pagesHiRes="pagesHiRes"
-          :startPage="pageNum"
-          :flipDuration="flipDuration"
-          :singlePage="showSinglePage"
-          v-slot="flipbook"
-          ref="flipbook"
-          @flip-left-end="onFlipLeftEnd"
-          @flip-right-end="onFlipRightEnd"
+        <span
+          class="page-num pb-4"
+          id="page-num-sm"
         >
+          Page {{ flipbook.page }} of {{ flipbook.numPages }}
+        </span>
+
+        <div class="action-bar">
+          <div
+            v-show="!flippingToStart"
+            id="firstpage_icon_wrapper"
+          >
+            <FirstPageIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canFlipLeft }"
+              @click="flipToStart()"
+              id="firstpage_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canFlipLeft"
+              target="firstpage_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >First page</v-tooltip
+            > -->
+          </div>
+
+          <div
+            v-show="flippingToStart"
+            id="stop_icon_start_wrapper"
+          >
+            <StopIcon
+              class="btn"
+              @click="stopFlip = true"
+              id="stop_icon_start"
+            />
+            <!-- <v-tooltip
+              target="stop_icon_start_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Stop</v-tooltip
+            > -->
+          </div>
+
+          <div
+            id="left_icon_wrapper"
+            class="btn_wrapper"
+          >
+            <LeftIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canFlipLeft }"
+              @click="flipbook.flipLeft()"
+              id="left_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canFlipLeft"
+              target="left_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Previous page</v-tooltip
+            > -->
+          </div>
+
+          <div
+            id="minus_icon_wrapper"
+            class="btn_wrapper"
+          >
+            <MinusIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canZoomOut }"
+              @click="flipbook.zoomOut"
+              id="minus_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canZoomOut"
+              target="minus_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Zoom out</v-tooltip
+            > -->
+          </div>
+
           <span
-            class="page-num pb-4"
-            id="page-num-sm"
+            class="page-num"
+            id="page-num-lg"
           >
             Page {{ flipbook.page }} of {{ flipbook.numPages }}
           </span>
 
-          <div class="action-bar">
-            <div
-              v-if="!flippingToStart"
-              id="firstpage_icon_wrapper"
-            >
-              <FirstPageIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canFlipLeft }"
-                @click="flipToStart()"
-                id="firstpage_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canFlipLeft"
-                target="firstpage_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >First page</v-tooltip
-              >
-            </div>
-
-            <div
-              v-if="flippingToStart"
-              id="stop_icon_start_wrapper"
-            >
-              <StopIcon
-                class="btn"
-                @click="stopFlip = true"
-                id="stop_icon_start"
-              />
-              <v-tooltip
-                target="stop_icon_start_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Stop</v-tooltip
-              >
-            </div>
-
-            <div
-              id="left_icon_wrapper"
-              class="btn_wrapper"
-            >
-              <LeftIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canFlipLeft }"
-                @click="flipbook.flipLeft"
-                id="left_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canFlipLeft"
-                target="left_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Previous page</v-tooltip
-              >
-            </div>
-
-            <div
-              id="minus_icon_wrapper"
-              class="btn_wrapper"
-            >
-              <MinusIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canZoomOut }"
-                @click="flipbook.zoomOut"
-                id="minus_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canZoomOut"
-                target="minus_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Zoom out</v-tooltip
-              >
-            </div>
-
-            <span
-              class="page-num"
-              id="page-num-lg"
-            >
-              Page {{ flipbook.page }} of {{ flipbook.numPages }}
-            </span>
-
-            <div
-              id="plus_icon_wrapper"
-              class="btn_wrapper"
-            >
-              <PlusIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canZoomIn }"
-                @click="flipbook.zoomIn"
-                id="plus_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canZoomIn"
-                target="plus_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Zoom in</v-tooltip
-              >
-            </div>
-
-            <div
-              id="right_icon_wrapper"
-              class="btn_wrapper"
-            >
-              <RightIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canFlipRight }"
-                @click="flipbook.flipRight"
-                id="right_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canFlipRight"
-                target="right_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Next page</v-tooltip
-              >
-            </div>
-
-            <div
-              v-if="!flippingToEnd"
-              id="lastpage_icon_wrapper"
-              class="btn_wrapper"
-            >
-              <LastPageIcon
-                class="btn"
-                :class="{ disabled: !flipbook.canFlipRight }"
-                @click="flipToEnd()"
-                id="lastpage_icon"
-              />
-              <v-tooltip
-                v-if="flipbook.canFlipRight"
-                target="lastpage_icon_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Last page</v-tooltip
-              >
-            </div>
-
-            <div
-              v-if="flippingToEnd"
-              id="stop_icon_end_wrapper"
-              class="btn_wrapper"
-            >
-              <StopIcon
-                class="btn"
-                @click="stopFlip = true"
-                id="stop_icon_end"
-              />
-              <v-tooltip
-                target="stop_icon_end_wrapper"
-                triggers="hover"
-                variant="secondary"
-                >Stop</v-tooltip
-              >
-            </div>
-
-            <div class="btn_wrapper">
-              <FullscreenIcon
-                v-if="!isFullscreen"
-                class="btn"
-                @click="toggleFullscreen"
-                id="fullscreen_icon"
-              />
-              <v-tooltip
-                v-if="!isFullscreen"
-                target="fullscreen_icon"
-                triggers="hover"
-                variant="secondary"
-                >Fullscreen</v-tooltip
-              >
-
-              <FullscreenExitIcon
-                v-if="isFullscreen"
-                class="btn"
-                @click="toggleFullscreen"
-                id="fullscreenExit_icon"
-              />
-              <v-tooltip
-                v-if="isFullscreen"
-                target="fullscreenExit_icon"
-                triggers="hover"
-                variant="secondary"
-                >Exit fullscreen</v-tooltip
-              >
-            </div>
+          <div
+            id="plus_icon_wrapper"
+            class="btn_wrapper"
+          >
+            <PlusIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canZoomIn }"
+              @click="flipbook.zoomIn"
+              id="plus_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canZoomIn"
+              target="plus_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Zoom in</v-tooltip
+            > -->
           </div>
-        </Flipbook>
-      </div>
-    </router-view>
+
+          <div
+            id="right_icon_wrapper"
+            class="btn_wrapper"
+          >
+            <RightIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canFlipRight }"
+              @click="flipbook.flipRight()"
+              id="right_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canFlipRight"
+              target="right_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Next page</v-tooltip
+            > -->
+          </div>
+
+          <div
+            v-show="!flippingToEnd"
+            id="lastpage_icon_wrapper"
+            class="btn_wrapper"
+          >
+            <LastPageIcon
+              class="btn"
+              :class="{ disabled: !flipbook.canFlipRight }"
+              @click="flipToEnd()"
+              id="lastpage_icon"
+            />
+            <!-- <v-tooltip
+              v-if="flipbook.canFlipRight"
+              target="lastpage_icon_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Last page</v-tooltip
+            > -->
+          </div>
+
+          <div
+            v-show="flippingToEnd"
+            id="stop_icon_end_wrapper"
+            class="btn_wrapper"
+          >
+            <StopIcon
+              class="btn"
+              @click="stopFlip = true"
+              id="stop_icon_end"
+            />
+            <!-- <v-tooltip
+              target="stop_icon_end_wrapper"
+              triggers="hover"
+              variant="secondary"
+              >Stop</v-tooltip
+            > -->
+          </div>
+
+          <div class="btn_wrapper">
+            <FullscreenIcon
+              v-if="!isFullscreen"
+              class="btn"
+              @click="toggleFullscreen"
+              id="fullscreen_icon"
+            />
+            <!-- <v-tooltip
+              v-if="!isFullscreen"
+              target="fullscreen_icon"
+              triggers="hover"
+              variant="secondary"
+              >Fullscreen</v-tooltip
+            > -->
+
+            <FullscreenExitIcon
+              v-if="isFullscreen"
+              class="btn"
+              @click="toggleFullscreen"
+              id="fullscreenExit_icon"
+            />
+            <!-- <v-tooltip
+              v-if="isFullscreen"
+              target="fullscreenExit_icon"
+              triggers="hover"
+              variant="secondary"
+              >Exit fullscreen</v-tooltip
+            > -->
+          </div>
+        </div>
+      </Flipbook>
+    </div>
   </ClientOnly>
 </template>
 
-<script>
+<script setup>
+import { defineProps, onMounted, ref } from 'vue';
 import 'vue-material-design-icons/styles.css';
 import Flipbook from 'flipbook-vue';
 import FirstPageIcon from 'vue-material-design-icons/PageFirst';
@@ -236,207 +235,192 @@ import FullscreenIcon from 'vue-material-design-icons/Fullscreen';
 import FullscreenExitIcon from 'vue-material-design-icons/FullscreenExit';
 import StopIcon from 'vue-material-design-icons/Pause';
 
+const props = defineProps({
+  pages: {
+    type: Array,
+    required: true,
+  },
+  pagesHiRes: {
+    type: Array,
+    required: false,
+    default: [],
+  },
+  startPage: {
+    type: Number,
+    required: false,
+  },
+  showSinglePage: {
+    type: Boolean,
+    required: false,
+  },
+  isFullscreen: {
+    type: Boolean,
+    required: false,
+  },
+  viewportWidth: {
+    type: String,
+    required: false,
+    default: '100%',
+  },
+  viewportHeight: {
+    type: String,
+    required: false,
+    default: '100vh',
+  },
+});
+
+const emit = defineEmits(['toggleFullscreen', 'reload']);
+
+const flipbook = ref(null);
+const pageNum = ref(1);
+const flipDuration = ref(1000);
+const flippingToStart = ref(false);
+const flippingToEnd = ref(false);
+const stopFlip = ref(false);
+
 const keyMap = {
   LEFT: 37,
   RIGHT: 39,
   ESC: 27,
 };
 
-export default {
-  name: 'BookViewer',
+onMounted(() => {
+  if (props.startPage != null && props.startPage != undefined) {
+    pageNum.value = props.startPage;
+  } else {
+    setPageFromHash();
+  }
 
-  components: {
-    Flipbook,
-    FirstPageIcon,
-    LeftIcon,
-    RightIcon,
-    LastPageIcon,
-    PlusIcon,
-    MinusIcon,
-    FullscreenIcon,
-    FullscreenExitIcon,
-    StopIcon,
-  },
+  if (!document) return;
+  bindEvents();
+});
 
-  props: {
-    pages: {
-      type: Array,
-      required: true,
-    },
-    pagesHiRes: {
-      type: Array,
-      required: false,
-    },
-    startPage: {
-      type: Number,
-      required: false,
-    },
-    showSinglePage: {
-      type: Boolean,
-      required: false,
-    },
-    isFullscreen: {
-      type: Boolean,
-      required: false,
-    },
-    viewportWidth: {
-      type: String,
-      required: false,
-      default: '100%',
-    },
-    viewportHeight: {
-      type: String,
-      required: false,
-      default: '100vh',
-    },
-  },
+onBeforeUnmount(() => {
+  if (!document) return;
+  unbindEvents();
+});
 
-  data() {
-    return {
-      hasMouse: true,
-      pageNum: null,
-      flipDuration: 1000,
-      flippingToStart: false,
-      flippingToEnd: false,
-      stopFlip: false,
-    };
-  },
+function bindEvents() {
+  window.addEventListener('hashchange', () => setPageFromHash(), false);
+  document.addEventListener('keydown', keyDownHandler, false);
+}
 
-  mounted() {
-    if (this.startPage != null) {
-      this.pageNum = this.startPage;
-    } else {
-      this.setPageFromHash();
-    }
+function unbindEvents() {
+  window.removeEventListener('hashchange', () => setPageFromHash(), false);
+  document.removeEventListener('keydown', keyDownHandler, false);
+}
 
-    if (!document) return;
-    this.bindEvents();
-  },
+function numFlips(toPage) {
+  let flips = Math.abs(toPage - flipbook.value.currentPage); // number of flips to do
 
-  beforeDestroy() {
-    if (!document) return;
-    this.unbindEvents();
-  },
+  if (flipbook.value.displayedPages == 2) {
+    // Is in double page mode, therefore divide flips by 2 because in each flip 2 pages are shown
+    if (toPage < flipbook.value.currentPage) flips = Math.ceil(flips / 2);
+    else flips = Math.floor(flips / 2);
+  }
+  return flips;
+}
 
-  methods: {
-    bindEvents() {
-      window.addEventListener(
-        'hashchange',
-        () => this.setPageFromHash(),
-        false
-      );
-      document.addEventListener('keydown', this.keyDownHandler, false);
-    },
-    unbindEvents() {
-      window.removeEventListener(
-        'hashchange',
-        () => this.setPageFromHash(),
-        false
-      );
-      document.removeEventListener('keydown', this.keyDownHandler, false);
-    },
-    numFlips(toPage) {
-      let flips = Math.abs(toPage - this.$refs.flipbook.currentPage); // number of flips to do
+function flipToPage(toPage) {
+  // not index mode
+  if (toPage > flipbook.value.numPages) {
+    console.error('Page out of range');
+  }
+  const numPages = flipbook.value.numPages;
 
-      if (this.$refs.flipbook.displayedPages == 2) {
-        // Is in double page mode, therefore divide flips by 2 because in each flip 2 pages are shown
-        if (toPage < this.$refs.flipbook.currentPage)
-          flips = Math.ceil(flips / 2);
-        else flips = Math.floor(flips / 2);
+  let pgIndex = toPage - 1; // get the page indexed by 0
+  let method = pgIndex > flipbook.value.currentPage ? 'Right' : 'Left'; // Direction to go
+
+  let flips = numFlips(toPage);
+
+  if (flips === 0) {
+    // If flips is equal to 0 it means the page is already visible
+    return;
+  }
+
+  if (flips > 1) {
+    // If the target page is not the next or the previous one, make the flip faster
+    flipDuration.value = 300;
+  }
+
+  flipbook.value[`flip${method}`](); // make the first flip
+  flips--; //subtract one flip
+
+  if (flips > 0) {
+    let interval = setInterval(() => {
+      if (flipbook.value[`canFlip${method}`]) {
+        flipbook.value[`flip${method}`]();
+        flips--;
+        if (flips == 0 || stopFlip.value) {
+          clearInterval(interval);
+          flipDuration.value = 1000;
+          flippingToStart.value = false;
+          flippingToEnd.value = false;
+          stopFlip.value = false;
+        }
       }
-      return flips;
-    },
-    flipToPage(toPage) {
-      // not index mode
-      if (toPage > this.$refs.flipbook.numPages) {
-        console.error('Page out of range');
-      }
+    }, 100);
+  }
+}
 
-      let pgIndex = toPage - 1; // get the page indexed by 0
-      let method = pgIndex > this.$refs.flipbook.currentPage ? 'Right' : 'Left'; // Direction to go
+function onFlipLeftEnd(page) {
+  window.location.hash = '#' + page;
+}
 
-      let flips = this.numFlips(toPage);
+function onFlipRightEnd(page) {
+  window.location.hash = '#' + page;
+}
 
-      if (flips == 0) {
-        // If flips is equal to 0 it means the page is already visible
-        return;
-      }
+function setPageFromHash() {
+  let n = parseInt(window.location.hash.slice(1), 10);
+  if (!props.pages) return;
+  if (Number.isInteger(n) && n > 0 && n < props.pages.length) {
+    pageNum.value = n;
+  }
+}
 
-      if (flips > 1) {
-        // If the target page is not the next or the previous one, make the flip faster
-        this.flipDuration = 300;
-      }
+function flipToStart() {
+  const toPage = 1;
+  let flips = numFlips(toPage); // number of flips to do
 
-      this.$refs.flipbook[`flip${method}`](); // make the first flip
-      flips--; //subtract one flip
+  if (flips > 1) {
+    flippingToStart.value = true;
+    flipToPage(toPage);
+  } else flipbook.value.flipLeft();
+}
 
-      if (flips > 0) {
-        let interval = setInterval(() => {
-          if (this.$refs.flipbook[`canFlip${method}`]) {
-            this.$refs.flipbook[`flip${method}`]();
-            flips--;
-            if (flips == 0 || this.stopFlip) {
-              clearInterval(interval);
-              this.flipDuration = 1000;
-              this.flippingToStart = false;
-              this.flippingToEnd = false;
-              this.stopFlip = false;
-            }
-          }
-        }, 100);
-      }
-    },
-    onFlipLeftEnd(page) {
-      window.location.hash = '#' + page;
-    },
-    onFlipRightEnd(page) {
-      window.location.hash = '#' + page;
-    },
-    setPageFromHash() {
-      let n = parseInt(window.location.hash.slice(1), 10);
-      if (Number.isInteger(n) && n > 0 && n < this.pages.length)
-        this.pageNum = n;
-    },
-    flipToStart() {
-      const toPage = 1;
-      let flips = this.numFlips(toPage); // number of flips to do
+function flipToEnd() {
+  let flips = numFlips(flipbook.value.numPages); // number of flips to do
 
-      if (flips > 1) {
-        this.flippingToStart = true;
-        this.flipToPage(toPage);
-      } else this.$refs.flipbook.flipLeft();
-    },
-    flipToEnd() {
-      let flips = this.numFlips(this.$refs.flipbook.numPages); // number of flips to do
+  if (flips > 1) {
+    flippingToEnd.value = true;
+    flipToPage(flipbook.value.numPages);
+  } else flipbook.value.flipRight();
+}
 
-      if (flips > 1) {
-        this.flippingToEnd = true;
-        this.flipToPage(this.$refs.flipbook.numPages);
-      } else this.$refs.flipbook.flipRight();
-    },
-    toggleFullscreen() {
-      this.$emit('toggleFullscreen');
-    },
-    reload() {
-      this.$emit('reload');
-    },
-    keyDownHandler(event) {
-      switch (event.keyCode) {
-        case keyMap.LEFT:
-          this.$refs.flipbook.flipLeft();
-          break;
-        case keyMap.RIGHT:
-          this.$refs.flipbook.flipRight();
-          break;
-        case keyMap.ESC:
-          if (this.isFullscreen) this.toggleFullscreen();
-          break;
-        default:
-          break;
-      }
-    },
-  },
-};
+function toggleFullscreen() {
+  emit('toggleFullscreen');
+}
+
+function reload() {
+  emit('reload');
+}
+
+function keyDownHandler(event) {
+  switch (event.keyCode) {
+    case keyMap.LEFT:
+      flipbook.value.flipLeft();
+      break;
+    case keyMap.RIGHT:
+      flipbook.value.flipRight();
+      break;
+    case keyMap.ESC:
+      if (props.isFullscreen) toggleFullscreen();
+      break;
+    default:
+      break;
+  }
+}
 </script>
 
 <style lang="scss">
