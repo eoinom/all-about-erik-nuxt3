@@ -43,11 +43,11 @@
               align-self="end"
             >
               <img
-                :src="publicationPgContent.titleImg1Line"
+                :src="titleImg1Line"
                 class="titleImg titleImg1Line pt-3"
               />
               <img
-                :src="publicationPgContent.titleImg2Lines"
+                :src="titleImg2Lines"
                 class="titleImg titleImg2Lines sportsmen2LineTitleImg"
               />
 
@@ -160,9 +160,15 @@
           justify="center"
         >
           <v-col cols="">
-            <NuxtLink
+            <!-- <NuxtLink
               :to="'/publications/' + prevPublication.link"
               v-tooltip.hover="{ variant: 'secondary' }"
+              :title="prevPublication.title"
+              class="nav_link nav_link_small"
+              id="nav_prev"
+            > -->
+            <NuxtLink
+              :to="'/publications/' + prevPublication.link"
               :title="prevPublication.title"
               class="nav_link nav_link_small"
               id="nav_prev"
@@ -181,9 +187,15 @@
               />
             </NuxtLink>
 
-            <NuxtLink
+            <!-- <NuxtLink
               :to="'/publications/' + prevPublication.link"
               v-tooltip.hover="{ variant: 'secondary' }"
+              :title="prevPublication.title"
+              class="nav_link nav_link_big"
+              id="nav_prev"
+            > -->
+            <NuxtLink
+              :to="'/publications/' + prevPublication.link"
               :title="prevPublication.title"
               class="nav_link nav_link_big"
               id="nav_prev"
@@ -213,7 +225,8 @@
             class="pt-3 pb-3 pt-sm-0"
             id="mainCol"
           >
-            <!-- <BookViewer
+            <BookViewer
+              v-if="bookImagesUrlsStdRes && bookImagesUrlsHiRes"
               :pages="bookImagesUrlsStdRes"
               :pagesHiRes="bookImagesUrlsHiRes"
               :isFullscreen="isBookFullscreen"
@@ -222,7 +235,7 @@
               :key="'bookViewer' + bookKey"
               @toggleFullscreen="toggleFullscreen()"
               @reload="reloadBook()"
-            /> -->
+            />
 
             <div
               v-if="title !== 'Old Timey Sportsmen'"
@@ -230,7 +243,10 @@
               class="publication_headerText text-left pt-4"
             />
             <div
-              v-if="publicationPgContent.volumeInfo !== ''"
+              v-if="
+                publicationPgContent.volumeInfo &&
+                publicationPgContent.volumeInfo !== ''
+              "
               v-html="publicationPgContent.volumeInfo"
               class="publication_headerText text-left pt-2"
             />
@@ -244,7 +260,10 @@
             <br />
 
             <div
-              v-if="publicationPgContent.videoUrl !== ''"
+              v-if="
+                publicationPgContent.videoUrl &&
+                publicationPgContent.videoUrl !== ''
+              "
               id="videoDiv"
             >
               <h2 class="videoTitleText mb-3">
@@ -271,9 +290,15 @@
             order="2"
             order-lg="3"
           >
-            <NuxtLink
+            <!-- <NuxtLink
               :to="'/publications/' + nextPublication.link"
               v-tooltip.hover="{ variant: 'secondary' }"
+              :title="nextPublication.title"
+              class="nav_link nav_link_small"
+              id="nav_next"
+            > -->
+            <NuxtLink
+              :to="'/publications/' + nextPublication.link"
               :title="nextPublication.title"
               class="nav_link nav_link_small"
               id="nav_next"
@@ -292,9 +317,15 @@
               />
             </NuxtLink>
 
-            <NuxtLink
+            <!-- <NuxtLink
               :to="'/publications/' + nextPublication.link"
               v-tooltip.hover="{ variant: 'secondary' }"
+              :title="nextPublication.title"
+              class="nav_link nav_link_big"
+              id="nav_next"
+            > -->
+            <NuxtLink
+              :to="'/publications/' + nextPublication.link"
               :title="nextPublication.title"
               class="nav_link nav_link_big"
               id="nav_next"
@@ -389,7 +420,8 @@ export default {
       return this.title ? slugify(this.title) : '';
     },
     titleImg1Line() {
-      return this.publicationPgContent.titleImg1Line !== ''
+      return this.publicationPgContent.titleImg1Line !== undefined &&
+        this.publicationPgContent.titleImg1Line !== ''
         ? this.publicationPgContent.titleImg1Line
         : this.publicationPgContent.titleImg2Lines;
     },
@@ -440,25 +472,26 @@ export default {
       return this.publication_names.indexOf(this.title);
     },
     prevPublication() {
-      const i = this.publicationIndex;
       if (this.publication_names.length === 0) return {};
-      if (i === 0) var prev_i = this.publication_names.length - 1;
-      else prev_i = i - 1;
+      if (this.publicationIndex === 0)
+        var prev_i = publication_names.length - 1;
+      else prev_i = this.publicationIndex - 1;
       let publication = { ...this.publications[prev_i] };
       publication.link = slugify(publication.title);
       return publication;
     },
     nextPublication() {
-      const i = this.publicationIndex;
       if (this.publication_names.length === 0) return {};
-      if (i === this.publication_names.length - 1) var next_i = 0;
-      else next_i = i + 1;
+      if (this.publicationIndex === this.publication_names.length - 1)
+        var next_i = 0;
+      else next_i = this.publicationIndex + 1;
       let publication = { ...this.publications[next_i] };
       publication.link = slugify(publication.title);
       return publication;
     },
     bookImagesUrlsStdRes() {
       let pages = [null]; // first element is null so that cover page appears on its own
+      if (this.publicationPgContent.bookImages === undefined) return;
       const book = this.publicationPgContent.bookImages;
       let urlCommon = book.commonPathStdRes + book.commonFilenameStdRes;
       for (
@@ -473,6 +506,7 @@ export default {
     },
     bookImagesUrlsHiRes() {
       let pages = [null]; // first element is null so that cover page appears on its own
+      if (this.publicationPgContent.bookImages === undefined) return;
       const book = this.publicationPgContent.bookImages;
       let urlCommon = book.commonPathHiRes + book.commonFilenameHiRes;
       for (
@@ -486,6 +520,7 @@ export default {
       return pages;
     },
     bookVpHeight() {
+      if (this.publicationPgContent.bookImages === undefined) return;
       const pageWidth = this.publicationPgContent.bookImages.width;
       const pageHeight = this.publicationPgContent.bookImages.height;
 
@@ -568,6 +603,7 @@ export default {
     },
     updateMainColWidth() {
       let element = document.getElementById('mainCol');
+      if (!element) return;
       let elemRect = element.getBoundingClientRect();
       this.mainColWidth = elemRect.width;
     },

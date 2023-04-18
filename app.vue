@@ -213,7 +213,7 @@ const applyPageLayoutStyling = (currentPath) => {
     applyTopPadding.value = true;
   }
   applyDarkGreyBackground.value = false;
-  if (currentPath.includes('/publications')) {
+  if (currentPath === '/publications' || currentPath === '/publications/') {
     applyDarkGreyBackground.value = true;
   }
 };
