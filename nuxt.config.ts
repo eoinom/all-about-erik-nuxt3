@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@/assets/styles.css',
     'simplebar/dist/simplebar.min.css',
     'vue-plyr/dist/vue-plyr.css',
+    '@/assets/custom.scss',
     // 'vuetify/lib/styles/main.sass',
   ],
   modules: [
@@ -20,9 +21,7 @@ export default defineNuxtConfig({
     // this adds the vuetify vite plugin
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) =>
-        config.plugins.push(
-          vuetify({ styles: { configFile: './assets/custom.scss' } })
-        )
+        config.plugins.push(vuetify())
       );
     },
     // ['vue-scrollto/nuxt3', { duration: 300 }],
