@@ -117,7 +117,6 @@ export default {
         const Tx = this.translateFactor * startPos[0];
         const Ty = this.translateFactor * startPos[1];
         let style = document.createElement('style');
-        style.type = 'text/css';
         const keyFrame =
           '\
         @keyframes keyframe-' +

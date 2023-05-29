@@ -239,7 +239,6 @@ export default {
           : this.translateFactor * startPos[1];
         const translateTo = this.centerVertically ? '-50%' : '0';
         let style = document.createElement('style');
-        style.type = 'text/css';
         const keyFrame =
           '\
         @keyframes kenburns-' +
