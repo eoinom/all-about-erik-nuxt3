@@ -1,10 +1,9 @@
 <template>
   <!-- Scroll with arrow images - hidden on xs (e.g. portrait mobile devices) -->
-  <!-- <div
+  <div
     v-scroll-to="{ el: scrollToElement, duration: 1500, easing: 'ease' }"
     id="scrollImgContainer"
-  > -->
-  <div id="scrollImgContainer">
+  >
     <p class="mb-0 mt-sm-1 mt-md-4 mt-lg-6 mt-xl-12">
       <img
         alt="Scroll text"
