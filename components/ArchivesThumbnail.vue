@@ -28,10 +28,8 @@
 
       <div class="showOnHover">
         <p class="mb-0 mb-lg-1 mb-xl-2">
-          <!-- <img alt="Eye icon" v-if="thumbnailObj.url != null" src="../assets/images/eye.png" class="thumbnailOverlayImg" /> -->
           <img
             alt="Eye icon"
-            v-if="true"
             src="../assets/images/eye.png"
             class="thumbnailOverlayImg"
           />

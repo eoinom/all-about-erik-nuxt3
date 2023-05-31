@@ -232,6 +232,10 @@ import snarkdown from 'snarkdown';
 import { SimpleBar } from 'simplebar-vue3';
 
 export default {
+  components: {
+    SimpleBar,
+  },
+
   data() {
     return {
       activeNav: {},
@@ -313,10 +317,6 @@ export default {
     getImageUrl(name) {
       return new URL(`./dynamic-images/${name}`, import.meta.url).href;
     },
-  },
-
-  components: {
-    SimpleBar,
   },
 };
 </script>
