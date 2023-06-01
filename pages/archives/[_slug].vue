@@ -569,12 +569,12 @@ export default {
     const archivesPgContent = await queryContent('archives-index').findOne();
     this.archivesPgContent = archivesPgContent;
 
-    // if (this.archivePgContent.headerSlideshowLeft && this.$refs.slideshowLeft) {
-    //   this.$refs.slideshowLeft.pause();
-    //   this.$refs.slideshowCenter.pause();
-    //   this.$refs.slideshowRight.pause();
-    //   this.staggerSlideshowStarts();
-    // }
+    if (this.archivePgContent.headerSlideshowLeft && this.$refs.slideshowLeft) {
+      this.$refs.slideshowLeft.pause();
+      this.$refs.slideshowCenter.pause();
+      this.$refs.slideshowRight.pause();
+      this.staggerSlideshowStarts();
+    }
     this.updateWindowDims();
     this.bindEvents();
   },

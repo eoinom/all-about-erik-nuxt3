@@ -1,6 +1,7 @@
 <template>
   <v-carousel
-    :cycle="true"
+    v-model="slideIndex"
+    :cycle="cycle"
     :interval="interval"
     :show-arrows="false"
     :style="carouselStyles"
@@ -51,6 +52,10 @@ export default {
       type: String,
       default: '',
     },
+    cycleImages: {
+      type: Boolean,
+      default: true,
+    },
     interval: {
       type: Number,
       default: 4000,
@@ -67,8 +72,9 @@ export default {
 
   data() {
     return {
-      slide: 0,
+      slideIndex: 0,
       sliding: null,
+      cycle: true,
       // windowWidth: 0,
     };
   },
@@ -89,31 +95,34 @@ export default {
     // },
   },
 
-  // mounted() {
-  //   this.windowWidth = window.innerWidth;
+  mounted() {
+    // this.windowWidth = window.innerWidth;
 
-  //   this.$nextTick(() => {
-  //     window.addEventListener('resize', () => {
-  //       this.windowWidth = window.innerWidth;
-  //     });
-  //   });
-  // },
+    // this.$nextTick(() => {
+    //   window.addEventListener('resize', () => {
+    //     this.windowWidth = window.innerWidth;
+    //   });
+    // });
+    this.cycle = this.cycleImages;
+  },
 
   methods: {
     pause() {
-      this.$refs.carousel.pause();
+      this.cycle = false;
     },
     start() {
-      this.$refs.carousel.start();
+      this.cycle = true;
     },
     next() {
-      this.$refs.carousel.next();
+      if (this.slideIndex >= slides.length - 1) this.slideIndex = 0;
+      else this.slideIndex++;
     },
     prev() {
-      this.$refs.carousel.prev();
+      if (this.slideIndex <= 0) this.slideIndex = slides.length - 1;
+      else this.slideIndex--;
     },
     setSlide(index) {
-      this.$refs.carousel.setSlide(index);
+      this.slideIndex = index;
     },
   },
 };
