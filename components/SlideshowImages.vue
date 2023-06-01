@@ -10,15 +10,6 @@
     :height="carouselHeight"
     ref="carousel"
   >
-    <!-- <v-carousel-item
-        v-for="(slide, iSlide) in slides"
-        :key="iSlide"
-        :src="slide.img"
-        transition="fade-transition"
-        class="carousel-slide"
-      >
-        <slot name="caption"></slot>
-      </v-carousel-item> -->
     <v-carousel-item
       v-for="(slide, iSlide) in slides"
       :key="iSlide"
@@ -26,7 +17,6 @@
       reverse-transition="new-transition"
       class="carousel-slide"
     >
-      <!-- transition="fade-transition" -->
       <v-img
         :aspect-ratio="aspectRatio"
         :src="slide.img"
@@ -73,9 +63,7 @@ export default {
   data() {
     return {
       slideIndex: 0,
-      sliding: null,
       cycle: true,
-      // windowWidth: 0,
     };
   },
 
@@ -87,22 +75,9 @@ export default {
         };
       }
     },
-    // vignetteStyles() {
-    //   return {
-    //     '--blur': (0.1*this.windowWidth) + 'px',
-    //     '--spread': (0.05*this.windowWidth) + 'px'
-    //   }
-    // },
   },
 
   mounted() {
-    // this.windowWidth = window.innerWidth;
-
-    // this.$nextTick(() => {
-    //   window.addEventListener('resize', () => {
-    //     this.windowWidth = window.innerWidth;
-    //   });
-    // });
     this.cycle = this.cycleImages;
   },
 
@@ -180,24 +155,4 @@ export default {
     opacity: 0;
   }
 }
-
-/* For vignette effect, see https://benjaminhorn.io/code/proper-lens-vignette-with-css/ & 
-  https://codepen.io/beije/pen/zxjeae */
-/* .carousel-slide::after {
-  content: '';
-  position: absolute; */
-
-/* Center element on the middle of it's parent */
-/* top: 50%;
-  left: 50%;     */
-
-/* Reset back the image so it's center is locked on the center of the parent */
-/* transform: translate(-50%,-50%);
-  
-  width: 115%;
-  padding-bottom: 115%;
-  
-  box-shadow: inset 0px 0px var(--blur) var(--spread) rgba(0,0,0,0.8), inset 0px 0px var(--blur) var(--spread) rgba(0,0,0,0.8);
-  border-radius: 50%;
-} */
 </style>
