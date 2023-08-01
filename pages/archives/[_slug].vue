@@ -702,15 +702,6 @@ export default {
   font-weight: normal;
 }
 
-.layout {
-  background-color: #222222;
-  padding: 0 12px;
-  overflow: hidden; /* added for pseudo-element */
-  position: relative; /* added for pseudo-element */
-  min-height: 100vh;
-  width: 100%;
-}
-
 .backToArchives {
   position: absolute;
   top: 50px;

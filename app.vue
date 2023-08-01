@@ -2,11 +2,13 @@
   <div
     :class="{
       layout: true,
+      'layout--lightgrey': applyLightGreyBackground,
       'layout--grey': applyGreyBackground,
       'layout--darkgrey': applyDarkGreyBackground,
       'layout--zero-padding-mbl': applyZeroLayoutPaddingMblOnly,
       'pa-0': applyZeroLayoutPadding,
       'pt-2': applyTopPadding,
+      'px-3': apply12pxHorizPadding,
     }"
   >
     <div class="openbtn">
@@ -166,23 +168,36 @@ useHead({
   },
 });
 
-const applyGreyBackground = ref(false);
-const pagesForGreyBackground = ['/roots-and-youth', '/the-episodes'];
-
 const applyZeroLayoutPadding = ref(false);
-const pagesForZeroPadding = [
+const applyZeroLayoutPaddingMblOnly = ref(false);
+const applyTopPadding = ref(false);
+const apply12pxHorizPadding = ref(false);
+const applyLightGreyBackground = ref(false);
+const applyGreyBackground = ref(false);
+const applyDarkGreyBackground = ref(false);
+
+const archiveNarrativeUrls = [
+  '/archives/family-trip-to-europe-57',
+  '/archives/my-amazing-mom',
+  '/archives/my-dad-earl',
+  '/archives/my-uncle-wesley',
+];
+const urlsForZeroPadding = [
   '/the-episodes',
   '/early-productions',
   '/short-films',
   '/travels',
   '/collections',
   '/publications',
-  '/archives',
+  ...archiveNarrativeUrls,
 ];
-
-const applyZeroLayoutPaddingMblOnly = ref(false);
-const applyTopPadding = ref(false);
-const applyDarkGreyBackground = ref(false);
+const urlsForLightGreyBackground = [
+  '/roots-and-youth',
+  '/roots-and-youth/',
+  '/the-episodes',
+  '/the-episodes/',
+];
+const urlsForDarkGreyBackground = ['/publications', '/publications/'];
 
 const path = computed(() => {
   const route = useRoute();
@@ -191,29 +206,50 @@ const path = computed(() => {
 
 const applyPageLayoutStyling = (currentPath) => {
   applyZeroLayoutPadding.value = false;
-  pagesForZeroPadding.forEach((page) => {
-    if (currentPath.includes(page)) {
+  urlsForZeroPadding.forEach((url) => {
+    if (currentPath.includes(url)) {
       applyZeroLayoutPadding.value = true;
     }
   });
+
   applyZeroLayoutPaddingMblOnly.value = false;
-  if (currentPath.includes('/roots-and-youth')) {
+  if (
+    currentPath === '/roots-and-youth' ||
+    currentPath === '/roots-and-youth/'
+  ) {
     applyZeroLayoutPaddingMblOnly.value = true;
   }
 
-  applyGreyBackground.value = false;
-  pagesForGreyBackground.forEach((page) => {
-    if (currentPath.includes(page)) {
-      applyGreyBackground.value = true;
-    }
-  });
-
   applyTopPadding.value = false;
-  if (currentPath.includes('/discography')) {
+  if (currentPath === '/discography' || currentPath === '/discography/') {
     applyTopPadding.value = true;
   }
+
+  apply12pxHorizPadding.value = false;
+  if (
+    currentPath.includes('/archives/') &&
+    applyZeroLayoutPadding.value === false
+  ) {
+    apply12pxHorizPadding.value = true;
+  }
+
+  applyGreyBackground.value = false;
+  if (
+    currentPath.includes('/archives/') &&
+    currentPath !== '/archives/' &&
+    currentPath !== '/archives/menu' &&
+    currentPath !== '/archives/menu/'
+  ) {
+    applyGreyBackground.value = true;
+  }
+
+  applyLightGreyBackground.value = false;
+  if (urlsForLightGreyBackground.includes(currentPath)) {
+    applyLightGreyBackground.value = true;
+  }
+
   applyDarkGreyBackground.value = false;
-  if (currentPath === '/publications' || currentPath === '/publications/') {
+  if (urlsForDarkGreyBackground.includes(currentPath)) {
     applyDarkGreyBackground.value = true;
   }
 };
@@ -337,8 +373,11 @@ body {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 
-  &--grey {
+  &--lightgrey {
     background-color: #dddddd;
+  }
+  &--grey {
+    background-color: #222222;
   }
   &--darkgrey {
     background-color: #141414;

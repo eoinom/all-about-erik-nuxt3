@@ -571,7 +571,11 @@ export default {
 
   async mounted() {
     this.updateWindowDims();
-    const slug = this.$route.path.split('/').at(-1);
+    const slug =
+      this.$route.path.slice(-1) === '/'
+        ? this.$route.path.split('/').at(-2)
+        : this.$route.path.split('/').at(-1);
+    console.log({ slug });
     const pageContent = await queryContent(
       'archives/narrative',
       slug
@@ -757,16 +761,6 @@ export default {
   },
 };
 </script>
-
-<style>
-.layout {
-  background-color: #222222;
-  position: relative; /* added for pseudo-element */
-  overflow: hidden; /* added for pseudo-element */
-  width: 100%;
-  padding: 0;
-}
-</style>
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
