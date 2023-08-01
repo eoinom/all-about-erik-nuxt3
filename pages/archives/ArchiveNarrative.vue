@@ -273,6 +273,7 @@
                   :style="slideTextStyles(txtObj)"
                 /> -->
                 <span
+                  v-show="currentSlideIndex === iSec"
                   v-html="renderMarkdown(txtObj.text)"
                   class="slideText"
                   :style="slideTextStyles(txtObj)"
@@ -291,6 +292,7 @@
                 :style="slideTextStyles(txtObj)"
               /> -->
               <span
+                v-show="currentSlideIndex === iSec"
                 v-html="renderMarkdown(txtObj.text)"
                 class="slideText"
                 :style="slideTextStyles(txtObj)"
@@ -368,6 +370,7 @@ export default {
   data() {
     return {
       pageContent: {},
+      currentSlideIndex: 0,
       windowWidth: 0.0,
       windowHeight: 1.0,
       bookItem: null,
@@ -390,6 +393,7 @@ export default {
         overlay: false,
         navigation: true,
         // navigation: false,
+        afterLoad: this.afterLoad,
       },
       portraitMobile: {
         maxAspect: 0.85,
@@ -566,22 +570,13 @@ export default {
   },
 
   async mounted() {
-    // window.Velocity = require('velocity-animate'); // needed for KsVueFullpage (ref: https://github.com/pirony/ks-vue-fullpage)
-    // window.Hammer = require('hammerjs/hammer.js'); // needed for KsVueFullpage
-    console.log('in mounted');
     this.updateWindowDims();
-    console.log('route:');
-    console.log(this.$route);
     const slug = this.$route.path.split('/').at(-1);
-    console.log({ slug });
     const pageContent = await queryContent(
       'archives/narrative',
-      // this.$route.params._slug
       slug
     ).findOne();
     this.pageContent = pageContent;
-
-    console.log({ pageContent });
 
     this.bindEvents();
   },
@@ -756,6 +751,9 @@ export default {
         /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; // ref: https://stackoverflow.com/a/39345914
       this.windowWidth = iOS ? screen.width : window.innerWidth;
       this.windowHeight = iOS ? screen.height : window.innerHeight;
+    },
+    afterLoad(_origin, destination) {
+      this.currentSlideIndex = destination.index;
     },
   },
 };
@@ -1126,22 +1124,10 @@ export default {
 }
 
 // For the fullpage component
-// .ksvuefp-section {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   // height: 100vh;
-//   h2,
-//   span {
-//     text-align: center;
-//     color: white;
-//   }
-// }
 .fp-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 100vh;
   background-size: cover;
   padding: 0;
   margin: 0;
@@ -1157,12 +1143,9 @@ export default {
 .textAnimation-enter-active,
 .textAnimation-leave-active {
   transition: opacity 1.5s;
-  opacity: 1;
 }
-.textAnimation-enter {
-  opacity: 0;
-}
-.textAnimation-leave-active {
+.textAnimation-enter-from,
+.textAnimation-leave-to {
   opacity: 0;
 }
 
