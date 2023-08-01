@@ -627,7 +627,7 @@ export default {
       if (txtObj.hasOwnProperty('pos') && txtObj.pos) {
         // default values (left)
         css.left = '0%';
-        css.top = '-50vh';
+        css.top = '0';
         css.width = '35%';
         css.height = '100vh';
 
@@ -637,11 +637,11 @@ export default {
           // css.left = txtObj.posX ? txtObj.posX : '65.0%'
         } else if (txtObj.pos == 'center') {
           css.left = '32.5%';
-          css.top = '-37vh';
+          css.top = '13vh';
           css.height = '87vh';
         } else if (txtObj.pos == 'bottom') {
           css.left = '0%';
-          css.top = '17vh';
+          css.top = '67vh';
           css.width = '100%';
           css.height = '33vh';
           css.display = 'flex';
@@ -653,12 +653,17 @@ export default {
 
         // overwrites
         if (txtObj.posX) css.left = txtObj.posX;
-        if (txtObj.posY) css.top = txtObj.posY;
+        if (txtObj.posY) {
+          let posY = Number(txtObj.posY.split('vh')[0]) + 50; // adding on 50vh to convert from old reference (centre of viewport) to new one (at top)
+          css.top = posY + 'vh';
+        }
         if (txtObj.width) css.width = txtObj.width;
         if (txtObj.height) css.height = txtObj.height;
       } else {
         css.left = txtObj.posX ? txtObj.posX : '0.5%';
-        css.top = txtObj.posY ? txtObj.posY : '-11vh';
+        css.top = txtObj.posY
+          ? Number(txtObj.posY.split('vh')[0]) + 50 + 'vh'
+          : '39vh';
         css.width = txtObj.width ? txtObj.width : '38%';
         css.height = '100%';
       }
@@ -1162,13 +1167,8 @@ export default {
 }
 
 .slideTextContainer {
-  position: absolute;
   display: flex;
-  // background-color: rgba(0, 0, 0, 0.47);
-  // left: 0%;
-  // top: 22vh;
-  // width: 100%;
-  // height: 28vh;
+  position: absolute;
 }
 .slideTextDiv {
   position: absolute;
