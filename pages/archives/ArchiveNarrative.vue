@@ -437,7 +437,7 @@ export default {
       return slugify(this.title);
     },
     titleImg() {
-      return this.pageContent.titleImg.singleLine != ''
+      return this.pageContent.titleImg.singleLine
         ? this.pageContent.titleImg.singleLine
         : this.pageContent.titleImg.doubleLine;
     },
