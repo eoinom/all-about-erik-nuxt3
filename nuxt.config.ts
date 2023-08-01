@@ -49,10 +49,25 @@ export default defineNuxtConfig({
   },
   hooks: {
     'pages:extend'(pages) {
-      // add a route
+      // add routes
+      pages.push({
+        name: 'profile',
+        path: '/archives/family-trip-to-europe-57',
+        file: '~/pages/archives/ArchiveNarrative.vue',
+      });
       pages.push({
         name: 'profile',
         path: '/archives/my-amazing-mom',
+        file: '~/pages/archives/ArchiveNarrative.vue',
+      });
+      pages.push({
+        name: 'profile',
+        path: '/archives/my-dad-earl',
+        file: '~/pages/archives/ArchiveNarrative.vue',
+      });
+      pages.push({
+        name: 'profile',
+        path: '/archives/my-uncle-wesley',
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
     },
