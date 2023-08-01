@@ -309,7 +309,7 @@
             class="galleryBox"
             @click.prevent="onGalleryMediaClick(item)"
             :style="`left: ${item.posX};
-              top: ${item.posY};`"
+              top: ${adjustPosY(item.posY)};`"
             style="background-color: black"
           >
             <div
@@ -648,17 +648,12 @@ export default {
 
         // overwrites
         if (txtObj.posX) css.left = txtObj.posX;
-        if (txtObj.posY) {
-          let posY = Number(txtObj.posY.split('vh')[0]) + 50; // adding on 50vh to convert from old reference (centre of viewport) to new one (at top)
-          css.top = posY + 'vh';
-        }
+        if (txtObj.posY) css.top = this.adjustPosY(txtObj.posY);
         if (txtObj.width) css.width = txtObj.width;
         if (txtObj.height) css.height = txtObj.height;
       } else {
         css.left = txtObj.posX ? txtObj.posX : '0.5%';
-        css.top = txtObj.posY
-          ? Number(txtObj.posY.split('vh')[0]) + 50 + 'vh'
-          : '39vh';
+        css.top = txtObj.posY ? this.adjustPosY(txtObj.posY) : '39vh';
         css.width = txtObj.width ? txtObj.width : '38%';
         css.height = '100%';
       }
@@ -755,6 +750,10 @@ export default {
     afterLoad(_origin, destination) {
       this.currentSlideIndex = destination.index;
     },
+    adjustPosY(posY) {
+      let posYNum = Number(posY.split('vh')[0]) + 50; // adding on 50vh to convert from old reference (centre of viewport) to new one (at top)
+      return posYNum + 'vh';
+    },
   },
 };
 </script>
@@ -809,29 +808,29 @@ export default {
 .backToArchivesEnd {
   position: absolute;
   left: 50%;
-  top: 22vh;
+  top: 72vh;
   transform: translate3d(-50%, -50%, 0);
   z-index: 2000;
 }
 .backToArchivesEndFamilyTrip {
   left: 83%;
-  top: 33vh;
+  top: 83vh;
 }
 .backToArchivesEndFamilyTrip.portraitMode {
   left: 50%;
-  top: 0vh;
+  top: 50vh;
 }
 .backToArchivesEndEarl {
   position: absolute;
   left: 40%;
-  top: 7vh;
+  top: 57vh;
   transform: translate3d(-50%, -50%, 0);
   z-index: 2000;
 }
 .toEarlGalleryEnd {
   position: absolute;
   left: 60%;
-  top: -10vh;
+  top: 40vh;
   transform: translate3d(-50%, -50%, 0);
 }
 .backToArchivesEndImg,
@@ -880,12 +879,8 @@ export default {
 #header {
   position: relative;
   text-align: center;
-  // padding-top: 12.5px;
-  // padding-bottom: 12.5px;
   width: 100%;
   margin: 0 auto;
-  // padding: 0 80px !important;
-
   height: 100vh;
   padding: 130px 60px 30px 60px !important;
 }
@@ -908,7 +903,6 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
   justify-content: center;
-
   height: 100%;
   max-width: 2030px;
   margin: 0 auto;
@@ -921,27 +915,20 @@ export default {
 }
 .headerBox {
   width: 100%;
-  // max-width: 821px;
   position: relative;
   place-self: center;
-
   height: 100%;
   max-width: 660px;
 }
 .headerBoxPortrait {
   width: 100%;
-  // max-width: 821px;
   position: relative;
   place-self: center;
-
   height: 100%;
-  // max-width: 660px;
 }
 .headerBox > img {
   border-radius: 15px;
   width: 100%;
-  // height: auto;
-
   height: 100%;
   object-fit: cover;
 }
@@ -1089,7 +1076,6 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
-
   position: absolute;
   top: 0;
   left: 0;
