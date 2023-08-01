@@ -24,6 +24,7 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify())
       );
     },
+    '@fullpage/nuxt-fullpage',
     // ['vue-scrollto/nuxt3', { duration: 300 }],
   ],
   devtools: {
@@ -44,6 +45,16 @@ export default defineNuxtConfig({
   content: {
     markdown: {
       anchorLinks: false,
+    },
+  },
+  hooks: {
+    'pages:extend'(pages) {
+      // add a route
+      pages.push({
+        name: 'profile',
+        path: '/archives/my-amazing-mom',
+        file: '~/pages/archives/ArchiveNarrative.vue',
+      });
     },
   },
 });

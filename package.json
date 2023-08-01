@@ -15,9 +15,11 @@
     "sass": "^1.62.0"
   },
   "dependencies": {
+    "@fullpage/nuxt-fullpage": "^0.2.5",
     "@sindresorhus/slugify": "^2.2.0",
     "@vimeo/player": "^2.18.0",
     "flipbook-vue": "^1.0.0-beta.4",
+    "fullpage.js": "^4.0.20",
     "mitt": "^3.0.0",
     "plyr": "^3.7.8",
     "simplebar": "^6.2.0",
