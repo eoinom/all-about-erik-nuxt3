@@ -758,6 +758,16 @@ export default {
 };
 </script>
 
+<style>
+.layout {
+  background-color: #222222;
+  position: relative; /* added for pseudo-element */
+  overflow: hidden; /* added for pseudo-element */
+  width: 100%;
+  padding: 0;
+}
+</style>
+
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap');
@@ -773,16 +783,6 @@ export default {
       url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
       format('svg'); /* Legacy iOS */
   font-weight: normal;
-}
-
-.layout {
-  background-color: #222222;
-  padding: 0;
-  overflow: hidden; /* added for pseudo-element */
-  position: relative; /* added for pseudo-element */
-  // min-height: 100vh;
-  // height: 100vh;
-  width: 100%;
 }
 
 .backToArchives {
