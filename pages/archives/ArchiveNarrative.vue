@@ -1184,7 +1184,7 @@ export default {
   padding: 0px;
 }
 .slideText {
-  ::v-deep p {
+  :deep(p) {
     margin: auto 0;
   }
 }
