@@ -51,22 +51,22 @@ export default defineNuxtConfig({
     'pages:extend'(pages) {
       // add routes
       pages.push({
-        name: 'profile',
+        name: 'family-trip-to-europe-57',
         path: '/archives/family-trip-to-europe-57',
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
       pages.push({
-        name: 'profile',
+        name: 'my-amazing-mom',
         path: '/archives/my-amazing-mom',
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
       pages.push({
-        name: 'profile',
+        name: 'my-dad-earl',
         path: '/archives/my-dad-earl',
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
       pages.push({
-        name: 'profile',
+        name: 'my-uncle-wesley',
         path: '/archives/my-uncle-wesley',
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
