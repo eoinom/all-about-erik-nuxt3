@@ -346,15 +346,15 @@
     <!-- </ksvuefp> -->
   </ClientOnly>
 
-  <!-- <BookViewer
-    v-show="isBookFullscreen"
+  <BookViewer
+    v-if="isBookFullscreen"
     :pages="bookImagesUrlsStdRes"
     :isFullscreen="isBookFullscreen"
     :showSinglePage="bookShowSinglePage"
     :key="'bookViewer' + bookKey"
     @toggleFullscreen="toggleFullscreen()"
     @reload="reloadBook()"
-  /> -->
+  />
 </template>
 
 <script>
@@ -393,6 +393,7 @@ export default {
         overlay: false,
         navigation: true,
         // navigation: false,
+        lockAnchors: true, // anchors turned off so as to not interfere with BookViewer anchor links
         afterLoad: this.afterLoad,
       },
       portraitMobile: {
