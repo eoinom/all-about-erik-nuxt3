@@ -4,24 +4,11 @@
       <Title>{{ title }}</Title>
     </Head>
 
-    <!-- <ksvuefp
-      :options="options"
-      :sections="sections"
-    > -->
     <full-page
       ref="fullpage"
       :options="options"
       id="fullpage"
     >
-      <!-- <ksvuefp-section
-        v-for="(s, iSec) in sections"
-        :section="s"
-        :key="s.id"
-        :section-index="iSec"
-        :background-image="'url(' + s.img_url + ')'"
-        class="flatImgContainer"
-        :class="{ containImg: containBgImg(s) }"
-      > -->
       <div
         v-for="(s, iSec) in sections"
         :key="s.id"
@@ -35,7 +22,6 @@
           v-if="s.header"
           id="header"
         >
-          <!-- <span style="color: white">Narrative</span> -->
           <!-- STATIC HEADER IMAGES -->
           <div
             v-if="!isPortrait && pageContent.headerImages"
@@ -232,27 +218,6 @@
             class="slideTextDiv"
             :style="slideTextDivStyles(txtObj)"
           >
-            <!-- <Simplebar
-              v-if="
-                (txtObj.hasOwnProperty('showScrollbar') &&
-                  !txtObj.showScrollbar == false) ||
-                windowWidth < 992
-              "
-              class="simple-scrollbar"
-              data-simplebar-auto-hide="false"
-            >
-              <transition
-                appear
-                name="textAnimation"
-              >
-                <span
-                  v-show="$ksvuefp.canAnimContent(iSec, true)"
-                  v-html="renderMarkdown(txtObj.text)"
-                  class="slideText"
-                  :style="slideTextStyles(txtObj)"
-                />
-              </transition>
-            </Simplebar> -->
             <Simplebar
               v-if="
                 (txtObj.hasOwnProperty('showScrollbar') &&
@@ -266,12 +231,6 @@
                 appear
                 name="textAnimation"
               >
-                <!-- <span
-                  v-show="$ksvuefp.canAnimContent(iSec, true)"
-                  v-html="renderMarkdown(txtObj.text)"
-                  class="slideText"
-                  :style="slideTextStyles(txtObj)"
-                /> -->
                 <span
                   v-show="currentSlideIndex === iSec"
                   v-html="renderMarkdown(txtObj.text)"
@@ -285,12 +244,6 @@
               appear
               name="textAnimation"
             >
-              <!-- <span
-                v-show="$ksvuefp.canAnimContent(iSec, true)"
-                v-html="renderMarkdown(txtObj.text)"
-                class="slideText"
-                :style="slideTextStyles(txtObj)"
-              /> -->
               <span
                 v-show="currentSlideIndex === iSec"
                 v-html="renderMarkdown(txtObj.text)"
@@ -341,9 +294,7 @@
           </div>
         </template>
       </div>
-      <!-- </ksvuefp-section> -->
     </full-page>
-    <!-- </ksvuefp> -->
   </ClientOnly>
 
   <BookViewer
@@ -360,12 +311,12 @@
 <script>
 import snarkdown from 'snarkdown';
 import slugify from '@sindresorhus/slugify';
-// import { SimpleBar } from 'simplebar-vue3';
+import { SimpleBar } from 'simplebar-vue3';
 
 export default {
-  // components: {
-  //   Simplebar,
-  // },
+  components: {
+    SimpleBar,
+  },
 
   data() {
     return {
@@ -377,14 +328,6 @@ export default {
       isBookFullscreen: false,
       bookShowSinglePage: false,
       bookKey: 1,
-      // options: {
-      //   duration: 850,
-      //   easing: 'easeInOut',
-      //   overlay: false,
-      //   dotNavEnabled: false,
-      //   // dotNavEnabled: true,
-      //   // animationType: 'slideX',
-      // },
       options: {
         // licenseKey: 'YOUR_KEY_HEERE',
         licenseKey: 'gplv3-license',
