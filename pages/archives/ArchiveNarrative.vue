@@ -334,8 +334,7 @@ export default {
         scrollingSpeed: 850,
         easing: 'easeInOut',
         overlay: false,
-        navigation: true,
-        // navigation: false,
+        navigation: false,
         lockAnchors: true, // anchors turned off so as to not interfere with BookViewer anchor links
         afterLoad: this.afterLoad,
       },
