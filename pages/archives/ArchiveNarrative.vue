@@ -452,7 +452,6 @@ export default {
     },
     currentLayout() {
       let layout = {};
-      console.log('in currentLayout, aspectRatio:', this.aspectRatio);
       if (this.aspectRatio < this.portraitTablet.maxAspect) {
         if (this.windowWidth < 541 && this.pageContent.mobileLayout) {
           layout = { ...this.portraitMobile, ...this.pageContent.mobileLayout };
@@ -575,7 +574,6 @@ export default {
       this.$route.path.slice(-1) === '/'
         ? this.$route.path.split('/').at(-2)
         : this.$route.path.split('/').at(-1);
-    console.log({ slug });
     const pageContent = await queryContent(
       'archives/narrative',
       slug
@@ -618,22 +616,33 @@ export default {
         return section.txtArr[0].bgImgContain;
       } else return false;
     },
-    renderMarkdown(text) {
-      return snarkdown(text);
+    renderMarkdown(mdText) {
+      // ref: https://github.com/developit/snarkdown/issues/11#issuecomment-813364966
+      return mdText
+        ? mdText
+            .split(/(?:\r?\n){2,}/)
+            .map((line) =>
+              [' ', '\t', '#', '-', '*', '>'].some((char) =>
+                line.startsWith(char)
+              )
+                ? snarkdown(line)
+                : `<p>${snarkdown(line)}</p>`
+            )
+            .join('\n')
+        : '';
     },
     slideTextContainerStyles(txtObj) {
       let css = {};
       if (txtObj.hasOwnProperty('pos') && txtObj.pos) {
         // default values (left)
         css.left = '0%';
-        css.top = '0';
+        css.top = '0px';
         css.width = '35%';
         css.height = '100vh';
 
         // presets
         if (txtObj.pos == 'right') {
           css.left = '65.0%';
-          // css.left = txtObj.posX ? txtObj.posX : '65.0%'
         } else if (txtObj.pos == 'center') {
           css.left = '32.5%';
           css.top = '13vh';
@@ -644,7 +653,6 @@ export default {
           css.width = '100%';
           css.height = '33vh';
           css.display = 'flex';
-          // css.flexDirection = 'column-reverse'
         } else if (txtObj.pos == 'top') {
           css.width = '100%';
           css.height = '33vh';
