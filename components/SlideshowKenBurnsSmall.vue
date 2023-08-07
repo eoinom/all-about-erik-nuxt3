@@ -1,29 +1,31 @@
 <template>
-  <div
-    class="SlideshowKenBurns"
-    :style="{ backgroundColor: this.backgroundColor ?? 'black' }"
-  >
-    <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
-    <transition-group
-      tag="div"
-      enter-active-class="SlideshowKenBurns__enterActive"
-      enter-class="SlideshowKenBurns__enter"
-      leave-active-class="SlideshowKenBurns__leaveActive"
-      leave-to-class="SlideshowKenBurns__leaveTo"
-      class="SlideshowKenBurns__slides"
-      :style="slideshowStyles"
+  <ClientOnly>
+    <div
+      class="SlideshowKenBurns"
+      :style="{ backgroundColor: this.backgroundColor ?? 'black' }"
     >
-      <img
-        v-for="(image, index) in images"
-        v-show="index === activeIndex"
-        :key="image"
-        :src="image"
-        class="SlideshowKenBurns__image"
-        :style="imgStyle(index)"
-        alt=""
-      />
-    </transition-group>
-  </div>
+      <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
+      <transition-group
+        tag="div"
+        enter-active-class="SlideshowKenBurns__enterActive"
+        enter-class="SlideshowKenBurns__enter"
+        leave-active-class="SlideshowKenBurns__leaveActive"
+        leave-to-class="SlideshowKenBurns__leaveTo"
+        class="SlideshowKenBurns__slides"
+        :style="slideshowStyles"
+      >
+        <img
+          v-for="(image, index) in images"
+          v-show="index === activeIndex"
+          :key="image"
+          :src="image"
+          class="SlideshowKenBurns__image"
+          :style="imgStyle(index)"
+          alt=""
+        />
+      </transition-group>
+    </div>
+  </ClientOnly>
 </template>
 
 <script>
