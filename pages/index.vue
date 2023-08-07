@@ -24,11 +24,16 @@
                 data-testid="title-img"
               />
               <div>
-                <ContentRenderer
-                  :value="homePgContent"
-                  tag="span"
-                  class="homePgMainText"
-                />
+                <ContentRenderer :value="homePgContent">
+                  <ContentRendererMarkdown
+                    :value="homePgContent"
+                    tag="span"
+                    class="homePgMainText"
+                  />
+                  <template #empty>
+                    <p>No content found.</p>
+                  </template>
+                </ContentRenderer>
               </div>
             </div>
 
