@@ -1,7 +1,7 @@
 <template>
   <div
     class="SlideshowKenBurns"
-    :style="{ backgroundColor: this.backgroundColor }"
+    :style="{ backgroundColor: this.backgroundColor ?? 'black' }"
   >
     <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
     <transition-group
