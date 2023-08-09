@@ -12,7 +12,10 @@
         :audioFadeOutDuration="audioFadeOutDuration"
       />
 
-      <v-container fluid>
+      <v-container
+        fluid
+        class="pa-0"
+      >
         <div class="contentContainer">
           <div class="content">
             <div class="mainContent">

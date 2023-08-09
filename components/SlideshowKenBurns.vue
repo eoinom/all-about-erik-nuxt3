@@ -225,7 +225,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .SlideshowKenBurns {
   --translateFactor: 1.5%;
   background-color: black;

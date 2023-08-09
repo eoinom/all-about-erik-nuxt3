@@ -1,17 +1,17 @@
 <template>
   <ClientOnly>
     <div
-      class="SlideshowKenBurns"
+      class="SlideshowKenBurnsSmall"
       :style="{ backgroundColor: this.backgroundColor ?? 'black' }"
     >
       <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
       <transition-group
         tag="div"
-        enter-active-class="SlideshowKenBurns__enterActive"
-        enter-class="SlideshowKenBurns__enter"
-        leave-active-class="SlideshowKenBurns__leaveActive"
-        leave-to-class="SlideshowKenBurns__leaveTo"
-        class="SlideshowKenBurns__slides"
+        enter-active-class="SlideshowKenBurnsSmall__enterActive"
+        enter-class="SlideshowKenBurnsSmall__enter"
+        leave-active-class="SlideshowKenBurnsSmall__leaveActive"
+        leave-to-class="SlideshowKenBurnsSmall__leaveTo"
+        class="SlideshowKenBurnsSmall__slides"
         :style="slideshowStyles"
       >
         <img
@@ -19,7 +19,7 @@
           v-show="index === activeIndex"
           :key="image"
           :src="image"
-          class="SlideshowKenBurns__image"
+          class="SlideshowKenBurnsSmall__image"
           :style="imgStyle(index)"
           alt=""
         />
@@ -276,8 +276,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.SlideshowKenBurns {
+<style lang="scss">
+.SlideshowKenBurnsSmall {
   --translateFactor: 1.5%;
 
   &__slides {

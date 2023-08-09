@@ -211,6 +211,10 @@ const applyPageLayoutStyling = (currentPath) => {
       applyZeroLayoutPadding.value = true;
     }
   });
+  if (currentPath === '/') {
+    // for homepage
+    applyZeroLayoutPadding.value = true;
+  }
 
   applyZeroLayoutPaddingMblOnly.value = false;
   if (
