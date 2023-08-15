@@ -60,8 +60,8 @@
           <v-col
             cols="12"
             sm="6"
-            lg="4"
-            xl="3"
+            md="4"
+            lg="3"
             v-for="(video, index) in videos"
             :key="video.title"
             class="mb-2 mb-sm-4 px-2 px-sm-1"
