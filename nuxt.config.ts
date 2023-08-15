@@ -67,6 +67,11 @@ export default defineNuxtConfig({
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
       pages.push({
+        name: 'my-dad-earl-gallery',
+        path: '/archives/my-dad-earl-gallery',
+        file: '~/pages/archives/ArchiveNarrativeGallery.vue',
+      });
+      pages.push({
         name: 'my-uncle-wesley',
         path: '/archives/my-uncle-wesley',
         file: '~/pages/archives/ArchiveNarrative.vue',

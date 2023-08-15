@@ -513,6 +513,7 @@ export default {
 
   async mounted() {
     this.updateWindowDims();
+
     const slug =
       this.$route.path.slice(-1) === '/'
         ? this.$route.path.split('/').at(-2)
