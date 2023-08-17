@@ -222,7 +222,7 @@
 </template>
 
 <script setup>
-import { defineProps, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import 'vue-material-design-icons/styles.css';
 import Flipbook from 'flipbook-vue';
 import FirstPageIcon from 'vue-material-design-icons/PageFirst';
