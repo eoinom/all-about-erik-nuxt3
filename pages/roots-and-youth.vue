@@ -70,7 +70,6 @@
         >
           <v-col
             cols="12"
-            lg="6"
             v-for="(video, index) in videos"
             :key="video.title"
             @click="videoIndex = index"
@@ -415,6 +414,14 @@ export default {
   #mainText {
     font-size: 1.2rem;
     line-height: 24px;
+  }
+}
+
+// Special media query to make same as old site
+@media only screen and (min-width: 978px) {
+  .video-container {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 
