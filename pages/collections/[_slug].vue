@@ -69,24 +69,28 @@
 
           <div
             v-else
-            v-html="collectionPgContent.content"
+            v-html="collectionPgContent.description"
             class="collection_headerText mx-auto my-0"
             id="headerTextDevice"
           />
         </div>
       </header>
 
-      <!-- <v-collapse
+      <div
         v-if="windowWidth < 1200"
-        v-model="showIntro"
-        id="collapse-1"
+        :class="
+          showIntro
+            ? 'headerTextDevice_container'
+            : 'headerTextDevice_container headerTextDevice_hide'
+        "
       >
         <div
-          v-html="collectionPgContent.content"
+          v-html="collectionPgContent.description"
           class="collection_headerText"
           id="headerTextDevice"
+          ref="headerTextDevice"
         />
-      </v-collapse> -->
+      </div>
 
       <CollectionViewer
         :images="images"
@@ -111,6 +115,7 @@ export default {
       imageIndex: 0,
       showIntro: true,
       windowWidth: 0.0,
+      headerTextHeight: 0,
     };
   },
 
@@ -173,6 +178,11 @@ export default {
       collection.link = slugify(collection.title);
       return collection;
     },
+    headerTextContainerHeight() {
+      return this.showIntro && this.headerTextHeight > 0
+        ? this.headerTextHeight + 40 + 'px'
+        : '0px';
+    },
   },
 
   async mounted() {
@@ -195,6 +205,21 @@ export default {
     window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
     });
+
+    this.resizeObserver = new ResizeObserver(this.onResize);
+    this.resizeObserver.observe(document.getElementById('headerTextDevice'));
+    this.onResize();
+  },
+
+  beforeUnmount() {
+    this.resizeObserver.unobserve(document.getElementById('headerTextDevice'));
+  },
+
+  methods: {
+    onResize() {
+      this.headerTextHeight =
+        document.getElementById('headerTextDevice').clientHeight;
+    },
   },
 };
 </script>
@@ -258,6 +283,14 @@ export default {
   max-width: 90vw;
   text-align: center;
   margin: 0 auto;
+}
+.headerTextDevice_container {
+  height: v-bind(headerTextContainerHeight);
+  transition: height 0.6s ease-out;
+  overflow: hidden;
+}
+.headerTextDevice_hide {
+  height: 0;
 }
 .collection_headerText {
   font-family: 'NeueHaasGroteskText Pro65';
