@@ -123,8 +123,7 @@ export default {
     this.collectionsPgContent = collectionsPgContent;
 
     this.observeTextBlockHeight();
-
-    setTimeout(clearInterval(this.interval), 8000);
+    setTimeout(() => clearTheInterval().bind(this), 8000);
 
     window.addEventListener('resize', () => {
       let textEl = document.getElementById('slideshowText');
@@ -132,20 +131,26 @@ export default {
     });
   },
 
+  beforeUnmount() {
+    if (!document) return;
+    this.clearTheInterval();
+  },
+
   methods: {
+    clearTheInterval() {
+      clearInterval(this.interval);
+    },
     observeTextBlockHeight() {
       this.interval = setInterval(
         function () {
           let textEl = document.getElementById('slideshowText');
           this.mainColHeight = this.getElementOffset(textEl).bottom;
-          console.log('observing, ');
         }.bind(this),
         500
       );
     },
     getElementOffset(el) {
       let top = 0;
-      // let left = 0
       let bottom = 0;
       let element = el;
       let height = el.offsetHeight;
@@ -154,7 +159,6 @@ export default {
       // and add it's parent's offset to get page offset
       do {
         top += element.offsetTop || 0;
-        // left += element.offsetLeft || 0;
         element = element.offsetParent;
       } while (element);
 
@@ -162,7 +166,6 @@ export default {
 
       return {
         top,
-        // left,
         bottom,
       };
     },

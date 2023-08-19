@@ -324,13 +324,20 @@ export default {
     this.windowWidth = window.innerWidth;
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
+      let navLinksEl = document.getElementById('navLinksRow');
+      this.headerHeight = this.getElementOffset(navLinksEl).top;
     });
     window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
+      let navLinksEl = document.getElementById('navLinksRow');
+      this.headerHeight = this.getElementOffset(navLinksEl).top;
     });
 
     if (!document) return;
+
     this.observeNavLinksPosition();
+    setTimeout(() => clearTheInterval().bind(this), 8000);
+
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
@@ -340,7 +347,7 @@ export default {
     if (this.disableScroll) {
       document.body.style.overflow = this.bodyOverflowStyle;
     }
-    clearInterval(this.interval);
+    this.clearTheInterval();
     this.unbindEvents();
   },
 
@@ -357,6 +364,9 @@ export default {
   },
 
   methods: {
+    clearTheInterval() {
+      clearInterval(this.interval);
+    },
     prev() {
       if (this.currentIndex === 0) return;
       this.currentIndex -= 1;
