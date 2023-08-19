@@ -524,11 +524,21 @@ export default {
       'collections-index'
     ).findOne();
     this.collectionsContent = collectionsContent;
+
     this.windowWidth = window.innerWidth;
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
     });
     window.addEventListener('orientationchange', () => {
+      this.windowWidth = window.innerWidth;
+    });
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
+    window.removeEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
     });
   },
@@ -670,12 +680,6 @@ header:after {
 }
 .collections_headerLinkText > span:nth-child(3) {
   font-size: 0.9375rem;
-}
-
-#headerTextDevice {
-  color: #ececec;
-  font-size: 0.925rem;
-  margin: 20px;
 }
 
 .arrow {

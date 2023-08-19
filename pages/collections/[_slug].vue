@@ -198,21 +198,27 @@ export default {
     this.collectionsPgContent = collectionsPgContent;
 
     this.windowWidth = window.innerWidth;
+    this.onResize();
 
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
     window.addEventListener('orientationchange', () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
-
-    this.resizeObserver = new ResizeObserver(this.onResize);
-    this.resizeObserver.observe(document.getElementById('headerTextDevice'));
-    this.onResize();
   },
 
   beforeUnmount() {
-    this.resizeObserver.unobserve(document.getElementById('headerTextDevice'));
+    window.removeEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+      this.onResize();
+    });
+    window.removeEventListener('orientationchange', () => {
+      this.windowWidth = window.innerWidth;
+      this.onResize();
+    });
   },
 
   methods: {
