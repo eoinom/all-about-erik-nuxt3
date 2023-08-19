@@ -37,7 +37,7 @@
         >
           <v-col
             cols="2"
-            lg=""
+            lg="3"
             xl="4"
           >
             <NuxtLink
@@ -85,7 +85,7 @@
 
           <v-col
             cols="8"
-            lg="7"
+            lg="6"
             xl="4"
           >
             <div
@@ -98,7 +98,7 @@
 
           <v-col
             cols="2"
-            lg=""
+            lg="3"
             xl="4"
           >
             <NuxtLink
@@ -298,7 +298,6 @@ export default {
         flag: false,
       },
       glassElCreated: false,
-      showMagnifier: false,
       zoom: 6,
       headerEl: null,
       headerHeight: 0,
