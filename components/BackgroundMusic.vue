@@ -123,7 +123,7 @@ export default {
     this.audio = this.$refs.audioEl;
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     // set data for fading out audio
     this.leavingPage = true;
     this.audioTimeAtStartPageLeave = this.audio.currentTime;

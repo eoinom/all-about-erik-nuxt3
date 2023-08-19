@@ -579,7 +579,7 @@ export default {
     this.bindEvents();
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     this.unbindEvents();
   },
 

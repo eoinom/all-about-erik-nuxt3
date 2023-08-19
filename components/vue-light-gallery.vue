@@ -202,7 +202,7 @@ export default {
     this.bindEvents();
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     if (!document) return;
     if (this.disableScroll) {
       document.body.style.overflow = this.bodyOverflowStyle;

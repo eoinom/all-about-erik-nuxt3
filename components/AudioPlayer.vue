@@ -80,7 +80,7 @@ export default {
     EventBus.$on('backgroundMusicPlaying', this.eventBusListener);
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     EventBus.$off('backgroundMusicPlaying', this.eventBusListener);
   },
 
