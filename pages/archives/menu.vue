@@ -26,11 +26,6 @@
                   data-testid="title-img"
                 />
                 <div>
-                  <!-- <ContentRenderer
-                    :value="archivesPgContent"
-                    tag="div"
-                    id="slideshowText"
-                  /> -->
                   <ContentRenderer :value="archivesPgContent">
                     <ContentRendererMarkdown
                       :value="archivesPgContent"

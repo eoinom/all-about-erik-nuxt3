@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       );
     },
     '@fullpage/nuxt-fullpage',
-    // ['vue-scrollto/nuxt3', { duration: 300 }],
+    'nuxt-lazy-load',
   ],
   devtools: {
     // Enable devtools (default: true)
@@ -77,5 +77,14 @@ export default defineNuxtConfig({
         file: '~/pages/archives/ArchiveNarrative.vue',
       });
     },
+  },
+  lazyLoad: {
+    // These are the default values for nuxt-lazy-load
+    images: true,
+    videos: true,
+    audios: true,
+    iframes: true,
+    native: false,
+    directiveOnly: false,
   },
 });
