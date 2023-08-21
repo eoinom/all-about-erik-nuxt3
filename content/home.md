@@ -11,7 +11,7 @@ bgAudioFadeOutDuration: 3.5
 slides:
   - duration: 11
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio_qhwm8i.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg
     opacity: 57
     orderNo: 1
     panStart: bottom-right
@@ -19,7 +19,7 @@ slides:
     scaleTo: 1.04
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-2-fireplacewall-_clq0an.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-2-fireplacewall.jpg
     opacity: 62
     orderNo: 2
     panStart: centre
@@ -27,7 +27,7 @@ slides:
     scaleTo: 1.07
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-3-knoblickupper_ss6668.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-3-knoblickupper.jpg
     opacity: 65
     orderNo: 3
     panStart: bottom
@@ -35,7 +35,7 @@ slides:
     scaleTo: 1.06
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-4-cubscouts_r8acwp.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-4-cubscouts.jpg
     opacity: 66
     orderNo: 4
     panStart: top
@@ -43,7 +43,7 @@ slides:
     scaleTo: 1
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-5-scuba_axv838.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-5-scuba.jpg
     opacity: 60
     orderNo: 5
     panStart: bottom-left
@@ -51,7 +51,7 @@ slides:
     scaleTo: 1.07
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-6-s-kimono_kfae3q.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-6-s-kimono.jpg
     opacity: 58
     orderNo: 6
     panStart: centre
@@ -59,7 +59,7 @@ slides:
     scaleTo: 1.09
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-7-m-kimono_vxenpg.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-7-m-kimono.jpg
     opacity: 58
     orderNo: 7
     panStart: bottom
@@ -67,7 +67,7 @@ slides:
     scaleTo: 1
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-8-machupicchu_no9vqy.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-8-machupicchu.jpg
     opacity: 62
     orderNo: 8
     panStart: bottom
@@ -75,7 +75,7 @@ slides:
     scaleTo: 1.06
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-9-rollsroyce_iyvxcj.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-9-rollsroyce.jpg
     opacity: 70
     orderNo: 9
     panStart: bottom-left
@@ -83,7 +83,7 @@ slides:
     scaleTo: 1.07
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-10-potola_rvqypr.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-10-potola.jpg
     opacity: 61
     orderNo: 10
     panStart: top-left
@@ -91,7 +91,7 @@ slides:
     scaleTo: 1.07
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-11-norman_kg75ur.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-11-norman.jpg
     opacity: 62
     orderNo: 11
     panStart: centre
@@ -99,7 +99,7 @@ slides:
     scaleTo: 1.09
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-12-temple_nd5vkg.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-12-temple.jpg
     opacity: 62
     orderNo: 12
     panStart: bottom-left
@@ -107,7 +107,7 @@ slides:
     scaleTo: 1.07
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-13-fishing_laipsi.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951958/Home%20Page/slide-13-fishing.jpg
     opacity: 60
     orderNo: 13
     panStart: centre
@@ -115,16 +115,15 @@ slides:
     scaleTo: 1.09
   - duration: 8
     img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-14-spoonful_khyvak.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951956/Home%20Page/slide-14-spoonful.jpg
     opacity: 63
     orderNo: 14
     panStart: bottom
     scaleFrom: 1
     scaleTo: 1.06
 ---
-As a boy growing up in the Midwest, I never had a clear idea of what I’d end up doing in life.  <br />The currents just carried me along. 
 
-
+As a boy growing up in the Midwest, I never had a clear idea of what I’d end up doing in life. <br />The currents just carried me along.
 
 I played banjo, but quit to become a music publisher and record producer. <br />I fished, traveled, scuba-dived, collected, and fell in love.
 
