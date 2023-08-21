@@ -11,7 +11,7 @@
       >
         <v-row
           no-gutters
-          class="mb-1 px-1"
+          class="mb-1"
         >
           <v-col class="slideshowCol">
             <!-- SLIDESHOW OVERLAY -->
@@ -25,11 +25,23 @@
                   class="mb-md-1 mb-lg-2 mb-xl-4"
                   data-testid="title-img"
                 />
-
-                <div
-                  v-html="slideshowText"
-                  id="slideshowText"
-                />
+                <div>
+                  <!-- <ContentRenderer
+                    :value="archivesPgContent"
+                    tag="div"
+                    id="slideshowText"
+                  /> -->
+                  <ContentRenderer :value="archivesPgContent">
+                    <ContentRendererMarkdown
+                      :value="archivesPgContent"
+                      tag="span"
+                      id="slideshowText"
+                    />
+                    <template #empty>
+                      <p>No content found.</p>
+                    </template>
+                  </ContentRenderer>
+                </div>
               </div>
             </div>
           </v-col>
@@ -58,9 +70,6 @@ export default {
     },
     titleImg() {
       return this.archivesPgContent.titleImg;
-    },
-    slideshowText() {
-      return this.archivesPgContent.content;
     },
     tiles() {
       return this.archivesPgContent.tiles;

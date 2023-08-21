@@ -239,20 +239,20 @@ https://codepen.io/beije/pen/zxjeae */
 }
 
 /* XL+ */
-@media only screen and (min-width: 1200px) and (max-width: 1920px) {
+@media only screen and (min-width: 1280px) and (max-width: 1920px) {
   .overlayText {
-    font-size: calc(2.0703125rem + 19.875 * (100vw - 1200px) / (1920 - 1200));
-    line-height: calc(2.0703125rem + 19.875 * (100vw - 1200px) / (1920 - 1200));
-    letter-spacing: calc(4.125px + 4.875 * (100vw - 1200px) / (1920 - 1200));
+    font-size: calc(2.0703125rem + 19.875 * (100vw - 1280px) / (1920 - 1280));
+    line-height: calc(2.0703125rem + 19.875 * (100vw - 1280px) / (1920 - 1280));
+    letter-spacing: calc(4.125px + 4.875 * (100vw - 1280px) / (1920 - 1283));
   }
   .thumbnailImgContainer:after {
     --blur_px: calc(
       var(--blur) * 1px *
-        (0.078125rem + 0.75 * (100vw - 1200px) / (1920 - 1200))
+        (0.078125rem + 0.75 * (100vw - 1280px) / (1920 - 1280))
     );
     --spread_px: calc(
       var(--blur) * 1px *
-        (0.078125rem + 0.75 * (100vw - 1200px) / (1920 - 1200))
+        (0.078125rem + 0.75 * (100vw - 1280px) / (1920 - 1280))
     );
   }
 }

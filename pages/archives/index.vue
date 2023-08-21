@@ -19,7 +19,7 @@
       >
         <v-row
           no-gutters
-          class="mb-1 px-1"
+          class="mb-1"
         >
           <v-col
             class="slideshowCol"
@@ -48,11 +48,16 @@
                   data-testid="title-img"
                 />
                 <div>
-                  <ContentRenderer
-                    :value="archivesPgContent"
-                    tag="div"
-                    id="slideshowText"
-                  />
+                  <ContentRenderer :value="archivesPgContent">
+                    <ContentRendererMarkdown
+                      :value="archivesPgContent"
+                      tag="span"
+                      id="slideshowText"
+                    />
+                    <template #empty>
+                      <p>No content found.</p>
+                    </template>
+                  </ContentRenderer>
                 </div>
 
                 <div id="scrollDownContainer">
