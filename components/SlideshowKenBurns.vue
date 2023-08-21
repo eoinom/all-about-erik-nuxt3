@@ -9,7 +9,7 @@
       leave-to-class="SlideshowKenBurns__leaveTo"
       class="SlideshowKenBurns__slides"
     >
-      <img
+      <NuxtImg
         v-for="(image, index) in images"
         v-show="index === activeIndex"
         :key="'imgIndex' + index"
@@ -17,6 +17,7 @@
         class="SlideshowKenBurns__image"
         :style="imgStyle(index)"
         alt=""
+        :preload="index === 0"
       />
     </TransitionGroup>
   </div>
