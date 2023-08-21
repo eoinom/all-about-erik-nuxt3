@@ -215,6 +215,14 @@ const applyPageLayoutStyling = (currentPath) => {
     // for homepage
     applyZeroLayoutPadding.value = true;
   }
+  if (
+    currentPath === '/archives' ||
+    currentPath === '/archives/' ||
+    currentPath === '/archives/menu' ||
+    currentPath === '/archives/menu/'
+  ) {
+    applyZeroLayoutPadding.value = true;
+  }
 
   applyZeroLayoutPaddingMblOnly.value = false;
   if (
