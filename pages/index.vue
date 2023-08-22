@@ -60,6 +60,17 @@
   </router-view>
 </template>
 
+<script setup>
+useHead({
+  link: [
+    {
+      rel: 'prefetch',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg',
+    },
+  ],
+});
+</script>
+
 <script>
 export default {
   data() {
