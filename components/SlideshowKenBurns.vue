@@ -9,7 +9,7 @@
       leave-to-class="SlideshowKenBurns__leaveTo"
       class="SlideshowKenBurns__slides"
     >
-      <NuxtImg
+      <img
         v-for="(image, index) in images"
         v-show="index === activeIndex"
         :key="'imgIndex' + index"
