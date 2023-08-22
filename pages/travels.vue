@@ -42,6 +42,7 @@
               height="540"
               frameborder="0"
               id="mainVideo"
+              data-not-lazy
             />
             <span
               v-html="mainVideoText"
