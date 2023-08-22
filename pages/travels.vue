@@ -9,11 +9,13 @@
         id="header"
         :style="headerStyle"
       >
-        <img
+        <NuxtImg
+          v-if="titleImg"
           :src="titleImg"
           id="titleImg"
           class="my-6"
           data-testid="title-img"
+          preload
         />
       </header>
 
@@ -37,6 +39,7 @@
             class="position-relative"
           >
             <iframe
+              v-if="mainVideoUrl"
               :src="mainVideoUrl + '?autoplay=1&loop=1&muted=1&color=505050'"
               width="960"
               height="540"
@@ -72,7 +75,10 @@
             "
             data-testid="video-container"
           >
-            <VideoThumbnailTravels :video="video" />
+            <VideoThumbnailTravels
+              :video="video"
+              :preload="index < 4"
+            />
           </v-col>
         </v-row>
       </v-container>

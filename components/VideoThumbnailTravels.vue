@@ -1,13 +1,14 @@
 <template>
   <div class="videoThumbnailContainer">
     <div>
-      <img
+      <NuxtImg
         v-if="video.thumbnailImg != null"
         :alt="video.title"
         :src="video.thumbnailImg"
         width="566"
         height="362"
         class="thumbnailImg"
+        :preload="preload"
       />
     </div>
 
@@ -47,6 +48,10 @@ export default {
   props: {
     video: {
       type: Object,
+    },
+    preload: {
+      type: Boolean,
+      default: false,
     },
   },
 
