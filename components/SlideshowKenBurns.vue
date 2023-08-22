@@ -17,7 +17,6 @@
         class="SlideshowKenBurns__image"
         :style="imgStyle(index)"
         alt=""
-        :preload="index === 0"
       />
     </TransitionGroup>
   </div>
