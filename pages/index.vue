@@ -26,6 +26,7 @@
                 class="titleImg"
                 data-testid="title-img"
                 fetchpriority="high"
+                data-not-lazy
               />
               <div>
                 <ContentRenderer :value="homePgContent">

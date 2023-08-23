@@ -16,6 +16,7 @@
           class="my-6"
           data-testid="title-img"
           fetchpriority="high"
+          data-not-lazy
         />
       </header>
 

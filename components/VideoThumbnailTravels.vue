@@ -9,6 +9,7 @@
         height="362"
         class="thumbnailImg"
         :fetchpriority="preload ? 'high' : 'auto'"
+        :data-not-lazy="preload"
       />
     </div>
 

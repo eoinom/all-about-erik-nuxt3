@@ -18,6 +18,7 @@
         :style="imgStyle(index)"
         alt=""
         :fetchpriority="index === 0 ? 'high' : 'auto'"
+        :data-not-lazy="index === 0"
       />
     </TransitionGroup>
   </div>
