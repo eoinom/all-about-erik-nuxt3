@@ -2,7 +2,13 @@
 import vuetify from 'vite-plugin-vuetify';
 
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
+  // // ref: https://github.com/nuxt/framework/pull/6980
+  // router: {
+  //   options: {
+  //     hashMode: true,
+  //   },
+  // },
   app: {
     head: {
       script: [{ src: 'https://cdn.jsdelivr.net/npm/vue-scrollto' }],
@@ -15,6 +21,7 @@ export default defineNuxtConfig({
     'vue-plyr/dist/vue-plyr.css',
     '@/assets/custom.scss',
     // 'vuetify/lib/styles/main.sass',
+    // 'vuetify/styles',
   ],
   modules: [
     '@nuxt/content',
