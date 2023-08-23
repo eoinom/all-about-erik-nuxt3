@@ -166,6 +166,16 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | All About Erik` : 'All About Erik';
   },
+  link: [
+    {
+      rel: 'preconnect',
+      href: 'https://res.cloudinary.com/',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://res.cloudinary.com/',
+    },
+  ],
 });
 
 const applyZeroLayoutPadding = ref(false);

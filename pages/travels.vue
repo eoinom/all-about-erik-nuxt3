@@ -15,6 +15,7 @@
           id="titleImg"
           class="my-6"
           data-testid="title-img"
+          fetchpriority="high"
         />
       </header>
 
@@ -143,6 +144,37 @@ export default {
     },
   },
 };
+</script>
+
+<script setup>
+useHead({
+  link: [
+    {
+      rel: 'preconnect',
+      href: 'https://player.vimeo.com/',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://player.vimeo.com/',
+    },
+    {
+      rel: 'prefetch',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580641705/Travels/bamyan-banner_kxakxq.jpg',
+    },
+    {
+      rel: 'prefetch',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580641704/Travels/travels_rcl4mu.png',
+    },
+    {
+      rel: 'prefetch',
+      href: 'https://player.vimeo.com/video/293166774',
+    },
+    {
+      rel: 'prefetch',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1684874213/Travels/abu-dhabi.jpg',
+    },
+  ],
+});
 </script>
 
 <style scoped>

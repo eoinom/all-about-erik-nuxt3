@@ -25,6 +25,7 @@
                 :src="titleImg"
                 class="titleImg"
                 data-testid="title-img"
+                fetchpriority="high"
               />
               <div>
                 <ContentRenderer :value="homePgContent">
@@ -63,6 +64,10 @@
 <script setup>
 useHead({
   link: [
+    {
+      rel: 'prefetch',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/allabouterikwhite4-11-18_kwflva.png',
+    },
     {
       rel: 'prefetch',
       href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg',

@@ -8,6 +8,7 @@
         width="566"
         height="362"
         class="thumbnailImg"
+        :fetchpriority="preload ? 'high' : 'auto'"
       />
     </div>
 
