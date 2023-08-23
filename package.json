@@ -12,6 +12,7 @@
     "@nuxt/devtools": "^0.4.0",
     "@popperjs/core": "^2.11.6",
     "nuxt": "^3.6.5",
+    "nuxt-purgecss": "^2.0.0",
     "sass": "^1.62.0"
   },
   "dependencies": {

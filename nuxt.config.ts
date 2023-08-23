@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     },
     '@fullpage/nuxt-fullpage',
     'nuxt-lazy-load',
+    'nuxt-purgecss',
   ],
   devtools: {
     // Enable devtools (default: true)
