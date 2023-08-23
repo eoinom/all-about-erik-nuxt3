@@ -9,13 +9,12 @@
         id="header"
         :style="headerStyle"
       >
-        <NuxtImg
+        <img
           v-if="titleImg"
           :src="titleImg"
           id="titleImg"
           class="my-6"
           data-testid="title-img"
-          preload
         />
       </header>
 
