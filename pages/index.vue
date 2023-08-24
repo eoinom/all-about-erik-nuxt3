@@ -67,17 +67,17 @@ useHead({
   link: [
     {
       rel: 'preload',
-      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/allabouterikwhite4-11-18_kwflva.png',
       as: 'image',
-      fetchpriority: 'high',
       crossorigin: true,
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/allabouterikwhite4-11-18_kwflva.png',
+      fetchpriority: 'high',
     },
     {
       rel: 'preload',
-      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg',
       as: 'image',
-      fetchpriority: 'high',
       crossorigin: true,
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg',
+      fetchpriority: 'high',
     },
   ],
 });
