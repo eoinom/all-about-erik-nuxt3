@@ -33,15 +33,23 @@
           no-gutters
           class="mt-2"
         >
-          <v-col>
+          <v-col class="mainImgCol">
             <img
               :src="mainImg"
               id="mainImg"
             />
-            <span
-              v-html="mainText"
-              id="mainImgText"
-            />
+            <div>
+              <ContentRenderer :value="theEpisodesPgContent">
+                <ContentRendererMarkdown
+                  :value="theEpisodesPgContent"
+                  tag="span"
+                  id="mainImgText"
+                />
+                <template #empty>
+                  <p>No content found.</p>
+                </template>
+              </ContentRenderer>
+            </div>
           </v-col>
         </v-row>
 
@@ -211,9 +219,6 @@ export default {
     mainImg() {
       return this.theEpisodesPgContent.mainImg;
     },
-    mainText() {
-      return this.theEpisodesPgContent.content;
-    },
     videos() {
       return this.theEpisodesPgContent.videos;
     },
@@ -309,6 +314,10 @@ export default {
   max-width: 1316px;
   padding: 0;
   text-align: center;
+}
+
+.mainImgCol {
+  position: relative;
 }
 
 #mainImg {
