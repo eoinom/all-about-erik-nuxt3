@@ -2,9 +2,9 @@
   <div
     v-if="typeof index === 'number'"
     class="collection-viewer"
-    @touchstart="touchstartHandler"
-    @touchmove="touchmoveHandler"
-    @touchend="touchendHandler"
+    @touchstart.passive="touchstartHandler"
+    @touchmove.passive="touchmoveHandler"
+    @touchend.passive="touchendHandler"
     :style="viewerStyles"
   >
     <div

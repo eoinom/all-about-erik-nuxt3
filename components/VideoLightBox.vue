@@ -3,9 +3,9 @@
     <div
       v-if="typeof index === 'number'"
       class="video-lightbox"
-      @touchstart="touchstartHandler"
-      @touchmove="touchmoveHandler"
-      @touchend="touchendHandler"
+      @touchstart.passive="touchstartHandler"
+      @touchmove.passive="touchmoveHandler"
+      @touchend.passive="touchendHandler"
     >
       <div
         class="video-lightbox__modal"
