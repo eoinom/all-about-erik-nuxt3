@@ -70,7 +70,7 @@
             class="mb-2 mb-sm-4 px-2 px-sm-4"
             data-testid="video-container"
           >
-            <video-thumbnail-short-films :video="video" />
+            <VideoThumbnailShortFilms :video="video" />
           </v-col>
         </v-row>
       </v-container>
