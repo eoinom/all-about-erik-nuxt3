@@ -53,16 +53,13 @@
             v-for="menuItem in navMenuItems"
             :key="menuItem.text"
           >
-            <a
+            <button
               v-if="menuItem.to == ' '"
-              href=""
               class="nav_item"
               @mouseover="onNavLinkHover(menuItem)"
-              >{{ menuItem.text.toUpperCase() }}</a
             >
-            <!-- <router-link v-else :to="menuItem.to" class="nav_item" @mouseover.native="onNavLinkHover(menuItem)">{{
-              menuItem.text.toUpperCase()
-            }}</router-link> -->
+              {{ menuItem.text.toUpperCase() }}
+            </button>
             <NuxtLink
               v-else
               :to="menuItem.to"
@@ -463,7 +460,8 @@ body {
 }
 
 /* The navigation menu links */
-#sideNav-main a {
+#sideNav-main a,
+#sideNav-main button {
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 10px;
@@ -471,7 +469,9 @@ body {
 
 /* When you mouse over the navigation links, change their color */
 #sideNav-main a:hover,
-#sideNav-main a.router-link-exact-active {
+#sideNav-main a.router-link-exact-active,
+#sideNav-main button:hover,
+#sideNav-main button.router-link-exact-active {
   /* https://stackoverflow.com/questions/46083220/how-to-vuejs-router-link-active-style */
   color: #e30829;
 }
