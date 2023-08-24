@@ -462,6 +462,7 @@ body {
 /* The navigation menu links */
 #sideNav-main a,
 #sideNav-main button {
+  text-align: left;
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 10px;
