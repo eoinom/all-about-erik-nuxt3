@@ -175,6 +175,14 @@ useHead({
       rel: 'dns-prefetch',
       href: 'https://res.cloudinary.com/',
     },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://fonts.gstatic.com',
+    },
   ],
 });
 
