@@ -48,6 +48,7 @@
                 height="540"
                 frameborder="0"
                 id="mainVideo"
+                data-not-lazy
               />
             </div>
           </v-col>
@@ -86,6 +87,42 @@
     </div>
   </router-view>
 </template>
+
+<script setup>
+useHead({
+  link: [
+    {
+      rel: 'preconnect',
+      href: 'https://player.vimeo.com/',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://player.vimeo.com/',
+    },
+    {
+      rel: 'preload',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1579900417/Short%20Films/title-bg-barracuda_cropped_ckym2i.jpg',
+      as: 'image',
+      fetchpriority: 'high',
+      crossorigin: true,
+    },
+    {
+      rel: 'preload',
+      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1579900458/Short%20Films/short-films_e2hric.png',
+      as: 'image',
+      fetchpriority: 'high',
+      crossorigin: true,
+    },
+    {
+      rel: 'preload',
+      href: 'https://player.vimeo.com/video/309111649',
+      as: 'image',
+      fetchpriority: 'high',
+      crossorigin: true,
+    },
+  ],
+});
+</script>
 
 <script>
 export default {
