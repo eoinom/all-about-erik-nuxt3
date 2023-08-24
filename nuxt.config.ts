@@ -87,9 +87,9 @@ export default defineNuxtConfig({
   },
   lazyLoad: {
     // These are the default values for nuxt-lazy-load
-    images: true,
+    images: false,
     videos: true,
-    audios: true,
+    audios: false,
     iframes: true,
     native: false,
     directiveOnly: false,
