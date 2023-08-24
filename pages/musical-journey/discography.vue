@@ -93,8 +93,8 @@
               <v-row align-content="center">
                 <v-col
                   cols="12"
-                  xl="6"
-                  xxl="5"
+                  lg="6"
+                  xl="5"
                 >
                   <div
                     style="text-align: center"
@@ -110,8 +110,8 @@
 
                 <v-col
                   cols="12"
-                  xl="6"
-                  xxl="4"
+                  lg="6"
+                  xl="4"
                 >
                   <span class="underline">Tracks</span>
                   <div
@@ -122,8 +122,8 @@
 
                 <v-col
                   cols="12"
-                  xl="12"
-                  xxl="3"
+                  lg="12"
+                  xl="3"
                   class="albumDetailsText my-2"
                 >
                   <span class="underline">Details</span>
@@ -132,7 +132,7 @@
                       cols="4"
                       md="3"
                       lg="2"
-                      xxl="4"
+                      xl="4"
                       >Label:
                     </v-col>
                     <v-col>{{ album.label }}</v-col>
@@ -142,7 +142,7 @@
                       cols="4"
                       md="3"
                       lg="2"
-                      xxl="4"
+                      xl="4"
                       >Format:
                     </v-col>
                     <v-col>{{ album.format }}</v-col>
@@ -152,7 +152,7 @@
                       cols="4"
                       md="3"
                       lg="2"
-                      xxl="4"
+                      xl="4"
                       >Country:
                     </v-col>
                     <v-col>{{ album.country }}</v-col>
@@ -162,7 +162,7 @@
                       cols="4"
                       md="3"
                       lg="2"
-                      xxl="4"
+                      xl="4"
                       >Released:
                     </v-col>
                     <v-col>{{ album.released }}</v-col>
@@ -172,7 +172,7 @@
                       cols="4"
                       md="3"
                       lg="2"
-                      xxl="4"
+                      xl="4"
                       >Style:
                     </v-col>
                     <v-col>{{ album.style }}</v-col>
