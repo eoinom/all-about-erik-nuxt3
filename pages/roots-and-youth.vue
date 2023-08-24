@@ -69,14 +69,14 @@
           class="mb-1"
         >
           <v-col
-            cols="12"
             v-for="(video, index) in videos"
             :key="video.title"
             @click="videoIndex = index"
+            cols="12"
             class="my-1 px-1 video-container"
             data-testid="video-container"
           >
-            <video-thumbnail-roots :video="video" />
+            <VideoThumbnailRoots :video="video" />
           </v-col>
         </v-row>
 
@@ -167,7 +167,6 @@ export default {
       windowWidth: 0,
     };
   },
-
   computed: {
     pageTitle() {
       return this.rootsContent.pageTitle;
@@ -206,20 +205,16 @@ export default {
       );
     },
   },
-
   async mounted() {
     const rootsContent = await queryContent('roots-and-youth').findOne();
     this.rootsContent = rootsContent;
-
     this.windowWidth = window.innerWidth;
-
     this.$nextTick(() => {
       window.addEventListener('resize', () => {
         this.windowWidth = window.innerWidth;
       });
     });
   },
-
   methods: {
     durationInMinsText(secs) {
       let mins = Math.floor(secs / 60);
