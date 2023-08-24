@@ -237,8 +237,8 @@ const urlsForZeroPadding = [
 const urlsForLightGreyBackground = [
   '/roots-and-youth',
   '/roots-and-youth/',
-  '/the-episodes',
-  '/the-episodes/',
+  '/musical-journey/the-episodes',
+  '/musical-journey/the-episodes/',
 ];
 const urlsForDarkGreyBackground = ['/publications', '/publications/'];
 
