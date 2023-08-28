@@ -36,6 +36,7 @@
           <SlideshowImages
             v-show="windowWidth >= 1200"
             :slides="slideshowLeftImgs"
+            :carouselHeight="carouselHeight"
             :interval="4500"
             borderRadius="15px"
             ref="slideshowLeft"
@@ -46,6 +47,7 @@
           <SlideshowImages
             :slides="slideshowCenterImgs"
             :interval="4500"
+            :carouselHeight="carouselHeight"
             borderRadius="15px"
             ref="slideshowCenter"
             id="slideshowCenter"
@@ -83,6 +85,7 @@
           <SlideshowImages
             v-show="windowWidth >= 1200"
             :slides="slideshowRightImgs"
+            :carouselHeight="carouselHeight"
             :interval="4500"
             borderRadius="15px"
             ref="slideshowRight"
@@ -450,6 +453,36 @@ export default {
         imgs.push({ img: url });
       }
       return imgs;
+    },
+    carouselHeight() {
+      const aspectRatio = 1.274;
+
+      if (this.windowWidth < 1200) {
+        let horizPadding =
+          this.windowWidth < 576
+            ? 16
+            : this.windowWidth < 768
+            ? 24
+            : this.windowWidth < 992
+            ? 36
+            : 50; //px each side
+
+        horizPadding += 24; // 12px app layout padding each side
+
+        return Math.min(
+          644,
+          (this.windowWidth - 2 * horizPadding) / aspectRatio
+        );
+      }
+
+      const horizPadding = 72; //px each side
+      const headerImagesGap = 25; //px each gap
+
+      return (
+        (this.windowWidth - 2 * horizPadding - 2 * headerImagesGap) /
+        3 /
+        aspectRatio
+      );
     },
     galleryImgUrls() {
       if (this.archivePgContent.imageGallery == null) return null;

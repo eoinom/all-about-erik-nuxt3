@@ -23,7 +23,7 @@
           class="mb-1 px-1"
         >
           <v-col class="slideshowCol">
-            <slideshow-images
+            <SlideshowImages
               :slides="slides"
               :carouselHeight="carouselHeight"
             />
