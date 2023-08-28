@@ -1,351 +1,353 @@
 <template>
-  <div
-    v-on:[eventName]="closeLargeImg()"
-    class="pb-5"
-  >
-    <Head>
-      <Title>{{ title }}</Title>
-    </Head>
-
-    <header
-      id="header"
-      class="px-3"
+  <ClientOnly>
+    <div
+      v-on:[eventName]="closeLargeImg()"
+      class="pb-5"
     >
-      <NuxtLink
-        to="/archives/menu"
-        v-tooltip.hover.bottom="{ variant: 'secondary' }"
-        title="Back to Archives menu"
-        class="backToArchives"
-      >
-        <img
-          immediate
-          alt="Back to Archives"
-          src="../../assets/images/back-to-archives-single-line.png"
-          class="backToArchivesImg pt-3 pt-md-2"
-        />
-        <img
-          immediate
-          alt="Back to Archives"
-          src="../../assets/images/back-to-archives-single-line-yellow.png"
-          class="backToArchivesImg-hover pt-3 pt-md-2"
-        />
-      </NuxtLink>
-      <div class="headerWrapper">
-        <!-- SLIDESHOWS -->
-        <template v-if="slideshowLeftImgs && slideshowLeftImgs.length > 0">
-          <SlideshowImages
-            v-show="windowWidth >= 1200"
-            :slides="slideshowLeftImgs"
-            :carouselHeight="carouselHeight"
-            :interval="4500"
-            borderRadius="15px"
-            ref="slideshowLeft"
-            id="slideshowLeft"
-            class="headerBox"
-          />
+      <Head>
+        <Title>{{ title }}</Title>
+      </Head>
 
-          <SlideshowImages
-            :slides="slideshowCenterImgs"
-            :interval="4500"
-            :carouselHeight="carouselHeight"
-            borderRadius="15px"
-            ref="slideshowCenter"
-            id="slideshowCenter"
-            class="headerBox"
-          >
-            <div
-              v-if="archivePgContent.applyCenterFilter !== false"
-              class="headerFilter"
+      <header
+        id="header"
+        class="px-3"
+      >
+        <NuxtLink
+          to="/archives/menu"
+          v-tooltip.hover.bottom="{ variant: 'secondary' }"
+          title="Back to Archives menu"
+          class="backToArchives"
+        >
+          <img
+            immediate
+            alt="Back to Archives"
+            src="../../assets/images/back-to-archives-single-line.png"
+            class="backToArchivesImg pt-3 pt-md-2"
+          />
+          <img
+            immediate
+            alt="Back to Archives"
+            src="../../assets/images/back-to-archives-single-line-yellow.png"
+            class="backToArchivesImg-hover pt-3 pt-md-2"
+          />
+        </NuxtLink>
+        <div class="headerWrapper">
+          <!-- SLIDESHOWS -->
+          <template v-if="slideshowLeftImgs && slideshowLeftImgs.length > 0">
+            <SlideshowImages
+              v-show="windowWidth >= 1200"
+              :slides="slideshowLeftImgs"
+              :carouselHeight="carouselHeight"
+              :interval="4500"
+              borderRadius="15px"
+              ref="slideshowLeft"
+              id="slideshowLeft"
+              class="headerBox"
             />
 
+            <SlideshowImages
+              :slides="slideshowCenterImgs"
+              :interval="4500"
+              :carouselHeight="carouselHeight"
+              borderRadius="15px"
+              ref="slideshowCenter"
+              id="slideshowCenter"
+              class="headerBox"
+            >
+              <div
+                v-if="archivePgContent.applyCenterFilter !== false"
+                class="headerFilter"
+              />
+
+              <div
+                class="headerOverlay"
+                :style="overlayStyles"
+              >
+                <img
+                  :src="titleImg"
+                  :alt="archivePgContent.title + ' title image'"
+                  class="titleImg"
+                  data-testid="title-img"
+                />
+                <SimpleBar
+                  class="simple-scrollbar"
+                  data-simplebar-auto-hide="false"
+                >
+                  <ContentRenderer
+                    :value="archivePgContent"
+                    tag="span"
+                    class="archive_headerText"
+                    :style="headerTextStyles"
+                  />
+                </SimpleBar>
+              </div>
+            </SlideshowImages>
+
+            <SlideshowImages
+              v-show="windowWidth >= 1200"
+              :slides="slideshowRightImgs"
+              :carouselHeight="carouselHeight"
+              :interval="4500"
+              borderRadius="15px"
+              ref="slideshowRight"
+              id="slideshowRight"
+              class="headerBox"
+            />
+          </template>
+
+          <!-- STATIC HEADER IMAGES -->
+          <template v-if="archivePgContent.headerImgLeft">
             <div
-              class="headerOverlay"
-              :style="overlayStyles"
+              v-show="windowWidth >= 1200"
+              class="headerBox"
+            >
+              <img :src="archivePgContent.headerImgLeft" />
+            </div>
+
+            <div class="headerBox">
+              <div
+                v-if="archivePgContent.applyCenterFilter !== false"
+                class="headerFilter"
+              />
+              <img :src="archivePgContent.headerImgCentre" />
+              <div
+                class="headerOverlay"
+                :style="overlayStyles"
+              >
+                <img
+                  :src="titleImg"
+                  :alt="archivePgContent.title + ' title image'"
+                  class="titleImg"
+                  data-testid="title-img"
+                />
+                <SimpleBar
+                  class="simple-scrollbar"
+                  data-simplebar-auto-hide="false"
+                >
+                  <ContentRenderer
+                    :value="archivePgContent"
+                    tag="span"
+                    class="archive_headerText"
+                    :style="headerTextStyles"
+                  />
+                </SimpleBar>
+              </div>
+            </div>
+
+            <div
+              v-show="windowWidth >= 1200"
+              class="headerBox"
+            >
+              <img :src="archivePgContent.headerImgRight" />
+            </div>
+          </template>
+        </div>
+
+        <v-container
+          fluid
+          style="padding: 0"
+        >
+          <v-row
+            no-gutters
+            align="center"
+            id="navLinksRow"
+            class="pt-2"
+          >
+            <v-col style="text-align: left">
+              <NuxtLink
+                :to="'/archives/' + prev_archive.link"
+                v-tooltip.hover="{ variant: 'secondary' }"
+                :title="prev_archive.title"
+                class="nav_link nav_link_big"
+                id="nav_previous"
+              >
+                <img
+                  immediate
+                  alt="previous"
+                  src="../../assets/images/previous-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="previous"
+                  src="../../assets/images/previous-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
+
+              <NuxtLink
+                :to="'/archives/' + prev_archive.link"
+                v-tooltip.hover="{ variant: 'secondary' }"
+                :title="prev_archive.title"
+                class="nav_link nav_link_small"
+                id="nav_prev"
+              >
+                <img
+                  immediate
+                  alt="previous"
+                  src="../../assets/images/prev-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="previous"
+                  src="../../assets/images/prev-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
+            </v-col>
+
+            <v-col style="text-align: right">
+              <NuxtLink
+                :to="'/archives/' + next_archive.link"
+                v-tooltip.hover="{ variant: 'secondary' }"
+                :title="next_archive.title"
+                class="nav_link nav_link_big"
+                id="nav_next"
+              >
+                <img
+                  immediate
+                  alt="next"
+                  src="../../assets/images/next-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="next"
+                  src="../../assets/images/next-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
+
+              <NuxtLink
+                :to="'/archives/' + next_archive.link"
+                v-tooltip.hover="{ variant: 'secondary' }"
+                :title="next_archive.title"
+                class="nav_link nav_link_small"
+                id="nav_next"
+              >
+                <img
+                  immediate
+                  alt="next"
+                  src="../../assets/images/next-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="next"
+                  src="../../assets/images/next-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
+            </v-col>
+          </v-row>
+        </v-container>
+      </header>
+
+      <div
+        id="mainContent"
+        class="px-3 pb-5"
+        :style="mainContentStyles"
+      >
+        <!-- IMAGE GALLERY -->
+        <template v-if="galleryImgUrls != null">
+          <div
+            v-for="n in parseInt(
+              galleryImgUrls.length / maxImagesGalleryWrapper + 1
+            )"
+            :key="'galleryWrapper_' + n"
+            class="galleryWrapper"
+            :id="'galleryWrapper_' + n"
+          >
+            <div
+              v-for="(img, iImg) in galleryImgUrls.filter(
+                (_d, i) => parseInt(i / maxImagesGalleryWrapper) === n - 1
+              )"
+              :key="'img' + iImg"
+              class="galleryBox"
+              @click.prevent="onGalleryImgClick(iImg)"
             >
               <img
-                :src="titleImg"
-                :alt="archivePgContent.title + ' title image'"
-                class="titleImg"
-                data-testid="title-img"
+                :src="img"
+                :id="'galleryImage_' + iImg"
+                class="galleryImage"
+                :class="{
+                  centerPos: applyLargeImgStyles && zoomedImgIndex == iImg,
+                }"
+                :style="zoomedImgStyles"
               />
-              <SimpleBar
-                class="simple-scrollbar"
-                data-simplebar-auto-hide="false"
-              >
-                <ContentRenderer
-                  :value="archivePgContent"
-                  tag="span"
-                  class="archive_headerText"
-                  :style="headerTextStyles"
-                />
-              </SimpleBar>
             </div>
-          </SlideshowImages>
-
-          <SlideshowImages
-            v-show="windowWidth >= 1200"
-            :slides="slideshowRightImgs"
-            :carouselHeight="carouselHeight"
-            :interval="4500"
-            borderRadius="15px"
-            ref="slideshowRight"
-            id="slideshowRight"
-            class="headerBox"
-          />
+          </div>
         </template>
 
-        <!-- STATIC HEADER IMAGES -->
-        <template v-if="archivePgContent.headerImgLeft">
-          <div
-            v-show="windowWidth >= 1200"
-            class="headerBox"
-          >
-            <img :src="archivePgContent.headerImgLeft" />
-          </div>
-
-          <div class="headerBox">
+        <!-- AUDIOS & ARTICLES GALLERY -->
+        <template
+          v-if="audiosAndArticles !== null && audiosAndArticles.length > 0"
+        >
+          <div class="galleryWrapper">
             <div
-              v-if="archivePgContent.applyCenterFilter !== false"
-              class="headerFilter"
-            />
-            <img :src="archivePgContent.headerImgCentre" />
-            <div
-              class="headerOverlay"
-              :style="overlayStyles"
+              v-for="(item, iItem) in audiosAndArticles"
+              :key="'item' + iItem"
+              class="galleryBox"
+              @click.prevent="onGalleryMediaClick(iItem)"
             >
-              <img
-                :src="titleImg"
-                :alt="archivePgContent.title + ' title image'"
-                class="titleImg"
-                data-testid="title-img"
+              <div
+                class="mediaBox"
+                :style="
+                  'background: transparent url(' +
+                  item.thumbnailImg +
+                  ') no-repeat left top'
+                "
               />
-              <SimpleBar
-                class="simple-scrollbar"
-                data-simplebar-auto-hide="false"
-              >
-                <ContentRenderer
-                  :value="archivePgContent"
-                  tag="span"
-                  class="archive_headerText"
-                  :style="headerTextStyles"
-                />
-              </SimpleBar>
-            </div>
-          </div>
+              <div class="boxOverlay mb-5">
+                <transition name="fade">
+                  <span class="thumbnailCaption absCenter hideOnHover">{{
+                    item.caption
+                  }}</span>
+                </transition>
 
-          <div
-            v-show="windowWidth >= 1200"
-            class="headerBox"
-          >
-            <img :src="archivePgContent.headerImgRight" />
+                <transition name="fade">
+                  <img
+                    v-if="item.type == 'audio'"
+                    alt="Play symbol"
+                    src="../../assets/images/music_symbol_circle.png"
+                    class="absCenter showOnHover"
+                  />
+                  <img
+                    v-else
+                    alt="Eye icon"
+                    src="../../assets/images/eye.png"
+                    class="absCenter showOnHover"
+                  />
+                </transition>
+              </div>
+            </div>
           </div>
         </template>
       </div>
 
-      <v-container
-        fluid
-        style="padding: 0"
-      >
-        <v-row
-          no-gutters
-          align="center"
-          id="navLinksRow"
-          class="pt-2"
-        >
-          <v-col style="text-align: left">
-            <NuxtLink
-              :to="'/archives/' + prev_archive.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prev_archive.title"
-              class="nav_link nav_link_big"
-              id="nav_previous"
-            >
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+      <AudioLightBox
+        v-if="audioTracks != null"
+        :audios="audioTracks"
+        :index="audioIndex"
+        :disable-scroll="true"
+        :show-caption="false"
+        @close="audioIndex = null"
+      />
 
-            <NuxtLink
-              :to="'/archives/' + prev_archive.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prev_archive.title"
-              class="nav_link nav_link_small"
-              id="nav_prev"
-            >
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/prev-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/prev-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-          </v-col>
+      <BookViewer
+        v-if="isBookFullscreen"
+        :pages="bookImagesUrlsStdRes"
+        :isFullscreen="isBookFullscreen"
+        :showSinglePage="bookShowSinglePage"
+        :key="'bookViewer' + bookKey"
+        @toggleFullscreen="toggleFullscreen()"
+        @reload="reloadBook()"
+      />
 
-          <v-col style="text-align: right">
-            <NuxtLink
-              :to="'/archives/' + next_archive.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="next_archive.title"
-              class="nav_link nav_link_big"
-              id="nav_next"
-            >
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-
-            <NuxtLink
-              :to="'/archives/' + next_archive.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="next_archive.title"
-              class="nav_link nav_link_small"
-              id="nav_next"
-            >
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-          </v-col>
-        </v-row>
-      </v-container>
-    </header>
-
-    <div
-      id="mainContent"
-      class="px-3 pb-5"
-      :style="mainContentStyles"
-    >
-      <!-- IMAGE GALLERY -->
-      <template v-if="galleryImgUrls != null">
-        <div
-          v-for="n in parseInt(
-            galleryImgUrls.length / maxImagesGalleryWrapper + 1
-          )"
-          :key="'galleryWrapper_' + n"
-          class="galleryWrapper"
-          :id="'galleryWrapper_' + n"
-        >
-          <div
-            v-for="(img, iImg) in galleryImgUrls.filter(
-              (_d, i) => parseInt(i / maxImagesGalleryWrapper) === n - 1
-            )"
-            :key="'img' + iImg"
-            class="galleryBox"
-            @click.prevent="onGalleryImgClick(iImg)"
-          >
-            <img
-              :src="img"
-              :id="'galleryImage_' + iImg"
-              class="galleryImage"
-              :class="{
-                centerPos: applyLargeImgStyles && zoomedImgIndex == iImg,
-              }"
-              :style="zoomedImgStyles"
-            />
-          </div>
-        </div>
-      </template>
-
-      <!-- AUDIOS & ARTICLES GALLERY -->
-      <template
-        v-if="audiosAndArticles !== null && audiosAndArticles.length > 0"
-      >
-        <div class="galleryWrapper">
-          <div
-            v-for="(item, iItem) in audiosAndArticles"
-            :key="'item' + iItem"
-            class="galleryBox"
-            @click.prevent="onGalleryMediaClick(iItem)"
-          >
-            <div
-              class="mediaBox"
-              :style="
-                'background: transparent url(' +
-                item.thumbnailImg +
-                ') no-repeat left top'
-              "
-            />
-            <div class="boxOverlay mb-5">
-              <transition name="fade">
-                <span class="thumbnailCaption absCenter hideOnHover">{{
-                  item.caption
-                }}</span>
-              </transition>
-
-              <transition name="fade">
-                <img
-                  v-if="item.type == 'audio'"
-                  alt="Play symbol"
-                  src="../../assets/images/music_symbol_circle.png"
-                  class="absCenter showOnHover"
-                />
-                <img
-                  v-else
-                  alt="Eye icon"
-                  src="../../assets/images/eye.png"
-                  class="absCenter showOnHover"
-                />
-              </transition>
-            </div>
-          </div>
-        </div>
-      </template>
+      <BackToTop />
     </div>
-
-    <AudioLightBox
-      v-if="audioTracks != null"
-      :audios="audioTracks"
-      :index="audioIndex"
-      :disable-scroll="true"
-      :show-caption="false"
-      @close="audioIndex = null"
-    />
-
-    <BookViewer
-      v-if="isBookFullscreen"
-      :pages="bookImagesUrlsStdRes"
-      :isFullscreen="isBookFullscreen"
-      :showSinglePage="bookShowSinglePage"
-      :key="'bookViewer' + bookKey"
-      @toggleFullscreen="toggleFullscreen()"
-      @reload="reloadBook()"
-    />
-
-    <BackToTop />
-  </div>
+  </ClientOnly>
 </template>
 
 <script type="text/javascript">
