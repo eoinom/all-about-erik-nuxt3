@@ -11,12 +11,13 @@
         </div>
 
         <div class="mt-6">
-          <v-button
-            variant="danger"
+          <button
+            class="playAllBtn"
             @click="onPlayAllClick()"
             data-testid="play-all"
-            >{{ playBtnText }}</v-button
           >
+            {{ playBtnText }}
+          </button>
         </div>
 
         <div
@@ -211,6 +212,17 @@ export default {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin: 0 0 20px 0;
+}
+
+.playAllBtn {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+}
+
+.playAllBtn:hover {
+  background-color: #c82333;
 }
 
 .trackTitle {
