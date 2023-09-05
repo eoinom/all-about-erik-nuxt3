@@ -62,7 +62,7 @@
               class="sectionContainerDevices"
               :style="sectionContainerDevicesStyles(section.productions[0])"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in section.textBoxes"
                 :key="'S' + (iSec + 1) + 'T' + (iText + 1)"
                 :title="textBox.heading"
@@ -81,7 +81,7 @@
                   {{ lightBox.buttonText }}
                 </button>
               </div>
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in section.productions"
                 :key="'S' + (iSec + 1) + 'P' + (iProd + 1)"
                 :production="production"
@@ -98,7 +98,7 @@
               class="sectionContainerDevices"
               :style="sectionContainerDevicesStyles(section.productions[0])"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in section.textBoxes"
                 :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'h'"
                 :title="textBox.heading"
@@ -106,7 +106,7 @@
                 :divHeight="'fit-content'"
                 divPadding="0"
               />
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in section.productions"
                 :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 'c'"
                 :production="production"
@@ -115,7 +115,7 @@
                 :showTitleCredits="true"
                 :showTracks="false"
               />
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in section.textBoxes"
                 :key="'S' + (iSec + 1) + 'T' + (iText + 1) + 'b'"
                 :body="textBox.text"
@@ -139,7 +139,7 @@
                   {{ lightBox.buttonText }}
                 </button>
               </div>
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in section.productions"
                 :key="'S' + (iSec + 1) + 'P' + (iProd + 1) + 't'"
                 :production="production"
@@ -164,7 +164,7 @@
               style="flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[0].productions"
                 :key="iProd"
                 :production="production"
@@ -182,7 +182,7 @@
               style="width: 38.5%; min-width: 444px"
               v-if="sections[0].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[0].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -202,7 +202,7 @@
               v-if="sections[1].textBoxes?.length > 0"
               class=""
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[1].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -213,7 +213,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[1].productions"
                 :key="iProd"
                 :production="production"
@@ -239,7 +239,7 @@
               style="flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[2].productions"
                 :key="iProd"
                 :production="production"
@@ -257,7 +257,7 @@
               style="width: 38.5%; max-width: 400px"
               v-if="sections[2].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[2].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -276,7 +276,7 @@
               id="theSlurpTextCol"
               v-if="sections[3].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[3].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -302,7 +302,7 @@
               style="max-width: 805px; flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[3].productions"
                 :key="iProd"
                 :production="production"
@@ -331,7 +331,7 @@
               id="rootyTootTextBox"
               v-if="sections[4].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 :title="sections[4].textBoxes[0].heading"
                 :body="sections[4].textBoxes[0].text"
                 style="height: inherit"
@@ -341,7 +341,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[4].productions"
                 :key="iProd"
                 :production="production"
@@ -372,7 +372,7 @@
                   id="warmBabyTextBox"
                   v-if="sections[4].textBoxes?.length > 0"
                 >
-                  <music-production-text
+                  <MusicProductionText
                     :title="sections[4].textBoxes[1].heading"
                     :body="sections[4].textBoxes[1].text"
                   />
@@ -391,7 +391,7 @@
               style="flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[5].productions"
                 :key="iProd"
                 :production="production"
@@ -409,7 +409,7 @@
               style="width: 26.4%; min-width: 250px; max-width: 347px"
               v-if="sections[5].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[5].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -429,7 +429,7 @@
               style="width: 32.3%; min-width: 380px"
               v-if="sections[6].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[6].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -440,7 +440,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[6].productions"
                 :key="iProd"
                 :production="production"
@@ -466,7 +466,7 @@
               style="max-width: 1095px; flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[7].productions"
                 :key="iProd"
                 :production="production"
@@ -498,7 +498,7 @@
               style="width: 26.75%; max-width: 340px"
               v-if="sections[3].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[8].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -520,7 +520,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[8].productions"
                 :key="iProd"
                 :production="production"
@@ -538,7 +538,7 @@
               style="max-width: 805px; flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[9].productions"
                 :key="iProd"
                 :production="production"
@@ -556,7 +556,7 @@
               style="width: 41.2%; min-width: 415px; max-width: 495px"
               v-if="sections[9].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[9].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -575,7 +575,7 @@
               style="width: 32.11%; min-width: 246px"
               v-if="sections[10].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[10].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -586,7 +586,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[10].productions"
                 :key="iProd"
                 :production="production"
@@ -612,7 +612,7 @@
               style="flex: 1"
               class="mr-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[11].productions"
                 :key="iProd"
                 :production="production"
@@ -630,7 +630,7 @@
               style="width: 25.38%; min-width: 246px"
               v-if="sections[11].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[11].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -649,7 +649,7 @@
               style="width: 29.13%; min-width: 280px"
               v-if="sections[12].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[12].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -660,7 +660,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[12].productions"
                 :key="iProd"
                 :production="production"
@@ -683,7 +683,7 @@
             data-testid="production-container"
           >
             <div style="flex: 1">
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[13].productions"
                 :key="iProd"
                 :production="production"
@@ -701,7 +701,7 @@
               id="timHardinTextBox"
               v-if="sections[13].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[13].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -721,7 +721,7 @@
               style="width: 25.5%; min-width: 310px"
               v-if="sections[14].textBoxes?.length > 0"
             >
-              <music-production-text
+              <MusicProductionText
                 v-for="(textBox, iText) in sections[14].textBoxes"
                 :key="iText"
                 :title="textBox.heading"
@@ -733,7 +733,7 @@
               style="flex: 1"
               class="ml-4"
             >
-              <music-production
+              <MusicProduction
                 v-for="(production, iProd) in sections[14].productions"
                 :key="iProd"
                 :production="production"

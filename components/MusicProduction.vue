@@ -28,7 +28,7 @@
               :key="iTrack"
             >
               <p class="trackTitleText">{{ track.title }}</p>
-              <audio-player
+              <AudioPlayer
                 :src="track.track"
                 secondaryColor="#E30829"
                 padding="0px 0px"
