@@ -91,6 +91,12 @@ export default {
   },
 
   watch: {
+    audio(val) {
+      if (val && this.playMusic && !this.audioPlaying) {
+        // play audio with fade in/out
+        this.playAndFadeAudio();
+      }
+    },
     audioFinished(val) {
       if (val) {
         // play audio again with fade in/out
@@ -110,17 +116,14 @@ export default {
   },
 
   mounted() {
-    this.audio = this.$refs.audioEl;
-    if (this.playMusic) {
-      this.playAndFadeAudio();
-    }
+    this.getAudioElement();
 
     EventBus.$on('audioPlaying', this.eventBusListener);
     EventBus.$on('lightboxMediaLoaded', this.eventBusListener);
   },
 
   updated() {
-    this.audio = this.$refs.audioEl;
+    this.getAudioElement();
   },
 
   beforeUnmount() {
@@ -133,6 +136,9 @@ export default {
   },
 
   methods: {
+    getAudioElement() {
+      this.audio = this.$refs.audioEl;
+    },
     clickAudioIcon() {
       if (!this.audio) return;
 

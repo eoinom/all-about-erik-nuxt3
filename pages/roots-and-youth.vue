@@ -199,8 +199,10 @@ export default {
     },
     carouselHeight() {
       const aspectRatio = 1.855;
+      const layoutPadding = 40; // 20px ewach side
       return (
-        ((1 - (2 * this.horizPaddingPercent) / 100) * this.windowWidth) /
+        ((1 - (2 * this.horizPaddingPercent) / 100) * this.windowWidth -
+          layoutPadding) /
         aspectRatio
       );
     },
