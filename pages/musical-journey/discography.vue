@@ -80,7 +80,7 @@
               data-testid="album-container"
             >
               <v-row>
-                <v-col>
+                <v-col class="pb-0">
                   <div class="mb-4">
                     <span class="albumTitle">{{
                       album.artist + ' - ' + album.title
@@ -95,6 +95,7 @@
                   cols="12"
                   lg="6"
                   xl="5"
+                  class="py-0"
                 >
                   <div
                     style="text-align: center"
@@ -112,6 +113,7 @@
                   cols="12"
                   lg="6"
                   xl="4"
+                  class="pt-0"
                 >
                   <span class="underline">Tracks</span>
                   <div
@@ -124,58 +126,24 @@
                   cols="12"
                   lg="12"
                   xl="3"
-                  class="albumDetailsText my-2"
+                  class="albumDetailsText my-2 pt-2 pb-0"
                 >
-                  <span class="underline">Details</span>
                   <v-row>
-                    <v-col
-                      cols="4"
-                      md="3"
-                      lg="2"
-                      xl="4"
-                      >Label:
+                    <v-col class="py-0">
+                      <span class="underline">Details</span>
                     </v-col>
-                    <v-col>{{ album.label }}</v-col>
                   </v-row>
-                  <v-row>
+                  <v-row v-for="d in getAlbumDetails(album)">
                     <v-col
                       cols="4"
-                      md="3"
-                      lg="2"
-                      xl="4"
-                      >Format:
+                      sm="3"
+                      md="2"
+                      xxl="4"
+                      class="py-0"
+                    >
+                      {{ d.title }}:
                     </v-col>
-                    <v-col>{{ album.format }}</v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col
-                      cols="4"
-                      md="3"
-                      lg="2"
-                      xl="4"
-                      >Country:
-                    </v-col>
-                    <v-col>{{ album.country }}</v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col
-                      cols="4"
-                      md="3"
-                      lg="2"
-                      xl="4"
-                      >Released:
-                    </v-col>
-                    <v-col>{{ album.released }}</v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col
-                      cols="4"
-                      md="3"
-                      lg="2"
-                      xl="4"
-                      >Style:
-                    </v-col>
-                    <v-col>{{ album.style }}</v-col>
+                    <v-col class="py-0">{{ d.value }}</v-col>
                   </v-row>
                 </v-col>
 
@@ -429,6 +397,30 @@ export default {
         html.scrollHeight,
         html.offsetHeight
       );
+    },
+    getAlbumDetails(album) {
+      return [
+        {
+          title: 'Label',
+          value: album.label,
+        },
+        {
+          title: 'Format',
+          value: album.format,
+        },
+        {
+          title: 'Country',
+          value: album.country,
+        },
+        {
+          title: 'Released',
+          value: album.released,
+        },
+        {
+          title: 'Style',
+          value: album.style,
+        },
+      ];
     },
   },
 };
