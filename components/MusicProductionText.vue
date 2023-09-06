@@ -46,7 +46,7 @@ export default {
 
   computed: {
     dynamicClass() {
-      return this.includeBorder ? 'border' : '';
+      return this.includeBorder ? 'productionTextDivBorder' : '';
     },
     dynamicStyles() {
       return {
@@ -71,7 +71,7 @@ export default {
   font-feature-settings: 'liga';
 }
 
-.border {
+.productionTextDivBorder {
   border-style: solid;
   border-width: 1px;
   border-color: #fcfef4;
