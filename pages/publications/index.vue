@@ -64,7 +64,7 @@
             :key="'publication' + i"
             cols=""
             align-self="center"
-            class="publicationsCols pa-0 ma-2 ma-md-6"
+            class="publicationsCols pa-0 ma-2 ma-md-4"
             data-testid="publication-container"
           >
             <PublicationThumbnail :publication="publication" />
@@ -87,7 +87,7 @@
             :key="'newPublication' + i"
             cols=""
             align-self="center"
-            class="publicationsCols pa-0 ma-2 ma-md-6"
+            class="publicationsCols pa-0 ma-2 ma-md-4"
             data-testid="publication-container"
           >
             <PublicationThumbnail :publication="newPublication" />
