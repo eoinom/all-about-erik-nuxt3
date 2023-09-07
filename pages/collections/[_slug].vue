@@ -67,12 +67,17 @@
             </svg>
           </div>
 
-          <div
+          <ContentRenderer
             v-else
-            v-html="collectionPgContent.description"
-            class="collection_headerText mx-auto my-0"
-            id="headerTextDevice"
-          />
+            :value="collectionPgContent"
+          >
+            <ContentRendererMarkdown
+              :value="collectionPgContent"
+              tag="div"
+              id="headerTextDevice"
+              class="collection_headerText mx-auto my-0"
+            />
+          </ContentRenderer>
         </div>
       </header>
 
