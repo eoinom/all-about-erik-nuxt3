@@ -472,19 +472,19 @@ export default {
       return this.publication_names.indexOf(this.title);
     },
     prevPublication() {
+      const i = this.publicationIndex;
       if (this.publication_names.length === 0) return {};
-      if (this.publicationIndex === 0)
-        var prev_i = publication_names.length - 1;
-      else prev_i = this.publicationIndex - 1;
+      if (i === 0) var prev_i = this.publication_names.length - 1;
+      else prev_i = i - 1;
       let publication = { ...this.publications[prev_i] };
       publication.link = slugify(publication.title);
       return publication;
     },
     nextPublication() {
+      const i = this.publicationIndex;
       if (this.publication_names.length === 0) return {};
-      if (this.publicationIndex === this.publication_names.length - 1)
-        var next_i = 0;
-      else next_i = this.publicationIndex + 1;
+      if (i === this.publication_names.length - 1) var next_i = 0;
+      else next_i = i + 1;
       let publication = { ...this.publications[next_i] };
       publication.link = slugify(publication.title);
       return publication;
