@@ -562,7 +562,12 @@ export default {
       this.archivesPgContent.tiles?.forEach((tile) => {
         archives.push({
           title: tile.text,
-          link: slugify(tile.text, { customReplacements: [["'", '']] }),
+          link: slugify(tile.text, {
+            customReplacements: [
+              ["'", ''],
+              [',', ''],
+            ],
+          }),
         });
       });
       return archives;
@@ -571,7 +576,12 @@ export default {
       for (let i = 0; i < this.archives.length; i++) {
         if (
           this.archives[i].link ==
-          slugify(this.title, { customReplacements: [["'", '']] })
+          slugify(this.title, {
+            customReplacements: [
+              ["'", ''],
+              [',', ''],
+            ],
+          })
         )
           return i;
       }
