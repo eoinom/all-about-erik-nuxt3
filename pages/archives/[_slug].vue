@@ -70,15 +70,18 @@
                   data-testid="title-img"
                 />
                 <SimpleBar
+                  v-if="archivePgContent.description"
                   class="simple-scrollbar"
                   data-simplebar-auto-hide="false"
                 >
-                  <ContentRenderer
-                    :value="archivePgContent"
-                    tag="span"
-                    class="archive_headerText"
-                    :style="headerTextStyles"
-                  />
+                  <ContentRenderer :value="archivePgContent">
+                    <ContentRendererMarkdown
+                      :value="archivePgContent"
+                      tag="span"
+                      class="archive_headerText"
+                      :style="headerTextStyles"
+                    />
+                  </ContentRenderer>
                 </SimpleBar>
               </div>
             </SlideshowImages>
