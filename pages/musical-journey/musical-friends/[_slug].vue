@@ -9,89 +9,83 @@
         :style="navLinksVisibility"
         class="navLinksContainer"
       >
-        <NuxtLink
-          :to="'/musical-journey/musical-friends/' + prev_friend.link"
-          v-tooltip.hover="{ variant: 'secondary' }"
-          :title="prev_friend.title"
-          class="nav_link nav_link_small"
-          id="nav_prev"
+        <v-tooltip
+          :text="prev_friend.name"
+          location="top"
         >
-          <img
-            immediate
-            alt="previous"
-            src="../../../assets/images/prev-white.png"
-            class="hideOnHover"
-          />
-          <img
-            immediate
-            alt="previous"
-            src="../../../assets/images/prev-yellow.png"
-            class="showOnHover"
-          />
-        </NuxtLink>
+          <template v-slot:activator="{ props }">
+            <NuxtLink
+              v-if="isViewportForSmallPrevLink"
+              v-bind="props"
+              :to="'/musical-journey/musical-friends/' + prev_friend.link"
+              class="nav_link nav_link_small"
+              id="nav_prev"
+            >
+              <img
+                immediate
+                alt="previous"
+                src="../../../assets/images/prev-white.png"
+                class="hideOnHover"
+              />
+              <img
+                immediate
+                alt="previous"
+                src="../../../assets/images/prev-yellow.png"
+                class="showOnHover"
+              />
+            </NuxtLink>
 
-        <NuxtLink
-          :to="'/musical-journey/musical-friends/' + prev_friend.link"
-          v-tooltip.hover="{ variant: 'secondary' }"
-          :title="prev_friend.title"
-          class="nav_link nav_link_big"
-          id="nav_previous"
-        >
-          <img
-            immediate
-            alt="previous"
-            src="../../../assets/images/previous-white.png"
-            class="hideOnHover"
-          />
-          <img
-            immediate
-            alt="previous"
-            src="../../../assets/images/previous-yellow.png"
-            class="showOnHover"
-          />
-        </NuxtLink>
+            <NuxtLink
+              v-else
+              v-bind="props"
+              :to="'/musical-journey/musical-friends/' + prev_friend.link"
+              class="nav_link nav_link_big"
+              id="nav_previous"
+            >
+              <img
+                immediate
+                alt="previous"
+                src="../../../assets/images/previous-white.png"
+                class="hideOnHover"
+              />
+              <img
+                immediate
+                alt="previous"
+                src="../../../assets/images/previous-yellow.png"
+                class="showOnHover"
+              />
+            </NuxtLink>
+          </template>
+        </v-tooltip>
 
-        <NuxtLink
-          :to="'/musical-journey/musical-friends/' + next_friend.link"
-          v-tooltip.hover="{ variant: 'secondary' }"
-          :title="next_friend.title"
-          class="nav_link nav_link_small"
-          id="nav_next"
+        <v-tooltip
+          :text="next_friend.name"
+          location="top"
         >
-          <img
-            immediate
-            alt="next"
-            src="../../../assets/images/next-white.png"
-            class="hideOnHover"
-          />
-          <img
-            immediate
-            alt="next"
-            src="../../../assets/images/next-yellow.png"
-            class="showOnHover"
-          />
-        </NuxtLink>
-
-        <NuxtLink
-          :to="'/musical-journey/musical-friends/' + next_friend.link"
-          v-tooltip.hover="{ variant: 'secondary' }"
-          :title="next_friend.title"
-          class="nav_link nav_link_big"
-          id="nav_next"
-        >
-          <img
-            immediate
-            alt="next"
-            src="../../../assets/images/next-white.png"
-            class="hideOnHover"
-          />
-          <img
-            immediate
-            alt="next"
-            src="../../../assets/images/next-yellow.png"
-            class="showOnHover"
-          />
-        </NuxtLink>
+          <template v-slot:activator="{ props }">
+            <NuxtLink
+              v-bind="props"
+              :to="'/musical-journey/musical-friends/' + next_friend.link"
+              :class="`nav_link ${
+                isViewportForSmallNextLink ? 'nav_link_small' : 'nav_link_big'
+              }`"
+              id="nav_next"
+            >
+              <img
+                immediate
+                alt="next"
+                src="../../../assets/images/next-white.png"
+                class="hideOnHover"
+              />
+              <img
+                immediate
+                alt="next"
+                src="../../../assets/images/next-yellow.png"
+                class="showOnHover"
+              />
+            </NuxtLink>
+          </template>
+        </v-tooltip>
       </div>
 
       <v-container
@@ -231,15 +225,24 @@
                   cols=""
                   class="headerNavCol"
                 >
-                  <NuxtLink
-                    :to="'/musical-journey/musical-friends/' + prev_friend.link"
-                    v-tooltip.hover="{ variant: 'secondary' }"
-                    :title="prev_friend.name"
-                    class="nav_link"
-                    id="nav_prev"
-                    >PREV</NuxtLink
+                  <v-tooltip
+                    :text="prev_friend.name"
+                    location="bottom"
                   >
+                    <template v-slot:activator="{ props }">
+                      <NuxtLink
+                        v-bind="props"
+                        :to="
+                          '/musical-journey/musical-friends/' + prev_friend.link
+                        "
+                        class="nav_link"
+                        id="nav_prev"
+                        >PREV</NuxtLink
+                      >
+                    </template>
+                  </v-tooltip>
                 </v-col>
+
                 <v-col
                   cols="6"
                   class="headerTextCol px-0"
@@ -249,18 +252,27 @@
                     v-html="headingMobile"
                   />
                 </v-col>
+
                 <v-col
                   cols=""
                   class="headerNavCol"
                 >
-                  <NuxtLink
-                    :to="'/musical-journey/musical-friends/' + next_friend.link"
-                    v-tooltip.hover="{ variant: 'secondary' }"
-                    :title="next_friend.name"
-                    class="nav_link"
-                    id="nav_next"
-                    >NEXT</NuxtLink
+                  <v-tooltip
+                    :text="next_friend.name"
+                    location="bottom"
                   >
+                    <template v-slot:activator="{ props }">
+                      <NuxtLink
+                        v-bind="props"
+                        :to="
+                          '/musical-journey/musical-friends/' + next_friend.link
+                        "
+                        class="nav_link"
+                        id="nav_next"
+                        >NEXT</NuxtLink
+                      >
+                    </template>
+                  </v-tooltip>
                 </v-col>
               </v-row>
             </v-container>
@@ -534,6 +546,12 @@ export default {
         css.opacity = 0;
       }
       return css;
+    },
+    isViewportForSmallPrevLink() {
+      return this.windowWidth < 1300;
+    },
+    isViewportForSmallNextLink() {
+      return this.windowWidth < 993;
     },
   },
 
@@ -956,7 +974,7 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
 }
 
 /* Special - Larger devices (desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) and (max-width: 1390.98px) {
+@media only screen and (min-width: 1200px) and (max-width: 1480.98px) {
   .main-col,
   .galleriesContainer {
     max-width: 61.46%;

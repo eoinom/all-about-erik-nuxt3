@@ -151,7 +151,7 @@
       <!-- MAIN CONTENT -->
       <v-container
         fluid
-        class="py-3 py-md-4 px-3 px-md-5"
+        class="pa-3 py-md-6 px-md-12"
         data-testid="main-content"
       >
         <v-row
@@ -159,60 +159,55 @@
           align="start"
           justify="center"
         >
-          <v-col cols="">
-            <!-- <NuxtLink
-              :to="'/publications/' + prevPublication.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prevPublication.title"
-              class="nav_link nav_link_small"
-              id="nav_prev"
-            > -->
-            <NuxtLink
-              :to="'/publications/' + prevPublication.link"
-              :title="prevPublication.title"
-              class="nav_link nav_link_small"
-              id="nav_prev"
+          <v-col>
+            <v-tooltip
+              :text="prevPublication.title"
+              location="top"
             >
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-publication-2lines-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-publication-2lines-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-if="isViewportForSmallLinks"
+                  v-bind="props"
+                  :to="'/publications/' + prevPublication.link"
+                  class="nav_link nav_link_small"
+                  id="nav_prev"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-publication-2lines-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-publication-2lines-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
 
-            <!-- <NuxtLink
-              :to="'/publications/' + prevPublication.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prevPublication.title"
-              class="nav_link nav_link_big"
-              id="nav_prev"
-            > -->
-            <NuxtLink
-              :to="'/publications/' + prevPublication.link"
-              :title="prevPublication.title"
-              class="nav_link nav_link_big"
-              id="nav_prev"
-            >
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-publication-1line-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../../assets/images/previous-publication-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+                <NuxtLink
+                  v-else
+                  v-bind="props"
+                  :to="'/publications/' + prevPublication.link"
+                  class="nav_link nav_link_big"
+                  id="nav_prev"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-publication-1line-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-publication-1line-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </v-col>
 
           <v-col
@@ -286,63 +281,57 @@
           </v-col>
 
           <v-col
-            cols=""
             order="2"
             order-lg="3"
           >
-            <!-- <NuxtLink
-              :to="'/publications/' + nextPublication.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="nextPublication.title"
-              class="nav_link nav_link_small"
-              id="nav_next"
-            > -->
-            <NuxtLink
-              :to="'/publications/' + nextPublication.link"
-              :title="nextPublication.title"
-              class="nav_link nav_link_small"
-              id="nav_next"
+            <v-tooltip
+              :text="nextPublication.title"
+              location="top"
             >
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-publication-2lines-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-publication-2lines-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-if="isViewportForSmallLinks"
+                  v-bind="props"
+                  :to="'/publications/' + nextPublication.link"
+                  class="nav_link nav_link_small"
+                  id="nav_next"
+                >
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-publication-2lines-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-publication-2lines-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
 
-            <!-- <NuxtLink
-              :to="'/publications/' + nextPublication.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="nextPublication.title"
-              class="nav_link nav_link_big"
-              id="nav_next"
-            > -->
-            <NuxtLink
-              :to="'/publications/' + nextPublication.link"
-              :title="nextPublication.title"
-              class="nav_link nav_link_big"
-              id="nav_next"
-            >
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-publication-1line-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../../assets/images/next-publication-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+                <NuxtLink
+                  v-else
+                  v-bind="props"
+                  :to="'/publications/' + nextPublication.link"
+                  class="nav_link nav_link_big"
+                  id="nav_next"
+                >
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-publication-1line-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-publication-1line-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </v-col>
         </v-row>
 
@@ -549,6 +538,9 @@ export default {
         width: actualWidth + 'px',
         height: actualHeight + 'px',
       };
+    },
+    isViewportForSmallLinks() {
+      return this.windowWidth < 1890;
     },
   },
 

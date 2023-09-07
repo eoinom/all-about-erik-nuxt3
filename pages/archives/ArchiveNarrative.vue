@@ -55,16 +55,22 @@
                 <p class="headerText">RECOLLECTIONS</p>
               </div>
 
-              <NuxtLink
-                v-if="showGalleryLink && iImg == 4"
-                :to="`/archives/${titleSlug}-gallery`"
-                v-tooltip.hover.bottom="{ variant: 'secondary' }"
-                title="Click to see the gallery"
-                class="headerOverlay link pt-4"
+              <v-tooltip
+                text="Click to see the gallery"
+                location="bottom"
               >
-                <p class="headerText mt-n1 mt-sm-0">CLICK</p>
-                <p class="headerText">TO VIEW THE GALLERY</p>
-              </NuxtLink>
+                <template v-slot:activator="{ props }">
+                  <NuxtLink
+                    v-if="showGalleryLink && iImg == 4"
+                    v-bind="props"
+                    :to="`/archives/${titleSlug}-gallery`"
+                    class="headerOverlay link pt-4"
+                  >
+                    <p class="headerText mt-n1 mt-sm-0">CLICK</p>
+                    <p class="headerText">TO VIEW THE GALLERY</p>
+                  </NuxtLink>
+                </template>
+              </v-tooltip>
             </div>
           </div>
 
@@ -94,117 +100,147 @@
                 <p class="headerText">TO READ MY</p>
                 <p class="headerText">RECOLLECTIONS</p>
 
-                <NuxtLink
-                  v-if="showGalleryLink"
-                  :to="`/archives/${titleSlug}-gallery`"
-                  v-tooltip.hover.bottom="{ variant: 'secondary' }"
-                  title="Click to see the gallery"
-                  class="headerOverlay link pt-4"
+                <v-tooltip
+                  text="Click to see the gallery"
+                  location="bottom"
                 >
-                  <p class="headerText mt-n1 mt-sm-0">CLICK</p>
-                  <p class="headerText">TO VIEW THE GALLERY</p>
-                </NuxtLink>
+                  <template v-slot:activator="{ props }">
+                    <NuxtLink
+                      v-if="showGalleryLink"
+                      v-bind="props"
+                      :to="`/archives/${titleSlug}-gallery`"
+                      class="headerOverlay link pt-4"
+                    >
+                      <p class="headerText mt-n1 mt-sm-0">CLICK</p>
+                      <p class="headerText">TO VIEW THE GALLERY</p>
+                    </NuxtLink>
+                  </template>
+                </v-tooltip>
               </div>
             </SlideshowImages>
           </div>
 
           <!-- BACK TO ARCHIVES LINK (AT TOP) -->
-          <NuxtLink
-            to="/archives/menu"
-            v-tooltip.hover.bottom="{ variant: 'secondary' }"
-            title="Back to Archives menu"
-            class="backToArchives"
+          <v-tooltip
+            text="Back to Archives menu"
+            location="bottom"
           >
-            <img
-              immediate
-              alt="Back to Archives"
-              src="../../assets/images/back-to-archives-single-line.png"
-              class="backToArchivesImg pt-4 pt-md-2"
-            />
-            <img
-              immediate
-              alt="Back to Archives"
-              src="../../assets/images/back-to-archives-single-line-yellow.png"
-              class="backToArchivesImg-hover pt-4 pt-md-2"
-            />
-          </NuxtLink>
+            <template v-slot:activator="{ props }">
+              <NuxtLink
+                v-bind="props"
+                to="/archives/menu"
+                class="backToArchives"
+              >
+                <img
+                  immediate
+                  alt="Back to Archives"
+                  src="../../assets/images/back-to-archives-single-line.png"
+                  class="backToArchivesImg pt-4 pt-md-2"
+                />
+                <img
+                  immediate
+                  alt="Back to Archives"
+                  src="../../assets/images/back-to-archives-single-line-yellow.png"
+                  class="backToArchivesImg-hover pt-4 pt-md-2"
+                />
+              </NuxtLink>
+            </template>
+          </v-tooltip>
         </header>
 
         <!-- BACK TO ARCHIVES LINK (AT END) -->
         <template v-else-if="s.backLink">
           <template v-if="titleSlug == 'my-dad-earl'">
-            <NuxtLink
-              to="/archives/menu"
-              v-tooltip.hover.bottom="{ variant: 'secondary' }"
-              title="Back to Archives menu"
-              class="backToArchivesEndEarl"
+            <v-tooltip
+              text="Back to Archives menu"
+              location="bottom"
             >
-              <img
-                immediate
-                alt="Back to Archives"
-                src="../../assets/images/back-to-archives-with-arrow-on-left.png"
-                class="backToArchivesEndImg"
-              />
-              <img
-                immediate
-                alt="Back to Archives"
-                src="../../assets/images/back-to-archives-with-arrow-on-left-yellow.png"
-                class="backToArchivesEndImg-hover"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-bind="props"
+                  to="/archives/menu"
+                  class="backToArchivesEndEarl"
+                >
+                  <img
+                    immediate
+                    alt="Back to Archives"
+                    src="../../assets/images/back-to-archives-with-arrow-on-left.png"
+                    class="backToArchivesEndImg"
+                  />
+                  <img
+                    immediate
+                    alt="Back to Archives"
+                    src="../../assets/images/back-to-archives-with-arrow-on-left-yellow.png"
+                    class="backToArchivesEndImg-hover"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
 
-            <NuxtLink
-              :to="`/archives/${titleSlug}-gallery`"
-              v-tooltip.hover.bottom="{ variant: 'secondary' }"
-              title="View the Gallery"
-              class="toEarlGalleryEnd"
+            <v-tooltip
+              text="View the Gallery"
+              location="top"
             >
-              <img
-                alt="View the Gallery"
-                src="../../assets/images/earl-gallery-menu.png"
-                class="backToArchivesEndImg pt-4 pt-md-2"
-              />
-              <img
-                alt="View the Gallery"
-                src="../../assets/images/earl-gallery-menu-yellow.png"
-                class="backToArchivesEndImg-hover pt-4 pt-md-2"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-bind="props"
+                  :to="`/archives/${titleSlug}-gallery`"
+                  class="toEarlGalleryEnd"
+                >
+                  <img
+                    alt="View the Gallery"
+                    src="../../assets/images/earl-gallery-menu.png"
+                    class="backToArchivesEndImg pt-4 pt-md-2"
+                  />
+                  <img
+                    alt="View the Gallery"
+                    src="../../assets/images/earl-gallery-menu-yellow.png"
+                    class="backToArchivesEndImg-hover pt-4 pt-md-2"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </template>
 
           <template v-else>
-            <NuxtLink
-              to="/archives/menu"
-              v-tooltip.hover.bottom="{ variant: 'secondary' }"
-              title="Back to Archives menu"
-              class="backToArchivesEnd"
-              :class="{
-                backToArchivesEndFamilyTrip:
-                  titleSlug == 'family-trip-to-europe-57',
-                portraitMode: aspectRatio < portraitTablet.maxAspect,
-              }"
+            <v-tooltip
+              text="Back to Archives menu"
+              location="bottom"
             >
-              <img
-                immediate
-                alt="Back to Archives"
-                src="../../assets/images/back-to-archives-with-arrow-on-left.png"
-                class="backToArchivesEndImg"
-                :class="{
-                  backToArchivesEndImgFamilyTrip:
-                    titleSlug == 'family-trip-to-europe-57',
-                }"
-              />
-              <img
-                immediate
-                alt="Back to Archives"
-                src="../../assets/images/back-to-archives-with-arrow-on-left-yellow.png"
-                class="backToArchivesEndImg-hover"
-                :class="{
-                  'backToArchivesEndImgFamilyTrip-hover':
-                    titleSlug == 'family-trip-to-europe-57',
-                }"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-bind="props"
+                  to="/archives/menu"
+                  class="backToArchivesEnd"
+                  :class="{
+                    backToArchivesEndFamilyTrip:
+                      titleSlug == 'family-trip-to-europe-57',
+                    portraitMode: aspectRatio < portraitTablet.maxAspect,
+                  }"
+                >
+                  <img
+                    immediate
+                    alt="Back to Archives"
+                    src="../../assets/images/back-to-archives-with-arrow-on-left.png"
+                    class="backToArchivesEndImg"
+                    :class="{
+                      backToArchivesEndImgFamilyTrip:
+                        titleSlug == 'family-trip-to-europe-57',
+                    }"
+                  />
+                  <img
+                    immediate
+                    alt="Back to Archives"
+                    src="../../assets/images/back-to-archives-with-arrow-on-left-yellow.png"
+                    class="backToArchivesEndImg-hover"
+                    :class="{
+                      'backToArchivesEndImgFamilyTrip-hover':
+                        titleSlug == 'family-trip-to-europe-57',
+                    }"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </template>
         </template>
 

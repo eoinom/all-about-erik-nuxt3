@@ -40,47 +40,54 @@
             lg="3"
             xl="4"
           >
-            <NuxtLink
-              :to="'/collections/' + prevCollection.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prevCollection.title"
-              class="nav_link nav_link_small"
-              id="nav_prev"
+            <v-tooltip
+              :text="prevCollection.title"
+              location="bottom"
             >
-              <img
-                immediate
-                alt="previous"
-                src="../assets/images/previous-collection-2lines-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../assets/images/previous-collection-2lines-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-if="isViewportForSmallLinks"
+                  v-bind="props"
+                  :to="'/collections/' + prevCollection.link"
+                  class="nav_link nav_link_small"
+                  id="nav_prev"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../assets/images/previous-collection-2lines-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../assets/images/previous-collection-2lines-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
 
-            <NuxtLink
-              :to="'/collections/' + prevCollection.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="prevCollection.title"
-              class="nav_link nav_link_big"
-              id="nav_prev"
-            >
-              <img
-                immediate
-                alt="previous"
-                src="../assets/images/previous-collection-1line-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../assets/images/previous-collection-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+                <NuxtLink
+                  v-else
+                  v-bind="props"
+                  :to="'/collections/' + prevCollection.link"
+                  class="nav_link nav_link_big"
+                  id="nav_prev"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../assets/images/previous-collection-1line-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../assets/images/previous-collection-1line-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </v-col>
 
           <v-col
@@ -101,47 +108,54 @@
             lg="3"
             xl="4"
           >
-            <NuxtLink
-              :to="'/collections/' + nextCollection.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="nextCollection.title"
-              class="nav_link nav_link_small"
-              id="nav_next"
+            <v-tooltip
+              :text="nextCollection.title"
+              location="bottom"
             >
-              <img
-                immediate
-                alt="next"
-                src="../assets/images/next-collection-2lines-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../assets/images/next-collection-2lines-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-if="isViewportForSmallLinks"
+                  v-bind="props"
+                  :to="'/collections/' + nextCollection.link"
+                  class="nav_link nav_link_small"
+                  id="nav_next"
+                >
+                  <img
+                    immediate
+                    alt="next"
+                    src="../assets/images/next-collection-2lines-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="next"
+                    src="../assets/images/next-collection-2lines-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
 
-            <NuxtLink
-              :to="'/collections/' + nextCollection.link"
-              v-tooltip.hover="{ variant: 'secondary' }"
-              :title="nextCollection.title"
-              class="nav_link nav_link_big"
-              id="nav_next"
-            >
-              <img
-                immediate
-                alt="next"
-                src="../assets/images/next-collection-1line-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="next"
-                src="../assets/images/next-collection-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+                <NuxtLink
+                  v-else
+                  v-bind="props"
+                  :to="'/collections/' + nextCollection.link"
+                  class="nav_link nav_link_big"
+                  id="nav_next"
+                >
+                  <img
+                    immediate
+                    alt="next"
+                    src="../assets/images/next-collection-1line-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="next"
+                    src="../assets/images/next-collection-1line-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </v-col>
         </v-row>
       </v-container>
@@ -316,6 +330,9 @@ export default {
       return {
         '--headerHeight': this.headerHeight + 'px',
       };
+    },
+    isViewportForSmallLinks() {
+      return this.windowWidth < 992;
     },
   },
 

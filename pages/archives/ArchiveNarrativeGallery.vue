@@ -4,25 +4,31 @@
     class="pb-12"
   >
     <header id="header">
-      <NuxtLink
-        to="/archives/menu"
-        v-tooltip.hover.bottom="{ variant: 'secondary' }"
-        title="Back to Archives menu"
-        class="backToArchives"
+      <v-tooltip
+        text="Back to Archives menu"
+        location="bottom"
       >
-        <img
-          immediate
-          alt="Back to Archives"
-          src="../../assets/images/back-to-archives-single-line.png"
-          class="backToArchivesImg pt-0 pt-md-2"
-        />
-        <img
-          immediate
-          alt="Back to Archives"
-          src="../../assets/images/back-to-archives-single-line-yellow.png"
-          class="backToArchivesImg-hover pt-0 pt-md-2"
-        />
-      </NuxtLink>
+        <template v-slot:activator="{ props }">
+          <NuxtLink
+            v-bind="props"
+            to="/archives/menu"
+            class="backToArchives"
+          >
+            <img
+              immediate
+              alt="Back to Archives"
+              src="../../assets/images/back-to-archives-single-line.png"
+              class="backToArchivesImg pt-0 pt-md-2"
+            />
+            <img
+              immediate
+              alt="Back to Archives"
+              src="../../assets/images/back-to-archives-single-line-yellow.png"
+              class="backToArchivesImg-hover pt-0 pt-md-2"
+            />
+          </NuxtLink>
+        </template>
+      </v-tooltip>
 
       <!-- STATIC HEADER IMAGES -->
       <div
@@ -56,17 +62,23 @@
             <p class="headerText">TO VIEW THE GALLERY</p>
           </div>
 
-          <NuxtLink
-            v-if="iImg == 4"
-            :to="`/archives/${titleSlug}`"
-            v-tooltip.hover.bottom="{ variant: 'secondary' }"
-            title="Click to see the gallery"
-            class="headerOverlay link pt-4"
+          <v-tooltip
+            text="Click to read my recollections"
+            location="bottom"
           >
-            <p class="headerText mt-n1 mt-sm-0">CLICK</p>
-            <p class="headerText">TO READ MY</p>
-            <p class="headerText">RECOLLECTIONS</p>
-          </NuxtLink>
+            <template v-slot:activator="{ props }">
+              <NuxtLink
+                v-bind="props"
+                v-if="iImg == 4"
+                :to="`/archives/${titleSlug}`"
+                class="headerOverlay link pt-4"
+              >
+                <p class="headerText mt-n1 mt-sm-0">CLICK</p>
+                <p class="headerText">TO READ MY</p>
+                <p class="headerText">RECOLLECTIONS</p>
+              </NuxtLink>
+            </template>
+          </v-tooltip>
         </div>
       </div>
 
@@ -95,16 +107,22 @@
             <p class="headerText">SCROLL</p>
             <p class="headerText">TO VIEW THE GALLERY</p>
 
-            <NuxtLink
-              :to="`/archives/${titleSlug}`"
-              v-tooltip.hover.bottom="{ variant: 'secondary' }"
-              title="Click to see the gallery"
-              class="link"
+            <v-tooltip
+              text="Click to read my recollections"
+              location="bottom"
             >
-              <p class="headerText mt-n1 mt-sm-0">CLICK</p>
-              <p class="headerText">TO READ MY</p>
-              <p class="headerText">RECOLLECTIONS</p>
-            </NuxtLink>
+              <template v-slot:activator="{ props }">
+                <NuxtLink
+                  v-bind="props"
+                  :to="`/archives/${titleSlug}`"
+                  class="link"
+                >
+                  <p class="headerText mt-n1 mt-sm-0">CLICK</p>
+                  <p class="headerText">TO READ MY</p>
+                  <p class="headerText">RECOLLECTIONS</p>
+                </NuxtLink>
+              </template>
+            </v-tooltip>
           </div>
         </SlideshowImages>
       </div>
