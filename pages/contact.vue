@@ -155,7 +155,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
   src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
@@ -271,6 +271,7 @@ label {
   line-height: 1.3125rem;
   letter-spacing: 5px;
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 .text-titles,
 .text-main {
