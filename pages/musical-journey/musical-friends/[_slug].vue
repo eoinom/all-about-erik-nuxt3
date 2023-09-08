@@ -9,18 +9,18 @@
         :style="navLinksVisibility"
         class="navLinksContainer"
       >
-        <v-tooltip
-          :text="prev_friend.name"
-          location="top"
+        <NuxtLink
+          v-if="isViewportForSmallPrevLink"
+          :to="'/musical-journey/musical-friends/' + prev_friend.link"
+          class="nav_link nav_link_small"
+          id="nav_prev"
         >
-          <template v-slot:activator="{ props }">
-            <NuxtLink
-              v-if="isViewportForSmallPrevLink"
-              v-bind="props"
-              :to="'/musical-journey/musical-friends/' + prev_friend.link"
-              class="nav_link nav_link_small"
-              id="nav_prev"
-            >
+          <Tooltip
+            :text="prev_friend.name"
+            location="top"
+            offset="0"
+          >
+            <div>
               <img
                 immediate
                 alt="previous"
@@ -33,44 +33,49 @@
                 src="../../../assets/images/prev-yellow.png"
                 class="showOnHover"
               />
-            </NuxtLink>
+            </div>
+          </Tooltip>
+        </NuxtLink>
 
-            <NuxtLink
-              v-else
-              v-bind="props"
-              :to="'/musical-journey/musical-friends/' + prev_friend.link"
-              class="nav_link nav_link_big"
-              id="nav_previous"
-            >
-              <img
-                immediate
-                alt="previous"
-                src="../../../assets/images/previous-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="previous"
-                src="../../../assets/images/previous-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-          </template>
-        </v-tooltip>
-
-        <v-tooltip
-          :text="next_friend.name"
-          location="top"
+        <NuxtLink
+          v-else
+          :to="'/musical-journey/musical-friends/' + prev_friend.link"
+          class="nav_link nav_link_big"
+          id="nav_previous"
         >
-          <template v-slot:activator="{ props }">
-            <NuxtLink
-              v-bind="props"
-              :to="'/musical-journey/musical-friends/' + next_friend.link"
-              :class="`nav_link ${
-                isViewportForSmallNextLink ? 'nav_link_small' : 'nav_link_big'
-              }`"
-              id="nav_next"
-            >
+          <Tooltip
+            :text="prev_friend.name"
+            location="top"
+            offset="0"
+          >
+            <img
+              immediate
+              alt="previous"
+              src="../../../assets/images/previous-white.png"
+              class="hideOnHover"
+            />
+            <img
+              immediate
+              alt="previous"
+              src="../../../assets/images/previous-yellow.png"
+              class="showOnHover"
+            />
+          </Tooltip>
+        </NuxtLink>
+
+        <NuxtLink
+          :to="'/musical-journey/musical-friends/' + next_friend.link"
+          :class="`nav_link ${
+            isViewportForSmallNextLink ? 'nav_link_small' : 'nav_link_big'
+          }`"
+          id="nav_next"
+        >
+          <Tooltip
+            :text="next_friend.name"
+            location="top"
+            offset="0"
+          >
+            <div>
               <img
                 immediate
                 alt="next"
@@ -83,9 +88,9 @@
                 src="../../../assets/images/next-yellow.png"
                 class="showOnHover"
               />
-            </NuxtLink>
-          </template>
-        </v-tooltip>
+            </div>
+          </Tooltip>
+        </NuxtLink>
       </div>
 
       <v-container
@@ -116,12 +121,26 @@
               justify="center"
               id="mediaItemsRow"
             >
-              <a
+              <!-- <a
                 v-for="(item, index) in musicalFriendPgContent.mediaItems"
                 :key="index"
                 :href="item.mediaType == 'link' ? item.galleries[0].url : ''"
                 class="mediaItems pa-2"
                 v-b-toggle="String(index + 1)"
+                @click="
+                  ($event) => {
+                    if (item.mediaType !== 'link') {
+                      $event.preventDefault();
+                    }
+                    mediaItemClick(item, index);
+                  }
+                "
+              > -->
+              <a
+                v-for="(item, index) in musicalFriendPgContent.mediaItems"
+                :key="index"
+                :href="item.mediaType == 'link' ? item.galleries[0].url : ''"
+                class="mediaItems pa-2"
                 @click="
                   ($event) => {
                     if (item.mediaType !== 'link') {
@@ -225,22 +244,19 @@
                   cols=""
                   class="headerNavCol"
                 >
-                  <v-tooltip
+                  <Tooltip
                     :text="prev_friend.name"
                     location="bottom"
                   >
-                    <template v-slot:activator="{ props }">
-                      <NuxtLink
-                        v-bind="props"
-                        :to="
-                          '/musical-journey/musical-friends/' + prev_friend.link
-                        "
-                        class="nav_link"
-                        id="nav_prev"
-                        >PREV</NuxtLink
-                      >
-                    </template>
-                  </v-tooltip>
+                    <NuxtLink
+                      :to="
+                        '/musical-journey/musical-friends/' + prev_friend.link
+                      "
+                      class="nav_link"
+                      id="nav_prev"
+                      >PREV</NuxtLink
+                    >
+                  </Tooltip>
                 </v-col>
 
                 <v-col
@@ -257,22 +273,19 @@
                   cols=""
                   class="headerNavCol"
                 >
-                  <v-tooltip
+                  <Tooltip
                     :text="next_friend.name"
                     location="bottom"
                   >
-                    <template v-slot:activator="{ props }">
-                      <NuxtLink
-                        v-bind="props"
-                        :to="
-                          '/musical-journey/musical-friends/' + next_friend.link
-                        "
-                        class="nav_link"
-                        id="nav_next"
-                        >NEXT</NuxtLink
-                      >
-                    </template>
-                  </v-tooltip>
+                    <NuxtLink
+                      :to="
+                        '/musical-journey/musical-friends/' + next_friend.link
+                      "
+                      class="nav_link"
+                      id="nav_next"
+                      >NEXT</NuxtLink
+                    >
+                  </Tooltip>
                 </v-col>
               </v-row>
             </v-container>
@@ -299,12 +312,26 @@
               id="mediaItemsRow"
               class="galleriesContainer mx-0"
             >
-              <a
+              <!-- <a
                 v-for="(item, index) in musicalFriendPgContent.mediaItems"
                 :key="index"
                 :href="item.mediaType == 'link' ? item.galleries[0].url : ''"
                 class="mediaItems pa-2"
                 v-b-toggle="String(index + 1)"
+                @click="
+                  ($event) => {
+                    if (item.mediaType !== 'link') {
+                      $event.preventDefault();
+                    }
+                    mediaItemClick(item, index);
+                  }
+                "
+              > -->
+              <a
+                v-for="(item, index) in musicalFriendPgContent.mediaItems"
+                :key="index"
+                :href="item.mediaType == 'link' ? item.galleries[0].url : ''"
+                class="mediaItems pa-2"
                 @click="
                   ($event) => {
                     if (item.mediaType !== 'link') {

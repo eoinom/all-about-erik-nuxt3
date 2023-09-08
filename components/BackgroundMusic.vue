@@ -3,30 +3,26 @@
     v-if="audioFile"
     class="soundIconContainer"
   >
-    <v-tooltip
+    <Tooltip
       :text="tooltipText"
       location="bottom"
       theme="dark"
     >
-      <template v-slot:activator="{ props }">
-        <div v-bind="props">
-          <img
-            v-if="audioPlaying && !audioMuted"
-            alt="Mute background music"
-            src="../assets/images/sound-playing.png"
-            class="audioIcon"
-            @click="clickAudioIcon()"
-          />
-          <img
-            v-else
-            alt="Play background music"
-            src="../assets/images/sound-muted.png"
-            class="audioIcon"
-            @click="clickAudioIcon()"
-          />
-        </div>
-      </template>
-    </v-tooltip>
+      <img
+        v-if="audioPlaying && !audioMuted"
+        alt="Mute background music"
+        src="../assets/images/sound-playing.png"
+        class="audioIcon"
+        @click="clickAudioIcon()"
+      />
+      <img
+        v-else
+        alt="Play background music"
+        src="../assets/images/sound-muted.png"
+        class="audioIcon"
+        @click="clickAudioIcon()"
+      />
+    </Tooltip>
 
     <audio
       controls

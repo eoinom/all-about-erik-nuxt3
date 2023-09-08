@@ -12,16 +12,12 @@
         id="header"
         class="px-3"
       >
-        <v-tooltip
-          text="Back to Archives menu"
-          location="bottom"
-        >
-          <template v-slot:activator="{ props }">
-            <NuxtLink
-              v-bind="props"
-              to="/archives/menu"
-              class="backToArchives"
-            >
+        <div class="backToArchives">
+          <Tooltip
+            text="Back to Archives menu"
+            location="bottom"
+          >
+            <NuxtLink to="/archives/menu">
               <img
                 immediate
                 alt="Back to Archives"
@@ -35,8 +31,8 @@
                 class="backToArchivesImg-hover pt-3 pt-md-2"
               />
             </NuxtLink>
-          </template>
-        </v-tooltip>
+          </Tooltip>
+        </div>
 
         <div class="headerWrapper">
           <!-- SLIDESHOWS -->
@@ -164,83 +160,76 @@
             class="pt-2"
           >
             <v-col style="text-align: left">
-              <v-tooltip
+              <Tooltip
                 :text="prev_archive.title"
                 location="top"
               >
-                <template v-slot:activator="{ props }">
-                  <NuxtLink
-                    v-if="isViewportForSmallLinks"
-                    v-bind="props"
-                    :to="'/archives/' + prev_archive.link"
-                    class="nav_link nav_link_small"
-                    id="nav_prev"
-                  >
-                    <img
-                      immediate
-                      alt="previous"
-                      src="../../assets/images/prev-white.png"
-                      class="hideOnHover"
-                    />
-                    <img
-                      immediate
-                      alt="previous"
-                      src="../../assets/images/prev-yellow.png"
-                      class="showOnHover"
-                    />
-                  </NuxtLink>
+                <NuxtLink
+                  v-if="isViewportForSmallLinks"
+                  :to="'/archives/' + prev_archive.link"
+                  class="nav_link nav_link_small"
+                  id="nav_prev"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/prev-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/prev-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
 
-                  <NuxtLink
-                    v-else
-                    v-bind="props"
-                    :to="'/archives/' + prev_archive.link"
-                    class="nav_link nav_link_big"
-                    id="nav_previous"
-                  >
-                    <img
-                      immediate
-                      alt="previous"
-                      src="../../assets/images/previous-white.png"
-                      class="hideOnHover"
-                    />
-                    <img
-                      immediate
-                      alt="previous"
-                      src="../../assets/images/previous-yellow.png"
-                      class="showOnHover"
-                    />
-                  </NuxtLink>
-                </template>
-              </v-tooltip>
+                <NuxtLink
+                  v-else
+                  :to="'/archives/' + prev_archive.link"
+                  class="nav_link nav_link_big"
+                  id="nav_previous"
+                >
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="previous"
+                    src="../../assets/images/previous-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </Tooltip>
             </v-col>
 
             <v-col style="text-align: right">
-              <v-tooltip
+              <Tooltip
                 :text="next_archive.title"
                 location="top"
               >
-                <template v-slot:activator="{ props }">
-                  <NuxtLink
-                    v-bind="props"
-                    :to="'/archives/' + next_archive.link"
-                    class="nav_link"
-                    id="nav_next"
-                  >
-                    <img
-                      immediate
-                      alt="next"
-                      src="../../assets/images/next-white.png"
-                      class="hideOnHover"
-                    />
-                    <img
-                      immediate
-                      alt="next"
-                      src="../../assets/images/next-yellow.png"
-                      class="showOnHover"
-                    />
-                  </NuxtLink>
-                </template>
-              </v-tooltip>
+                <NuxtLink
+                  :to="'/archives/' + next_archive.link"
+                  class="nav_link"
+                  id="nav_next"
+                >
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-white.png"
+                    class="hideOnHover"
+                  />
+                  <img
+                    immediate
+                    alt="next"
+                    src="../../assets/images/next-yellow.png"
+                    class="showOnHover"
+                  />
+                </NuxtLink>
+              </Tooltip>
             </v-col>
           </v-row>
         </v-container>

@@ -1,173 +1,172 @@
 <template>
-  <router-view v-slot="{ route }">
-    <div :key="'publication_' + titleSlug">
-      <!-- Need a unique key for the transition above to work on route change -->
+  <ClientOnly>
+    <router-view v-slot="{ route }">
+      <div :key="'publication_' + titleSlug">
+        <!-- Need a unique key for the transition above to work on route change -->
 
-      <Head>
-        <Title>{{ title }}</Title>
-      </Head>
+        <Head>
+          <Title>{{ title }}</Title>
+        </Head>
 
-      <img
-        v-if="publicationPgContent.pageBgImg !== ''"
-        :src="publicationPgContent.pageBgImg"
-        id="pageBgImg"
-        :style="pageBgStyles"
-      />
+        <img
+          v-if="publicationPgContent.pageBgImg !== ''"
+          :src="publicationPgContent.pageBgImg"
+          id="pageBgImg"
+          :style="pageBgStyles"
+        />
 
-      <!-- Header for OLD TIMEY SPORTSMEN -->
-      <header
-        v-if="title == 'Old Timey Sportsmen'"
-        id="header"
-        :style="headerStyles"
-      >
-        <v-container fluid>
-          <v-row
-            align="center"
-            style="min-height: 215px"
-          >
-            <v-col
-              v-if="publicationPgContent.headerLeftImg !== ''"
-              align-self="center"
-              class="headerImageCol"
-              style="text-align: right"
-            >
-              <img
-                alt="Hunter"
-                :src="publicationPgContent.headerLeftImg"
-                id="headerLeftImg"
-              />
-            </v-col>
-
-            <v-col
-              class="sportsmenHeaderMainCol"
-              align-self="end"
-            >
-              <img
-                :src="titleImg1Line"
-                class="titleImg titleImg1Line pt-3"
-              />
-              <img
-                :src="titleImg2Lines"
-                class="titleImg titleImg2Lines sportsmen2LineTitleImg"
-              />
-
-              <div
-                v-html="publicationPgContent.description"
-                class="publication_headerText"
-              />
-
-              <v-row
-                align="start"
-                justify="center"
-                style="min-height: 68px; padding-top: 8px"
-              >
-                <v-col>
-                  <a
-                    href="http://oldtimeysportsmenphotogallery.com/gallery/"
-                    target="_blank"
-                    class="sportsmenLinkText"
-                    style="margin: 0 auto"
-                    @mouseover="updateSportsmenGalleryHover(true)"
-                    @mouseleave="updateSportsmenGalleryHover(false)"
-                  >
-                    <div
-                      v-if="windowWidth > 350"
-                      style="padding-bottom: 66px"
-                    >
-                      <span
-                        >SEE MORE OF THE COLLECTION, CLICK FOR A NEW TAB</span
-                      >
-                      <br /><span class="line2"
-                        >Old-Time Sportsmen Gallery</span
-                      >
-                    </div>
-                    <div
-                      v-else
-                      style="padding-bottom: 66px"
-                    >
-                      <span
-                        >SEE MORE OF THE COLLECTION, CLICK FOR A NEW TAB</span
-                      >
-                      <br /><span class="line2"
-                        >Old-Time Sportsmen <br />Gallery</span
-                      >
-                    </div>
-
-                    <img
-                      v-show="sportsmenGalleryHover"
-                      class="headerHoverImg"
-                      alt="Guns crossed"
-                      :src="publicationPgContent.headerHoverImg"
-                    />
-                  </a>
-                </v-col>
-              </v-row>
-            </v-col>
-
-            <v-col
-              v-if="publicationPgContent.headerRightImg !== ''"
-              align-self="center"
-              class="headerImageCol"
-              style="text-align: left"
-            >
-              <img
-                alt="ducks"
-                :src="publicationPgContent.headerRightImg"
-                id="headerRightImg"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
-      </header>
-
-      <!-- Header for OTHER PAGES -->
-      <header
-        v-else
-        id="header"
-        :style="headerStyles"
-      >
-        <div class="headerItems">
-          <img
-            :src="titleImg1Line"
-            class="titleImg titleImg1Line pt-3"
-          />
-          <img
-            :src="titleImg2Lines"
-            class="titleImg titleImg2Lines"
-          />
-
-          <div
-            v-html="publicationPgContent.description"
-            class="publication_headerText"
-          />
-          <div
-            v-if="publicationPgContent.volumeInfo !== ''"
-            v-html="publicationPgContent.volumeInfo"
-            class="publication_headerText pt-1"
-          />
-        </div>
-      </header>
-
-      <!-- MAIN CONTENT -->
-      <v-container
-        fluid
-        class="pa-3 py-md-6 px-md-12"
-        data-testid="main-content"
-      >
-        <v-row
-          no-gutters
-          align="start"
-          justify="center"
+        <!-- Header for OLD TIMEY SPORTSMEN -->
+        <header
+          v-if="title == 'Old Timey Sportsmen'"
+          id="header"
+          :style="headerStyles"
         >
-          <v-col>
-            <v-tooltip
-              :text="prevPublication.title"
-              location="top"
+          <v-container fluid>
+            <v-row
+              align="center"
+              style="min-height: 215px"
             >
-              <template v-slot:activator="{ props }">
+              <v-col
+                v-if="publicationPgContent.headerLeftImg !== ''"
+                align-self="center"
+                class="headerImageCol"
+                style="text-align: right"
+              >
+                <img
+                  alt="Hunter"
+                  :src="publicationPgContent.headerLeftImg"
+                  id="headerLeftImg"
+                />
+              </v-col>
+
+              <v-col
+                class="sportsmenHeaderMainCol"
+                align-self="end"
+              >
+                <img
+                  :src="titleImg1Line"
+                  class="titleImg titleImg1Line pt-3"
+                />
+                <img
+                  :src="titleImg2Lines"
+                  class="titleImg titleImg2Lines sportsmen2LineTitleImg"
+                />
+
+                <div
+                  v-html="publicationPgContent.description"
+                  class="publication_headerText"
+                />
+
+                <v-row
+                  align="start"
+                  justify="center"
+                  style="min-height: 68px; padding-top: 8px"
+                >
+                  <v-col>
+                    <a
+                      href="http://oldtimeysportsmenphotogallery.com/gallery/"
+                      target="_blank"
+                      class="sportsmenLinkText"
+                      style="margin: 0 auto"
+                      @mouseover="updateSportsmenGalleryHover(true)"
+                      @mouseleave="updateSportsmenGalleryHover(false)"
+                    >
+                      <div
+                        v-if="windowWidth > 350"
+                        style="padding-bottom: 66px"
+                      >
+                        <span
+                          >SEE MORE OF THE COLLECTION, CLICK FOR A NEW TAB</span
+                        >
+                        <br /><span class="line2"
+                          >Old-Time Sportsmen Gallery</span
+                        >
+                      </div>
+                      <div
+                        v-else
+                        style="padding-bottom: 66px"
+                      >
+                        <span
+                          >SEE MORE OF THE COLLECTION, CLICK FOR A NEW TAB</span
+                        >
+                        <br /><span class="line2"
+                          >Old-Time Sportsmen <br />Gallery</span
+                        >
+                      </div>
+
+                      <img
+                        v-show="sportsmenGalleryHover"
+                        class="headerHoverImg"
+                        alt="Guns crossed"
+                        :src="publicationPgContent.headerHoverImg"
+                      />
+                    </a>
+                  </v-col>
+                </v-row>
+              </v-col>
+
+              <v-col
+                v-if="publicationPgContent.headerRightImg !== ''"
+                align-self="center"
+                class="headerImageCol"
+                style="text-align: left"
+              >
+                <img
+                  alt="ducks"
+                  :src="publicationPgContent.headerRightImg"
+                  id="headerRightImg"
+                />
+              </v-col>
+            </v-row>
+          </v-container>
+        </header>
+
+        <!-- Header for OTHER PAGES -->
+        <header
+          v-else
+          id="header"
+          :style="headerStyles"
+        >
+          <div class="headerItems">
+            <img
+              :src="titleImg1Line"
+              class="titleImg titleImg1Line pt-3"
+            />
+            <img
+              :src="titleImg2Lines"
+              class="titleImg titleImg2Lines"
+            />
+
+            <div
+              v-html="publicationPgContent.description"
+              class="publication_headerText"
+            />
+            <div
+              v-if="publicationPgContent.volumeInfo !== ''"
+              v-html="publicationPgContent.volumeInfo"
+              class="publication_headerText pt-1"
+            />
+          </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <v-container
+          fluid
+          class="pa-3 py-md-6 px-md-12"
+          data-testid="main-content"
+        >
+          <v-row
+            no-gutters
+            align="start"
+            justify="center"
+          >
+            <v-col>
+              <Tooltip
+                :text="prevPublication.title"
+                location="top"
+              >
                 <NuxtLink
                   v-if="isViewportForSmallLinks"
-                  v-bind="props"
                   :to="'/publications/' + prevPublication.link"
                   class="nav_link nav_link_small"
                   id="nav_prev"
@@ -188,7 +187,6 @@
 
                 <NuxtLink
                   v-else
-                  v-bind="props"
                   :to="'/publications/' + prevPublication.link"
                   class="nav_link nav_link_big"
                   id="nav_prev"
@@ -206,92 +204,89 @@
                     class="showOnHover"
                   />
                 </NuxtLink>
-              </template>
-            </v-tooltip>
-          </v-col>
+              </Tooltip>
+            </v-col>
 
-          <v-col
-            cols="11"
-            sm="11"
-            lg="8"
-            xl="7"
-            order="3"
-            order-lg="2"
-            class="pt-3 pb-3 pt-sm-0"
-            id="mainCol"
-          >
-            <BookViewer
-              v-if="bookImagesUrlsStdRes && bookImagesUrlsHiRes"
-              :pages="bookImagesUrlsStdRes"
-              :pagesHiRes="bookImagesUrlsHiRes"
-              :isFullscreen="isBookFullscreen"
-              :viewportHeight="bookVpHeight"
-              :showSinglePage="bookShowSinglePage"
-              :key="'bookViewer' + bookKey"
-              @toggleFullscreen="toggleFullscreen()"
-              @reload="reloadBook()"
-            />
-
-            <div
-              v-if="title !== 'Old Timey Sportsmen'"
-              v-html="publicationPgContent.fullTitle"
-              class="publication_headerText text-left pt-4"
-            />
-            <div
-              v-if="
-                publicationPgContent.volumeInfo &&
-                publicationPgContent.volumeInfo !== ''
-              "
-              v-html="publicationPgContent.volumeInfo"
-              class="publication_headerText text-left pt-2"
-            />
-            <div class="publication_mainText pt-4">
-              {{ publicationPgContent.mainTextTop }}
-            </div>
-            <div class="publication_mainText pt-4">
-              {{ publicationPgContent.mainTextBottom }}
-            </div>
-
-            <br />
-
-            <div
-              v-if="
-                publicationPgContent.videoUrl &&
-                publicationPgContent.videoUrl !== ''
-              "
-              id="videoDiv"
+            <v-col
+              cols="11"
+              sm="11"
+              lg="8"
+              xl="7"
+              order="3"
+              order-lg="2"
+              class="pt-3 pb-3 pt-sm-0"
+              id="mainCol"
             >
-              <h2 class="videoTitleText mb-3">
-                WATCH THE VIDEO ABOUT THE BOOK HERE
-              </h2>
-              <iframe
-                :src="
-                  publicationPgContent.videoUrl +
-                  '?autoplay=0&color=505050&title=0&byline=0&portrait=0'
+              <BookViewer
+                v-if="bookImagesUrlsStdRes && bookImagesUrlsHiRes"
+                :pages="bookImagesUrlsStdRes"
+                :pagesHiRes="bookImagesUrlsHiRes"
+                :isFullscreen="isBookFullscreen"
+                :viewportHeight="bookVpHeight"
+                :showSinglePage="bookShowSinglePage"
+                :key="'bookViewer' + bookKey"
+                @toggleFullscreen="toggleFullscreen()"
+                @reload="reloadBook()"
+              />
+
+              <div
+                v-if="title !== 'Old Timey Sportsmen'"
+                v-html="publicationPgContent.fullTitle"
+                class="publication_headerText text-left pt-4"
+              />
+              <div
+                v-if="
+                  publicationPgContent.volumeInfo &&
+                  publicationPgContent.volumeInfo !== ''
                 "
-                style="max-width: 100%"
-                :style="videoFrameStyles"
-                frameborder="0"
-                webkitallowfullscreen
-                mozallowfullscreen
-                allowfullscreen
-              >
-              </iframe>
-            </div>
-          </v-col>
+                v-html="publicationPgContent.volumeInfo"
+                class="publication_headerText text-left pt-2"
+              />
+              <div class="publication_mainText pt-4">
+                {{ publicationPgContent.mainTextTop }}
+              </div>
+              <div class="publication_mainText pt-4">
+                {{ publicationPgContent.mainTextBottom }}
+              </div>
 
-          <v-col
-            order="2"
-            order-lg="3"
-          >
-            <v-tooltip
-              :text="nextPublication.title"
-              location="top"
+              <br />
+
+              <div
+                v-if="
+                  publicationPgContent.videoUrl &&
+                  publicationPgContent.videoUrl !== ''
+                "
+                id="videoDiv"
+              >
+                <h2 class="videoTitleText mb-3">
+                  WATCH THE VIDEO ABOUT THE BOOK HERE
+                </h2>
+                <iframe
+                  :src="
+                    publicationPgContent.videoUrl +
+                    '?autoplay=0&color=505050&title=0&byline=0&portrait=0'
+                  "
+                  style="max-width: 100%"
+                  :style="videoFrameStyles"
+                  frameborder="0"
+                  webkitallowfullscreen
+                  mozallowfullscreen
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+            </v-col>
+
+            <v-col
+              order="2"
+              order-lg="3"
             >
-              <template v-slot:activator="{ props }">
+              <Tooltip
+                :text="nextPublication.title"
+                location="top"
+              >
                 <NuxtLink
                   v-if="isViewportForSmallLinks"
-                  v-bind="props"
                   :to="'/publications/' + nextPublication.link"
                   class="nav_link nav_link_small"
                   id="nav_next"
@@ -312,7 +307,6 @@
 
                 <NuxtLink
                   v-else
-                  v-bind="props"
                   :to="'/publications/' + nextPublication.link"
                   class="nav_link nav_link_big"
                   id="nav_next"
@@ -330,55 +324,55 @@
                     class="showOnHover"
                   />
                 </NuxtLink>
-              </template>
-            </v-tooltip>
-          </v-col>
-        </v-row>
+              </Tooltip>
+            </v-col>
+          </v-row>
 
-        <v-row no-gutters>
-          <v-col>
-            <NuxtLink
-              :to="{ path: '/publications/', query: { playMusic: 'false' } }"
-              class="nav_link nav_link_big"
-              id="nav_back"
-            >
-              <img
-                immediate
-                alt="Back to publications menu"
-                src="../../assets/images/back-to-publications-menu-1line-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="Back to publications menu"
-                src="../../assets/images/back-to-publications-menu-1line-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
+          <v-row no-gutters>
+            <v-col>
+              <NuxtLink
+                :to="{ path: '/publications/', query: { playMusic: 'false' } }"
+                class="nav_link nav_link_big"
+                id="nav_back"
+              >
+                <img
+                  immediate
+                  alt="Back to publications menu"
+                  src="../../assets/images/back-to-publications-menu-1line-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="Back to publications menu"
+                  src="../../assets/images/back-to-publications-menu-1line-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
 
-            <NuxtLink
-              :to="{ path: '/publications/', query: { playMusic: 'false' } }"
-              class="nav_link nav_link_small"
-              id="nav_back"
-            >
-              <img
-                immediate
-                alt="Back to publications menu"
-                src="../../assets/images/back-to-publications-menu-3lines-white.png"
-                class="hideOnHover"
-              />
-              <img
-                immediate
-                alt="Back to publications menu"
-                src="../../assets/images/back-to-publications-menu-3lines-yellow.png"
-                class="showOnHover"
-              />
-            </NuxtLink>
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
-  </router-view>
+              <NuxtLink
+                :to="{ path: '/publications/', query: { playMusic: 'false' } }"
+                class="nav_link nav_link_small"
+                id="nav_back"
+              >
+                <img
+                  immediate
+                  alt="Back to publications menu"
+                  src="../../assets/images/back-to-publications-menu-3lines-white.png"
+                  class="hideOnHover"
+                />
+                <img
+                  immediate
+                  alt="Back to publications menu"
+                  src="../../assets/images/back-to-publications-menu-3lines-yellow.png"
+                  class="showOnHover"
+                />
+              </NuxtLink>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+    </router-view>
+  </ClientOnly>
 </template>
 
 <script>

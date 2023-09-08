@@ -1,112 +1,114 @@
 <template>
-  <router-view v-slot="{ route }">
-    <div :key="'collection_' + titleSlug">
-      <!-- Need a unique key for the transition above to work on route change -->
+  <ClientOnly>
+    <router-view v-slot="{ route }">
+      <div :key="'collection_' + titleSlug">
+        <!-- Need a unique key for the transition above to work on route change -->
 
-      <Head>
-        <Title>{{ title }}</Title>
-      </Head>
+        <Head>
+          <Title>{{ title }}</Title>
+        </Head>
 
-      <header
-        id="header"
-        :style="headerStyles"
-      >
-        <div id="headerItems">
-          <img
-            :src="titleImg1Line"
-            class="titleImg titleImg1Line"
-          />
-          <img
-            :src="titleImg2Lines"
-            class="titleImg titleImg2Lines"
-          />
-
-          <div
-            v-if="windowWidth < 1200"
-            class="collection_headerText pointer"
-            style="font-style: italic"
-            :aria-expanded="showIntro ? 'true' : 'false'"
-            aria-controls="collapse-1"
-            @click="showIntro = !showIntro"
-          >
-            {{ showIntro ? 'Hide intro' : 'Read intro' }}
-            <svg
-              viewBox="0 0 20 20"
-              width="20"
-              height="20"
-              class="arrow"
-            >
-              <line
-                v-if="showIntro"
-                x1="1"
-                y1="13"
-                x2="9"
-                y2="4.5"
-              />
-              <line
-                v-if="showIntro"
-                x1="8"
-                y1="4.5"
-                x2="16"
-                y2="13"
-              />
-              <line
-                v-if="!showIntro"
-                x1="1"
-                y1="4.5"
-                x2="9"
-                y2="13"
-              />
-              <line
-                v-if="!showIntro"
-                x1="8"
-                y1="13"
-                x2="16"
-                y2="4.5"
-              />
-            </svg>
-          </div>
-
-          <ContentRenderer
-            v-else
-            :value="collectionPgContent"
-          >
-            <ContentRendererMarkdown
-              :value="collectionPgContent"
-              tag="div"
-              id="headerTextDevice"
-              class="collection_headerText mx-auto my-0"
+        <header
+          id="header"
+          :style="headerStyles"
+        >
+          <div id="headerItems">
+            <img
+              :src="titleImg1Line"
+              class="titleImg titleImg1Line"
             />
-          </ContentRenderer>
-        </div>
-      </header>
+            <img
+              :src="titleImg2Lines"
+              class="titleImg titleImg2Lines"
+            />
 
-      <div
-        v-if="windowWidth < 1200"
-        :class="
-          showIntro
-            ? 'headerTextDevice_container'
-            : 'headerTextDevice_container headerTextDevice_hide'
-        "
-      >
+            <div
+              v-if="windowWidth < 1200"
+              class="collection_headerText pointer"
+              style="font-style: italic"
+              :aria-expanded="showIntro ? 'true' : 'false'"
+              aria-controls="collapse-1"
+              @click="showIntro = !showIntro"
+            >
+              {{ showIntro ? 'Hide intro' : 'Read intro' }}
+              <svg
+                viewBox="0 0 20 20"
+                width="20"
+                height="20"
+                class="arrow"
+              >
+                <line
+                  v-if="showIntro"
+                  x1="1"
+                  y1="13"
+                  x2="9"
+                  y2="4.5"
+                />
+                <line
+                  v-if="showIntro"
+                  x1="8"
+                  y1="4.5"
+                  x2="16"
+                  y2="13"
+                />
+                <line
+                  v-if="!showIntro"
+                  x1="1"
+                  y1="4.5"
+                  x2="9"
+                  y2="13"
+                />
+                <line
+                  v-if="!showIntro"
+                  x1="8"
+                  y1="13"
+                  x2="16"
+                  y2="4.5"
+                />
+              </svg>
+            </div>
+
+            <ContentRenderer
+              v-else
+              :value="collectionPgContent"
+            >
+              <ContentRendererMarkdown
+                :value="collectionPgContent"
+                tag="div"
+                id="headerTextDevice"
+                class="collection_headerText mx-auto my-0"
+              />
+            </ContentRenderer>
+          </div>
+        </header>
+
         <div
-          v-html="collectionPgContent.description"
-          class="collection_headerText"
-          id="headerTextDevice"
-          ref="headerTextDevice"
+          v-if="windowWidth < 1200"
+          :class="
+            showIntro
+              ? 'headerTextDevice_container'
+              : 'headerTextDevice_container headerTextDevice_hide'
+          "
+        >
+          <div
+            v-html="collectionPgContent.description"
+            class="collection_headerText"
+            id="headerTextDevice"
+            ref="headerTextDevice"
+          />
+        </div>
+
+        <CollectionViewer
+          :images="images"
+          :index="imageIndex"
+          :disable-scroll="true"
+          :prevCollection="prev_collection"
+          :nextCollection="next_collection"
+          @close="imageIndex = null"
         />
       </div>
-
-      <CollectionViewer
-        :images="images"
-        :index="imageIndex"
-        :disable-scroll="true"
-        :prevCollection="prev_collection"
-        :nextCollection="next_collection"
-        @close="imageIndex = null"
-      />
-    </div>
-  </router-view>
+    </router-view>
+  </ClientOnly>
 </template>
 
 <script>

@@ -4,16 +4,15 @@
     class="pb-12"
   >
     <header id="header">
-      <v-tooltip
-        text="Back to Archives menu"
-        location="bottom"
+      <NuxtLink
+        to="/archives/menu"
+        class="backToArchives"
       >
-        <template v-slot:activator="{ props }">
-          <NuxtLink
-            v-bind="props"
-            to="/archives/menu"
-            class="backToArchives"
-          >
+        <Tooltip
+          text="Back to Archives menu"
+          location="bottom"
+        >
+          <div>
             <img
               immediate
               alt="Back to Archives"
@@ -26,9 +25,9 @@
               src="../../assets/images/back-to-archives-single-line-yellow.png"
               class="backToArchivesImg-hover pt-0 pt-md-2"
             />
-          </NuxtLink>
-        </template>
-      </v-tooltip>
+          </div>
+        </Tooltip>
+      </NuxtLink>
 
       <!-- STATIC HEADER IMAGES -->
       <div
@@ -62,23 +61,22 @@
             <p class="headerText">TO VIEW THE GALLERY</p>
           </div>
 
-          <v-tooltip
-            text="Click to read my recollections"
-            location="bottom"
+          <NuxtLink
+            v-if="iImg == 4"
+            :to="`/archives/${titleSlug}`"
+            class="headerOverlay link pt-4"
           >
-            <template v-slot:activator="{ props }">
-              <NuxtLink
-                v-bind="props"
-                v-if="iImg == 4"
-                :to="`/archives/${titleSlug}`"
-                class="headerOverlay link pt-4"
-              >
+            <Tooltip
+              text="Click to read my recollections"
+              location="bottom"
+            >
+              <div>
                 <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                 <p class="headerText">TO READ MY</p>
                 <p class="headerText">RECOLLECTIONS</p>
-              </NuxtLink>
-            </template>
-          </v-tooltip>
+              </div>
+            </Tooltip>
+          </NuxtLink>
         </div>
       </div>
 
@@ -107,22 +105,21 @@
             <p class="headerText">SCROLL</p>
             <p class="headerText">TO VIEW THE GALLERY</p>
 
-            <v-tooltip
-              text="Click to read my recollections"
-              location="bottom"
+            <NuxtLink
+              :to="`/archives/${titleSlug}`"
+              class="link"
             >
-              <template v-slot:activator="{ props }">
-                <NuxtLink
-                  v-bind="props"
-                  :to="`/archives/${titleSlug}`"
-                  class="link"
-                >
+              <Tooltip
+                text="Click to read my recollections"
+                location="bottom"
+              >
+                <div>
                   <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                   <p class="headerText">TO READ MY</p>
                   <p class="headerText">RECOLLECTIONS</p>
-                </NuxtLink>
-              </template>
-            </v-tooltip>
+                </div>
+              </Tooltip>
+            </NuxtLink>
           </div>
         </SlideshowImages>
       </div>

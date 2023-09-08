@@ -33,79 +33,70 @@
             v-show="!flippingToStart"
             id="firstpage_icon_wrapper"
           >
-            <v-tooltip
-              text="First page"
-              location="top"
+            <Tooltip
+              text="Go to First Page"
+              :disabled="!flipbook.canFlipLeft"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <FirstPageIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canFlipLeft }"
-                  @click="flipToStart()"
-                  id="firstpage_icon"
-                />
-              </template>
-            </v-tooltip>
+              <FirstPageIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canFlipLeft }"
+                @click="flipToStart()"
+                id="firstpage_icon"
+              />
+            </Tooltip>
           </div>
 
           <div
             v-show="flippingToStart"
             id="stop_icon_start_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Stop"
-              location="top"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <StopIcon
-                  v-bind="props"
-                  class="btn"
-                  @click="stopFlip = true"
-                  id="stop_icon_start"
-                />
-              </template>
-            </v-tooltip>
+              <StopIcon
+                class="btn"
+                @click="stopFlip = true"
+                id="stop_icon_start"
+              />
+            </Tooltip>
           </div>
 
           <div
             id="left_icon_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Previous page"
-              location="top"
+              :disabled="!flipbook.canFlipLeft"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <LeftIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canFlipLeft }"
-                  @click="flipbook.flipLeft()"
-                  id="left_icon"
-                />
-              </template>
-            </v-tooltip>
+              <LeftIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canFlipLeft }"
+                @click="flipbook.flipLeft()"
+                id="left_icon"
+              />
+            </Tooltip>
           </div>
 
           <div
             id="minus_icon_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Zoom out"
-              location="top"
+              :disabled="!flipbook.canZoomOut"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <MinusIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canZoomOut }"
-                  @click="flipbook.zoomOut"
-                  id="minus_icon"
-                />
-              </template>
-            </v-tooltip>
+              <MinusIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canZoomOut }"
+                @click="flipbook.zoomOut"
+                id="minus_icon"
+              />
+            </Tooltip>
           </div>
 
           <span
@@ -119,40 +110,36 @@
             id="plus_icon_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Zoom in"
-              location="top"
+              :disabled="!flipbook.canZoomIn"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <PlusIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canZoomIn }"
-                  @click="flipbook.zoomIn"
-                  id="plus_icon"
-                />
-              </template>
-            </v-tooltip>
+              <PlusIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canZoomIn }"
+                @click="flipbook.zoomIn"
+                id="plus_icon"
+              />
+            </Tooltip>
           </div>
 
           <div
             id="right_icon_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Next page"
-              location="top"
+              :disabled="!flipbook.canFlipRight"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <RightIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canFlipRight }"
-                  @click="flipbook.flipRight()"
-                  id="right_icon"
-                />
-              </template>
-            </v-tooltip>
+              <RightIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canFlipRight }"
+                @click="flipbook.flipRight()"
+                id="right_icon"
+              />
+            </Tooltip>
           </div>
 
           <div
@@ -160,20 +147,18 @@
             id="lastpage_icon_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Last page"
-              location="top"
+              :disabled="!flipbook.canFlipRight"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <LastPageIcon
-                  v-bind="props"
-                  class="btn"
-                  :class="{ disabled: !flipbook.canFlipRight }"
-                  @click="flipToEnd()"
-                  id="lastpage_icon"
-                />
-              </template>
-            </v-tooltip>
+              <LastPageIcon
+                class="btn"
+                :class="{ disabled: !flipbook.canFlipRight }"
+                @click="flipToEnd()"
+                id="lastpage_icon"
+              />
+            </Tooltip>
           </div>
 
           <div
@@ -181,51 +166,43 @@
             id="stop_icon_end_wrapper"
             class="btn_wrapper"
           >
-            <v-tooltip
+            <Tooltip
               text="Stop"
-              location="top"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <StopIcon
-                  v-bind="props"
-                  class="btn"
-                  @click="stopFlip = true"
-                  id="stop_icon_end"
-                />
-              </template>
-            </v-tooltip>
+              <StopIcon
+                class="btn"
+                @click="stopFlip = true"
+                id="stop_icon_end"
+              />
+            </Tooltip>
           </div>
 
           <div class="btn_wrapper">
-            <v-tooltip
+            <Tooltip
+              v-if="!isFullscreen"
               text="Fullscreen"
-              location="top"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <FullscreenIcon
-                  v-bind="props"
-                  v-if="!isFullscreen"
-                  class="btn"
-                  @click="toggleFullscreen"
-                  id="fullscreen_icon"
-                />
-              </template>
-            </v-tooltip>
+              <FullscreenIcon
+                class="btn"
+                @click="toggleFullscreen"
+                id="fullscreen_icon"
+              />
+            </Tooltip>
 
-            <v-tooltip
+            <Tooltip
+              v-if="isFullscreen"
               text="Exit fullscreen"
               location="top"
+              :offset="3"
             >
-              <template v-slot:activator="{ props }">
-                <FullscreenExitIcon
-                  v-bind="props"
-                  v-if="isFullscreen"
-                  class="btn"
-                  @click="toggleFullscreen"
-                  id="fullscreenExit_icon"
-                />
-              </template>
-            </v-tooltip>
+              <FullscreenExitIcon
+                class="btn"
+                @click="toggleFullscreen"
+                id="fullscreenExit_icon"
+              />
+            </Tooltip>
           </div>
         </div>
       </Flipbook>
@@ -454,8 +431,7 @@ function keyDownHandler(event) {
 .fullscreen {
   width: 90vw !important;
   height: calc(100vh - 40px - 50px) !important;
-  padding-top: 40px;
-  padding-bottom: 50px;
+  padding: 3rem 0;
   margin: 0 auto;
   z-index: 2000;
 }
