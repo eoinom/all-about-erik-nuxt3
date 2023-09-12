@@ -111,10 +111,10 @@
                     <div>
                       <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                       <p class="headerText">TO VIEW THE GALLERY</p>
-              </div>
                     </div>
                   </Tooltip>
                 </NuxtLink>
+              </div>
             </SlideshowImages>
           </div>
 
@@ -750,14 +750,16 @@ export default {
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot');
+  /* IE9 Compat Modes */
   src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
       format('embedded-opentype'),
     /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
       format('woff'),
     /* Pretty Modern Browsers */
       url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      format('svg');
+  /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -767,16 +769,19 @@ export default {
   right: 60px;
   z-index: 100;
 }
+
 .backToArchivesImg,
 .backToArchivesImg-hover {
   width: 50vw;
   max-width: 260px;
   height: auto;
 }
+
 .backToArchivesImg {
   // display: inline-block;
   display: block;
 }
+
 .backToArchivesImg-hover {
   display: none;
 }
@@ -788,14 +793,17 @@ export default {
   transform: translate3d(-50%, -50%, 0);
   z-index: 2000;
 }
+
 .backToArchivesEndFamilyTrip {
   left: 83%;
   top: 83vh;
 }
+
 .backToArchivesEndFamilyTrip.portraitMode {
   left: 50%;
   top: 50vh;
 }
+
 .backToArchivesEndEarl {
   position: absolute;
   left: 40%;
@@ -803,12 +811,14 @@ export default {
   transform: translate3d(-50%, -50%, 0);
   z-index: 2000;
 }
+
 .toEarlGalleryEnd {
   position: absolute;
   left: 60%;
   top: 40vh;
   transform: translate3d(-50%, -50%, 0);
 }
+
 .backToArchivesEndImg,
 .backToArchivesEndImg-hover {
   width: 30vw;
@@ -817,12 +827,14 @@ export default {
   height: auto;
   padding: 16px;
 }
+
 .backToArchivesEndImgFamilyTrip,
 .backToArchivesEndImgFamilyTrip-hover {
   width: 23vw;
   min-width: 200px;
   max-width: 230px;
 }
+
 .backToArchivesEndFamilyTrip.portraitMode .backToArchivesEndImgFamilyTrip,
 .backToArchivesEndFamilyTrip.portraitMode
   .backToArchivesEndImgFamilyTrip-hover {
@@ -830,9 +842,11 @@ export default {
   min-width: 200px;
   max-width: 250px;
 }
+
 .backToArchivesEndImg {
   display: inline-block;
 }
+
 .backToArchivesEndImg-hover {
   display: none;
 }
@@ -844,6 +858,7 @@ export default {
   .toEarlGalleryEnd:hover .backToArchivesEndImg-hover {
     display: inline-block;
   }
+
   .backToArchives:hover .backToArchivesImg,
   .backToArchivesEnd:hover .backToArchivesEndImg,
   .backToArchivesEndEarl:hover .backToArchivesEndImg,
@@ -860,6 +875,7 @@ export default {
   height: 100vh;
   padding: 130px 60px 30px 60px !important;
 }
+
 #header:after {
   content: '';
   display: inline-block;
@@ -883,12 +899,14 @@ export default {
   max-width: 2030px;
   margin: 0 auto;
 }
+
 .headerWrapperPortrait {
   display: grid;
   grid-template-columns: 1fr;
   height: 100%;
   align-content: center;
 }
+
 .headerBox {
   width: 100%;
   position: relative;
@@ -896,18 +914,21 @@ export default {
   height: 100%;
   max-width: 660px;
 }
+
 .headerBoxPortrait {
   width: 100%;
   position: relative;
   place-self: center;
   height: 100%;
 }
+
 .headerBox > img {
   border-radius: 15px;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .headerFilter {
   position: absolute;
   width: 100%;
@@ -927,6 +948,7 @@ export default {
   padding-bottom: 16px;
   z-index: 50;
 }
+
 .headerOverlay * {
   padding-right: 32px;
   padding-left: 32px;
@@ -939,6 +961,7 @@ export default {
   margin: auto;
   padding: 0 0 16px 0;
 }
+
 .headerText {
   color: #fff;
   font-family: 'Lora', serif;
@@ -956,9 +979,11 @@ export default {
   padding: 0px;
   cursor: context-menu;
 }
+
 .link .headerText {
   cursor: pointer;
 }
+
 .headerOverlay.link:hover .headerText {
   color: #eecf49;
 }
@@ -968,6 +993,7 @@ export default {
   height: 23vw;
   width: 23vw;
 }
+
 .mediaBox {
   opacity: 0.46;
   transition: opacity 0.2s ease;
@@ -978,6 +1004,7 @@ export default {
   width: 100%;
   background-size: contain;
 }
+
 .galleryBox .mediaBox::before {
   content: '';
   position: absolute;
@@ -990,12 +1017,15 @@ export default {
   pointer-events: none;
   transition: box-shadow 0.2s ease;
 }
+
 .galleryBox:hover .mediaBox {
   opacity: 1;
 }
+
 .galleryBox:hover .mediaBox::before {
   box-shadow: none;
 }
+
 .galleryBox:hover .boxOverlay {
   cursor: pointer;
 }
@@ -1013,6 +1043,7 @@ export default {
   cursor: zoom-in;
   transition: all 0.3s linear;
 }
+
 .centerPos {
   top: var(--absCenterTop);
   left: var(--absCenterLeft);
@@ -1064,13 +1095,16 @@ export default {
   opacity: 1;
   transition: all 0.5s ease 0s;
 }
+
 .galleryBox:hover .hideOnHover {
   opacity: 0;
 }
+
 .showOnHover {
   opacity: 0;
   transition: all 0.5s ease 0s;
 }
+
 .galleryBox:hover .showOnHover {
   opacity: 1;
 }
@@ -1079,9 +1113,11 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .flatImg {
   height: 100vh;
 }
+
 .containImg {
   background-size: contain;
 }
@@ -1103,10 +1139,12 @@ export default {
     color: white;
   }
 }
+
 .textAnimation-enter-active,
 .textAnimation-leave-active {
   transition: opacity 1.5s;
 }
+
 .textAnimation-enter-from,
 .textAnimation-leave-to {
   opacity: 0;
@@ -1116,10 +1154,12 @@ export default {
   display: flex;
   position: absolute;
 }
+
 .slideTextDiv {
   position: absolute;
   z-index: 1000;
 }
+
 .slideText {
   display: block;
   color: #fff;
@@ -1129,11 +1169,13 @@ export default {
   margin: 0px;
   padding: 0px;
 }
+
 .slideText {
   :deep(p) {
     margin: auto 0;
   }
 }
+
 .simple-scrollbar {
   height: inherit;
   width: 100%;
@@ -1147,6 +1189,7 @@ export default {
     top: 48px;
     right: 20px;
   }
+
   #header {
     display: flex;
     align-items: center;
@@ -1154,27 +1197,34 @@ export default {
     transform: translate3d(0, 0, 0);
     padding: 90px 4px 4px 4px !important;
   }
+
   .headerWrapper {
     grid-gap: 15px;
   }
+
   .headerOverlay {
     padding-bottom: 0px;
   }
+
   .titleImg {
     max-width: 100%;
     padding: 0 32px 8px 32px;
   }
+
   .headerText {
     --font-size: 1.1rem;
   }
+
   .galleryBox {
     height: 40vw;
     width: 40vw;
   }
+
   .thumbnailCaption {
     --fontSize: 4.5vw;
   }
 }
+
 @media only screen and (max-width: 375px) {
   .headerText {
     --font-size: 1rem;
@@ -1187,13 +1237,16 @@ export default {
     top: 27px;
     right: 27px;
   }
+
   #header {
     padding: 130px 30px 30px 30px !important;
   }
+
   .galleryBox {
     height: 35vw;
     width: 35vw;
   }
+
   .thumbnailCaption {
     --fontSize: 4vw;
   }
@@ -1205,16 +1258,20 @@ export default {
     top: 33px;
     right: 33px;
   }
+
   #header {
     padding: 130px 50px 30px 50px !important;
   }
+
   .thumbnailCaption {
     --fontSize: 3vw;
   }
+
   .galleryBox {
     height: 30vw;
     width: 30vw;
   }
+
   .thumbnailCaption {
     --fontSize: 3.5vw;
   }
@@ -1233,13 +1290,16 @@ export default {
     top: 37px;
     right: 37px;
   }
+
   #header {
     padding: 130px 50px 30px 50px !important;
   }
+
   .galleryBox {
     height: 26vw;
     width: 26vw;
   }
+
   .thumbnailCaption {
     --fontSize: 2.85vw;
   }
@@ -1258,6 +1318,7 @@ export default {
   .galleryBox {
     max-height: calc(350px - 32px);
   }
+
   .galleryImage {
     height: calc(350px - 32px);
     top: calc(175px - 16px);
