@@ -874,6 +874,7 @@ export default {
   margin: 0 auto;
   height: 100vh;
   padding: 130px 60px 30px 60px !important;
+  overflow-y: hidden;
 }
 
 #header:after {
