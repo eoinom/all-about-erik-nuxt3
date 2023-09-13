@@ -87,6 +87,7 @@
       >
         <SlideshowImages
           :slides="pageContent.headerMobileImages"
+          :carouselHeight="carouselHeight"
           :interval="4500"
           borderRadius="15px"
           ref="portraitSlideshow"
@@ -103,11 +104,11 @@
               data-testid="title-img"
             />
             <p class="headerText">SCROLL</p>
-            <p class="headerText">TO VIEW THE GALLERY</p>
+            <p class="headerText pb-4">TO VIEW THE GALLERY</p>
 
             <NuxtLink
               :to="`/archives/${titleSlug}`"
-              class="link"
+              class="link headerText"
             >
               <Tooltip
                 text="Click to read my recollections"
@@ -116,7 +117,7 @@
                 <div>
                   <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                   <p class="headerText">TO READ MY</p>
-                  <p class="headerText">RECOLLECTIONS</p>
+                  <p class="headerText pb-4">RECOLLECTIONS</p>
                 </div>
               </Tooltip>
             </NuxtLink>
@@ -263,6 +264,22 @@ export default {
         css['--gridGap'] = '30px';
       }
       return css;
+    },
+    carouselHeight() {
+      const aspectRatio = 0.8354;
+
+      if (this.windowWidth < 1200) {
+        let horizPadding =
+          this.windowWidth < 562 ? 16 : this.windowWidth < 754 ? 30 : 35; //px each side
+
+        horizPadding += 12; // 12px app layout padding each side
+
+        return (this.windowWidth - 20 - 2 * horizPadding) / aspectRatio;
+      }
+
+      const horizPadding = 72; //px each side
+
+      return Math.min(644, (this.windowWidth - 2 * horizPadding) / aspectRatio);
     },
   },
 

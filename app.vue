@@ -250,7 +250,10 @@ const path = computed(() => {
 const applyPageLayoutStyling = (currentPath) => {
   applyZeroLayoutPadding.value = false;
   urlsForZeroPadding.forEach((url) => {
-    if (currentPath.includes(url)) {
+    if (
+      currentPath.includes(url) &&
+      !currentPath.includes('my-dad-earl-gallery')
+    ) {
       applyZeroLayoutPadding.value = true;
     }
   });
