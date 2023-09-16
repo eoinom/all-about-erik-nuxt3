@@ -77,17 +77,19 @@
           <div
             v-else-if="isPortrait && pageContent.headerMobileImages"
             class="headerWrapperPortrait"
+            :style="headerWrapperPortraitStyles"
           >
             <SlideshowImages
               :slides="pageContent.headerMobileImages"
               :interval="4500"
+              :carouselHeight="carouselHeight"
               borderRadius="15px"
               ref="portraitSlideshow"
               class="headerBoxPortrait"
             >
               <div
                 class="headerOverlay"
-                :style="overlayStyles"
+                :style="overlayStylesPortrait"
               >
                 <img
                   :src="titleImg"
@@ -204,7 +206,7 @@
               :class="{
                 backToArchivesEndFamilyTrip:
                   titleSlug == 'family-trip-to-europe-57',
-                portraitMode: aspectRatio < portraitTablet.maxAspect,
+                portraitMode: windowAspectRatio < portraitTablet.maxAspect,
               }"
             >
               <Tooltip
@@ -248,7 +250,7 @@
             class="slideTextDiv"
             :style="slideTextDivStyles(txtObj)"
           >
-            <Simplebar
+            <SimpleBar
               v-if="
                 (txtObj.hasOwnProperty('showScrollbar') &&
                   !txtObj.showScrollbar == false) ||
@@ -268,7 +270,7 @@
                   :style="slideTextStyles(txtObj)"
                 />
               </transition>
-            </Simplebar>
+            </SimpleBar>
 
             <transition
               appear
@@ -414,7 +416,7 @@ export default {
         ? this.pageContent.titleImg.singleLine
         : this.pageContent.titleImg.doubleLine;
     },
-    aspectRatio() {
+    windowAspectRatio() {
       return this.windowWidth / this.windowHeight;
     },
     windowArea() {
@@ -425,7 +427,7 @@ export default {
     },
     currentLayout() {
       let layout = {};
-      if (this.aspectRatio < this.portraitTablet.maxAspect) {
+      if (this.windowAspectRatio < this.portraitTablet.maxAspect) {
         if (this.windowWidth < 541 && this.pageContent.mobileLayout) {
           layout = { ...this.portraitMobile, ...this.pageContent.mobileLayout };
         } else {
@@ -434,9 +436,9 @@ export default {
             ...this.pageContent.portraitLayout,
           };
         }
-      } else if (this.aspectRatio < this.square.maxAspect) {
+      } else if (this.windowAspectRatio < this.square.maxAspect) {
         layout = { ...this.square, ...this.pageContent.squareLayout };
-      } else if (this.aspectRatio < this.fiveBySeven.maxAspect) {
+      } else if (this.windowAspectRatio < this.fiveBySeven.maxAspect) {
         layout = { ...this.fiveBySeven, ...this.pageContent.fiveBySevenLayout };
       } else {
         layout = { ...this.landscape, ...this.pageContent.landscapeLayout };
@@ -445,19 +447,17 @@ export default {
     },
     isPortrait() {
       return (
-        this.aspectRatio < this.portraitTablet.maxAspect ||
+        this.windowAspectRatio < this.portraitTablet.maxAspect ||
         this.windowWidth < 992
       );
     },
-    overlayStyles() {
+    overlayStylesPortrait() {
       let css = {};
-      if (this.windowWidth < 576)
-        var topOffset = Math.min(60, this.pageContent.titleImg.topOffset);
-      else if (this.windowWidth < 768)
-        topOffset = Math.min(60, this.pageContent.titleImg.topOffset);
-      else if (this.windowWidth < 992)
-        topOffset = Math.min(65, this.pageContent.titleImg.topOffset);
-      else topOffset = this.pageContent.titleImg.topOffset;
+      let topOffset = this.pageContent.titleImg.topOffset;
+      if (this.windowWidth < 576) topOffset = Math.min(60, topOffset);
+      else if (this.windowWidth < 768) topOffset = Math.min(60, topOffset);
+      else if (this.windowWidth < 992) topOffset = Math.min(55, topOffset);
+      else topOffset = Math.min(45, topOffset);
       css['--titleTopOffset'] = topOffset + '%';
       css['--titleMaxWidth'] = this.pageContent.titleImg.maxWidth + '%';
       return css;
@@ -538,6 +538,29 @@ export default {
     },
     showGalleryLink() {
       return this.titleSlug === 'my-dad-earl';
+    },
+    headerHorizPadding() {
+      if (!this.windowWidth) return 50;
+
+      return this.windowWidth < 576
+        ? 4
+        : this.windowWidth < 767.98
+        ? 30
+        : this.windowWidth <= 768.02
+        ? 40
+        : this.windowWidth < 1200
+        ? 50
+        : 60;
+    },
+    headerWrapperPortraitStyles() {
+      let css = {};
+      css['--headerPadding'] = `${this.headerHorizPadding}px`;
+      return css;
+    },
+    carouselHeight() {
+      const imgAspectRatio = 0.8354;
+
+      return (this.windowWidth - 2 * this.headerHorizPadding) / imgAspectRatio;
     },
   },
 
@@ -902,9 +925,11 @@ export default {
 }
 
 .headerWrapperPortrait {
+  --headerPadding: 50px;
   display: grid;
   grid-template-columns: 1fr;
   height: 100%;
+  width: calc(100vw - 2 * var(--headerPadding));
   align-content: center;
 }
 

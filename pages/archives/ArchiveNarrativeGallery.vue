@@ -265,21 +265,24 @@ export default {
       }
       return css;
     },
+    headerHorizPadding() {
+      if (!this.windowWidth) return 50;
+
+      return this.windowWidth < 576
+        ? 16
+        : this.windowWidth < 768
+        ? 30
+        : this.windowWidth < 1200
+        ? 35
+        : 50;
+    },
     carouselHeight() {
-      const aspectRatio = 0.8354;
+      const imgAspectRatio = 0.8354;
 
-      if (this.windowWidth < 1200) {
-        let horizPadding =
-          this.windowWidth < 562 ? 16 : this.windowWidth < 754 ? 30 : 35; //px each side
-
-        horizPadding += 12; // 12px app layout padding each side
-
-        return (this.windowWidth - 20 - 2 * horizPadding) / aspectRatio;
-      }
-
-      const horizPadding = 72; //px each side
-
-      return Math.min(644, (this.windowWidth - 2 * horizPadding) / aspectRatio);
+      return Math.min(
+        644,
+        (this.windowWidth - 2 * this.headerHorizPadding) / imgAspectRatio
+      );
     },
   },
 
