@@ -362,14 +362,16 @@ export default {
       bookShowSinglePage: false,
       bookKey: 1,
       options: {
-        // licenseKey: 'YOUR_KEY_HEERE',
-        licenseKey: 'gplv3-license',
+        licenseKey: 'DLX2I-2Q50I-YFKS8-82J18-MOFSO',
         scrollingSpeed: 850,
         easing: 'easeInOut',
         overlay: false,
         navigation: false,
         lockAnchors: true, // anchors turned off so as to not interfere with BookViewer anchor links
         afterLoad: this.afterLoad,
+        credits: {
+          enabled: false,
+        },
       },
       portraitMobile: {
         maxAspect: 0.85,
