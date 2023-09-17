@@ -84,7 +84,6 @@
               :interval="4500"
               :carouselHeight="carouselHeight"
               borderRadius="15px"
-              ref="portraitSlideshow"
               class="headerBoxPortrait"
             >
               <div
@@ -250,10 +249,10 @@
             class="slideTextDiv"
             :style="slideTextDivStyles(txtObj)"
           >
-            <SimpleBar
+            <Simplebar
               v-if="
                 (txtObj.hasOwnProperty('showScrollbar') &&
-                  !txtObj.showScrollbar == false) ||
+                  txtObj.showScrollbar == false) ||
                 windowWidth < 992
               "
               class="simple-scrollbar"
@@ -270,7 +269,7 @@
                   :style="slideTextStyles(txtObj)"
                 />
               </transition>
-            </SimpleBar>
+            </Simplebar>
 
             <transition
               v-else
@@ -344,11 +343,11 @@
 <script>
 import snarkdown from 'snarkdown';
 import slugify from '@sindresorhus/slugify';
-import { SimpleBar } from 'simplebar-vue3';
+import Simplebar from 'simplebar-vue';
 
 export default {
   components: {
-    SimpleBar,
+    Simplebar,
   },
 
   data() {

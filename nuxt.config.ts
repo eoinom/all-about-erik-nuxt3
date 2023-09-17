@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/styles.css',
-    'simplebar/dist/simplebar.min.css',
+    'simplebar-vue/dist/simplebar.min.css',
     'vue-plyr/dist/vue-plyr.css',
     '@/assets/custom.scss',
     // 'vuetify/lib/styles/main.sass',

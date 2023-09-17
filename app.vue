@@ -30,7 +30,7 @@
       id="sideNav-main"
       :class="{ sideNavOpen: mainNavIsOpen }"
     >
-      <SimpleBar
+      <Simplebar
         class="simple-scrollbar"
         data-simplebar-auto-hide="true"
       >
@@ -70,7 +70,7 @@
             <hr />
           </nav>
         </div>
-      </SimpleBar>
+      </Simplebar>
     </div>
 
     <!-- Sub navigation menu -->
@@ -323,11 +323,11 @@ watch(path, (newPath) => {
 
 <script type="text/javascript">
 import snarkdown from 'snarkdown';
-import { SimpleBar } from 'simplebar-vue3';
+import Simplebar from 'simplebar-vue';
 
 export default {
   components: {
-    SimpleBar,
+    Simplebar,
   },
 
   data() {

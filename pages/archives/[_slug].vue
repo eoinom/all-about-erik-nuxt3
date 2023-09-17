@@ -72,7 +72,7 @@
                   class="titleImg"
                   data-testid="title-img"
                 />
-                <SimpleBar
+                <Simplebar
                   v-if="archivePgContent.description"
                   class="simple-scrollbar"
                   data-simplebar-auto-hide="false"
@@ -85,7 +85,7 @@
                       :style="headerTextStyles"
                     />
                   </ContentRenderer>
-                </SimpleBar>
+                </Simplebar>
               </div>
             </SlideshowImages>
 
@@ -126,7 +126,7 @@
                   class="titleImg"
                   data-testid="title-img"
                 />
-                <SimpleBar
+                <Simplebar
                   class="simple-scrollbar"
                   data-simplebar-auto-hide="false"
                 >
@@ -136,7 +136,7 @@
                     class="archive_headerText"
                     :style="headerTextStyles"
                   />
-                </SimpleBar>
+                </Simplebar>
               </div>
             </div>
 
@@ -343,7 +343,7 @@
 
 <script type="text/javascript">
 import slugify from '@sindresorhus/slugify';
-import { SimpleBar } from 'simplebar-vue3';
+import Simplebar from 'simplebar-vue';
 
 const keyMap = {
   ESC: 27,
@@ -351,7 +351,7 @@ const keyMap = {
 
 export default {
   components: {
-    SimpleBar,
+    Simplebar,
   },
 
   data() {

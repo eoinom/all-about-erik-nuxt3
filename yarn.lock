@@ -1255,16 +1255,16 @@
     "@types/node" "*"
 
 "@types/lodash-es@^4.17.6":
-  version "4.17.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.8.tgz#cfffd0969507830c22da18dbb20d2ca126fdaa8b"
-  integrity sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==
+  version "4.17.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.9.tgz#49dbe5112e23c54f2b387d860b7d03028ce170c2"
+  integrity sha512-ZTcmhiI3NNU7dEvWLZJkzG6ao49zOIjEgIE0RgV7wbPxU0f2xT3VSAHw2gmst8swH6V0YkLRGp4qPlX/6I90MQ==
   dependencies:
     "@types/lodash" "*"
 
 "@types/lodash@*":
-  version "4.14.197"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.197.tgz#e95c5ddcc814ec3e84c891910a01e0c8a378c54b"
-  integrity sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==
+  version "4.14.198"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.198.tgz#4d27465257011aedc741a809f1269941fa2c5d4c"
+  integrity sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==
 
 "@types/mdast@^3.0.0":
   version "3.0.12"
@@ -6079,18 +6079,13 @@ simplebar-core@^1.2.4:
     lodash "^4.17.21"
     lodash-es "^4.17.21"
 
-simplebar-vue3@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/simplebar-vue3/-/simplebar-vue3-0.2.0.tgz#8c9bed1ecc4fdfa19501797a9f3f5a159af1acca"
-  integrity sha512-07v1y9g4G9Z88uJXsGAM9G4UDhAMVJABthRrnmMNjJstA1KjfmCzYhmUMyYQfEo+6lyhNfhU0d3La9rUB3lShQ==
-
-simplebar@^6.2.0:
-  version "6.2.5"
-  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-6.2.5.tgz#9d7cdf9f9a57b28f2497d165caf60f1bc644913e"
-  integrity sha512-vfxKR6KNBsPx7+sZnqO7T8VuCvi4px6OlycrrkNgyjvoHhRW7LIyVkHhUfXxbz33Gw99Wb9UMMsnEZv35wtLSw==
+simplebar-vue@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/simplebar-vue/-/simplebar-vue-2.3.3.tgz#9310d304a916f6b303235abc6ee5ff9e087e7d69"
+  integrity sha512-srx6us5Dk6jTU7+Pk+X1DfUqa2ZGeT/LXJGp3j6VuMyK16h20sxtMk//jYrN5E8BxvfkakOj8HodGH1JQpAE7Q==
   dependencies:
-    can-use-dom "^0.1.0"
     simplebar-core "^1.2.4"
+    vue-demi "^0.13.11"
 
 sirv@^2.0.3:
   version "2.0.3"
@@ -7000,6 +6995,11 @@ vue-demi@>=0.13.0:
   version "0.14.6"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.6.tgz#dc706582851dc1cdc17a0054f4fec2eb6df74c92"
   integrity sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==
+
+vue-demi@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
+  integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
 vue-devtools-stub@^0.1.0:
   version "0.1.0"

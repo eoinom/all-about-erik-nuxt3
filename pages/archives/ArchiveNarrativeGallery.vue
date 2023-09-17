@@ -90,7 +90,6 @@
           :carouselHeight="carouselHeight"
           :interval="4500"
           borderRadius="15px"
-          ref="portraitSlideshow"
           class="headerBoxPortrait"
         >
           <div
