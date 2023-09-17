@@ -64,7 +64,7 @@
                   text="Click to see the gallery"
                   location="bottom"
                 >
-                  <div>
+                  <div class="px-3">
                     <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                     <p class="headerText">TO VIEW THE GALLERY</p>
                   </div>
@@ -273,6 +273,7 @@
             </SimpleBar>
 
             <transition
+              v-else
               appear
               name="textAnimation"
             >
@@ -454,7 +455,7 @@ export default {
     overlayStylesPortrait() {
       let css = {};
       let topOffset = this.pageContent.titleImg.topOffset;
-      if (this.windowWidth < 576) topOffset = Math.min(60, topOffset);
+      if (this.windowWidth < 350) topOffset = Math.min(55, topOffset);
       else if (this.windowWidth < 768) topOffset = Math.min(60, topOffset);
       else if (this.windowWidth < 992) topOffset = Math.min(55, topOffset);
       else topOffset = Math.min(45, topOffset);
@@ -973,11 +974,6 @@ export default {
   height: calc(100% - var(--titleTopOffset));
   padding-bottom: 16px;
   z-index: 50;
-}
-
-.headerOverlay * {
-  padding-right: 32px;
-  padding-left: 32px;
 }
 
 .titleImg {
