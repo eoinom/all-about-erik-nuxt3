@@ -328,17 +328,17 @@
         </template>
       </div>
     </full-page>
-  </ClientOnly>
 
-  <BookViewer
-    v-if="isBookFullscreen"
-    :pages="bookImagesUrlsStdRes"
-    :isFullscreen="isBookFullscreen"
-    :showSinglePage="bookShowSinglePage"
-    :key="'bookViewer' + bookKey"
-    @toggleFullscreen="toggleFullscreen()"
-    @reload="reloadBook()"
-  />
+    <BookViewer
+      v-if="isBookFullscreen"
+      :pages="bookImagesUrlsStdRes"
+      :isFullscreen="isBookFullscreen"
+      :showSinglePage="bookShowSinglePage"
+      :key="'bookViewer' + bookKey"
+      @toggleFullscreen="toggleFullscreen()"
+      @reload="reloadBook()"
+    />
+  </ClientOnly>
 </template>
 
 <script>
