@@ -29,8 +29,7 @@ describe('Archives Page - page specific tests', () => {
       'These archives are comprised of a potpourri of memorabilia.'
     );
     cy.get('#slideshowText').contains(
-      'There’s a little music stuff, a few stories, flower pics from my garden, ' +
-        'and lots of old photos of uncertain interest to anyone outside of my relatives or immediate family. '
+      'There’s a little music stuff, a few stories, flower pics from my garden, and lots of old photos of uncertain interest to anyone outside of my relatives or immediate family.'
     );
   });
 
@@ -44,11 +43,15 @@ describe('Archives Page - page specific tests', () => {
 
   it('scrolling to bottom of page shows back to top button', () => {
     cy.scrollTo('bottom', { duration: 1500 });
-    cy.get('main').find('#scrollToTopBtn').should('be.visible');
+    cy.get('main')
+      .find('#scrollToTopBtn')
+      .should('be.visible');
   });
 
   it('clicking back to top button scrolls the page to the top', () => {
-    cy.get('main').find('#scrollToTopBtn').click();
+    cy.get('main')
+      .find('#scrollToTopBtn')
+      .click();
     cy.get('[data-testid="title-img"]').isScrolledTo();
   });
 

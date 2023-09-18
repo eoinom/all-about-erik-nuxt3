@@ -104,7 +104,7 @@ Cypress.Commands.add('hasScrollImages', () => {
 });
 
 Cypress.Commands.add('hasKenBurnsSlideshow', (numImages) => {
-  cy.get('.SlideshowKenBurns img')
+  cy.get('.SlideshowKenBurnsSmall img')
     .should('have.length', numImages)
     .and('have.prop', 'naturalWidth')
     .should('be.greaterThan', 0);
