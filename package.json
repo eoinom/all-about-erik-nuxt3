@@ -14,6 +14,7 @@
     "@popperjs/core": "^2.11.6",
     "cypress": "^13.2.0",
     "cypress-plugin-snapshots": "^1.4.4",
+    "cypress-real-events": "^1.10.3",
     "nuxt": "^3.6.5",
     "sass": "^1.62.0"
   },
