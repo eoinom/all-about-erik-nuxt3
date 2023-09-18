@@ -5,12 +5,15 @@
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "cypress": "cypress open"
   },
   "devDependencies": {
     "@nuxt/content": "^2.5.2",
     "@nuxt/devtools": "^0.4.0",
     "@popperjs/core": "^2.11.6",
+    "cypress": "^13.2.0",
+    "cypress-plugin-snapshots": "^1.4.4",
     "nuxt": "^3.6.5",
     "sass": "^1.62.0"
   },
