@@ -13,5 +13,9 @@ module.exports = defineConfig({
       initPlugin(on, config);
     },
     pageLoadTimeout: 90000,
+    // To fix isseu with blank page loading
+    // ref: https://stackoverflow.com/questions/73312653/blank-page-after-running-cypress-tests
+    // docs: https://docs.cypress.io/guides/core-concepts/test-isolation
+    testIsolation: false,
   },
 });
