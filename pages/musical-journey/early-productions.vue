@@ -853,7 +853,7 @@ export default {
 
   methods: {
     lightBoxBtnClick(lightbox) {
-      if (lightbox.image !== '') {
+      if (lightbox.image && lightbox.image !== '') {
         this.image = [
           {
             img: lightbox.image,
@@ -861,7 +861,7 @@ export default {
           },
         ];
         this.imageIndex = 0;
-      } else if (lightbox.audio !== '') {
+      } else if (lightbox.audio && lightbox.audio !== '') {
         this.audioTracks = [
           {
             url: lightbox.audio,
