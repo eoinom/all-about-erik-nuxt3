@@ -22,13 +22,15 @@ describe('Travels Page - page specific tests', () => {
     );
   });
 
-  it('has 54 video containers', () => {
-    cy.get('[data-testid="video-container"]').should('have.length', 54);
+  it('has 67 video containers', () => {
+    cy.get('[data-testid="video-container"]').should('have.length', 67);
   });
 
   it('scrolling to bottom of page shows back to top button', () => {
     cy.scrollTo('bottom', { duration: 500 });
-    cy.get('main').find('#scrollToTopBtn').should('be.visible');
+    cy.get('main')
+      .find('#scrollToTopBtn')
+      .should('be.visible');
   });
 
   const checkVideoThumbnail = (index, src, title) => {
@@ -109,7 +111,9 @@ describe('Travels Page - page specific tests', () => {
     });
 
     it(`${vid.title} lightbox can be closed`, () => {
-      cy.get('#closeImg').click().wait(500);
+      cy.get('#closeImg')
+        .click()
+        .wait(500);
     });
   });
 });
