@@ -124,6 +124,8 @@ export default {
       return this.publicationsPgContent.publications || [];
     },
     publicationsAltOrder() {
+      if (this.publications.length === 0) return [];
+
       let publicationsClone = [...this.publications];
       let pubsAltOrder = publicationsClone.filter((val, index) => index !== 1);
       pubsAltOrder.unshift(this.publications[1]);
