@@ -5,16 +5,9 @@
         <Title>{{ title }}</Title>
       </Head>
       <header :style="headerStyles">
-        <v-container
-          fluid
-          class="slideshowOverlay"
-        >
+        <v-container fluid class="slideshowOverlay">
           <v-row align="center">
-            <v-col
-              cols="3"
-              class="headerImageCol"
-              style="text-align: right"
-            >
+            <v-col cols="3" class="headerImageCol" style="text-align: right">
               <img
                 alt="Hunter"
                 v-if="headerLeftImg != null"
@@ -27,10 +20,12 @@
               <img
                 :src="titleImg1Line"
                 class="titleImg titleImg1Line"
+                data-testid="title-img"
               />
               <img
                 :src="titleImg2Lines"
                 class="titleImg titleImg2Lines"
+                data-testid="title-img"
               />
 
               <div
@@ -41,49 +36,22 @@
                 aria-controls="collapse-1"
                 @click="showIntro = !showIntro"
               >
-                {{ showIntro ? 'Hide intro' : 'Read intro' }}
-                <svg
-                  viewBox="0 0 20 20"
-                  width="20"
-                  height="20"
-                  class="arrow"
-                >
-                  <line
-                    v-if="showIntro"
-                    x1="1"
-                    y1="13"
-                    x2="9"
-                    y2="4.5"
-                  />
-                  <line
-                    v-if="showIntro"
-                    x1="8"
-                    y1="4.5"
-                    x2="16"
-                    y2="13"
-                  />
-                  <line
-                    v-if="!showIntro"
-                    x1="1"
-                    y1="4.5"
-                    x2="9"
-                    y2="13"
-                  />
-                  <line
-                    v-if="!showIntro"
-                    x1="8"
-                    y1="13"
-                    x2="16"
-                    y2="4.5"
-                  />
+                {{ showIntro ? "Hide intro" : "Read intro" }}
+                <svg viewBox="0 0 20 20" width="20" height="20" class="arrow">
+                  <line v-if="showIntro" x1="1" y1="13" x2="9" y2="4.5" />
+                  <line v-if="showIntro" x1="8" y1="4.5" x2="16" y2="13" />
+                  <line v-if="!showIntro" x1="1" y1="4.5" x2="9" y2="13" />
+                  <line v-if="!showIntro" x1="8" y1="13" x2="16" y2="4.5" />
                 </svg>
               </div>
 
-              <div
-                v-else
-                v-html="oldTimeSportsmenPgContent.description"
-                class="collection_headerText"
-              />
+              <ContentRenderer v-else :value="oldTimeSportsmenPgContent">
+                <ContentRendererMarkdown
+                  :value="oldTimeSportsmenPgContent"
+                  tag="div"
+                  class="collection_headerText"
+                />
+              </ContentRenderer>
 
               <NuxtLink
                 :to="{ path: '/collections/', query: { playMusic: 'false' } }"
@@ -105,11 +73,7 @@
               </NuxtLink>
             </v-col>
 
-            <v-col
-              cols="3"
-              class="headerImageCol"
-              style="text-align: left"
-            >
+            <v-col cols="3" class="headerImageCol" style="text-align: left">
               <img
                 alt="ducks"
                 v-if="headerRightImg != null"
@@ -121,6 +85,21 @@
         </v-container>
       </header>
 
+      <div
+        v-if="windowWidth < 1200"
+        :class="
+          showIntro
+            ? 'headerTextDevice_container'
+            : 'headerTextDevice_container headerTextDevice_hide'
+        "
+      >
+        <div
+          v-html="oldTimeSportsmenPgContent.description"
+          class="collection_headerText mx-auto px-5"
+          id="headerTextDevice"
+        />
+      </div>
+
       <CollectionViewer
         :images="images"
         :index="imageIndex"
@@ -131,10 +110,7 @@
       />
 
       <section class="postcardHistory">
-        <v-container
-          fluid
-          class="slideshowOverlay"
-        >
+        <v-container fluid class="slideshowOverlay">
           <v-row align="center">
             <v-col
               v-if="windowWidth >= 2200"
@@ -172,42 +148,27 @@
                     />
                   </div>
                   <br v-if="windowWidth >= 768" />
-                  <span
-                    v-html="postcardHistory.textPt1"
-                    class="postcardText"
-                  />
+                  <span v-html="postcardHistory.textPt1" class="postcardText" />
 
                   <img
                     :src="postcardHistory.images[0].img"
                     class="py-4 pr-4"
                     style="float: left; max-width: 55%"
                   />
-                  <span
-                    v-html="postcardHistory.textPt2"
-                    class="postcardText"
-                  />
+                  <span v-html="postcardHistory.textPt2" class="postcardText" />
 
                   <img
                     :src="postcardHistory.images[1].img"
                     class="pl-4"
                     style="float: right; max-width: 55%"
                   />
-                  <span
-                    v-html="postcardHistory.textPt3"
-                    class="postcardText"
-                  />
+                  <span v-html="postcardHistory.textPt3" class="postcardText" />
                 </div>
               </div>
             </v-col>
 
-            <v-col
-              v-if="windowWidth >= 2200"
-              align-self="start"
-            >
-              <div
-                id="postcardsSidebar"
-                class="pt-4"
-              >
+            <v-col v-if="windowWidth >= 2200" align-self="start">
+              <div id="postcardsSidebar" class="pt-4">
                 <flip-postcard
                   :imgFront="postcardHistory.postcards[1].imgFront"
                   :imgBack="postcardHistory.postcards[1].imgBack"
@@ -254,11 +215,7 @@
             </v-col>
           </v-row>
 
-          <v-row
-            v-if="windowWidth < 2200"
-            align="center"
-            justify="center"
-          >
+          <v-row v-if="windowWidth < 2200" align="center" justify="center">
             <v-col
               v-if="windowWidth > 1149 && people_images"
               align-self="start"
@@ -272,10 +229,7 @@
               align-self="start"
               :style="postcardsSidebarStyles"
             >
-              <div
-                id="postcardsSidebar"
-                class="py-4"
-              >
+              <div id="postcardsSidebar" class="py-4">
                 <flip-postcard
                   v-if="windowWidth < 768"
                   :imgFront="postcardHistory.postcards[0].imgFront"
@@ -335,10 +289,7 @@
             <v-col>
               <div class="postcardHistory__textDiv">
                 <h2 class="title">{{ about.title }}</h2>
-                <span
-                  v-html="about.text"
-                  class="postcardText"
-                />
+                <span v-html="about.text" class="postcardText" />
               </div>
             </v-col>
           </v-row>
@@ -363,9 +314,7 @@
                   >
                     <span style="font-size: 18px">SEE THE COLLECTION</span>
                     <br />
-                    <span
-                      class="d-block mb-n4"
-                      style="font-size: 28px"
+                    <span class="d-block mb-n4" style="font-size: 28px"
                       >GALLERY WEBSITE</span
                     >
                     <img
@@ -389,8 +338,8 @@
 </template>
 
 <script>
-import snarkdown from 'snarkdown';
-import slugify from '@sindresorhus/slugify';
+import snarkdown from "snarkdown";
+import slugify from "@sindresorhus/slugify";
 
 export default {
   data() {
@@ -406,8 +355,9 @@ export default {
         { width: 480, height: 297 },
         { width: 487, height: 307 },
         { width: 487, height: 309 },
-        { width: 487, height: 310 },
+        { width: 487, height: 310 }
       ],
+      headerTextHeight: 0
     };
   },
 
@@ -426,7 +376,7 @@ export default {
     },
     headerBgImgOpacity() {
       return this.oldTimeSportsmenPgContent.hasOwnProperty(
-        'backgroundImgOpacity'
+        "backgroundImgOpacity"
       )
         ? this.oldTimeSportsmenPgContent.backgroundImgOpacity
         : 0.5;
@@ -451,19 +401,19 @@ export default {
     },
     headerStyles() {
       return {
-        '--headerBgImg': 'url(' + this.headerBgImg + ')',
-        '--bgOpacity': this.headerBgImgOpacity / 100,
+        "--headerBgImg": "url(" + this.headerBgImg + ")",
+        "--bgOpacity": this.headerBgImgOpacity / 100
       };
     },
     footerStyles() {
       return {
-        '--footerBgImg': 'url(' + this.footerImg + ')',
+        "--footerBgImg": "url(" + this.footerImg + ")"
       };
     },
     postcardsSidebarStyles() {
       if (this.windowWidth < 1150) {
         return {
-          flex: 0,
+          flex: 0
         };
       }
       return {};
@@ -479,7 +429,7 @@ export default {
     },
     collection_names() {
       return this.collections !== undefined
-        ? this.collections.map((x) => x.title)
+        ? this.collections.map(x => x.title)
         : [];
     },
     collectionIndex() {
@@ -512,39 +462,50 @@ export default {
     about() {
       return this.oldTimeSportsmenPgContent.about;
     },
+    headerTextContainerHeight() {
+      return this.showIntro && this.headerTextHeight > 0
+        ? this.headerTextHeight + 40 + "px"
+        : "0px";
+    }
   },
 
   async mounted() {
     const oldTimeSportsmenPgContent = await queryContent(
-      'collections',
-      'old-time-sportsmen'
+      "collections",
+      "old-time-sportsmen"
     ).findOne();
     this.oldTimeSportsmenPgContent = oldTimeSportsmenPgContent;
     const collectionsContent = await queryContent(
-      'collections-index'
+      "collections-index"
     ).findOne();
     this.collectionsContent = collectionsContent;
 
     this.windowWidth = window.innerWidth;
-    window.addEventListener('resize', () => {
+    this.onResize();
+
+    window.addEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener("orientationchange", () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', () => {
+    window.removeEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
-    window.removeEventListener('orientationchange', () => {
+    window.removeEventListener("orientationchange", () => {
       this.windowWidth = window.innerWidth;
+      this.onResize();
     });
   },
 
   watch: {
-    windowWidth: function (val) {
+    windowWidth: function(val) {
       if (val >= 576 && val <= 1366) {
         this.sportsmenSiteHover = true;
         this.sportsmenGalleryHover = true;
@@ -552,7 +513,7 @@ export default {
         this.sportsmenSiteHover = false;
         this.sportsmenGalleryHover = false;
       }
-    },
+    }
   },
 
   methods: {
@@ -565,41 +526,46 @@ export default {
         let factor = this.windowWidth / 620;
         return {
           width: factor * this.postcardSizes[index].width,
-          height: factor * this.postcardSizes[index].height,
+          height: factor * this.postcardSizes[index].height
         };
       }
     },
-  },
+    onResize() {
+      this.headerTextHeight = document.getElementById(
+        "headerTextDevice"
+      ).clientHeight;
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Francois+One&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text:600,600i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Francois+One&display=swap");
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
+  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
-  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
-      format('woff'),
+  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
+  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -615,7 +581,7 @@ header {
   padding-bottom: 12.5px;
 }
 header:after {
-  content: '';
+  content: "";
   display: inline-block;
   position: absolute;
   top: 0;
@@ -643,10 +609,18 @@ header:after {
   text-align: center;
   margin: 0 auto;
 }
+.headerTextDevice_container {
+  height: v-bind(headerTextContainerHeight);
+  transition: height 0.6s ease-out;
+  overflow: hidden;
+}
+.headerTextDevice_hide {
+  height: 0;
+}
 .collection_headerText {
   color: #000;
-  font-family: 'NeueHaasGroteskText Pro65';
-  font-feature-settings: 'liga';
+  font-family: "NeueHaasGroteskText Pro65";
+  font-feature-settings: "liga";
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -665,10 +639,16 @@ header:after {
   cursor: pointer;
 }
 
+#headerTextDevice {
+  color: #ececec;
+  font-size: 0.925rem;
+  margin: 20px;
+}
+
 .collections_headerLinkText {
   color: #000;
-  font-family: 'Francois One', sans-serif;
-  font-feature-settings: 'liga';
+  font-family: "Francois One", sans-serif;
+  font-feature-settings: "liga";
   font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.8px;
@@ -750,7 +730,7 @@ footer {
   padding: 0 0 346px 0;
 }
 footer:after {
-  content: '';
+  content: "";
   display: inline-block;
   position: absolute;
   bottom: 0;
@@ -765,7 +745,7 @@ footer:after {
 /* To fix poor scroll speed using "background-size: cover" and "background-attachment: fixed"
 Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/ */
 .layout::before {
-  content: ' ';
+  content: " ";
   position: fixed; /* instead of background-attachment */
   width: 100%;
   top: 0;
@@ -786,8 +766,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     margin: 0 auto;
 
     .title {
-      font-family: 'Francois One', sans-serif;
-      font-feature-settings: 'liga';
+      font-family: "Francois One", sans-serif;
+      font-feature-settings: "liga";
       font-weight: 400;
       font-size: 2.5rem;
       line-height: 2.75rem;
@@ -799,8 +779,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     }
 
     .postcardText {
-      font-family: 'Crimson Text', serif;
-      font-feature-settings: 'liga';
+      font-family: "Crimson Text", serif;
+      font-feature-settings: "liga";
       font-weight: 600;
       font-size: 1.3125rem;
       line-height: 1.5625rem;
@@ -810,8 +790,8 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
     }
 
     .caption {
-      font-family: 'Crimson Text', serif;
-      font-feature-settings: 'liga';
+      font-family: "Crimson Text", serif;
+      font-feature-settings: "liga";
       font-style: italic;
       font-weight: 600;
       font-size: 1.125rem;
@@ -825,7 +805,7 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
 }
 
 .postcardHistory:after {
-  content: '';
+  content: "";
   display: inline-block;
   position: absolute;
   top: 0;

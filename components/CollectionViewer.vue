@@ -24,9 +24,14 @@
       </div>
 
       <v-container fluid style="padding: 0">
-        <v-row no-gutters align="center" id="navLinksRow">
-          <v-col cols="2" lg="3" xl="4">
-            <Tooltip :text="prevCollection.title" location="bottom">
+        <v-row
+          id="navLinksRow"
+          no-gutters
+          align="center"
+          justify="space-between"
+        >
+          <v-col cols="6" :lg="windowWidth > 1366 ? 3 : 6" xl="4">
+            <Tooltip :text="prevCollection.title ?? ''" location="bottom">
               <NuxtLink
                 v-if="isViewportForSmallLinks"
                 v-bind="props"
@@ -71,14 +76,14 @@
             </Tooltip>
           </v-col>
 
-          <v-col cols="8" lg="6" xl="4">
-            <div v-if="windowWidth > 1366" class="collection-viewer__text">
+          <v-col v-if="windowWidth > 1366" md="6" xl="4">
+            <div class="collection-viewer__text">
               HOVER OVER IMAGE FOR CLOSE-UP
             </div>
           </v-col>
 
-          <v-col cols="2" lg="3" xl="4">
-            <Tooltip :text="nextCollection.title" location="bottom">
+          <v-col cols="6" :lg="windowWidth > 1366 ? 3 : 6" xl="4" align="right">
+            <Tooltip :text="nextCollection.title ?? ''" location="bottom">
               <NuxtLink
                 v-if="isViewportForSmallLinks"
                 v-bind="props"
@@ -217,90 +222,90 @@
 const keyMap = {
   LEFT: 37,
   RIGHT: 39,
-  ESC: 27,
+  ESC: 27
 };
 
 export default {
   props: {
     images: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     index: {
       type: Number,
-      default: 1,
+      default: 1
     },
     disableScroll: {
       type: Boolean,
-      default: false,
+      default: false
     },
     background: {
       type: String,
-      default: 'rgba(0, 0, 0, 0.8)',
+      default: "rgba(0, 0, 0, 0.8)"
     },
     interfaceColor: {
       type: String,
-      default: 'rgba(255, 255, 255, 0.8)',
+      default: "rgba(255, 255, 255, 0.8)"
     },
     prevCollection: {
-      type: Object,
+      type: Object
     },
     nextCollection: {
-      type: Object,
+      type: Object
     },
     isOldTime: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   data() {
     return {
       currentIndex: this.index,
       isImageLoaded: false,
-      bodyOverflowStyle: '',
+      bodyOverflowStyle: "",
       touch: {
         count: 0,
         x: 0,
         y: 0,
         multitouch: false,
-        flag: false,
+        flag: false
       },
       glassElCreated: false,
       zoom: 6,
       headerEl: null,
       headerHeight: 0,
       windowWidth: 0.0,
-      interval: null,
+      interval: null
     };
   },
 
   computed: {
     formattedImages() {
-      return this.images.map((image) =>
-        typeof image === 'string' ? { url: image } : image
+      return this.images.map(image =>
+        typeof image === "string" ? { url: image } : image
       );
     },
     viewerStyles() {
       return {
-        '--headerHeight': this.headerHeight + 'px',
+        "--headerHeight": this.headerHeight + "px"
       };
     },
     isViewportForSmallLinks() {
       return this.windowWidth < 992;
-    },
+    }
   },
 
   mounted() {
     this.windowWidth = window.innerWidth;
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
-      let navLinksEl = document.getElementById('navLinksRow');
+      let navLinksEl = document.getElementById("navLinksRow");
       this.headerHeight = this.getElementOffset(navLinksEl).top;
     });
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener("orientationchange", () => {
       this.windowWidth = window.innerWidth;
-      let navLinksEl = document.getElementById('navLinksRow');
+      let navLinksEl = document.getElementById("navLinksRow");
       this.headerHeight = this.getElementOffset(navLinksEl).top;
     });
 
@@ -331,12 +336,12 @@ export default {
     index(val) {
       if (!document) return;
       this.currentIndex = val;
-      if (this.disableScroll && typeof val === 'number') {
-        document.body.style.overflow = 'hidden';
+      if (this.disableScroll && typeof val === "number") {
+        document.body.style.overflow = "hidden";
       } else if (this.disableScroll && !val) {
         document.body.style.overflow = this.bodyOverflowStyle;
       }
-    },
+    }
   },
 
   methods: {
@@ -352,11 +357,11 @@ export default {
       this.currentIndex += 1;
     },
     imageLoaded(img_el, imageIndex) {
-      img_el.classList.add('loaded');
+      img_el.classList.add("loaded");
       if (imageIndex === this.currentIndex) {
         this.isImageLoaded = !img_el
           ? false
-          : img_el.classList.contains('loaded');
+          : img_el.classList.contains("loaded");
       }
     },
     shouldPreload(index) {
@@ -370,10 +375,10 @@ export default {
       );
     },
     bindEvents() {
-      document.addEventListener('keydown', this.keyDownHandler, false);
+      document.addEventListener("keydown", this.keyDownHandler, false);
     },
     unbindEvents() {
-      document.removeEventListener('keydown', this.keyDownHandler, false);
+      document.removeEventListener("keydown", this.keyDownHandler, false);
     },
     touchstartHandler(event) {
       this.touch.count += 1;
@@ -428,33 +433,33 @@ export default {
 
       return {
         top,
-        left,
+        left
       };
     },
     observeNavLinksPosition() {
       this.interval = setInterval(
         function() {
-          let navLinksEl = document.getElementById('navLinksRow');
+          let navLinksEl = document.getElementById("navLinksRow");
           this.headerHeight = this.getElementOffset(navLinksEl).top;
         }.bind(this),
         500
       );
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -554,8 +559,8 @@ export default {
     }
   }
   &__text {
-    font-family: 'NeueHaasGroteskText Pro55', sans-serif;
-    font-feature-settings: 'liga';
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
     font-weight: 400;
     text-align: center;
     line-height: 13px;
@@ -659,8 +664,8 @@ export default {
 .collections_headerLinkText {
   display: block;
   color: #fff;
-  font-family: 'Francois One', sans-serif;
-  font-feature-settings: 'liga';
+  font-family: "Francois One", sans-serif;
+  font-feature-settings: "liga";
   font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.8px;

@@ -8,18 +8,17 @@
           <Title>{{ title }}</Title>
         </Head>
 
-        <header
-          id="header"
-          :style="headerStyles"
-        >
+        <header id="header" :style="headerStyles">
           <div id="headerItems">
             <img
               :src="titleImg1Line"
               class="titleImg titleImg1Line"
+              data-testid="title-img"
             />
             <img
               :src="titleImg2Lines"
               class="titleImg titleImg2Lines"
+              data-testid="title-img"
             />
 
             <div
@@ -30,48 +29,16 @@
               aria-controls="collapse-1"
               @click="showIntro = !showIntro"
             >
-              {{ showIntro ? 'Hide intro' : 'Read intro' }}
-              <svg
-                viewBox="0 0 20 20"
-                width="20"
-                height="20"
-                class="arrow"
-              >
-                <line
-                  v-if="showIntro"
-                  x1="1"
-                  y1="13"
-                  x2="9"
-                  y2="4.5"
-                />
-                <line
-                  v-if="showIntro"
-                  x1="8"
-                  y1="4.5"
-                  x2="16"
-                  y2="13"
-                />
-                <line
-                  v-if="!showIntro"
-                  x1="1"
-                  y1="4.5"
-                  x2="9"
-                  y2="13"
-                />
-                <line
-                  v-if="!showIntro"
-                  x1="8"
-                  y1="13"
-                  x2="16"
-                  y2="4.5"
-                />
+              {{ showIntro ? "Hide intro" : "Read intro" }}
+              <svg viewBox="0 0 20 20" width="20" height="20" class="arrow">
+                <line v-if="showIntro" x1="1" y1="13" x2="9" y2="4.5" />
+                <line v-if="showIntro" x1="8" y1="4.5" x2="16" y2="13" />
+                <line v-if="!showIntro" x1="1" y1="4.5" x2="9" y2="13" />
+                <line v-if="!showIntro" x1="8" y1="13" x2="16" y2="4.5" />
               </svg>
             </div>
 
-            <ContentRenderer
-              v-else
-              :value="collectionPgContent"
-            >
+            <ContentRenderer v-else :value="collectionPgContent">
               <ContentRendererMarkdown
                 :value="collectionPgContent"
                 tag="div"
@@ -92,7 +59,7 @@
         >
           <div
             v-html="collectionPgContent.description"
-            class="collection_headerText"
+            class="collection_headerText mx-auto px-5"
             id="headerTextDevice"
             ref="headerTextDevice"
           />
@@ -112,7 +79,7 @@
 </template>
 
 <script>
-import slugify from '@sindresorhus/slugify';
+import slugify from "@sindresorhus/slugify";
 
 export default {
   data() {
@@ -122,7 +89,7 @@ export default {
       imageIndex: 0,
       showIntro: true,
       windowWidth: 0.0,
-      headerTextHeight: 0,
+      headerTextHeight: 0
     };
   },
 
@@ -131,7 +98,7 @@ export default {
       return this.collectionPgContent.title;
     },
     titleSlug() {
-      return this.title ? slugify(this.title) : '';
+      return this.title ? slugify(this.title) : "";
     },
     titleImg1Line() {
       return this.collectionPgContent.titleImg1Line;
@@ -143,14 +110,14 @@ export default {
       return this.collectionPgContent.headerBgImg;
     },
     headerBgImgOpacity() {
-      return this.collectionPgContent.hasOwnProperty('backgroundImgOpacity')
+      return this.collectionPgContent.hasOwnProperty("backgroundImgOpacity")
         ? this.collectionPgContent.backgroundImgOpacity
         : 0.5;
     },
     headerStyles() {
       return {
-        '--headerBgImg': `url(${this.headerBgImg})`,
-        '--bgOpacity': this.headerBgImgOpacity / 100,
+        "--headerBgImg": `url(${this.headerBgImg})`,
+        "--bgOpacity": this.headerBgImgOpacity / 100
       };
     },
     images() {
@@ -161,7 +128,7 @@ export default {
     },
     collection_names() {
       return this.collections !== undefined
-        ? this.collections.map((x) => x.title)
+        ? this.collections.map(x => x.title)
         : [];
     },
     collectionIndex() {
@@ -187,42 +154,42 @@ export default {
     },
     headerTextContainerHeight() {
       return this.showIntro && this.headerTextHeight > 0
-        ? this.headerTextHeight + 40 + 'px'
-        : '0px';
-    },
+        ? this.headerTextHeight + 40 + "px"
+        : "0px";
+    }
   },
 
   async mounted() {
     const collectionPgContent = await queryContent(
-      'collections',
+      "collections",
       this.$route.params._slug
     ).findOne();
     this.collectionPgContent = collectionPgContent;
 
     const collectionsPgContent = await queryContent(
-      'collections-index'
+      "collections-index"
     ).findOne();
     this.collectionsPgContent = collectionsPgContent;
 
     this.windowWidth = window.innerWidth;
     this.onResize();
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
       this.onResize();
     });
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener("orientationchange", () => {
       this.windowWidth = window.innerWidth;
       this.onResize();
     });
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', () => {
+    window.removeEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
       this.onResize();
     });
-    window.removeEventListener('orientationchange', () => {
+    window.removeEventListener("orientationchange", () => {
       this.windowWidth = window.innerWidth;
       this.onResize();
     });
@@ -230,38 +197,39 @@ export default {
 
   methods: {
     onResize() {
-      this.headerTextHeight =
-        document.getElementById('headerTextDevice').clientHeight;
-    },
-  },
+      this.headerTextHeight = document.getElementById(
+        "headerTextDevice"
+      ).clientHeight;
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
 
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
+  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
-  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
-      format('woff'),
+  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
+  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -278,7 +246,7 @@ export default {
   padding-bottom: 12.5px;
 }
 #header:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -306,8 +274,8 @@ export default {
   height: 0;
 }
 .collection_headerText {
-  font-family: 'NeueHaasGroteskText Pro65';
-  font-feature-settings: 'liga';
+  font-family: "NeueHaasGroteskText Pro65";
+  font-feature-settings: "liga";
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.29);
   color: #ffffff;
   text-align: center;
@@ -354,7 +322,7 @@ export default {
 /* To fix poor scroll speed using "background-size: cover" and "background-attachment: fixed"
 Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/ */
 .layout::before {
-  content: ' ';
+  content: " ";
   position: fixed; /* instead of background-attachment */
   width: 100%;
   height: 100%;
