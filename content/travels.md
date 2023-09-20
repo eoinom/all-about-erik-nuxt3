@@ -302,11 +302,11 @@ videos:
     title: Pelourinho Carnival
     url: 'https://player.vimeo.com/video/819306663'
 
-  - duration: 1073
+  - duration: 764
     thumbnailImg: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580642923/Travels/malaysia_zcxazn.jpg
     title: Peninsular Malaysia
-    url: 'https://player.vimeo.com/video/298625007'
+    url: 'https://player.vimeo.com/video/732565570'
 
   - duration: 219
     thumbnailImg: >-
