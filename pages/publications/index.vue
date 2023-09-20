@@ -14,14 +14,8 @@
         :playMusic="playMusic"
       />
 
-      <v-container
-        fluid
-        class="main-col"
-      >
-        <v-row
-          no-gutters
-          class="mb-1 pt-6 px-1"
-        >
+      <v-container fluid class="main-col">
+        <v-row no-gutters class="mb-1 pt-6 px-1">
           <v-col class="slideshowCol">
             <!-- HEADER SLIDESHOW -->
             <SlideshowKenBurnsSmall
@@ -54,11 +48,7 @@
         fluid
         class="publicationsContainer"
       >
-        <v-row
-          no-gutters
-          justify="center"
-          class="publicationsRow mb-1"
-        >
+        <v-row no-gutters justify="center" class="publicationsRow mb-1">
           <v-col
             v-for="(publication, i) in publications"
             :key="'publication' + i"
@@ -77,11 +67,7 @@
         fluid
         class="publicationsContainer"
       >
-        <v-row
-          no-gutters
-          justify="center"
-          class="publicationsRow mb-1"
-        >
+        <v-row no-gutters justify="center" class="publicationsRow mb-1">
           <v-col
             v-for="(newPublication, i) in publicationsAltOrder"
             :key="'newPublication' + i"

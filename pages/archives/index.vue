@@ -13,18 +13,9 @@
         :maxVolume="1.0"
       />
 
-      <v-container
-        fluid
-        class="main-col ma-0, pa-0"
-      >
-        <v-row
-          no-gutters
-          class="mb-1"
-        >
-          <v-col
-            class="slideshowCol"
-            :style="slideshowColStyles"
-          >
+      <v-container fluid class="main-col ma-0, pa-0">
+        <v-row no-gutters class="mb-1">
+          <v-col class="slideshowCol" :style="slideshowColStyles">
             <!-- HEADER SLIDESHOW -->
             <SlideshowKenBurnsSmall
               :slides="slides"
@@ -34,10 +25,7 @@
             />
 
             <!-- SLIDESHOW OVERLAY -->
-            <div
-              class="slideshowOverlay mb-4"
-              :style="slideshowOverlayStyles"
-            >
+            <div class="slideshowOverlay mb-4" :style="slideshowOverlayStyles">
               <div class="mainContent mx-auto py-0">
                 <img
                   alt="Archives title image"

@@ -7,10 +7,7 @@
     @touchend.passive="touchendHandler"
     :style="viewerStyles"
   >
-    <div
-      class="collection-viewer__modal"
-      :style="`background: ${background}`"
-    >
+    <div class="collection-viewer__modal" :style="`background: ${background}`">
       <div :class="['collection-viewer__spinner', !isImageLoaded || 'hide']">
         <div
           class="collection-viewer__dot"
@@ -26,24 +23,10 @@
         />
       </div>
 
-      <v-container
-        fluid
-        style="padding: 0"
-      >
-        <v-row
-          no-gutters
-          align="center"
-          id="navLinksRow"
-        >
-          <v-col
-            cols="2"
-            lg="3"
-            xl="4"
-          >
-            <Tooltip
-              :text="prevCollection.title"
-              location="bottom"
-            >
+      <v-container fluid style="padding: 0">
+        <v-row no-gutters align="center" id="navLinksRow">
+          <v-col cols="2" lg="3" xl="4">
+            <Tooltip :text="prevCollection.title" location="bottom">
               <NuxtLink
                 v-if="isViewportForSmallLinks"
                 v-bind="props"
@@ -88,28 +71,14 @@
             </Tooltip>
           </v-col>
 
-          <v-col
-            cols="8"
-            lg="6"
-            xl="4"
-          >
-            <div
-              v-if="windowWidth > 1366"
-              class="collection-viewer__text"
-            >
+          <v-col cols="8" lg="6" xl="4">
+            <div v-if="windowWidth > 1366" class="collection-viewer__text">
               HOVER OVER IMAGE FOR CLOSE-UP
             </div>
           </v-col>
 
-          <v-col
-            cols="2"
-            lg="3"
-            xl="4"
-          >
-            <Tooltip
-              :text="nextCollection.title"
-              location="bottom"
-            >
+          <v-col cols="2" lg="3" xl="4">
+            <Tooltip :text="nextCollection.title" location="bottom">
               <NuxtLink
                 v-if="isViewportForSmallLinks"
                 v-bind="props"
@@ -161,15 +130,12 @@
           <li
             v-for="(image, imageIndex) in formattedImages"
             :key="imageIndex"
-            :style="`transform: translate3d(${
-              currentIndex * -100
-            }%, 0px, 0px);`"
+            :style="
+              `transform: translate3d(${currentIndex * -100}%, 0px, 0px);`
+            "
             class="collection-viewer__image-container"
           >
-            <div
-              class="collection-viewer__image"
-              style="position: relative"
-            >
+            <div class="collection-viewer__image" style="position: relative">
               <image-magnifier
                 :src="image.img"
                 :zoom-src="image.img"
@@ -180,10 +146,7 @@
                 @imgloaded="imageLoaded($event, imageIndex)"
               />
 
-              <div
-                v-if="isOldTime"
-                class="collections_headerLinkText"
-              >
+              <div v-if="isOldTime" class="collections_headerLinkText">
                 <span>READ ALL ABOUT IT</span>
                 <br />
                 <span>KEEP SCROLLING</span>
@@ -193,11 +156,7 @@
         </ul>
       </div>
 
-      <div
-        id="leftArrowContainer"
-        v-if="currentIndex > 0"
-        @click="prev()"
-      >
+      <div id="leftArrowContainer" v-if="currentIndex > 0" @click="prev()">
         <img
           alt="Left arrow, click for previous image"
           src="../assets/images/arrow-left.png"
@@ -348,7 +307,12 @@ export default {
     if (!document) return;
 
     this.observeNavLinksPosition();
-    setTimeout(() => clearTheInterval().bind(this), 8000);
+    setTimeout(
+      function() {
+        this.clearTheInterval();
+      }.bind(this),
+      8000
+    );
 
     this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
@@ -469,7 +433,7 @@ export default {
     },
     observeNavLinksPosition() {
       this.interval = setInterval(
-        function () {
+        function() {
           let navLinksEl = document.getElementById('navLinksRow');
           this.headerHeight = this.getElementOffset(navLinksEl).top;
         }.bind(this),

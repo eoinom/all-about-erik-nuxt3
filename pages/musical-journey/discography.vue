@@ -32,10 +32,7 @@
           />
         </div>
 
-        <header
-          id="header"
-          :style="headerStyles"
-        >
+        <header id="header" :style="headerStyles">
           <img
             :src="titleImg"
             id="titleImg"
@@ -46,21 +43,13 @@
           <p id="targetForOpacity"></p>
         </header>
 
-        <div
-          id="scrollDownContainer"
-          style="text-align: center"
-          class="pb-12"
-        >
+        <div id="scrollDownContainer" style="text-align: center" class="pb-12">
           <ScrollDownArrow scrollToElement="#topOfMainBody" />
         </div>
 
         <div id="topOfMainBody"></div>
 
-        <v-container
-          fluid
-          :style="bodyOpacity"
-          class="mb-12 py-4 main-col"
-        >
+        <v-container fluid :style="bodyOpacity" class="mb-12 py-4 main-col">
           <div class="px-6 py-4">
             <div>
               <ContentRenderer
@@ -91,16 +80,8 @@
               </v-row>
 
               <v-row align-content="center">
-                <v-col
-                  cols="12"
-                  lg="6"
-                  xl="5"
-                  class="py-0"
-                >
-                  <div
-                    style="text-align: center"
-                    class="mb-4"
-                  >
+                <v-col cols="12" lg="6" xl="5" class="py-0">
+                  <div style="text-align: center" class="mb-4">
                     <img
                       :src="album.thumbnailImg"
                       style="max-width: 100%"
@@ -109,12 +90,7 @@
                   </div>
                 </v-col>
 
-                <v-col
-                  cols="12"
-                  lg="6"
-                  xl="4"
-                  class="pt-0"
-                >
+                <v-col cols="12" lg="6" xl="4" class="pt-0">
                   <span class="underline">Tracks</span>
                   <div
                     v-html="convertTrackListingToHtml(album.trackListing)"
@@ -134,23 +110,14 @@
                     </v-col>
                   </v-row>
                   <v-row v-for="d in getAlbumDetails(album)">
-                    <v-col
-                      cols="4"
-                      sm="3"
-                      md="2"
-                      xxl="4"
-                      class="py-0"
-                    >
+                    <v-col cols="4" sm="3" md="2" xxl="4" class="py-0">
                       {{ d.title }}:
                     </v-col>
                     <v-col class="py-0">{{ d.value }}</v-col>
                   </v-row>
                 </v-col>
 
-                <v-col
-                  cols="12"
-                  class="albumDetailsText my-2"
-                >
+                <v-col cols="12" class="albumDetailsText my-2">
                   <span class="underline">Credits</span>
                   <div
                     v-html="convertCreditsToHtml(album.credits)"

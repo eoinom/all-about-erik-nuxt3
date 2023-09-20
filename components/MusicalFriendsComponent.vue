@@ -1,32 +1,15 @@
 <template>
-  <div
-    v-if="friends.length > 0"
-    class="pb-12"
-  >
-    <img
-      :src="backgroundImgUrl"
-      id="bgImg"
-      :style="bgStyles"
-    />
+  <div v-if="friends.length > 0" class="pb-12">
+    <img :src="backgroundImgUrl" id="bgImg" :style="bgStyles" />
 
-    <header
-      id="header"
-      :style="headerStyles"
-    >
-      <img
-        :src="titleImg"
-        id="titleImg"
-        data-testid="title-img"
-      />
+    <header id="header" :style="headerStyles">
+      <img :src="titleImg" id="titleImg" data-testid="title-img" />
       <ContentRenderer
         :value="musicalFriendsPgContent"
         tag="span"
         id="titleSubText"
       />
-      <div
-        v-if="!menuOnly"
-        id="scrollDownContainer"
-      >
+      <div v-if="!menuOnly" id="scrollDownContainer">
         <ScrollDownArrow scrollToElement="#friends" />
       </div>
       <p id="targetForOpacity"></p>
@@ -44,10 +27,7 @@
       class="main-col px-0 mt-6 mb-12"
     >
       <v-row no-gutters>
-        <v-col
-          style="max-width: 652px"
-          class="mr-4"
-        >
+        <v-col style="max-width: 652px" class="mr-4">
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -89,14 +69,8 @@
         </v-col>
 
         <v-col style="max-width: 872px">
-          <v-row
-            no-gutters
-            class="mb-4"
-          >
-            <v-col
-              style="max-width: 431px"
-              class="mr-4"
-            >
+          <v-row no-gutters class="mb-4">
+            <v-col style="max-width: 431px" class="mr-4">
               <friend-card
                 :friend="friends[4]"
                 :index="4"
@@ -155,11 +129,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 1540px"
-        class="mt-0"
-      >
+      <v-row no-gutters style="max-width: 1540px" class="mt-0">
         <v-col class="mb-4">
           <friend-card
             :friend="friends[9]"
@@ -172,14 +142,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mt-0"
-      >
-        <v-col
-          style="max-width: 793px"
-          class="mb-4 mr-4"
-        >
+      <v-row no-gutters class="mt-0">
+        <v-col style="max-width: 793px" class="mb-4 mr-4">
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -191,10 +155,7 @@
           />
         </v-col>
 
-        <v-col
-          style="max-width: 731px"
-          class="mb-4"
-        >
+        <v-col style="max-width: 731px" class="mb-4">
           <friend-card
             :friend="friends[11]"
             :index="11"
@@ -208,10 +169,7 @@
       </v-row>
 
       <v-row no-gutters>
-        <v-col
-          style="max-width: 388.5px"
-          class="mb-4 mr-4"
-        >
+        <v-col style="max-width: 388.5px" class="mb-4 mr-4">
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -222,10 +180,7 @@
           />
         </v-col>
 
-        <v-col
-          style="max-width: 388.5px"
-          class="mb-4 mr-4"
-        >
+        <v-col style="max-width: 388.5px" class="mb-4 mr-4">
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -275,10 +230,7 @@
       class="main-col px-0 mt-6 mb-12"
     >
       <v-row no-gutters>
-        <v-col
-          style="max-width: 652px"
-          class="mr-4"
-        >
+        <v-col style="max-width: 652px" class="mr-4">
           <friend-card
             :friend="friends[0]"
             :index="0"
@@ -365,11 +317,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 1215px"
-        class="mb-4 mt-0"
-      >
+      <v-row no-gutters style="max-width: 1215px" class="mb-4 mt-0">
         <v-col>
           <friend-card
             :friend="friends[8]"
@@ -384,11 +332,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 1215px"
-        class="mb-4 mt-0"
-      >
+      <v-row no-gutters style="max-width: 1215px" class="mb-4 mt-0">
         <v-col>
           <friend-card
             :friend="friends[9]"
@@ -401,14 +345,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4 mt-0"
-      >
-        <v-col
-          style="max-width: 656px"
-          class="mr-4"
-        >
+      <v-row no-gutters class="mb-4 mt-0">
+        <v-col style="max-width: 656px" class="mr-4">
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -433,10 +371,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4 mt-0"
-      >
+      <v-row no-gutters class="mb-4 mt-0">
         <v-col style="max-width: 1215px">
           <friend-card
             :friend="friends[15]"
@@ -450,15 +385,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 1215px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 388.5px"
-          class="mr-4"
-        >
+      <v-row no-gutters style="max-width: 1215px" class="mb-4">
+        <v-col style="max-width: 388.5px" class="mr-4">
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -469,10 +397,7 @@
           />
         </v-col>
 
-        <v-col
-          style="max-width: 388.5px"
-          class="mr-4"
-        >
+        <v-col style="max-width: 388.5px" class="mr-4">
           <friend-card
             :friend="friends[13]"
             :index="13"
@@ -507,11 +432,7 @@
       id="friends"
       class="main-col px-0 mt-6 mb-12"
     >
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[0]"
@@ -524,15 +445,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 408px"
-          class="mr-4"
-        >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
+        <v-col style="max-width: 408px" class="mr-4">
           <friend-card
             :friend="friends[1]"
             :index="1"
@@ -557,11 +471,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[3]"
@@ -576,15 +486,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 408px"
-          class="mr-4"
-        >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
+        <v-col style="max-width: 408px" class="mr-4">
           <friend-card
             :friend="friends[4]"
             :index="4"
@@ -608,11 +511,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[6]"
@@ -628,11 +527,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[7]"
@@ -646,11 +541,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[8]"
@@ -665,11 +556,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[9]"
@@ -683,15 +570,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 408px"
-          class="mr-4"
-        >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
+        <v-col style="max-width: 408px" class="mr-4">
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -718,15 +598,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 832px"
-          class=""
-        >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
+        <v-col style="max-width: 832px" class="">
           <friend-card
             :friend="friends[15]"
             :index="15"
@@ -740,11 +613,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[14]"
@@ -757,15 +626,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        style="max-width: 832px"
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: 408px"
-          class="mr-4"
-        >
+      <v-row no-gutters style="max-width: 832px" class="mb-4">
+        <v-col style="max-width: 408px" class="mr-4">
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -801,10 +663,7 @@
       id="friends"
       class="main-col px-0 mt-6 mb-12"
     >
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[0]"
@@ -817,14 +676,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: calc(50% - 8px)"
-          class="mr-4"
-        >
+      <v-row no-gutters class="mb-4">
+        <v-col style="max-width: calc(50% - 8px)" class="mr-4">
           <friend-card
             :friend="friends[1]"
             :index="1"
@@ -847,10 +700,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[3]"
@@ -864,14 +714,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: calc(50% - 8px)"
-          class="mr-4"
-        >
+      <v-row no-gutters class="mb-4">
+        <v-col style="max-width: calc(50% - 8px)" class="mr-4">
           <friend-card
             :friend="friends[4]"
             :index="4"
@@ -895,10 +739,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[6]"
@@ -911,10 +752,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[7]"
@@ -928,10 +766,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[8]"
@@ -945,10 +780,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[9]"
@@ -962,14 +794,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: calc(50% - 8px)"
-          class="mr-4"
-        >
+      <v-row no-gutters class="mb-4">
+        <v-col style="max-width: calc(50% - 8px)" class="mr-4">
           <friend-card
             :friend="friends[10]"
             :index="10"
@@ -993,10 +819,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[15]"
@@ -1009,10 +832,7 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
+      <v-row no-gutters class="mb-4">
         <v-col>
           <friend-card
             :friend="friends[14]"
@@ -1024,14 +844,8 @@
         </v-col>
       </v-row>
 
-      <v-row
-        no-gutters
-        class="mb-4"
-      >
-        <v-col
-          style="max-width: calc(50% - 8px)"
-          class="mr-4"
-        >
+      <v-row no-gutters class="mb-4">
+        <v-col style="max-width: calc(50% - 8px)" class="mr-4">
           <friend-card
             :friend="friends[12]"
             :index="12"
@@ -1499,10 +1313,10 @@ export default {
     this.addScrollListener();
 
     setTimeout(
-      function () {
-        if (window.pageYOffset != 0) {
+      function() {
+        if (window.scrollY != 0) {
           window.scrollTo(0, 0); // scroll to top of page (avoid inconsistent behaviour of using browser back button)
-          this.scrollY = window.pageYOffset;
+          this.scrollY = window.scrollY;
         }
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('topOfFriends');
@@ -1526,8 +1340,8 @@ export default {
       window.addEventListener('scroll', this.scrollFunction);
     },
     scrollFunction() {
-      if (this.scrollY != window.pageYOffset) {
-        this.scrollY = window.pageYOffset;
+      if (this.scrollY != window.scrollY) {
+        this.scrollY = window.scrollY;
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('topOfFriends');
         if (element) {

@@ -13,14 +13,8 @@
         :playMusic="playMusic"
       />
 
-      <v-container
-        fluid
-        class="main-col"
-      >
-        <v-row
-          no-gutters
-          class="mb-1 px-1"
-        >
+      <v-container fluid class="main-col">
+        <v-row no-gutters class="mb-1 px-1">
           <v-col class="slideshowCol">
             <!-- HEADER SLIDESHOW -->
             <SlideshowKenBurnsSmall
@@ -52,15 +46,8 @@
         </v-row>
       </v-container>
 
-      <v-container
-        fluid
-        class="collectionsContainer"
-      >
-        <v-row
-          no-gutters
-          justify="center"
-          class="collectionsRow mb-1 mx-auto"
-        >
+      <v-container fluid class="collectionsContainer">
+        <v-row no-gutters justify="center" class="collectionsRow mb-1 mx-auto">
           <v-col
             v-for="(collection, index) in collections"
             :key="index"
@@ -123,7 +110,12 @@ export default {
     this.collectionsPgContent = collectionsPgContent;
 
     this.observeTextBlockHeight();
-    setTimeout(() => clearTheInterval().bind(this), 8000);
+    setTimeout(
+      function() {
+        this.clearTheInterval();
+      }.bind(this),
+      8000
+    );
 
     window.addEventListener('resize', () => {
       let textEl = document.getElementById('slideshowText');
@@ -142,7 +134,7 @@ export default {
     },
     observeTextBlockHeight() {
       this.interval = setInterval(
-        function () {
+        function() {
           let textEl = document.getElementById('slideshowText');
           this.mainColHeight = this.getElementOffset(textEl).bottom;
         }.bind(this),
