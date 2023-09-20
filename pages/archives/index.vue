@@ -135,10 +135,10 @@ export default {
     this.addScrollListener();
 
     setTimeout(
-      function () {
-        if (window.pageYOffset != 0) {
+      function() {
+        if (window.scrollY != 0) {
           window.scrollTo(0, 0); // scroll to top of page (avoid inconsistent behaviour of using browser back button)
-          this.scrollY = window.pageYOffset;
+          this.scrollY = window.scrollY;
         }
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('tilesRow');
@@ -160,8 +160,8 @@ export default {
       window.addEventListener('scroll', this.scrollFunction);
     },
     scrollFunction() {
-      if (this.scrollY != window.pageYOffset) {
-        this.scrollY = window.pageYOffset;
+      if (this.scrollY != window.scrollY) {
+        this.scrollY = window.scrollY;
         let bodyRect = document.body.getBoundingClientRect();
         let element = document.getElementById('tilesRow');
         if (element) {
