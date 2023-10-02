@@ -151,7 +151,7 @@ useHead({
 }
 
 .outerContainer {
-  height: 50%;
+  max-height: 100vh;
   overflow-y: hidden;
 }
 
