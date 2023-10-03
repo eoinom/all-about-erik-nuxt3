@@ -328,7 +328,6 @@ export default {
       target.classList.add('loaded');
       if (videoIndex === this.currentIndex) {
         this.setVideoLoaded(videoIndex);
-        this.storeVideoAspectRatio();
       }
     },
     getVideoElByIndex(index) {
@@ -338,13 +337,6 @@ export default {
     setVideoLoaded(index) {
       const el = this.getVideoElByIndex(index);
       this.isVideoLoaded = !el ? false : el.classList.contains('loaded');
-    },
-    storeVideoAspectRatio() {
-      if (this.isVideoLoaded === true) {
-        let video = this.videos[this.currentIndex];
-        if (video.hasOwnProperty('width') && video.hasOwnProperty('height'))
-          this.videoAspectRatio = video.width / video.height;
-      }
     },
     shouldPreload(index) {
       const el = this.getVideoElByIndex(index) || {};
