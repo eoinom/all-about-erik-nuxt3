@@ -28,6 +28,7 @@
               "
               data-testid="video-container"
             >
+              <!-- <VideoThumbnailTravels :video="video" :preload="index < 4" /> -->
               <VideoThumbnailTravels :video="video" />
             </v-col>
           </v-row>
@@ -35,8 +36,9 @@
       </div>
 
       <VideoLightBox
-        :videos="travelVideos"
-        :index="videoIndex"
+        v-if="travelVideos && videoIndex !== null"
+        :videos="travelVideos?.filter((v, i) => i === videoIndex)"
+        :index="0"
         :disable-scroll="true"
         @close="
           videoIndex = null;
