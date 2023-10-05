@@ -21,15 +21,14 @@
               lg="3"
               v-for="(video, index) in travelVideos"
               :key="video.title"
-              class="mb-2 mb-sm-4 px-2 px-sm-1"
+              class=""
               @click="
                 scrollContainer = false;
                 videoIndex = index;
               "
               data-testid="video-container"
             >
-              <!-- <VideoThumbnailTravels :video="video" :preload="index < 4" /> -->
-              <VideoThumbnailTravels :video="video" />
+              <VideoThumbnailTravelsPOC :video="video" />
             </v-col>
           </v-row>
         </v-container>
