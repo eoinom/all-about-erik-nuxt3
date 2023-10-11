@@ -206,12 +206,11 @@
                 </NuxtLink>
               </Tooltip>
             </v-col>
-
+            
             <v-col
               cols="11"
-              sm="11"
-              lg="8"
-              xl="7"
+              md="8"
+              lg="7"
               order="3"
               order-lg="2"
               class="pt-3 pb-3 pt-sm-0"
@@ -280,6 +279,7 @@
             <v-col
               order="2"
               order-lg="3"
+              class="text-right"
             >
               <Tooltip
                 :text="nextPublication.title"
@@ -977,13 +977,6 @@ Ref: https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-wil
   }
   .headerItems {
     padding: 0px 130px;
-  }
-}
-
-/* Special */
-@media only screen and (min-width: 1200px) {
-  #mainCol {
-    margin: 0 40px;
   }
 }
 
