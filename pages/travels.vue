@@ -70,10 +70,7 @@
             v-for="(video, index) in videos"
             :key="video.title"
             class="mb-2 mb-sm-4 px-2 px-sm-1"
-            @click="
-              videoIndex = index;
-              setStorage();
-            "
+            @click="videoIndex = index"
             data-testid="video-container"
           >
             <VideoThumbnailTravels
@@ -134,15 +131,6 @@ export default {
   async mounted() {
     const travelsPgContent = await queryContent('travels').findOne();
     this.travelsPgContent = travelsPgContent;
-  },
-
-  methods: {
-    setStorage() {
-      sessionStorage.setItem('travelVideoViewed', 'true');
-    },
-    videoPreviouslyViewed() {
-      return sessionStorage.getItem('travelVideoViewed') === 'true';
-    },
   },
 };
 </script>
