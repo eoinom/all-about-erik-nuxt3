@@ -5,14 +5,14 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <BackgroundMusic
+      <!-- <BackgroundMusic
         :audioFile="publicationsPgContent.bgAudio"
         :audioDuration="publicationsPgContent.bgAudioDuration"
         :audioFadeInDuration="publicationsPgContent.bgAudioFadeInDuration"
         :audioFadeOutDuration="publicationsPgContent.bgAudioFadeOutDuration"
         :maxVolume="0.78"
         :playMusic="playMusic"
-      />
+      /> -->
 
       <v-container fluid class="main-col">
         <v-row no-gutters class="mb-1 pt-6 px-1">

@@ -6,12 +6,12 @@
       </Head>
 
       <div class="pb-12">
-        <BackgroundMusic
+        <!-- <BackgroundMusic
           :audioFile="discographyPgContent.bgAudio"
           :audioDuration="discographyPgContent.bgAudioDuration"
           :audioFadeInDuration="discographyPgContent.bgAudioFadeInDuration"
           :audioFadeOutDuration="discographyPgContent.bgAudioFadeOutDuration"
-        />
+        /> -->
 
         <div
           v-for="(img, index) in backgroundImages"

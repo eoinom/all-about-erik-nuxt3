@@ -5,12 +5,12 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <BackgroundMusic
+      <!-- <BackgroundMusic
         :audioFile="rootsContent.bgAudio"
         :audioDuration="rootsContent.bgAudioDuration"
         :audioFadeInDuration="rootsContent.bgAudioFadeInDuration"
         :audioFadeOutDuration="rootsContent.bgAudioFadeOutDuration"
-      />
+      /> -->
 
       <v-container
         fluid

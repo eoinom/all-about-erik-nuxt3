@@ -5,13 +5,13 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <BackgroundMusic
+      <!-- <BackgroundMusic
         :audioFile="musicalFriendsPgContent.bgAudio"
         :audioDuration="musicalFriendsPgContent.bgAudioDuration"
         :audioFadeInDuration="musicalFriendsPgContent.bgAudioFadeInDuration"
         :audioFadeOutDuration="musicalFriendsPgContent.bgAudioFadeOutDuration"
         :maxVolume="0.9"
-      />
+      /> -->
 
       <MusicalFriendsComponent
         :musicalFriendsPgContent="musicalFriendsPgContent"

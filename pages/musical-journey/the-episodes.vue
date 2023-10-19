@@ -5,12 +5,12 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <BackgroundMusic
+      <!-- <BackgroundMusic
         :audioFile="theEpisodesPgContent.bgAudio"
         :audioDuration="theEpisodesPgContent.bgAudioDuration"
         :audioFadeInDuration="theEpisodesPgContent.bgAudioFadeInDuration"
         :audioFadeOutDuration="theEpisodesPgContent.bgAudioFadeOutDuration"
-      />
+      /> -->
 
       <header
         id="header"
