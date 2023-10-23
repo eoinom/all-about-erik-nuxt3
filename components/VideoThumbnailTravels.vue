@@ -1,5 +1,5 @@
 <template>
-  <div class="videoThumbnailContainer">
+  <div class="videoThumbnailContainer" :class="{poc: poc}">
     <div>
       <img
         v-if="video.thumbnailImg != null"
@@ -25,20 +25,9 @@
       </div>
     </div>
 
-    <v-container
-      fluid
-      class="captionBanner pa-2"
-    >
-      <v-row
-        justify="center"
-        align="center"
-        style="height: 100%"
-      >
-        <v-col align-self="center">
-          <h4 class="videoTitle">{{ video.title }}</h4>
-        </v-col>
-      </v-row>
-    </v-container>
+    <div class="captionBanner pa-2">
+      <h4 class="videoTitle">{{ video.title }}</h4>
+    </div>
   </div>
 </template>
 
@@ -51,6 +40,10 @@ export default {
       type: Object,
     },
     preload: {
+      type: Boolean,
+      default: false,
+    },
+    poc: {
       type: Boolean,
       default: false,
     },
@@ -137,14 +130,19 @@ export default {
 }
 
 .captionBanner {
+  display: flex;
   color: white;
   background-color: black;
   width: 100%;
   height: 115px;
-  position: block;
   bottom: 0;
   font-size: 14px;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease-in 0s;
+}
+.poc .captionBanner {
+  height: 100px;
 }
 
 .videoTitle {
@@ -154,6 +152,7 @@ export default {
   font-size: 1.0625rem;
   line-height: 1.375rem;
   letter-spacing: 7px;
+  text-align: center;
   text-transform: uppercase;
 }
 
