@@ -17,8 +17,8 @@
             <v-col
               cols="12"
               sm="6"
-              md="4"
-              lg="3"
+              md="6"
+              lg="4"
               v-for="(video, index) in travelVideos"
               :key="video.title"
               class="mb-2 mb-sm-2 px-2 px-sm-1"
