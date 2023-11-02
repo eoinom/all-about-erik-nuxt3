@@ -1,5 +1,5 @@
 <template>
-  <div class="videoThumbnailContainer" :class="{poc: poc}">
+  <div class="videoThumbnailContainer" :class="{ poc: poc }">
     <div>
       <img
         v-if="video.thumbnailImg != null"
@@ -109,6 +109,10 @@ export default {
   width: 85%;
 }
 
+.poc .thumbnailImgTextOverlay {
+  top: 40%;
+}
+
 .playVideoText {
   font-family: 'Open Sans Condensed', sans-serif;
   font-feature-settings: 'liga';
@@ -142,7 +146,7 @@ export default {
   transition: all 0.3s ease-in 0s;
 }
 .poc .captionBanner {
-  height: 100px;
+  height: 75px;
 }
 
 .videoTitle {
