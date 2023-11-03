@@ -11,7 +11,8 @@
       'px-3': apply12pxHorizPadding,
     }"
   >
-    <Navbar />
+    <NavbarHorizontal v-if="path.includes('travels-poc-3')" />
+    <Navbar v-else />
 
     <!-- This transition is for all other page loads -->
     <!-- https://github.com/gridsome/gridsome/issues/24 -->
