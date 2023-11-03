@@ -192,26 +192,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Lato:100,400&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
-
-.layout {
-  max-width: 100%;
-  margin: 0 auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-
-  &--lightgrey {
-    background-color: #dddddd;
-  }
-  &--grey {
-    background-color: #222222;
-  }
-  &--darkgrey {
-    background-color: #141414;
-  }
-}
 
 /* The side navigation menu */
 #sideNav-main {
@@ -441,11 +424,6 @@ export default {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
-  .layout {
-    &--zero-padding-mbl {
-      padding: 0;
-    }
-  }
   #sideNav-main {
     padding: 15px 0;
   }

@@ -206,6 +206,23 @@ body {
   padding: 0;
 }
 
+.layout {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  &--lightgrey {
+    background-color: #dddddd;
+  }
+  &--grey {
+    background-color: #222222;
+  }
+  &--darkgrey {
+    background-color: #141414;
+  }
+}
+
 /* Transition styles on router-view for fading the page */
 .page-enter-active {
   transition-duration: 5.5s;
@@ -220,5 +237,14 @@ body {
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 575.98px) {
+  .layout {
+    &--zero-padding-mbl {
+      padding: 0;
+    }
+  }
 }
 </style>
