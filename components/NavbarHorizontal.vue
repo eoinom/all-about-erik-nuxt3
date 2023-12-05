@@ -3,30 +3,32 @@
     <NuxtLink to="/" class="logo-link">
       <img
         alt="Home page"
-        src="@/assets/eriks-travels/eriks-travels-white-2line-temp.png"
-        width="200"
+        src="eriks-travels/eriks-travels-white-2line-temp.png"
+        width="250"
     /></NuxtLink>
 
     <div class="nav-items">
       <template v-for="menuItem in navMenuItems" :key="menuItem.text">
-        <button v-if="menuItem.to == ' '" class="nav_item">
-          {{ menuItem.text.toUpperCase() }}
-        </button>
-        <NuxtLink v-else :to="menuItem.to" class="nav_item">{{
-          menuItem.text.toUpperCase()
-        }}</NuxtLink>
+        <NuxtLink :to="menuItem.to" class="nav_item">
+          <img
+            :alt="menuItem.altText"
+            :src="`eriks-travels/${menuItem.img}`"
+            width="200"
+          />
+        </NuxtLink>
       </template>
     </div>
   </nav>
   <!-- Hack to always have main content start below the nav bar -->
   <nav class="nav-container hidden">
     <template v-for="menuItem in navMenuItems" :key="menuItem.text">
-      <button v-if="menuItem.to == ' '" class="nav_item">
-        {{ menuItem.text.toUpperCase() }}
-      </button>
-      <NuxtLink v-else :to="menuItem.to" class="nav_item">{{
-        menuItem.text.toUpperCase()
-      }}</NuxtLink>
+      <NuxtLink :to="menuItem.to" class="nav_item">
+        <img
+          :alt="menuItem.altText"
+          :src="`eriks-travels/${menuItem.img}`"
+          width="200"
+        />
+      </NuxtLink>
     </template>
   </nav>
 </template>
@@ -37,30 +39,30 @@ import snarkdown from 'snarkdown';
 export default {
   data() {
     return {
-      // navMenuItems: null,
       navMenuItems: [
         {
-          text: 'Home',
-          to: '/',
+          img: 'film-portfolio.png',
+          altText: 'Film Portfolio',
+          to: '/film-portfolio',
         },
         {
-          text: 'Sizzle Reel',
-          to: '/sizzle-reel',
+          img: 'showreel.png',
+          altText: 'Showreel',
+          to: '/showreel',
         },
         {
-          text: 'The Producer',
+          img: 'producer.png',
+          altText: 'The Producer',
           to: '/producer',
         },
         {
-          text: 'Awards & Reviews',
-          to: '/awards-reviews',
+          img: 'film-festivals.png',
+          altText: 'Film Festivals',
+          to: '/film-festivals',
         },
         {
-          text: 'Video Index',
-          to: '/video-index',
-        },
-        {
-          text: 'Contact & Credits',
+          img: 'contact.png',
+          altText: 'Contact and Credits',
           to: '/contact',
         },
       ],
@@ -106,7 +108,7 @@ export default {
   }
 
   .logo-link {
-    padding: 8px 16px;
+    padding: 8px 16px 8px 0;
   }
 
   .nav-items {
@@ -114,12 +116,6 @@ export default {
     width: 100%;
     justify-content: space-around;
     align-items: center;
-  }
-
-  a,
-  button {
-    text-align: center;
-    padding: 28px 10px;
   }
 
   a:hover,
