@@ -127,24 +127,24 @@ useHead({
 
 .scroll {
   animation: scrollAnimation infinite linear;
-  animation-duration: 360s;
+  animation-duration: 480s;
 }
 
 @media screen and (min-width: 600px) and (max-width: 960px) {
   .scroll {
-    animation-duration: 180s;
+    animation-duration: 240s;
   }
 }
 
 @media screen and (min-width: 960px) and (max-width: 1280px) {
   .scroll {
-    animation-duration: 120s;
+    animation-duration: 160s;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .scroll {
-    animation-duration: 90s;
+    animation-duration: 120s;
   }
 }
 
