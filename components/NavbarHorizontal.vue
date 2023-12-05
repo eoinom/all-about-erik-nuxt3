@@ -3,7 +3,7 @@
     <NuxtLink to="/" class="logo-link">
       <img
         alt="Home page"
-        src="eriks-travels/eriks-travels-white-2line-temp.png"
+        src="/eriks-travels/eriks-travels-white-2line-temp.png"
         width="250"
     /></NuxtLink>
 
@@ -12,7 +12,7 @@
         <NuxtLink :to="menuItem.to" class="nav_item">
           <img
             :alt="menuItem.altText"
-            :src="`eriks-travels/${menuItem.img}`"
+            :src="`/eriks-travels/${menuItem.img}`"
             width="200"
           />
         </NuxtLink>
