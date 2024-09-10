@@ -87,7 +87,7 @@
       >
         <SlideshowImages
           :slides="pageContent.headerMobileImages"
-          :carouselHeight="carouselHeight"
+          :height="carouselHeight"
           :interval="4500"
           borderRadius="15px"
           class="headerBoxPortrait"

@@ -23,15 +23,9 @@
           class="mb-1 px-1"
         >
           <v-col class="slideshowCol">
-            <SlideshowImages
-              :slides="slides"
-              :carouselHeight="carouselHeight"
-            />
+            <SlideshowImages :slides="slides" :height="carouselHeight" />
 
-            <v-container
-              fluid
-              class="slideshowOverlay"
-            >
+            <v-container fluid class="slideshowOverlay">
               <v-row>
                 <v-col class="mainContent">
                   <img

@@ -31,7 +31,7 @@
             <SlideshowImages
               v-show="windowWidth >= 1200"
               :slides="slideshowLeftImgs"
-              :carouselHeight="carouselHeight"
+              :height="carouselHeight"
               :interval="4500"
               borderRadius="15px"
               ref="slideshowLeft"
@@ -42,7 +42,7 @@
             <SlideshowImages
               :slides="slideshowCenterImgs"
               :interval="4500"
-              :carouselHeight="carouselHeight"
+              :height="carouselHeight"
               borderRadius="15px"
               ref="slideshowCenter"
               id="slideshowCenter"
@@ -80,7 +80,7 @@
             <SlideshowImages
               v-show="windowWidth >= 1200"
               :slides="slideshowRightImgs"
-              :carouselHeight="carouselHeight"
+              :height="carouselHeight"
               :interval="4500"
               borderRadius="15px"
               ref="slideshowRight"

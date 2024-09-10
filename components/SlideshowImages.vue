@@ -1,32 +1,18 @@
 <template>
-  <v-carousel
-    v-model="slideIndex"
-    :cycle="cycle"
-    :interval="interval"
-    :show-arrows="false"
-    :style="carouselStyles"
-    class="carousel"
-    hide-delimiters
-    :height="carouselHeight"
-    ref="carousel"
+  <TransitionGroup
+    name="fade"
+    tag="div"
+    class="slideshow-container"
+    :style="slideshowStyles"
   >
-    <v-carousel-item
+    <img
       v-for="(slide, iSlide) in slides"
-      :key="iSlide"
-      transition="new-transition"
-      reverse-transition="new-transition"
-      class="carousel-slide"
-    >
-      <v-img
-        :aspect-ratio="aspectRatio"
-        :src="slide.img"
-        cover
-      ></v-img>
-      <slot name="caption"></slot>
-    </v-carousel-item>
-
-    <slot></slot>
-  </v-carousel>
+      :key="slide.img"
+      v-show="iSlide === slideIndex"
+      :src="slide.img"
+      class="slideshow-image"
+    />
+  </TransitionGroup>
 </template>
 
 <script>
@@ -42,54 +28,47 @@ export default {
       type: String,
       default: '',
     },
-    cycleImages: {
-      type: Boolean,
-      default: true,
-    },
     interval: {
       type: Number,
       default: 4000,
     },
-    carouselHeight: {
+    height: {
       type: Number,
       default: 500,
-    },
-    aspectRatio: {
-      type: Number,
-      default: undefined,
     },
   },
 
   data() {
     return {
       slideIndex: 0,
-      cycle: true,
+      timer: null,
     };
   },
 
   computed: {
-    carouselStyles() {
+    slideshowStyles() {
+      let css = {};
+      css.height = this.height + 'px';
       if (this.borderRadius != '') {
-        return {
-          '--borderRadius': this.borderRadius,
-        };
+        css['--borderRadius'] = this.borderRadius;
       }
+      return css;
     },
   },
 
   mounted() {
-    this.cycle = this.cycleImages;
+    this.timer = setInterval(() => {
+      this.next();
+    }, this.interval);
+  },
+
+  beforeDestroy() {
+    clearInterval(this.timer);
   },
 
   methods: {
-    pause() {
-      this.cycle = false;
-    },
-    start() {
-      this.cycle = true;
-    },
     next() {
-      if (this.slideIndex >= slides.length - 1) this.slideIndex = 0;
+      if (this.slideIndex >= this.slides.length - 1) this.slideIndex = 0;
       else this.slideIndex++;
     },
     prev() {
@@ -117,42 +96,56 @@ export default {
   font-weight: normal;
 }
 
-.carousel-caption > p {
-  color: #ffffff;
-  font-size: 1.875rem;
-  font-family: 'NeueHaasGroteskText Pro65';
-  font-feature-settings: 'liga';
-  font-weight: 500;
-  text-align: center;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
-  line-height: 43px;
-  letter-spacing: 2px;
-}
+// .carousel-caption > p {
+//   color: #ffffff;
+//   font-size: 1.875rem;
+//   font-family: 'NeueHaasGroteskText Pro65';
+//   font-feature-settings: 'liga';
+//   font-weight: 500;
+//   text-align: center;
+//   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+//   line-height: 43px;
+//   letter-spacing: 2px;
+// }
 
-.carousel {
-  text-shadow: 1px 1px 2px #333;
-  border-radius: var(--borderRadius);
+// .carousel {
+//   text-shadow: 1px 1px 2px #333;
+//   border-radius: var(--borderRadius);
+//   overflow: hidden;
+//   transform: translate3d(0, 0, 0);
+// }
+// .carousel-inner {
+//   border-radius: var(--borderRadius);
+// }
+
+// .v-carousel .v-carousel-item {
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+// }
+
+.slideshow-container {
+  position: relative;
   overflow: hidden;
-  transform: translate3d(0, 0, 0);
 }
-.carousel-inner {
+
+.slideshow-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: var(--borderRadius);
 }
 
-.new-transition {
-  &-leave-active {
-    position: absolute;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.6s ease-in-out;
+  opacity: 1;
+}
 
-  &-enter-active,
-  &-leave,
-  &-leave-to {
-    transition: 100ms; /* here you can define your desired time for transition */
-  }
-
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
