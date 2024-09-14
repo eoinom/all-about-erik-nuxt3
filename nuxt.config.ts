@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     '@/assets/styles.css',
     'simplebar-vue/dist/simplebar.min.css',
     'vue-plyr/dist/vue-plyr.css',
-    '@/assets/custom.scss',
+    // '@/assets/custom.scss',
     // 'vuetify/lib/styles/main.sass',
     // 'vuetify/styles',
   ],
@@ -29,7 +29,9 @@ export default defineNuxtConfig({
     // this adds the vuetify vite plugin
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) =>
-        config.plugins.push(vuetify())
+        config.plugins.push(
+          vuetify({ styles: { configFile: './assets/custom.scss' } })
+        )
       );
     },
     '@fullpage/nuxt-fullpage',
