@@ -210,8 +210,6 @@ body {
 .layout {
   max-width: 100%;
   margin: 0 auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
 
   &--lightgrey {
     background-color: #dddddd;
