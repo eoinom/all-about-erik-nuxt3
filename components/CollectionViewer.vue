@@ -27,7 +27,6 @@
         <v-row
           id="navLinksRow"
           no-gutters
-          align="center"
           justify="space-between"
         >
           <v-col cols="6" :lg="windowWidth > 1366 ? 3 : 6" xl="4">
