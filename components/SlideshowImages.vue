@@ -12,6 +12,7 @@
       :src="slide.img"
       class="slideshow-image"
     />
+    <slot></slot>
   </TransitionGroup>
 </template>
 

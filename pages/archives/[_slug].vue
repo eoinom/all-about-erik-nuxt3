@@ -789,10 +789,6 @@ export default {
   padding-bottom: 16px;
   z-index: 50;
 }
-.headerOverlay * {
-  padding-right: 32px;
-  padding-left: 32px;
-}
 
 .titleImg {
   position: relative;
@@ -803,8 +799,9 @@ export default {
 }
 
 .archive_headerText {
-  padding-right: 0px;
-  padding-left: 0px;
+  display: block;
+  padding-right: 32px;
+  padding-left: 32px;
   // see styles.css for more
 }
 
