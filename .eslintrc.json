@@ -5,7 +5,7 @@
     },
     "extends": [
         "plugin:vue/essential",
-        // "airbnb-base"
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",

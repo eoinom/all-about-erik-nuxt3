@@ -16,10 +16,11 @@
     "cypress-plugin-snapshots": "^1.4.4",
     "cypress-real-events": "^1.13.0",
     "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.28.0",
     "nuxt": "^3.13.1",
+    "prettier": "^3.3.3",
     "sass": "^1.78.0"
   },
   "dependencies": {
