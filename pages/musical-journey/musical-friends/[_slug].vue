@@ -240,23 +240,16 @@
           <header>
             <v-container fluid>
               <v-row class="mb-4 mb-sm-6 mb-md-0">
-                <v-col
-                  cols=""
-                  class="headerNavCol"
-                >
-                  <Tooltip
-                    :text="prev_friend.name"
-                    location="bottom"
+                <v-col cols="" class="headerNavCol">
+                  <NuxtLink
+                    :to="'/musical-journey/musical-friends/' + prev_friend.link"
+                    class="nav_link"
+                    id="nav_prev"
                   >
-                    <NuxtLink
-                      :to="
-                        '/musical-journey/musical-friends/' + prev_friend.link
-                      "
-                      class="nav_link"
-                      id="nav_prev"
-                      >PREV</NuxtLink
-                    >
-                  </Tooltip>
+                    <Tooltip :text="prev_friend.name" location="bottom">
+                      PREV
+                    </Tooltip>
+                  </NuxtLink>
                 </v-col>
 
                 <v-col
@@ -269,23 +262,16 @@
                   />
                 </v-col>
 
-                <v-col
-                  cols=""
-                  class="headerNavCol"
-                >
-                  <Tooltip
-                    :text="next_friend.name"
-                    location="bottom"
+                <v-col cols="" class="headerNavCol">
+                  <NuxtLink
+                    :to="'/musical-journey/musical-friends/' + next_friend.link"
+                    class="nav_link"
+                    id="nav_next"
                   >
-                    <NuxtLink
-                      :to="
-                        '/musical-journey/musical-friends/' + next_friend.link
-                      "
-                      class="nav_link"
-                      id="nav_next"
-                      >NEXT</NuxtLink
-                    >
-                  </Tooltip>
+                    <Tooltip :text="next_friend.name" location="bottom"
+                      >NEXT
+                    </Tooltip></NuxtLink
+                  >
                 </v-col>
               </v-row>
             </v-container>
