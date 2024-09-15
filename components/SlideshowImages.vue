@@ -96,34 +96,6 @@ export default {
   font-weight: normal;
 }
 
-// .carousel-caption > p {
-//   color: #ffffff;
-//   font-size: 1.875rem;
-//   font-family: 'NeueHaasGroteskText Pro65';
-//   font-feature-settings: 'liga';
-//   font-weight: 500;
-//   text-align: center;
-//   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
-//   line-height: 43px;
-//   letter-spacing: 2px;
-// }
-
-// .carousel {
-//   text-shadow: 1px 1px 2px #333;
-//   border-radius: var(--borderRadius);
-//   overflow: hidden;
-//   transform: translate3d(0, 0, 0);
-// }
-// .carousel-inner {
-//   border-radius: var(--borderRadius);
-// }
-
-// .v-carousel .v-carousel-item {
-//   position: absolute;
-//   top: 0;
-//   width: 100%;
-// }
-
 .slideshow-container {
   position: relative;
   overflow: hidden;
