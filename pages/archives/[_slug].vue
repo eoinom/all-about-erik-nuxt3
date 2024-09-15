@@ -559,16 +559,18 @@ export default {
     }
   },
 
-  async mounted() {
+  async beforeMount() {
     const archivePgContent = await queryContent(
-      "archives",
+      'archives',
       this.$route.params._slug
     ).findOne();
     this.archivePgContent = archivePgContent;
 
-    const archivesPgContent = await queryContent("archives-index").findOne();
+    const archivesPgContent = await queryContent('archives-index').findOne();
     this.archivesPgContent = archivesPgContent;
+  },
 
+  async mounted() {
     if (this.archivePgContent.headerSlideshowLeft && this.$refs.slideshowLeft) {
       this.$refs.slideshowLeft.pause();
       this.$refs.slideshowCenter.pause();
