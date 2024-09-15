@@ -38,6 +38,12 @@ videos:
     title: Angkor Wat
     url: 'https://player.vimeo.com/video/653024668'
 
+  - duration: 208
+    thumbnailImg: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/australia.jpg
+    title: Australia
+    url: 'https://player.vimeo.com/video/975680011'
+
   - duration: 943
     thumbnailImg: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/bali_si2btf.jpg
@@ -191,6 +197,12 @@ videos:
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/fiji_x2e1ro.jpg
     title: Fiji
     url: 'https://player.vimeo.com/video/372450494'
+
+  - duration: 887
+    thumbnailImg: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/final-chapter.jpg
+    title: Final Chapter
+    url: 'https://player.vimeo.com/video/956804246'
 
   - duration: 327
     thumbnailImg: >-
@@ -497,6 +509,12 @@ videos:
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/vietnam_ywkufd.jpg
     title: Vietnam
     url: 'https://player.vimeo.com/video/354052154'
+
+  - duration: 271
+    thumbnailImg: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/windward-islands.jpg
+    title: Windward Islands
+    url: 'https://player.vimeo.com/video/975680595'
 
   - duration: 441
     thumbnailImg: >-
