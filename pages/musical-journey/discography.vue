@@ -90,7 +90,7 @@
                   </div>
                 </v-col>
 
-                <v-col cols="12" lg="6" xl="4" class="pt-0">
+                <v-col cols="12" lg="6" xl="4" class="py-0">
                   <span class="underline">Tracks</span>
                   <div
                     v-html="convertTrackListingToHtml(album.trackListing)"
@@ -102,7 +102,7 @@
                   cols="12"
                   lg="12"
                   xl="3"
-                  class="albumDetailsText my-2 pt-2 pb-0"
+                  class="albumDetailsText my-2 pt-0 pb-2"
                 >
                   <v-row>
                     <v-col class="py-0">
@@ -117,7 +117,7 @@
                   </v-row>
                 </v-col>
 
-                <v-col cols="12" class="albumDetailsText my-2">
+                <v-col cols="12" class="albumDetailsText my-2 pt-0 pb-2">
                   <span class="underline">Credits</span>
                   <div
                     v-html="convertCreditsToHtml(album.credits)"
