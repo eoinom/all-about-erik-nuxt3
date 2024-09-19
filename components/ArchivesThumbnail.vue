@@ -130,8 +130,8 @@ https://codepen.io/beije/pen/zxjeae */
 
   --blur_px: calc(var(--blur) * 1px);
   --spread_px: calc(var(--spread) * 1px);
-  box-shadow: inset 0px 0px var(--blur_px) var(--spread_px)
-      rgba(0, 0, 0, var(--opacity)),
+  box-shadow:
+    inset 0px 0px var(--blur_px) var(--spread_px) rgba(0, 0, 0, var(--opacity)),
     inset 0px 0px var(--blur_px) var(--spread_px) rgba(0, 0, 0, var(--opacity));
   border-radius: 50%;
 
@@ -244,20 +244,20 @@ https://codepen.io/beije/pen/zxjeae */
 }
 
 /* XL+ */
-@media only screen and (min-width: 1280px) and (max-width: 1920px) {
+@media only screen and (min-width: 1200px) and (max-width: 1920px) {
   .overlayText {
-    font-size: calc(2.0703125rem + 19.875 * (100vw - 1280px) / (1920 - 1280));
-    line-height: calc(2.0703125rem + 19.875 * (100vw - 1280px) / (1920 - 1280));
-    letter-spacing: calc(4.125px + 4.875 * (100vw - 1280px) / (1920 - 1283));
+    font-size: calc(2.0703125rem + 19.875 * (100vw - 1200px) / (1920 - 1200));
+    line-height: calc(2.0703125rem + 19.875 * (100vw - 1200px) / (1920 - 1200));
+    letter-spacing: calc(4.125px + 4.875 * (100vw - 1200px) / (1920 - 1283));
   }
   .thumbnailImgContainer:after {
     --blur_px: calc(
       var(--blur) * 1px *
-        (0.078125rem + 0.75 * (100vw - 1280px) / (1920 - 1280))
+        (0.078125rem + 0.75 * (100vw - 1200px) / (1920 - 1200))
     );
     --spread_px: calc(
       var(--blur) * 1px *
-        (0.078125rem + 0.75 * (100vw - 1280px) / (1920 - 1280))
+        (0.078125rem + 0.75 * (100vw - 1200px) / (1920 - 1200))
     );
   }
 }

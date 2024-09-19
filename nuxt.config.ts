@@ -3,6 +3,7 @@ import vuetify from 'vite-plugin-vuetify';
 
 export default defineNuxtConfig({
   ssr: true,
+
   // // ref: https://github.com/nuxt/framework/pull/6980
   // router: {
   //   options: {
@@ -15,11 +16,13 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'page', mode: 'default' },
   },
+
   css: [
     '@/assets/styles.css',
     'simplebar-vue/dist/simplebar.min.css',
     'vue-plyr/dist/vue-plyr.css',
   ],
+
   modules: [
     '@nuxt/content',
     '@nuxt/devtools',
@@ -34,6 +37,7 @@ export default defineNuxtConfig({
     '@fullpage/nuxt-fullpage',
     'nuxt-lazy-load',
   ],
+
   devtools: {
     // Enable devtools (default: true)
     enabled: false,
@@ -41,9 +45,11 @@ export default defineNuxtConfig({
     vscode: {},
     // ...other options
   },
+
   build: {
     transpile: ['vuetify'],
   },
+
   vite: {
     define: {
       'process.env.DEBUG': false,
@@ -52,11 +58,13 @@ export default defineNuxtConfig({
       sourcemap: true,
     },
   },
+
   content: {
     markdown: {
       anchorLinks: false,
     },
   },
+
   hooks: {
     'pages:extend'(pages) {
       // add routes
@@ -87,6 +95,7 @@ export default defineNuxtConfig({
       });
     },
   },
+
   lazyLoad: {
     // These are the default values for nuxt-lazy-load
     images: false,
@@ -96,4 +105,6 @@ export default defineNuxtConfig({
     native: false,
     directiveOnly: false,
   },
+
+  compatibilityDate: '2024-09-19',
 });

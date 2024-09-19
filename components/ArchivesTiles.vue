@@ -14,7 +14,7 @@
         :key="index"
         cols="12"
         md="5"
-        lg="3"
+        xl="3"
         align-self="center"
         class="tilesCols position-relative pa-0 ma-2 ma-sm-4"
         data-testid="archive-container"
