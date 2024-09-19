@@ -70,11 +70,9 @@
               text="Click to read my recollections"
               location="bottom"
             >
-              <div>
-                <p class="headerText mt-n1 mt-sm-0">CLICK</p>
-                <p class="headerText">TO READ MY</p>
-                <p class="headerText">RECOLLECTIONS</p>
-              </div>
+              <p class="headerText mt-n1 mt-sm-0">CLICK</p>
+              <p class="headerText">TO READ MY</p>
+              <p class="headerText">RECOLLECTIONS</p>
             </Tooltip>
           </NuxtLink>
         </div>
