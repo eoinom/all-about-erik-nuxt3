@@ -4,7 +4,11 @@
       <Title>{{ title }}</Title>
     </Head>
 
-    <full-page ref="fullpage" :options="options" id="fullpage">
+    <full-page
+      ref="fullpage"
+      :options="options"
+      id="fullpage"
+    >
       <div
         v-for="(s, iSec) in sections"
         :key="s.id"
@@ -14,7 +18,10 @@
         :class="{ containImg: containBgImg(s) }"
       >
         <!-- HEADER -->
-        <header v-if="s.header" id="header">
+        <header
+          v-if="s.header"
+          id="header"
+        >
           <!-- STATIC HEADER IMAGES -->
           <div
             v-if="!isPortrait && pageContent.headerImages"
@@ -25,7 +32,10 @@
               :key="iImg"
               class="headerBox"
             >
-              <div v-if="headerImg.applyFilter == true" class="headerFilter" />
+              <div
+                v-if="headerImg.applyFilter == true"
+                class="headerFilter"
+              />
 
               <img :src="headerImg.img" />
 
@@ -50,7 +60,10 @@
                 :to="`/archives/${titleSlug}-gallery`"
                 class="headerOverlay link pt-4"
               >
-                <Tooltip text="Click to see the gallery" location="bottom">
+                <Tooltip
+                  text="Click to see the gallery"
+                  location="bottom"
+                >
                   <div class="px-3">
                     <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                     <p class="headerText">TO VIEW THE GALLERY</p>
@@ -73,7 +86,10 @@
               borderRadius="15px"
               class="headerBoxPortrait"
             >
-              <div class="headerOverlay" :style="overlayStylesPortrait">
+              <div
+                class="headerOverlay"
+                :style="overlayStylesPortrait"
+              >
                 <img
                   :src="titleImg"
                   :alt="pageContent.title + ' title image'"
@@ -89,7 +105,10 @@
                   :to="`/archives/${titleSlug}-gallery`"
                   class="headerOverlay link pt-4"
                 >
-                  <Tooltip text="Click to see the gallery" location="bottom">
+                  <Tooltip
+                    text="Click to see the gallery"
+                    location="bottom"
+                  >
                     <div>
                       <p class="headerText mt-n1 mt-sm-0">CLICK</p>
                       <p class="headerText">TO VIEW THE GALLERY</p>
@@ -101,8 +120,14 @@
           </div>
 
           <!-- BACK TO ARCHIVES LINK (AT TOP) -->
-          <NuxtLink to="/archives/menu" class="backToArchives">
-            <Tooltip text="Back to Archives menu" location="bottom">
+          <NuxtLink
+            to="/archives/menu"
+            class="backToArchives"
+          >
+            <Tooltip
+              text="Back to Archives menu"
+              location="bottom"
+            >
               <div>
                 <img
                   immediate
@@ -124,8 +149,14 @@
         <!-- BACK TO ARCHIVES LINK (AT END) -->
         <template v-else-if="s.backLink">
           <template v-if="titleSlug == 'my-dad-earl'">
-            <NuxtLink to="/archives/menu" class="backToArchivesEndEarl">
-              <Tooltip text="Back to Archives menu" location="bottom">
+            <NuxtLink
+              to="/archives/menu"
+              class="backToArchivesEndEarl"
+            >
+              <Tooltip
+                text="Back to Archives menu"
+                location="bottom"
+              >
                 <div>
                   <img
                     immediate
@@ -147,7 +178,10 @@
               :to="`/archives/${titleSlug}-gallery`"
               class="toEarlGalleryEnd"
             >
-              <Tooltip text="View the Gallery" location="top">
+              <Tooltip
+                text="View the Gallery"
+                location="top"
+              >
                 <div>
                   <img
                     alt="View the Gallery"
@@ -171,10 +205,13 @@
               :class="{
                 backToArchivesEndFamilyTrip:
                   titleSlug == 'family-trip-to-europe-57',
-                portraitMode: windowAspectRatio < portraitTablet.maxAspect
+                portraitMode: windowAspectRatio < portraitTablet.maxAspect,
               }"
             >
-              <Tooltip text="Back to Archives menu" location="bottom">
+              <Tooltip
+                text="Back to Archives menu"
+                location="bottom"
+              >
                 <div>
                   <img
                     immediate
@@ -183,7 +220,7 @@
                     class="backToArchivesEndImg"
                     :class="{
                       backToArchivesEndImgFamilyTrip:
-                        titleSlug == 'family-trip-to-europe-57'
+                        titleSlug == 'family-trip-to-europe-57',
                     }"
                   />
                   <img
@@ -193,7 +230,7 @@
                     class="backToArchivesEndImg-hover"
                     :class="{
                       'backToArchivesEndImgFamilyTrip-hover':
-                        titleSlug == 'family-trip-to-europe-57'
+                        titleSlug == 'family-trip-to-europe-57',
                     }"
                   />
                 </div>
@@ -208,17 +245,23 @@
           class="slideTextContainer"
           :style="slideTextContainerStyles(txtObj)"
         >
-          <div class="slideTextDiv" :style="slideTextDivStyles(txtObj)">
+          <div
+            class="slideTextDiv"
+            :style="slideTextDivStyles(txtObj)"
+          >
             <Simplebar
               v-if="
                 (txtObj.hasOwnProperty('showScrollbar') &&
                   txtObj.showScrollbar == false) ||
-                  windowWidth < 992
+                windowWidth < 992
               "
               class="simple-scrollbar"
               data-simplebar-auto-hide="false"
             >
-              <transition appear name="textAnimation">
+              <transition
+                appear
+                name="textAnimation"
+              >
                 <span
                   v-show="currentSlideIndex === iSec"
                   v-html="renderMarkdown(txtObj.text)"
@@ -228,7 +271,11 @@
               </transition>
             </Simplebar>
 
-            <transition v-else appear name="textAnimation">
+            <transition
+              v-else
+              appear
+              name="textAnimation"
+            >
               <span
                 v-show="currentSlideIndex === iSec"
                 v-html="renderMarkdown(txtObj.text)"
@@ -246,19 +293,13 @@
             :key="'item' + iItem"
             class="galleryBox"
             @click.prevent="onGalleryMediaClick(item)"
-            :style="
-              `left: ${item.posX};
-              top: ${adjustPosY(item.posY)};`
-            "
+            :style="`left: ${item.posX};
+              top: ${adjustPosY(item.posY)};`"
             style="background-color: black"
           >
             <div
               class="mediaBox"
-              :style="
-                'background: transparent url(' +
-                  item.thumbnailImg +
-                  ') no-repeat left top'
-              "
+              :style="'background-image: url(' + item.thumbnailImg + ')'"
             />
             <div class="boxOverlay mb-12">
               <span class="thumbnailCaption absCenter hideOnHover">{{
@@ -296,13 +337,13 @@
 </template>
 
 <script>
-import snarkdown from "snarkdown";
-import slugify from "@sindresorhus/slugify";
-import Simplebar from "simplebar-vue";
+import snarkdown from 'snarkdown';
+import slugify from '@sindresorhus/slugify';
+import Simplebar from 'simplebar-vue';
 
 export default {
   components: {
-    Simplebar
+    Simplebar,
   },
 
   data() {
@@ -316,48 +357,48 @@ export default {
       bookShowSinglePage: false,
       bookKey: 1,
       options: {
-        licenseKey: "DLX2I-2Q50I-YFKS8-82J18-MOFSO",
+        licenseKey: 'DLX2I-2Q50I-YFKS8-82J18-MOFSO',
         scrollingSpeed: 850,
-        easing: "easeInOut",
+        easing: 'easeInOut',
         overlay: false,
         navigation: false,
         lockAnchors: true, // anchors turned off so as to not interfere with BookViewer anchor links
         afterLoad: this.afterLoad,
         credits: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       portraitMobile: {
         maxAspect: 0.85,
         area: 375 * 667, // iPhone 6
         fontSize: 20.3, // in px
         maxFontSize: 24, // in px
-        padding: 28.2 // in px
+        padding: 28.2, // in px
       },
       portraitTablet: {
         maxAspect: 0.85,
         area: 768 * 1024, // iPad
         fontSize: 24, // in px
         maxFontSize: 30, // in px
-        padding: 28.2 // in px
+        padding: 28.2, // in px
       },
       square: {
         maxAspect: 1.2,
         area: 1080 * 1080,
         fontSize: 26, // in px
-        padding: 50 // in px
+        padding: 50, // in px
       },
       fiveBySeven: {
         maxAspect: 1.6,
         area: 2016 * 1380,
         fontSize: 32, // in px
-        padding: 50 // in px
+        padding: 50, // in px
       },
       landscape: {
         area: 2560 * 1380,
         fontSize: 36, // in px
-        padding: 100 // in px
-      }
+        padding: 100, // in px
+      },
     };
   },
 
@@ -390,7 +431,7 @@ export default {
         } else {
           layout = {
             ...this.portraitTablet,
-            ...this.pageContent.portraitLayout
+            ...this.pageContent.portraitLayout,
           };
         }
       } else if (this.windowAspectRatio < this.square.maxAspect) {
@@ -415,14 +456,14 @@ export default {
       else if (this.windowWidth < 768) topOffset = Math.min(60, topOffset);
       else if (this.windowWidth < 992) topOffset = Math.min(55, topOffset);
       else topOffset = Math.min(45, topOffset);
-      css["--titleTopOffset"] = topOffset + "%";
-      css["--titleMaxWidth"] = this.pageContent.titleImg.maxWidth + "%";
+      css['--titleTopOffset'] = topOffset + '%';
+      css['--titleMaxWidth'] = this.pageContent.titleImg.maxWidth + '%';
       return css;
     },
     overlayStylesBtm() {
       let css = {};
-      css["--titleMaxWidth"] = this.pageContent.titleImg.maxWidth + "%";
-      css.bottom = "0px";
+      css['--titleMaxWidth'] = this.pageContent.titleImg.maxWidth + '%';
+      css.bottom = '0px';
       return css;
     },
     sections() {
@@ -430,16 +471,16 @@ export default {
       let s = 1; // section no.
 
       // add section for header
-      sections.push({ id: "section" + s++, header: true });
+      sections.push({ id: 'section' + s++, header: true });
 
       // get sections (background images) from CMS
-      if (this.currentLayout.hasOwnProperty("noSections")) {
+      if (this.currentLayout.hasOwnProperty('noSections')) {
         for (let i = 1; i <= this.currentLayout.noSections; i++) {
           let section = {
-            id: "section" + s++,
-            img_url: this.currentLayout.commonPath + i + ".jpg",
+            id: 'section' + s++,
+            img_url: this.currentLayout.commonPath + i + '.jpg',
             txtArr: [],
-            galleryItems: []
+            galleryItems: [],
           };
           // add "back to archives" link to last section
           if (i == this.currentLayout.noSections) {
@@ -450,11 +491,11 @@ export default {
       }
 
       // add text from CMS to sections
-      if (this.currentLayout.hasOwnProperty("textList")) {
+      if (this.currentLayout.hasOwnProperty('textList')) {
         for (let t = 0; t < this.currentLayout.textList.length; t++) {
           const txtObj = this.currentLayout.textList[t];
           if (
-            !txtObj.hasOwnProperty("sectionNo") ||
+            !txtObj.hasOwnProperty('sectionNo') ||
             txtObj.sectionNo > sections.length - 1
           )
             continue;
@@ -464,11 +505,11 @@ export default {
       }
 
       // add gallery items from CMS to sections
-      if (this.currentLayout.hasOwnProperty("galleryItems")) {
+      if (this.currentLayout.hasOwnProperty('galleryItems')) {
         for (let i = 0; i < this.currentLayout.galleryItems.length; i++) {
           const galObj = this.currentLayout.galleryItems[i];
           if (
-            !galObj.hasOwnProperty("sectionNo") ||
+            !galObj.hasOwnProperty('sectionNo') ||
             galObj.sectionNo > sections.length
           )
             continue;
@@ -488,13 +529,13 @@ export default {
         i <= book.commonFilenameLastNum;
         i++
       ) {
-        let url = book.commonPathStdRes + i + ".jpg";
+        let url = book.commonPathStdRes + i + '.jpg';
         pages.push(url);
       }
       return pages;
     },
     showGalleryLink() {
-      return this.titleSlug === "my-dad-earl";
+      return this.titleSlug === 'my-dad-earl';
     },
     headerHorizPadding() {
       if (!this.windowWidth) return 50;
@@ -502,34 +543,34 @@ export default {
       return this.windowWidth < 576
         ? 4
         : this.windowWidth < 767.98
-        ? 30
-        : this.windowWidth <= 768.02
-        ? 40
-        : this.windowWidth < 1200
-        ? 50
-        : 60;
+          ? 30
+          : this.windowWidth <= 768.02
+            ? 40
+            : this.windowWidth < 1200
+              ? 50
+              : 60;
     },
     headerWrapperPortraitStyles() {
       let css = {};
-      css["--headerPadding"] = `${this.headerHorizPadding}px`;
+      css['--headerPadding'] = `${this.headerHorizPadding}px`;
       return css;
     },
     carouselHeight() {
       const imgAspectRatio = 0.8354;
 
       return (this.windowWidth - 2 * this.headerHorizPadding) / imgAspectRatio;
-    }
+    },
   },
 
   async mounted() {
     this.updateWindowDims();
 
     const slug =
-      this.$route.path.slice(-1) === "/"
-        ? this.$route.path.split("/").at(-2)
-        : this.$route.path.split("/").at(-1);
+      this.$route.path.slice(-1) === '/'
+        ? this.$route.path.split('/').at(-2)
+        : this.$route.path.split('/').at(-1);
     const pageContent = await queryContent(
-      "archives/narrative",
+      'archives/narrative',
       slug
     ).findOne();
     this.pageContent = pageContent;
@@ -543,29 +584,29 @@ export default {
 
   methods: {
     bindEvents() {
-      window.addEventListener("resize", this.updateWindowDims, false);
+      window.addEventListener('resize', this.updateWindowDims, false);
       window.addEventListener(
-        "orientationchange",
+        'orientationchange',
         this.updateWindowDims,
         false
       );
     },
     unbindEvents() {
-      window.removeEventListener("resize", this.updateWindowDims, false);
+      window.removeEventListener('resize', this.updateWindowDims, false);
       window.removeEventListener(
-        "orientationchange",
+        'orientationchange',
         this.updateWindowDims,
         false
       );
     },
     delay(ms) {
-      return new Promise(res => setTimeout(res, ms));
+      return new Promise((res) => setTimeout(res, ms));
     },
     containBgImg(section) {
       if (
-        section.hasOwnProperty("txtArr") &&
+        section.hasOwnProperty('txtArr') &&
         section.txtArr.length > 0 &&
-        section.txtArr[0].hasOwnProperty("bgImgContain")
+        section.txtArr[0].hasOwnProperty('bgImgContain')
       ) {
         return section.txtArr[0].bgImgContain;
       } else return false;
@@ -575,41 +616,41 @@ export default {
       return mdText
         ? mdText
             .split(/(?:\r?\n){2,}/)
-            .map(line =>
-              [" ", "\t", "#", "-", "*", ">"].some(char =>
+            .map((line) =>
+              [' ', '\t', '#', '-', '*', '>'].some((char) =>
                 line.startsWith(char)
               )
                 ? snarkdown(line)
                 : `<p>${snarkdown(line)}</p>`
             )
-            .join("\n")
-        : "";
+            .join('\n')
+        : '';
     },
     slideTextContainerStyles(txtObj) {
       let css = {};
-      if (txtObj.hasOwnProperty("pos") && txtObj.pos) {
+      if (txtObj.hasOwnProperty('pos') && txtObj.pos) {
         // default values (left)
-        css.left = "0%";
-        css.top = "0px";
-        css.width = "35%";
-        css.height = "100vh";
+        css.left = '0%';
+        css.top = '0px';
+        css.width = '35%';
+        css.height = '100vh';
 
         // presets
-        if (txtObj.pos == "right") {
-          css.left = "65.0%";
-        } else if (txtObj.pos == "center") {
-          css.left = "32.5%";
-          css.top = "13vh";
-          css.height = "87vh";
-        } else if (txtObj.pos == "bottom") {
-          css.left = "0%";
-          css.top = "67vh";
-          css.width = "100%";
-          css.height = "33vh";
-          css.display = "flex";
-        } else if (txtObj.pos == "top") {
-          css.width = "100%";
-          css.height = "33vh";
+        if (txtObj.pos == 'right') {
+          css.left = '65.0%';
+        } else if (txtObj.pos == 'center') {
+          css.left = '32.5%';
+          css.top = '13vh';
+          css.height = '87vh';
+        } else if (txtObj.pos == 'bottom') {
+          css.left = '0%';
+          css.top = '67vh';
+          css.width = '100%';
+          css.height = '33vh';
+          css.display = 'flex';
+        } else if (txtObj.pos == 'top') {
+          css.width = '100%';
+          css.height = '33vh';
         }
 
         // overwrites
@@ -618,23 +659,23 @@ export default {
         if (txtObj.width) css.width = txtObj.width;
         if (txtObj.height) css.height = txtObj.height;
       } else {
-        css.left = txtObj.posX ? txtObj.posX : "0.5%";
-        css.top = txtObj.posY ? this.adjustPosY(txtObj.posY) : "39vh";
-        css.width = txtObj.width ? txtObj.width : "38%";
-        css.height = "100%";
+        css.left = txtObj.posX ? txtObj.posX : '0.5%';
+        css.top = txtObj.posY ? this.adjustPosY(txtObj.posY) : '39vh';
+        css.width = txtObj.width ? txtObj.width : '38%';
+        css.height = '100%';
       }
-      if (txtObj.hasOwnProperty("applyFilter") && txtObj.applyFilter == true) {
-        css.backgroundColor = "rgb(0,0,0,0.47)";
+      if (txtObj.hasOwnProperty('applyFilter') && txtObj.applyFilter == true) {
+        css.backgroundColor = 'rgb(0,0,0,0.47)';
       }
       return css;
     },
     slideTextDivStyles(txtObj) {
       let css = {};
-      css.width = "100%";
+      css.width = '100%';
 
-      if (txtObj.hasOwnProperty("pos") && txtObj.pos) {
-        if (txtObj.pos == "bottom") {
-          css.height = "calc(100% - 8px)";
+      if (txtObj.hasOwnProperty('pos') && txtObj.pos) {
+        if (txtObj.pos == 'bottom') {
+          css.height = 'calc(100% - 8px)';
         }
       }
       return css;
@@ -643,28 +684,28 @@ export default {
       const layout = this.currentLayout;
       const scale = this.windowScale;
       let css = {};
-      if (txtObj.hasOwnProperty("pos") && txtObj.pos) {
-        css.display = "flex";
-        css.flexDirection = "column";
+      if (txtObj.hasOwnProperty('pos') && txtObj.pos) {
+        css.display = 'flex';
+        css.flexDirection = 'column';
 
-        if (txtObj.pos == "bottom") {
-          css.height = "100%";
+        if (txtObj.pos == 'bottom') {
+          css.height = '100%';
         } else {
-          css.height = "100vh";
+          css.height = '100vh';
         }
 
-        css.alignItems = txtObj.alignItems ? txtObj.alignItems : "start";
+        css.alignItems = txtObj.alignItems ? txtObj.alignItems : 'start';
 
         // padding
         if (txtObj.padding) {
           var paddingPx =
-            scale * parseFloat(txtObj.padding.replace(/[^0-9.]/g, ""));
+            scale * parseFloat(txtObj.padding.replace(/[^0-9.]/g, ''));
         } else {
           paddingPx = scale * layout.padding;
         }
-        if (txtObj.pos !== "bottom") {
+        if (txtObj.pos !== 'bottom') {
           css.padding = `${paddingPx}px`;
-        } else if (txtObj.hasOwnProperty("applyFilter") && txtObj.applyFilter) {
+        } else if (txtObj.hasOwnProperty('applyFilter') && txtObj.applyFilter) {
           css.padding = `${paddingPx}px ${paddingPx}px`;
         } else {
           css.padding = `0px ${paddingPx}px`;
@@ -674,25 +715,25 @@ export default {
       // font-size
       if (txtObj.fontSize) {
         var fontSizePx =
-          scale * parseFloat(txtObj.fontSize.replace(/[^0-9.]/g, ""));
+          scale * parseFloat(txtObj.fontSize.replace(/[^0-9.]/g, ''));
       } else {
         fontSizePx = layout.maxFontSize
           ? Math.min(scale * layout.fontSize, layout.maxFontSize)
           : scale * layout.fontSize;
       }
-      css.fontSize = fontSizePx + "px";
+      css.fontSize = fontSizePx + 'px';
 
       // line-height
       if (txtObj.lineHeight) {
         var lineHeightPx =
-          scale * parseFloat(txtObj.lineHeight.replace(/[^0-9.]/g, ""));
+          scale * parseFloat(txtObj.lineHeight.replace(/[^0-9.]/g, ''));
       } else {
         lineHeightPx = 1.444 * fontSizePx;
       }
-      css.lineHeight = lineHeightPx + "px";
+      css.lineHeight = lineHeightPx + 'px';
 
       // text-align
-      css.textAlign = txtObj.textAlign ? txtObj.textAlign : "justify";
+      css.textAlign = txtObj.textAlign ? txtObj.textAlign : 'justify';
 
       return css;
     },
@@ -717,28 +758,29 @@ export default {
       this.currentSlideIndex = destination.index;
     },
     adjustPosY(posY) {
-      let posYNum = Number(posY.split("vh")[0]) + 50; // adding on 50vh to convert from old reference (centre of viewport) to new one (at top)
-      return posYNum + "vh";
-    }
-  }
+      let posYNum = Number(posY.split('vh')[0]) + 50; // adding on 50vh to convert from old reference (centre of viewport) to new one (at top)
+      return posYNum + 'vh';
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot");
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot');
   /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src:
+    url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg");
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg');
   /* Legacy iOS */
   font-weight: normal;
 }
@@ -858,7 +900,7 @@ export default {
 }
 
 #header:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   top: 0;
@@ -942,8 +984,8 @@ export default {
 
 .headerText {
   color: #fff;
-  font-family: "Lora", serif;
-  font-feature-settings: "liga";
+  font-family: 'Lora', serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
 
   --font-size: 1.25rem;
@@ -981,16 +1023,19 @@ export default {
   height: 100%;
   width: 100%;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .galleryBox .mediaBox::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  box-shadow: inset 0px 0px 150px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    inset 0px 0px 150px rgba(0, 0, 0, 0.5),
     inset 0px 0px 150px rgba(0, 0, 0, 0.5);
   pointer-events: none;
   transition: box-shadow 0.2s ease;
@@ -1034,8 +1079,8 @@ export default {
 
 .thumbnailCaption {
   color: white;
-  font-family: "Open Sans Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 300;
   text-align: center;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.32);
@@ -1141,8 +1186,8 @@ export default {
 .slideText {
   display: block;
   color: #fff;
-  font-family: "Lora", serif;
-  font-feature-settings: "liga";
+  font-family: 'Lora', serif;
+  font-feature-settings: 'liga';
   font-weight: 400;
   margin: 0px;
   padding: 0px;

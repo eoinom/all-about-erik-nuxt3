@@ -1,13 +1,25 @@
 <template>
   <ClientOnly>
-    <div v-on:[eventName]="closeLargeImg()" class="pb-5">
+    <div
+      v-on:[eventName]="closeLargeImg()"
+      class="pb-5"
+    >
       <Head>
         <Title>{{ title }}</Title>
       </Head>
 
-      <header id="header" class="px-3">
-        <NuxtLink to="/archives/menu" class="backToArchives">
-          <Tooltip text="Back to Archives menu" location="bottom">
+      <header
+        id="header"
+        class="px-3"
+      >
+        <NuxtLink
+          to="/archives/menu"
+          class="backToArchives"
+        >
+          <Tooltip
+            text="Back to Archives menu"
+            location="bottom"
+          >
             <div>
               <img
                 immediate
@@ -53,7 +65,10 @@
                 class="headerFilter"
               ></div>
 
-              <div class="headerOverlay" :style="overlayStyles">
+              <div
+                class="headerOverlay"
+                :style="overlayStyles"
+              >
                 <img
                   :src="titleImg"
                   :alt="archivePgContent.title + ' title image'"
@@ -91,7 +106,10 @@
 
           <!-- STATIC HEADER IMAGES -->
           <template v-if="archivePgContent.headerImgLeft">
-            <div v-show="windowWidth >= 1200" class="headerBox">
+            <div
+              v-show="windowWidth >= 1200"
+              class="headerBox"
+            >
               <img :src="archivePgContent.headerImgLeft" />
             </div>
 
@@ -101,7 +119,10 @@
                 class="headerFilter"
               />
               <img :src="archivePgContent.headerImgCentre" />
-              <div class="headerOverlay" :style="overlayStyles">
+              <div
+                class="headerOverlay"
+                :style="overlayStyles"
+              >
                 <img
                   :src="titleImg"
                   :alt="archivePgContent.title + ' title image'"
@@ -122,16 +143,30 @@
               </div>
             </div>
 
-            <div v-show="windowWidth >= 1200" class="headerBox">
+            <div
+              v-show="windowWidth >= 1200"
+              class="headerBox"
+            >
               <img :src="archivePgContent.headerImgRight" />
             </div>
           </template>
         </div>
 
-        <v-container fluid style="padding: 0">
-          <v-row no-gutters align="center" id="navLinksRow" class="pt-2">
+        <v-container
+          fluid
+          style="padding: 0"
+        >
+          <v-row
+            no-gutters
+            align="center"
+            id="navLinksRow"
+            class="pt-2"
+          >
             <v-col style="text-align: left">
-              <Tooltip :text="prev_archive.title" location="top">
+              <Tooltip
+                :text="prev_archive.title"
+                location="top"
+              >
                 <NuxtLink
                   v-if="isViewportForSmallLinks"
                   :to="'/archives/' + prev_archive.link"
@@ -175,7 +210,10 @@
             </v-col>
 
             <v-col style="text-align: right">
-              <Tooltip :text="next_archive.title" location="top">
+              <Tooltip
+                :text="next_archive.title"
+                location="top"
+              >
                 <NuxtLink
                   :to="'/archives/' + next_archive.link"
                   class="nav_link"
@@ -200,7 +238,11 @@
         </v-container>
       </header>
 
-      <div id="mainContent" class="px-3 pb-5" :style="mainContentStyles">
+      <div
+        id="mainContent"
+        class="px-3 pb-5"
+        :style="mainContentStyles"
+      >
         <!-- IMAGE GALLERY -->
         <template v-if="galleryImgUrls != null">
           <div
@@ -213,7 +255,8 @@
           >
             <div
               v-for="(img, iImg) in galleryImgUrls.filter(
-                (_d, i) => parseInt(i / maxImagesGalleryWrapper) === iWrapper - 1
+                (_d, i) =>
+                  parseInt(i / maxImagesGalleryWrapper) === iWrapper - 1
               )"
               :key="'img' + iImg"
               class="galleryBox"
@@ -224,7 +267,7 @@
                 :id="`gW_${iWrapper}-galleryImage_${iImg}`"
                 class="galleryImage"
                 :class="{
-                  centerPos: applyLargeImgStyles && zoomedImgIndex == iImg
+                  centerPos: applyLargeImgStyles && zoomedImgIndex == iImg,
                 }"
                 :style="zoomedImgStyles"
               />
@@ -245,11 +288,7 @@
             >
               <div
                 class="mediaBox"
-                :style="
-                  'background: transparent url(' +
-                    item.thumbnailImg +
-                    ') no-repeat left top'
-                "
+                :style="'background-image: url(' + item.thumbnailImg + ')'"
               />
               <div class="boxOverlay mb-5">
                 <transition name="fade">
@@ -303,16 +342,16 @@
 </template>
 
 <script type="text/javascript">
-import slugify from "@sindresorhus/slugify";
-import Simplebar from "simplebar-vue";
+import slugify from '@sindresorhus/slugify';
+import Simplebar from 'simplebar-vue';
 
 const keyMap = {
-  ESC: 27
+  ESC: 27,
 };
 
 export default {
   components: {
-    Simplebar
+    Simplebar,
   },
 
   data() {
@@ -323,7 +362,7 @@ export default {
       zoomedImgIndex: null,
       imgCenterPos: {
         top: 0,
-        left: 0
+        left: 0,
       },
       applyLargeImgStyles: false,
       eventName: null,
@@ -333,7 +372,7 @@ export default {
       isBookFullscreen: false,
       bookShowSinglePage: false,
       bookKey: 1,
-      maxImagesGalleryWrapper: 120
+      maxImagesGalleryWrapper: 120,
     };
   },
 
@@ -352,10 +391,12 @@ export default {
     headerTextStyles() {
       let css = {};
       css.textAlign =
-        this.archivePgContent.description?.length < 80 ? "center" : "justify";
+        this.archivePgContent.description?.length < 80 ? 'center' : 'justify';
       return css;
     },
     slideshowLeftImgs() {
+      console.log({ archivePgContent: this.archivePgContent });
+      console.log(this.archivePgContent.headerSlideshowLeft);
       if (!this.archivePgContent.headerSlideshowLeft) return null;
       let imgs = [];
       for (
@@ -364,7 +405,7 @@ export default {
         i++
       ) {
         let url =
-          this.archivePgContent.headerSlideshowLeft.commonPath + i + ".jpg";
+          this.archivePgContent.headerSlideshowLeft.commonPath + i + '.jpg';
         imgs.push({ img: url });
       }
       return imgs;
@@ -378,7 +419,7 @@ export default {
         i++
       ) {
         let url =
-          this.archivePgContent.headerSlideshowCenter.commonPath + i + ".jpg";
+          this.archivePgContent.headerSlideshowCenter.commonPath + i + '.jpg';
         imgs.push({ img: url });
       }
       return imgs;
@@ -390,8 +431,8 @@ export default {
       else if (this.windowWidth < 768)
         topOffset = Math.min(60, this.archivePgContent.titleImgTopOffset);
       else topOffset = this.archivePgContent.titleImgTopOffset;
-      css["--titleTopOffset"] = topOffset + "%";
-      css["--titleMaxWidth"] = this.archivePgContent.titleImgMaxWidth + "%";
+      css['--titleTopOffset'] = topOffset + '%';
+      css['--titleMaxWidth'] = this.archivePgContent.titleImgMaxWidth + '%';
       return css;
     },
     slideshowRightImgs() {
@@ -403,7 +444,7 @@ export default {
         i++
       ) {
         let url =
-          this.archivePgContent.headerSlideshowRight.commonPath + i + ".jpg";
+          this.archivePgContent.headerSlideshowRight.commonPath + i + '.jpg';
         imgs.push({ img: url });
       }
       return imgs;
@@ -416,10 +457,10 @@ export default {
           this.windowWidth < 576
             ? 16
             : this.windowWidth < 768
-            ? 24
-            : this.windowWidth < 992
-            ? 36
-            : 50; //px each side
+              ? 24
+              : this.windowWidth < 992
+                ? 36
+                : 50; //px each side
 
         horizPadding += 24; // 12px app layout padding each side
 
@@ -442,10 +483,10 @@ export default {
       if (this.archivePgContent.imageGallery == null) return null;
       let urls = [];
       for (let i = 1; i <= this.archivePgContent.imageGallery.numImages; i++) {
-        let url = this.archivePgContent.imageGallery.commonPath + i + ".jpg";
+        let url = this.archivePgContent.imageGallery.commonPath + i + '.jpg';
         if (
-          (this.titleSlug === "lots-of-fishing" && (i == 356 || i == 379)) ||
-          (this.titleSlug === "boyhood" && i == 57)
+          (this.titleSlug === 'lots-of-fishing' && (i == 356 || i == 379)) ||
+          (this.titleSlug === 'boyhood' && i == 57)
         ) {
           continue;
         } else {
@@ -458,22 +499,22 @@ export default {
       let absCenterTop = this.windowHeight / 2 - this.imgCenterPos.top + 175;
       let absCenterLeft = this.windowWidth / 2 - this.imgCenterPos.left + 175;
       return {
-        "--absCenterTop": absCenterTop.toFixed(2) + "px",
-        "--absCenterLeft": absCenterLeft.toFixed(2) + "px"
+        '--absCenterTop': absCenterTop.toFixed(2) + 'px',
+        '--absCenterLeft': absCenterLeft.toFixed(2) + 'px',
       };
     },
     audioTracks() {
       if (!this.archivePgContent.audioGallery) return [];
-      return this.archivePgContent.audioGallery.map(obj => ({
+      return this.archivePgContent.audioGallery.map((obj) => ({
         ...obj,
-        type: "audio"
+        type: 'audio',
       }));
     },
     articles() {
       if (!this.archivePgContent.articleGallery) return [];
-      return this.archivePgContent.articleGallery.map(obj => ({
+      return this.archivePgContent.articleGallery.map((obj) => ({
         ...obj,
-        type: "article"
+        type: 'article',
       }));
     },
     audiosAndArticles() {
@@ -484,14 +525,14 @@ export default {
     mainContentStyles() {
       let css = {};
       if (this.windowWidth < 375) {
-        css["--maxPerRow"] = 1;
+        css['--maxPerRow'] = 1;
         const boxSize = this.windowWidth - 32;
-        css["--boxSize"] = boxSize + "px";
+        css['--boxSize'] = boxSize + 'px';
       } else {
-        css["--maxPerRow"] = 5;
-        css["--boxSize"] = "350px";
+        css['--maxPerRow'] = 5;
+        css['--boxSize'] = '350px';
       }
-      css["--gridGap"] = "30px";
+      css['--gridGap'] = '30px';
       return css;
     },
     bookImagesUrlsStdRes() {
@@ -504,22 +545,22 @@ export default {
         i <= book.commonFilenameLastNum;
         i++
       ) {
-        let url = urlCommon + i + ".jpg";
+        let url = urlCommon + i + '.jpg';
         pages.push(url);
       }
       return pages;
     },
     archives() {
       let archives = [];
-      this.archivesPgContent.tiles?.forEach(tile => {
+      this.archivesPgContent.tiles?.forEach((tile) => {
         archives.push({
           title: tile.text,
           link: slugify(tile.text, {
             customReplacements: [
-              ["'", ""],
-              [",", ""]
-            ]
-          })
+              ["'", ''],
+              [',', ''],
+            ],
+          }),
         });
       });
       return archives;
@@ -530,9 +571,9 @@ export default {
           this.archives[i].link ==
           slugify(this.title, {
             customReplacements: [
-              ["'", ""],
-              [",", ""]
-            ]
+              ["'", ''],
+              [',', ''],
+            ],
           })
         )
           return i;
@@ -556,7 +597,7 @@ export default {
     },
     isViewportForSmallLinks() {
       return this.windowWidth < 992;
-    }
+    },
   },
 
   async beforeMount() {
@@ -587,27 +628,27 @@ export default {
 
   methods: {
     bindEvents() {
-      window.addEventListener("resize", this.updateWindowDims, false);
+      window.addEventListener('resize', this.updateWindowDims, false);
       window.addEventListener(
-        "orientationchange",
+        'orientationchange',
         this.updateWindowDims,
         false
       );
-      document.addEventListener("keydown", this.keyDownHandler, false);
-      document.addEventListener("scroll", this.scrollHandler, false);
+      document.addEventListener('keydown', this.keyDownHandler, false);
+      document.addEventListener('scroll', this.scrollHandler, false);
     },
     unbindEvents() {
-      window.removeEventListener("resize", this.updateWindowDims, false);
+      window.removeEventListener('resize', this.updateWindowDims, false);
       window.removeEventListener(
-        "orientationchange",
+        'orientationchange',
         this.updateWindowDims,
         false
       );
-      document.removeEventListener("keydown", this.keyDownHandler, false);
-      document.removeEventListener("scroll", this.scrollHandler, false);
+      document.removeEventListener('keydown', this.keyDownHandler, false);
+      document.removeEventListener('scroll', this.scrollHandler, false);
     },
     delay(ms) {
-      return new Promise(res => setTimeout(res, ms));
+      return new Promise((res) => setTimeout(res, ms));
     },
     async staggerSlideshowStarts() {
       this.$refs.slideshowLeft.start();
@@ -635,7 +676,7 @@ export default {
         this.applyLargeImgStyles = true;
       });
 
-      this.eventName = "click";
+      this.eventName = 'click';
     },
     closeLargeImg() {
       if (this.applyLargeImgStyles) {
@@ -666,10 +707,10 @@ export default {
       function callback(arrItem) {
         return arrItem.thumbnailImg == item.thumbnailImg;
       }
-      if (item.type == "audio") {
+      if (item.type == 'audio') {
         const index = this.audioTracks.findIndex(callback);
         this.audioIndex = index >= 0 ? index : null;
-      } else if (item.type == "article") {
+      } else if (item.type == 'article') {
         const index = this.articles.findIndex(callback);
         this.articleIndex = index >= 0 ? index : null;
         this.toggleFullscreen();
@@ -685,24 +726,25 @@ export default {
     },
     reloadBook() {
       this.bookKey += 1; // increment component key to force reload between toggle of fullscreen / normal-screen
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
 
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
+  src: url('../../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src:
+    url('../../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
     /* Pretty Modern Browsers */
-      url("../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
+      url('../../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -741,7 +783,7 @@ export default {
   margin: 0 auto;
 }
 #header:after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   top: 0;
@@ -856,15 +898,19 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .galleryBox .mediaBox::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  box-shadow: inset 0px 0px 150px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    inset 0px 0px 150px rgba(0, 0, 0, 0.5),
     inset 0px 0px 150px rgba(0, 0, 0, 0.5);
   pointer-events: none;
   transition: box-shadow 0.2s ease;
@@ -901,8 +947,8 @@ export default {
 
 .thumbnailCaption {
   color: white;
-  font-family: "Open Sans Condensed", sans-serif;
-  font-feature-settings: "liga";
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-feature-settings: 'liga';
   font-weight: 300;
   font-size: 46px;
   line-height: 46px;
